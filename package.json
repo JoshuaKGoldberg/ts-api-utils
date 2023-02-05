@@ -42,11 +42,11 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"main": "./lib/index.js",
-	"name": "ts-tools",
+	"name": "ts-api-tools",
 	"packageManager": "pnpm@7.26.3",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/ts-tools"
+		"url": "https://github.com/JoshuaKGoldberg/ts-api-tools"
 	},
 	"scripts": {
 		"build": "tsc",

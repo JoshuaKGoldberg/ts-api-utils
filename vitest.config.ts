@@ -10,7 +10,7 @@ export default defineConfig({
 			reporter: ["html", "lcov"],
 
 			// c8 reports types-only lines as uncovered
-			// https://github.com/JoshuaKGoldberg/ts-tools/issues/100
+			// https://github.com/JoshuaKGoldberg/ts-api-tools/issues/100
 			provider: "istanbul",
 		},
 	},
