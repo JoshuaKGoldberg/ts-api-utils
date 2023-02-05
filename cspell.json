@@ -1,0 +1,24 @@
+{
+	"dictionaries": ["typescript"],
+	"ignorePaths": [
+		".github",
+		"CHANGELOG.md",
+		"coverage",
+		"lib",
+		"node_modules",
+		"pnpm-lock.yaml",
+		"script/*.json"
+	],
+	"words": [
+		"Codecov",
+		"codespace",
+		"commitlint",
+		"contributorsrc",
+		"conventionalcommits",
+		"infile",
+		"knip",
+		"lcov",
+		"quickstart",
+		"wontfix"
+	]
+}
