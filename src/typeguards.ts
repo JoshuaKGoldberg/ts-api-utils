@@ -29,6 +29,12 @@ export function isIntersectionType(type: ts.Type): type is ts.IntersectionType {
 	return (type.flags & ts.TypeFlags.Intersection) !== 0;
 }
 
+export function isParameterDeclaration(
+	node: ts.Node
+): node is ts.ParameterDeclaration {
+	return node.kind === ts.SyntaxKind.Parameter;
+}
+
 export function isNumericPropertyName(name: string | ts.__String): boolean {
 	return String(+name) === name;
 }
@@ -51,6 +57,12 @@ export function isNumericOrStringLikeLiteral(
 
 export function isObjectType(type: ts.Type): type is ts.ObjectType {
 	return (type.flags & ts.TypeFlags.Object) !== 0;
+}
+
+export function isUnionOrIntersectionType(
+	type: ts.Type
+): type is ts.UnionOrIntersectionType {
+	return (type.flags & ts.TypeFlags.UnionOrIntersection) !== 0;
 }
 
 export function isUnionType(type: ts.Type): type is ts.UnionType {
