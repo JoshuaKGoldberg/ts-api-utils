@@ -52,12 +52,12 @@ export function getWellKnownSymbolPropertyOfType(
 	for (const prop of type.getProperties()) {
 		if (!prop.name.startsWith(prefix)) continue;
 
+		const declaration = prop.valueDeclaration; // ?? prop.getDeclarations()?.[0];
+
 		const globalSymbol = typeChecker.getApparentType(
 			typeChecker.getTypeAtLocation(
-				(
-					(prop.valueDeclaration as ts.NamedDeclaration)
-						.name as ts.ComputedPropertyName
-				).expression
+				((declaration as ts.NamedDeclaration).name as ts.ComputedPropertyName)
+					.expression
 			)
 		).symbol;
 
