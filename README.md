@@ -656,8 +656,8 @@ Many thanks to [@ajafff](https://github.com/ajafff) for creating the original [`
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=JoshuaKGoldberg" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ajafff"><img src="https://avatars.githubusercontent.com/u/11968040?v=4?s=100" width="100px;" alt="Klaus Meinhardt"/><br /><sub><b>Klaus Meinhardt</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=ajafff" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ajafff"><img src="https://avatars.githubusercontent.com/u/11968040?v=4?s=100" width="100px;" alt="Klaus Meinhardt"/><br /><sub><b>Klaus Meinhardt</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=ajafff" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=ajafff" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>
