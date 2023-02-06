@@ -44,6 +44,9 @@
 	"main": "./lib/index.js",
 	"name": "ts-api-tools",
 	"packageManager": "pnpm@7.26.3",
+	"peerDependencies": {
+		"typescript": ">=4"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/JoshuaKGoldberg/ts-api-tools"

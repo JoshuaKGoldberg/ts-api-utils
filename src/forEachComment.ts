@@ -1,0 +1,92 @@
+// Code largely based on ajafff/tsutils:
+// https://github.com/ajafff/tsutils/blob/03b4df15d14702f9c7a128ac3fae77171778d613/util/util.ts
+// Original license MIT:
+// https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
+
+import * as ts from "typescript";
+
+import { forEachToken } from "./forEachToken";
+
+/** Exclude trailing positions that would lead to scanning for trivia inside JsxText */
+function canHaveTrailingTrivia(token: ts.Node): boolean {
+	switch (token.kind) {
+		case ts.SyntaxKind.CloseBraceToken:
+			// after a JsxExpression inside a JsxElement's body can only be other JsxChild, but no trivia
+			return (
+				token.parent.kind !== ts.SyntaxKind.JsxExpression ||
+				!isJsxElementOrFragment(token.parent.parent)
+			);
+		case ts.SyntaxKind.GreaterThanToken:
+			switch (token.parent.kind) {
+				case ts.SyntaxKind.JsxOpeningElement:
+					// if end is not equal, this is part of the type arguments list. in all other cases it would be inside the element body
+					return token.end !== token.parent.end;
+				case ts.SyntaxKind.JsxOpeningFragment:
+					return false; // would be inside the fragment
+				case ts.SyntaxKind.JsxSelfClosingElement:
+					return (
+						token.end !== token.parent.end || // if end is not equal, this is part of the type arguments list
+						!isJsxElementOrFragment(token.parent.parent)
+					); // there's only trailing trivia if it's the end of the top element
+				case ts.SyntaxKind.JsxClosingElement:
+				case ts.SyntaxKind.JsxClosingFragment:
+					// there's only trailing trivia if it's the end of the top element
+					return !isJsxElementOrFragment(token.parent.parent.parent);
+			}
+	}
+	return true;
+}
+
+function isJsxElementOrFragment(
+	node: ts.Node
+): node is ts.JsxElement | ts.JsxFragment {
+	return (
+		node.kind === ts.SyntaxKind.JsxElement ||
+		node.kind === ts.SyntaxKind.JsxFragment
+	);
+}
+
+export type ForEachCommentCallback = (
+	fullText: string,
+	comment: ts.CommentRange
+) => void;
+
+/** Iterate over all comments owned by `node` or its children */
+export function forEachComment(
+	node: ts.Node,
+	cb: ForEachCommentCallback,
+	sourceFile: ts.SourceFile = node.getSourceFile()
+) {
+	/* Visit all tokens and skip trivia.
+       Comment ranges between tokens are parsed without the need of a scanner.
+       forEachTokenWithWhitespace does intentionally not pay attention to the correct comment ownership of nodes as it always
+       scans all trivia before each token, which could include trailing comments of the previous token.
+       Comment onwership is done right in this function*/
+	const fullText = sourceFile.text;
+	const notJsx = sourceFile.languageVariant !== ts.LanguageVariant.JSX;
+	return forEachToken(
+		node,
+		(token) => {
+			if (token.pos === token.end) return;
+			if (token.kind !== ts.SyntaxKind.JsxText)
+				ts.forEachLeadingCommentRange(
+					fullText,
+					// skip shebang at position 0
+					// TODO: Investigate
+					// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+					token.pos === 0 ? (ts.getShebang(fullText) || "").length : token.pos,
+					commentCallback
+				);
+			if (notJsx || canHaveTrailingTrivia(token))
+				return ts.forEachTrailingCommentRange(
+					fullText,
+					token.end,
+					commentCallback
+				);
+		},
+		sourceFile
+	);
+	function commentCallback(pos: number, end: number, kind: ts.CommentKind) {
+		cb(fullText, { pos, end, kind });
+	}
+}

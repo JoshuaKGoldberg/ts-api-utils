@@ -10,6 +10,7 @@
 		"script/*.json"
 	],
 	"words": [
+		"ajafff",
 		"Codecov",
 		"codespace",
 		"commitlint",
@@ -19,6 +20,7 @@
 		"knip",
 		"lcov",
 		"quickstart",
+		"tsutils",
 		"wontfix"
 	]
 }

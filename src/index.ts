@@ -1,2 +1,2 @@
-export * from "./greet.js";
+export * from "./forEachComment.js";
 export * from "./types.js";

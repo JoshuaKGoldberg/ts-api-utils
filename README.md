@@ -1,6 +1,6 @@
 <h1 align="center">TypeScript API Tools</h1>
 
-<p align="center">Utility functions for working with TypeScript's API. Based on the wonderful ajafff/tsutils.</p>
+<p align="center">Utility functions for working with TypeScript's API. Based on the wonderful [ajafff/tsutils](https://github.com/ajafff/tsutils).</p>
 
 <p align="center">
 	<a href="#contributors" target="_blank">
@@ -32,11 +32,8 @@
 npm i ts-api-tools
 ```
 
-```ts
-import { greet } from "ts-api-tools";
-
-greet("Hello, world!");
-```
+> ⚠️ This package is a fork of and drop-in replacement for [`tsutils`](https://github.com/ajafff/tsutils) ([original license: MIT](https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE)).
+> It's very early stage - most functions are not implemented yet! ⚠️
 
 ## Development
 
