@@ -2,7 +2,7 @@
 
 <p align="center">
 	Utility functions for working with TypeScript's API.
-	Based on the wonderful [`tsutils`](https://github.com/ajafff/tsutils).
+	Based on the wonderful <a href="https://github.com/ajafff/tsutils">tsutils</a>.
 </p>
 
 <p align="center">
