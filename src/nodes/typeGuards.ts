@@ -117,6 +117,12 @@ export function isNumericOrStringLikeLiteral(
 	}
 }
 
+export function isObjectBindingPattern(
+	node: ts.Node
+): node is ts.ObjectBindingPattern {
+	return node.kind === ts.SyntaxKind.ObjectBindingPattern;
+}
+
 export function isParameterDeclaration(
 	node: ts.Node
 ): node is ts.ParameterDeclaration {

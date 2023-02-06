@@ -9,6 +9,7 @@ import {
 	isEntityNameExpression,
 	isExpression,
 	isNumericOrStringLikeLiteral,
+	isObjectBindingPattern,
 	isParameterDeclaration,
 } from "./typeGuards";
 
@@ -139,6 +140,27 @@ describe("isNumericOrStringLikeLiteral", () => {
 		[true, "a string literal", ts.factory.createStringLiteral("abc")],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isNumericOrStringLikeLiteral(node)).toBe(expected);
+	});
+});
+
+describe("isObjectBindingPattern", () => {
+	const arrayDestructuring = (
+		createNode(
+			"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
+		) as ts.VariableStatement
+	).declarationList.declarations[0];
+
+	const objectDestructuring = (
+		createNode(
+			"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
+		) as ts.VariableStatement
+	).declarationList.declarations[0];
+
+	it.each([
+		[false, "an array destructuring assignment", arrayDestructuring.name],
+		[true, "an object destructuring assignment", objectDestructuring.name],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isObjectBindingPattern(node)).toBe(expected);
 	});
 });
 
