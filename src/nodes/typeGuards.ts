@@ -3,6 +3,25 @@
 
 import * as ts from "typescript";
 
+export type ConstAssertionExpression = ts.AssertionExpression & {
+	type: ts.TypeReferenceNode;
+	typeName: ConstAssertionIdentifier;
+};
+
+export type ConstAssertionIdentifier = ts.Identifier & {
+	escapedText: ts.__String & "const";
+};
+
+export function isConstAssertionExpression(
+	node: ts.AssertionExpression
+): node is ConstAssertionExpression {
+	return (
+		ts.isTypeReferenceNode(node.type) &&
+		node.type.typeName.kind === ts.SyntaxKind.Identifier &&
+		node.type.typeName.escapedText === "const"
+	);
+}
+
 export function isEntityNameExpression(
 	node: ts.Node
 ): node is ts.EntityNameExpression {
@@ -87,23 +106,4 @@ export function isParameterDeclaration(
 	node: ts.Node
 ): node is ts.ParameterDeclaration {
 	return node.kind === ts.SyntaxKind.Parameter;
-}
-
-export type ConstAssertionExpression = ts.AssertionExpression & {
-	type: ts.TypeReferenceNode;
-	typeName: ConstAssertionIdentifier;
-};
-
-export type ConstAssertionIdentifier = ts.Identifier & {
-	escapedText: ts.__String & "const";
-};
-
-export function isConstAssertionExpression(
-	node: ts.AssertionExpression
-): node is ConstAssertionExpression {
-	return (
-		ts.isTypeReferenceNode(node.type) &&
-		node.type.typeName.kind === ts.SyntaxKind.Identifier &&
-		node.type.typeName.escapedText === "const"
-	);
 }
