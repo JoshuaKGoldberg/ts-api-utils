@@ -103,6 +103,7 @@ tools.isCompilerOptionEnabled(options, "allowSyntheticDefaultImports"); // false
 
 Checks if a given compiler option is enabled, accounting for whether all flags (except `strictPropertyInitialization`) have been enabled by `strict: true`.
 
+- `type StrictCompilerOption =` _(all keys of `ts.CompilerOptions` relevant to `strict`)_
 - `function isStrictCompilerOptionEnabled(options: ts.CompilerOptions, option: StrictCompilerOption): boolean`
 
 ```ts
@@ -171,7 +172,7 @@ import * as tools from "ts-api-tools";
 
 declare const symbol: ts.Symbol;
 
-tools.isSymbolFlagSet(node, ts.SymbolFlags.Accessor);
+tools.isSymbolFlagSet(symbol, ts.SymbolFlags.Accessor);
 ```
 
 #### `isTypeFlagSet`
@@ -257,9 +258,9 @@ tools.isConstAssertion(node);
 ```ts
 import * as tools from "ts-api-tools";
 
-declare const type: ts.Type;
+declare const node: ts.Node;
 
-isBindableObjectDefinePropertyCall(type);
+tools.isBindableObjectDefinePropertyCall(node);
 ```
 
 #### `isInConstContext`
@@ -269,9 +270,9 @@ isBindableObjectDefinePropertyCall(type);
 ```ts
 import * as tools from "ts-api-tools";
 
-declare const node: ts.Node;
+declare const node: ts.Expression;
 
-isInConstContext(node);
+tools.isInConstContext(node);
 ```
 
 ### Modifiers
@@ -285,7 +286,7 @@ import * as tools from "ts-api-tools";
 
 declare const modifiers: ts.Modifier[];
 
-hasModifier(modifiers, ts.SyntaxKind.AbstractKeyword);
+tools.hasModifier(modifiers, ts.SyntaxKind.AbstractKeyword);
 ```
 
 ### Scopes
@@ -337,8 +338,8 @@ Determines whether the given text can be used to access a property with a Proper
 ```ts
 import * as tools from "ts-api-tools";
 
-isValidPropertyAccess("abc"); // true
-isValidPropertyAccess("123"); // false
+tools.isValidPropertyAccess("abc"); // true
+tools.isValidPropertyAccess("123"); // false
 ```
 
 ### Tokens
@@ -355,7 +356,7 @@ import * as tools from "ts-api-tools";
 
 declare const node: ts.Node;
 
-forEachToken(node, (token) => {
+tools.forEachToken(node, (token) => {
 	console.log("Found token:", token.getText());
 });
 ```
@@ -371,7 +372,7 @@ import * as tools from "ts-api-tools";
 
 declare const type: ts.Type;
 
-getCallSignaturesOfType(type);
+tools.getCallSignaturesOfType(type);
 ```
 
 #### `getPropertyOfType`
@@ -384,7 +385,7 @@ import * as tools from "ts-api-tools";
 declare const property: ts.Symbol;
 declare const type: ts.Type;
 
-getPropertyOfType(type, property.getEscapedName());
+tools.getPropertyOfType(type, property.getEscapedName());
 ```
 
 ### Type Type Guards
