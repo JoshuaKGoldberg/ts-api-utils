@@ -92,8 +92,11 @@ function isReadonlyPropertyFromMappedType(
 		!/^__@[^@]+$/.test(name as string)
 	)
 		return declaration.readonlyToken.kind !== ts.SyntaxKind.MinusToken;
-	return isPropertyReadonlyInType(
-		(type as unknown as { modifiersType: ts.Type }).modifiersType,
+
+	const { modifiersType } = type as { modifiersType?: ts.Type };
+
+	return /* modifiersType && */ isPropertyReadonlyInType(
+		modifiersType!,
 		name,
 		typeChecker
 	);
