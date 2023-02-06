@@ -3,6 +3,15 @@
 
 import * as ts from "typescript";
 
+export function isAccessorDeclaration(
+	node: ts.Node
+): node is ts.AccessorDeclaration {
+	return (
+		node.kind === ts.SyntaxKind.GetAccessor ||
+		node.kind === ts.SyntaxKind.SetAccessor
+	);
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;

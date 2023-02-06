@@ -3,12 +3,42 @@ import { describe, expect, it } from "vitest";
 
 import { createNode } from "../test/utils";
 import {
+	isAccessorDeclaration,
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isExpression,
 	isNumericOrStringLikeLiteral,
 	isParameterDeclaration,
 } from "./typeGuards";
+
+describe("isAccessorDeclaration", () => {
+	it.each([
+		[
+			true,
+			"a setter on an object",
+			(
+				(
+					createNode(
+						"type T = { set abc(value: unknown) { } }"
+					) as ts.TypeAliasDeclaration
+				).type as ts.TypeLiteralNode
+			).members[0],
+		],
+		[
+			true,
+			"a getter on an object",
+			(
+				(
+					createNode(
+						"type T = { get abc() { return 1 } }"
+					) as ts.TypeAliasDeclaration
+				).type as ts.TypeLiteralNode
+			).members[0],
+		],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isAccessorDeclaration(node)).toBe(expected);
+	});
+});
 
 describe("isConstAssertionExpression", () => {
 	it.each([
