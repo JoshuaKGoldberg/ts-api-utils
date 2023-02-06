@@ -20,6 +20,7 @@
 		"knip",
 		"lcov",
 		"quickstart",
+		"tsup",
 		"tsutils",
 		"typeguards",
 		"wontfix"
