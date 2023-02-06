@@ -5,6 +5,7 @@ import { createNode } from "../test/utils";
 import {
 	isAccessorDeclaration,
 	isArrayBindingPattern,
+	isBindingElement,
 	isBindingPattern,
 	isConstAssertionExpression,
 	isEntityNameExpression,
@@ -61,6 +62,59 @@ describe("isArrayBindingPattern", () => {
 		[false, "an object destructuring assignment", objectDestructuring.name],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isArrayBindingPattern(node)).toBe(expected);
+	});
+});
+
+describe("isBindingElement", () => {
+	const arrayDestructuringElements = (
+		(
+			createNode(
+				"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
+			) as ts.VariableStatement
+		).declarationList.declarations[0].name as ts.BindingPattern
+	).elements;
+
+	const objectDestructuringElements = (
+		(
+			createNode(
+				"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
+			) as ts.VariableStatement
+		).declarationList.declarations[0].name as ts.BindingPattern
+	).elements;
+
+	it.each([
+		[
+			true,
+			"an identifier in an array destructuring assignment",
+			arrayDestructuringElements[0],
+		],
+		[
+			false,
+			"an obition of an element in an array destructuring assignment",
+			arrayDestructuringElements[1],
+		],
+		[
+			true,
+			"an array pattern in an array destructuring assignment",
+			arrayDestructuringElements[2],
+		],
+		[
+			true,
+			"a rest argument of an array destructuring assignment",
+			arrayDestructuringElements[3],
+		],
+		[
+			true,
+			"an identifier in an object destructuring assignment",
+			objectDestructuringElements[0],
+		],
+		[
+			true,
+			"a rest argument of an object destructuring assignment",
+			objectDestructuringElements[1],
+		],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isBindingElement(node)).toBe(expected);
 	});
 });
 

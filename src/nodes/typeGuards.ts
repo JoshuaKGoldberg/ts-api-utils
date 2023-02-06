@@ -37,6 +37,10 @@ export function isConstAssertionExpression(
 	);
 }
 
+export function isBindingElement(node: ts.Node): node is ts.BindingElement {
+	return node.kind === ts.SyntaxKind.BindingElement;
+}
+
 export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
 	return (
 		node.kind === ts.SyntaxKind.ArrayBindingPattern ||
