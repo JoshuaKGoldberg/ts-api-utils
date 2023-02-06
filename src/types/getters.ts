@@ -14,13 +14,15 @@ export function getCallSignaturesOfType(
 ): readonly ts.Signature[] {
 	if (isUnionType(type)) {
 		const signatures = [];
-		for (const t of type.types) signatures.push(...getCallSignaturesOfType(t));
+		for (const subType of type.types) {
+			signatures.push(...getCallSignaturesOfType(subType));
+		}
 		return signatures;
 	}
 	if (isIntersectionType(type)) {
 		let signatures: readonly ts.Signature[] | undefined;
-		for (const t of type.types) {
-			const sig = getCallSignaturesOfType(t);
+		for (const subType of type.types) {
+			const sig = getCallSignaturesOfType(subType);
 			if (sig.length !== 0) {
 				if (signatures !== undefined) return []; // if more than one type of the intersection has call signatures, none of them is useful for inference
 				signatures = sig;

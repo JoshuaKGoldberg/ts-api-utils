@@ -595,8 +595,8 @@ tools.isThenableType(typeChecker, expression, type);
 
 #### `someTypePart`
 
-- `type SomeTypePartPredicate = (t: ts.Type) => t is ts.UnionOrIntersectionType`
-- `type SomeTypePartCallback = (t: ts.Type) => boolean`
+- `type SomeTypePartPredicate = (type: ts.Type) => type is ts.UnionOrIntersectionType`
+- `type SomeTypePartCallback = (type: ts.Type) => boolean`
 - `function someTypePart(type: ts.Type, predicate: SomeTypePartPredicate, callback: SomeTypePartCallback): boolean`
 
 ```ts

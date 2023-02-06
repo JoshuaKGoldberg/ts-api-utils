@@ -49,13 +49,16 @@ function isReadonlyPropertyIntersection(
 	name: ts.__String,
 	typeChecker: ts.TypeChecker
 ) {
-	return someTypePart(type, isIntersectionType, (t): boolean => {
-		const prop = getPropertyOfType(t, name);
+	return someTypePart(type, isIntersectionType, (subType): boolean => {
+		const prop = getPropertyOfType(subType, name);
 		if (prop === undefined) return false;
 		if (prop.flags & ts.SymbolFlags.Transient) {
-			if (/^(?:[1-9]\d*|0)$/.test(name as string) && isTupleTypeReference(t))
-				return t.target.readonly;
-			switch (isReadonlyPropertyFromMappedType(t, name, typeChecker)) {
+			if (
+				/^(?:[1-9]\d*|0)$/.test(name as string) &&
+				isTupleTypeReference(subType)
+			)
+				return subType.target.readonly;
+			switch (isReadonlyPropertyFromMappedType(subType, name, typeChecker)) {
 				case true:
 					return true;
 				case false:
@@ -109,8 +112,9 @@ function isCallback(
 		type = type.getNumberIndexType();
 		if (type === undefined) return false;
 	}
-	for (const t of unionTypeParts(type))
-		if (t.getCallSignatures().length !== 0) return true;
+	for (const subType of unionTypeParts(type)) {
+		if (subType.getCallSignatures().length !== 0) return true;
+	}
 	return false;
 }
 
@@ -122,21 +126,21 @@ export function isPropertyReadonlyInType(
 ): boolean {
 	let seenProperty = false;
 	let seenReadonlySignature = false;
-	for (const t of unionTypeParts(type)) {
-		if (getPropertyOfType(t, name) === undefined) {
+	for (const subType of unionTypeParts(type)) {
+		if (getPropertyOfType(subType, name) === undefined) {
 			// property is not present in this part of the union -> check for readonly index signature
 			const index =
 				(isNumericPropertyName(name)
-					? typeChecker.getIndexInfoOfType(t, ts.IndexKind.Number)
+					? typeChecker.getIndexInfoOfType(subType, ts.IndexKind.Number)
 					: undefined) ??
-				typeChecker.getIndexInfoOfType(t, ts.IndexKind.String);
+				typeChecker.getIndexInfoOfType(subType, ts.IndexKind.String);
 			if (index?.isReadonly) {
 				if (seenProperty) return true;
 				seenReadonlySignature = true;
 			}
 		} else if (
 			seenReadonlySignature ||
-			isReadonlyPropertyIntersection(t, name, typeChecker)
+			isReadonlyPropertyIntersection(subType, name, typeChecker)
 		) {
 			return true;
 		} else {
@@ -182,12 +186,12 @@ export function isThenableType(
 	node: ts.Node,
 	type = typeChecker.getTypeAtLocation(node)!
 ): boolean {
-	for (const ty of unionTypeParts(typeChecker.getApparentType(type))) {
-		const then = ty.getProperty("then");
+	for (const typePart of unionTypeParts(typeChecker.getApparentType(type))) {
+		const then = typePart.getProperty("then");
 		if (then === undefined) continue;
 		const thenType = typeChecker.getTypeOfSymbolAtLocation(then, node);
-		for (const t of unionTypeParts(thenType))
-			for (const signature of t.getCallSignatures())
+		for (const subTypePart of unionTypeParts(thenType))
+			for (const signature of subTypePart.getCallSignatures())
 				if (
 					signature.parameters.length !== 0 &&
 					isCallback(typeChecker, signature.parameters[0], node)
