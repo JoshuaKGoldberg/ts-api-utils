@@ -640,7 +640,7 @@ Thanks! 💖
 
 ## Contributors
 
-Many thanks to [@ajafff](https://github.com/ajafff) for creating the original [`tsutils`](https://github.com/ajafff/tsutils) that this project is based on! 🙌
+Many thanks to [@ajafff](https://github.com/ajafff) for creating the original [`tsutils`](https://github.com/ajafff/tsutils) that this project is based on and uses a significant majority of code from! 🙌
 
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
