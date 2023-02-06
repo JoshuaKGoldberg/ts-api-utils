@@ -4,8 +4,8 @@
 import * as ts from "typescript";
 
 export function hasModifier(
-	modifiers: ts.ModifiersArray | undefined,
-	...kinds: Array<ts.Modifier["kind"]>
+	modifiers: ts.ModifiersArray | ts.Modifier[] | undefined,
+	...kinds: ts.Modifier["kind"][]
 ) {
 	if (modifiers === undefined) return false;
 	for (const modifier of modifiers)
