@@ -74,5 +74,12 @@
 		"test": "vitest"
 	},
 	"type": "module",
-	"version": "0.0.17"
+	"version": "0.0.17",
+	"files": [
+		"lib/",
+		"package.json",
+		"CHANGELOG.md",
+		"LICENSE.md",
+		"README.md"
+	]
 }
