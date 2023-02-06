@@ -5,21 +5,23 @@
 
 import * as ts from "typescript";
 
+export type ForEachTokenCallback = (token: ts.Node) => void;
+
 /**
- * Iterate over all tokens of `node`
+ * Iterates over all tokens of `node`
  *
  * @param node The node whose tokens should be visited
- * @param cb Is called for every token contained in `node`
+ * @param callback Is called for every token contained in `node`
  */
 export function forEachToken(
 	node: ts.Node,
-	cb: (node: ts.Node) => void,
+	callback: ForEachTokenCallback,
 	sourceFile: ts.SourceFile = node.getSourceFile()
-) {
+): void {
 	const queue = [];
 	while (true) {
 		if (ts.isTokenKind(node.kind)) {
-			cb(node);
+			callback(node);
 			// TODO: Investigate?
 			// eslint-disable-next-line deprecation/deprecation
 		} else if (node.kind !== ts.SyntaxKind.JSDocComment) {

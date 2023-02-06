@@ -3,18 +3,6 @@
 
 import * as ts from "typescript";
 
-export function isConditionalType(type: ts.Type): type is ts.ConditionalType {
-	return (type.flags & ts.TypeFlags.Conditional) !== 0;
-}
-
-export function isConstAssertion(node: ts.AssertionExpression) {
-	return (
-		ts.isTypeReferenceNode(node.type) &&
-		node.type.typeName.kind === ts.SyntaxKind.Identifier &&
-		node.type.typeName.escapedText === "const"
-	);
-}
-
 export function isEntityNameExpression(
 	node: ts.Node
 ): node is ts.EntityNameExpression {
@@ -77,34 +65,14 @@ export function isExpression(node: ts.Node): node is ts.Expression {
 	}
 }
 
-export function isIntersectionType(type: ts.Type): type is ts.IntersectionType {
-	return (type.flags & ts.TypeFlags.Intersection) !== 0;
-}
-
-export function isLiteralType(type: ts.Type): type is ts.LiteralType {
-	return (
-		(type.flags &
-			(ts.TypeFlags.StringOrNumberLiteral | ts.TypeFlags.BigIntLiteral)) !==
-		0
-	);
-}
-
-export function isParameterDeclaration(
-	node: ts.Node
-): node is ts.ParameterDeclaration {
-	return node.kind === ts.SyntaxKind.Parameter;
-}
-
-export function isNumericPropertyName(name: string | ts.__String): boolean {
-	return String(+name) === name;
-}
+export type NumericOrStringLikeLiteral =
+	| ts.NumericLiteral
+	| ts.StringLiteral
+	| ts.NoSubstitutionTemplateLiteral;
 
 export function isNumericOrStringLikeLiteral(
 	node: ts.Node
-): node is
-	| ts.NumericLiteral
-	| ts.StringLiteral
-	| ts.NoSubstitutionTemplateLiteral {
+): node is NumericOrStringLikeLiteral {
 	switch (node.kind) {
 		case ts.SyntaxKind.StringLiteral:
 		case ts.SyntaxKind.NumericLiteral:
@@ -115,22 +83,27 @@ export function isNumericOrStringLikeLiteral(
 	}
 }
 
-export function isObjectType(type: ts.Type): type is ts.ObjectType {
-	return (type.flags & ts.TypeFlags.Object) !== 0;
+export function isParameterDeclaration(
+	node: ts.Node
+): node is ts.ParameterDeclaration {
+	return node.kind === ts.SyntaxKind.Parameter;
 }
 
-export function isUnionOrIntersectionType(
-	type: ts.Type
-): type is ts.UnionOrIntersectionType {
-	return (type.flags & ts.TypeFlags.UnionOrIntersection) !== 0;
-}
+export type ConstAssertionExpression = ts.AssertionExpression & {
+	type: ts.TypeReferenceNode;
+	typeName: ConstAssertionIdentifier;
+};
 
-export function isUniqueESSymbolType(
-	type: ts.Type
-): type is ts.UniqueESSymbolType {
-	return (type.flags & ts.TypeFlags.UniqueESSymbol) !== 0;
-}
+export type ConstAssertionIdentifier = ts.Identifier & {
+	escapedText: ts.__String & "const";
+};
 
-export function isUnionType(type: ts.Type): type is ts.UnionType {
-	return (type.flags & ts.TypeFlags.Union) !== 0;
+export function isConstAssertionExpression(
+	node: ts.AssertionExpression
+): node is ConstAssertionExpression {
+	return (
+		ts.isTypeReferenceNode(node.type) &&
+		node.type.typeName.kind === ts.SyntaxKind.Identifier &&
+		node.type.typeName.escapedText === "const"
+	);
 }

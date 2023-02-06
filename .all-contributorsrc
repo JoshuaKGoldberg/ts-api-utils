@@ -5,14 +5,29 @@
   "contributors": [
     {
       "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
-      "contributions": ["tool"],
+      "contributions": [
+        "tool",
+        "code",
+        "doc"
+      ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
       "profile": "http://www.joshuakgoldberg.com"
+    },
+    {
+      "login": "ajafff",
+      "name": "Klaus Meinhardt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11968040?v=4",
+      "profile": "https://github.com/ajafff",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "projectName": "ts-api-tools",
   "projectOwner": "JoshuaKGoldberg",

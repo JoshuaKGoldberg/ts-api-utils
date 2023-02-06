@@ -29,6 +29,7 @@ module.exports = {
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
 				"deprecation/deprecation": "error",
+				"@typescript-eslint/explicit-module-boundary-types": "error",
 
 				// TODO?
 				"@typescript-eslint/no-non-null-assertion": "off",
