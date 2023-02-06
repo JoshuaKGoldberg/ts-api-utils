@@ -12,6 +12,12 @@ export function isAccessorDeclaration(
 	);
 }
 
+export function isArrayBindingPattern(
+	node: ts.Node
+): node is ts.ArrayBindingPattern {
+	return node.kind === ts.SyntaxKind.ArrayBindingPattern;
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;

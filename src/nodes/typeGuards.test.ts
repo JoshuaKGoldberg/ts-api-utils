@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import { createNode } from "../test/utils";
 import {
 	isAccessorDeclaration,
+	isArrayBindingPattern,
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isExpression,
@@ -37,6 +38,27 @@ describe("isAccessorDeclaration", () => {
 		],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isAccessorDeclaration(node)).toBe(expected);
+	});
+});
+
+describe("isArrayBindingPattern", () => {
+	const arrayDestructuring = (
+		createNode(
+			"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
+		) as ts.VariableStatement
+	).declarationList.declarations[0];
+
+	const objectDestructuring = (
+		createNode(
+			"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
+		) as ts.VariableStatement
+	).declarationList.declarations[0];
+
+	it.each([
+		[true, "an array destructuring assignment", arrayDestructuring.name],
+		[false, "an object destructuring assignment", objectDestructuring.name],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isArrayBindingPattern(node)).toBe(expected);
 	});
 });
 
