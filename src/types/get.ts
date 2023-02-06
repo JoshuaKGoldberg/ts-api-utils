@@ -11,14 +11,14 @@ import {
 
 export function getCallSignaturesOfType(
 	type: ts.Type
-): ReadonlyArray<ts.Signature> {
+): readonly ts.Signature[] {
 	if (isUnionType(type)) {
 		const signatures = [];
 		for (const t of type.types) signatures.push(...getCallSignaturesOfType(t));
 		return signatures;
 	}
 	if (isIntersectionType(type)) {
-		let signatures: ReadonlyArray<ts.Signature> | undefined;
+		let signatures: readonly ts.Signature[] | undefined;
 		for (const t of type.types) {
 			const sig = getCallSignaturesOfType(t);
 			if (sig.length !== 0) {
@@ -47,9 +47,10 @@ export function getWellKnownSymbolPropertyOfType(
 		if (!prop.name.startsWith(prefix)) continue;
 		const globalSymbol = checker.getApparentType(
 			checker.getTypeAtLocation(
-				(<ts.ComputedPropertyName>(
-					(<ts.NamedDeclaration>prop.valueDeclaration).name
-				)).expression
+				(
+					(prop.valueDeclaration as ts.NamedDeclaration)
+						.name as ts.ComputedPropertyName
+				).expression
 			)
 		).symbol;
 		if (
@@ -75,6 +76,7 @@ function getPropertyNameOfWellKnownSymbol(
 		checker
 			.getTypeOfSymbolAtLocation(
 				symbolConstructor,
+				// eslint-disable-next-line  @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 				(symbolConstructor as any).valueDeclaration
 			)
 			.getProperty(symbolName);
@@ -82,9 +84,10 @@ function getPropertyNameOfWellKnownSymbol(
 		knownSymbol &&
 		checker.getTypeOfSymbolAtLocation(
 			knownSymbol,
+			// eslint-disable-next-line  @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 			(knownSymbol as any).valueDeclaration
 		);
 	if (knownSymbolType && isUniqueESSymbolType(knownSymbolType))
 		return knownSymbolType.escapedName;
-	return <ts.__String>("__@" + symbolName);
+	return ("__@" + symbolName) as ts.__String;
 }

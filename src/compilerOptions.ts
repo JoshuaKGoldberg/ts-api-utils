@@ -46,6 +46,7 @@ export function isCompilerOptionEnabled(
 			);
 		case "declaration":
 			return (
+				// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 				options.declaration || isCompilerOptionEnabled(options, "composite")
 			);
 		case "incremental":
@@ -54,6 +55,7 @@ export function isCompilerOptionEnabled(
 				: options.incremental;
 		case "skipDefaultLibCheck":
 			return (
+				// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 				options.skipDefaultLibCheck ||
 				isCompilerOptionEnabled(options, "skipLibCheck")
 			);
@@ -86,7 +88,7 @@ export function isCompilerOptionEnabled(
 			type AssertEqual<T, U extends T> = U; // make sure all strict options are handled here
 			return isStrictCompilerOptionEnabled(
 				options,
-				<AssertEqual<typeof option, StrictCompilerOption>>option
+				option as AssertEqual<typeof option, StrictCompilerOption>
 			);
 	}
 	return options[option] === true;
