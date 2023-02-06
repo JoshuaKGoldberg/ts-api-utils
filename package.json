@@ -1,6 +1,6 @@
 {
 	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
-	"description": "Utility functions for working with TypeScript's API. Based on the wonderful ajafff/tsutils.",
+	"description": "Utility functions for working with TypeScript's API. Based on the wonderful tsutils.",
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",

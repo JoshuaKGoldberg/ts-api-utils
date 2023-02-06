@@ -7,7 +7,7 @@ import {
 	isIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
-} from "../typeguards";
+} from "./typeGuards";
 
 export function getCallSignaturesOfType(
 	type: ts.Type
@@ -31,7 +31,10 @@ export function getCallSignaturesOfType(
 	return type.getCallSignatures();
 }
 
-export function getPropertyOfType(type: ts.Type, name: ts.__String) {
+export function getPropertyOfType(
+	type: ts.Type,
+	name: ts.__String
+): ts.Symbol | undefined {
 	if (!(name as string).startsWith("__"))
 		return type.getProperty(name as string);
 	return type.getProperties().find((s) => s.escapedName === name);
@@ -40,51 +43,56 @@ export function getPropertyOfType(type: ts.Type, name: ts.__String) {
 export function getWellKnownSymbolPropertyOfType(
 	type: ts.Type,
 	wellKnownSymbolName: string,
-	checker: ts.TypeChecker
-) {
+	typeChecker: ts.TypeChecker
+): ts.Symbol | undefined {
 	const prefix = "__@" + wellKnownSymbolName;
+
 	for (const prop of type.getProperties()) {
 		if (!prop.name.startsWith(prefix)) continue;
-		const globalSymbol = checker.getApparentType(
-			checker.getTypeAtLocation(
+
+		const globalSymbol = typeChecker.getApparentType(
+			typeChecker.getTypeAtLocation(
 				(
 					(prop.valueDeclaration as ts.NamedDeclaration)
 						.name as ts.ComputedPropertyName
 				).expression
 			)
 		).symbol;
+
 		if (
 			prop.escapedName ===
 			getPropertyNameOfWellKnownSymbol(
-				checker,
+				typeChecker,
 				globalSymbol,
 				wellKnownSymbolName
 			)
-		)
+		) {
 			return prop;
+		}
 	}
-	return;
+
+	return undefined;
 }
 
 function getPropertyNameOfWellKnownSymbol(
-	checker: ts.TypeChecker,
+	typeChecker: ts.TypeChecker,
 	symbolConstructor: ts.Symbol | undefined,
 	symbolName: string
 ) {
 	const knownSymbol =
 		symbolConstructor &&
-		checker
+		typeChecker
 			.getTypeOfSymbolAtLocation(
 				symbolConstructor,
-				// eslint-disable-next-line  @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 				(symbolConstructor as any).valueDeclaration
 			)
 			.getProperty(symbolName);
 	const knownSymbolType =
 		knownSymbol &&
-		checker.getTypeOfSymbolAtLocation(
+		typeChecker.getTypeOfSymbolAtLocation(
 			knownSymbol,
-			// eslint-disable-next-line  @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 			(knownSymbol as any).valueDeclaration
 		);
 	if (knownSymbolType && isUniqueESSymbolType(knownSymbolType))

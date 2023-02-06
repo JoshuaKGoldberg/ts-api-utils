@@ -3,28 +3,13 @@
 
 import * as ts from "typescript";
 
-export type BooleanCompilerOptions =
-	| "allowJs"
-	| "allowSyntheticDefaultImports"
-	| "alwaysStrict"
-	| "checkJs"
-	| "composite"
-	| "declaration"
-	| "declarationMap"
-	| "emitDeclarationOnly"
-	| "esModuleInterop"
-	| "incremental"
-	| "noImplicitAny"
-	| "noImplicitThis"
-	| "noUncheckedIndexedAccess"
-	| "skipDefaultLibCheck"
-	| "skipLibCheck"
-	| "strictBindCallApply"
-	| "strictFunctionTypes"
-	| "strictNullChecks"
-	| "strictPropertyInitialization"
-	| "stripInternal"
-	| "suppressImplicitAnyIndexErrors";
+export type BooleanCompilerOptions = keyof {
+	[K in keyof ts.CompilerOptions as NonNullable<
+		ts.CompilerOptions[K]
+	> extends boolean
+		? K
+		: never]: unknown;
+};
 
 /**
  * Checks if a given compiler option is enabled.
@@ -34,7 +19,7 @@ export type BooleanCompilerOptions =
  */
 export function isCompilerOptionEnabled(
 	options: ts.CompilerOptions,
-	option: BooleanCompilerOptions | "stripInternal"
+	option: BooleanCompilerOptions
 ): boolean {
 	switch (option) {
 		case "stripInternal":
@@ -95,14 +80,18 @@ export function isCompilerOptionEnabled(
 }
 
 export type StrictCompilerOption =
+	| "alwaysStrict"
 	| "noImplicitAny"
 	| "noImplicitThis"
-	| "strictNullChecks"
+	| "strictBindCallApply"
 	| "strictFunctionTypes"
-	| "strictPropertyInitialization"
-	| "alwaysStrict"
-	| "strictBindCallApply";
+	| "strictNullChecks"
+	| "strictPropertyInitialization";
 
+/**
+ * Checks if a given compiler option is enabled, accounting for whether all flags
+ * (except `strictPropertyInitialization`) have been enabled by `strict: true`.
+ */
 export function isStrictCompilerOptionEnabled(
 	options: ts.CompilerOptions,
 	option: StrictCompilerOption

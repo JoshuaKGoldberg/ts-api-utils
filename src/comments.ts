@@ -3,7 +3,7 @@
 
 import * as ts from "typescript";
 
-import { forEachToken } from "./forEachToken";
+import { forEachToken } from "./tokens";
 
 /** Exclude trailing positions that would lead to scanning for trivia inside JsxText */
 function canHaveTrailingTrivia(token: ts.Node): boolean {
@@ -49,12 +49,12 @@ export type ForEachCommentCallback = (
 	comment: ts.CommentRange
 ) => void;
 
-/** Iterate over all comments owned by `node` or its children */
+/** Iterates over all comments owned by `node` or its children */
 export function forEachComment(
 	node: ts.Node,
-	cb: ForEachCommentCallback,
+	callback: ForEachCommentCallback,
 	sourceFile: ts.SourceFile = node.getSourceFile()
-) {
+): void {
 	/* Visit all tokens and skip trivia.
        Comment ranges between tokens are parsed without the need of a scanner.
        forEachTokenWithWhitespace does intentionally not pay attention to the correct comment ownership of nodes as it always
@@ -85,6 +85,6 @@ export function forEachComment(
 		sourceFile
 	);
 	function commentCallback(pos: number, end: number, kind: ts.CommentKind) {
-		cb(fullText, { pos, end, kind });
+		callback(fullText, { pos, end, kind });
 	}
 }

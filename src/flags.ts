@@ -3,26 +3,31 @@
 
 import * as ts from "typescript";
 
-function isFlagSet(obj: { flags: number }, flag: number) {
+function isFlagSet(obj: { flags: number }, flag: number): boolean {
 	return (obj.flags & flag) !== 0;
+}
+
+export function isModifierFlagSet(
+	node: ts.Declaration,
+	flag: ts.ModifierFlags
+): boolean {
+	return (ts.getCombinedModifierFlags(node) & flag) !== 0;
 }
 
 export const isNodeFlagSet: (node: ts.Node, flag: ts.NodeFlags) => boolean =
 	isFlagSet;
-export const isTypeFlagSet: (type: ts.Type, flag: ts.TypeFlags) => boolean =
-	isFlagSet;
+
+export function isObjectFlagSet(
+	objectType: ts.ObjectType,
+	flag: ts.ObjectFlags
+): boolean {
+	return (objectType.objectFlags & flag) !== 0;
+}
+
 export const isSymbolFlagSet: (
 	symbol: ts.Symbol,
 	flag: ts.SymbolFlags
 ) => boolean = isFlagSet;
 
-export function isModifierFlagSet(node: ts.Node, flag: ts.ModifierFlags) {
-	return (ts.getCombinedModifierFlags(node as ts.Declaration) & flag) !== 0;
-}
-
-export function isObjectFlagSet(
-	objectType: ts.ObjectType,
-	flag: ts.ObjectFlags
-) {
-	return (objectType.objectFlags & flag) !== 0;
-}
+export const isTypeFlagSet: (type: ts.Type, flag: ts.TypeFlags) => boolean =
+	isFlagSet;

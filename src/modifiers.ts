@@ -4,9 +4,9 @@
 import * as ts from "typescript";
 
 export function hasModifier(
-	modifiers: ts.ModifiersArray | ts.Modifier[] | undefined,
-	...kinds: ts.Modifier["kind"][]
-) {
+	modifiers: Iterable<ts.Modifier> | undefined,
+	...kinds: ts.ModifierSyntaxKind[]
+): boolean {
 	if (modifiers === undefined) return false;
 	for (const modifier of modifiers)
 		if (kinds.includes(modifier.kind)) return true;
