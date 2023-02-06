@@ -1,6 +1,9 @@
 <h1 align="center">TypeScript API Tools</h1>
 
-<p align="center">Utility functions for working with TypeScript's API. Based on the wonderful [ajafff/tsutils](https://github.com/ajafff/tsutils).</p>
+<p align="center">
+	Utility functions for working with TypeScript's API.
+	Based on the wonderful [ajafff/tsutils](https://github.com/ajafff/tsutils).
+</p>
 
 <p align="center">
 	<a href="#contributors" target="_blank">

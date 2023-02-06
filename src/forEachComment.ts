@@ -61,7 +61,7 @@ export function forEachComment(
        Comment ranges between tokens are parsed without the need of a scanner.
        forEachTokenWithWhitespace does intentionally not pay attention to the correct comment ownership of nodes as it always
        scans all trivia before each token, which could include trailing comments of the previous token.
-       Comment onwership is done right in this function*/
+       Comment ownership is done right in this function*/
 	const fullText = sourceFile.text;
 	const notJsx = sourceFile.languageVariant !== ts.LanguageVariant.JSX;
 	return forEachToken(

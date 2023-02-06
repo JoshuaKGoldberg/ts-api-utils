@@ -4,7 +4,6 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.48.2
   '@typescript-eslint/parser': ^5.48.2
   '@vitest/coverage-istanbul': ^0.28.0
-  chalk: ^5.2.0
   cspell: ^6.19.2
   eslint: ^8.32.0
   eslint-config-prettier: ^8.6.0
@@ -37,7 +36,6 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy
   '@typescript-eslint/parser': 5.48.2_7uibuqfxkfaozanbtbziikiqje
   '@vitest/coverage-istanbul': 0.28.2
-  chalk: 5.2.0
   cspell: 6.19.2
   eslint: 8.32.0
   eslint-config-prettier: 8.6.0_eslint@8.32.0
