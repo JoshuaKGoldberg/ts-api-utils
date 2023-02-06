@@ -9,21 +9,24 @@ import {
 	isObjectFlagSet,
 	isSymbolFlagSet,
 	isTypeFlagSet,
-} from "./flags";
+} from "../flags";
 import {
 	isConstAssertion,
 	isEntityNameExpression,
 	isIntersectionType,
+	isLiteralType,
 	isNumericOrStringLikeLiteral,
 	isNumericPropertyName,
 	isObjectType,
 	isUnionType,
-} from "./typeguards";
+} from "../typeguards";
+import { getPropertyOfType } from "./get";
 
-export function getPropertyOfType(type: ts.Type, name: ts.__String) {
-	if (!(name as string).startsWith("__"))
-		return type.getProperty(name as string);
-	return type.getProperties().find((s) => s.escapedName === name);
+export function isAssignmentKind(kind: ts.SyntaxKind) {
+	return (
+		kind >= ts.SyntaxKind.FirstAssignment &&
+		kind <= ts.SyntaxKind.LastAssignment
+	);
 }
 
 /** Determines whether a call to `Object.defineProperty` is statically analyzable. */
@@ -46,6 +49,17 @@ export function isBooleanLiteralType(type: ts.Type, literal: boolean) {
 		(type as unknown as { intrinsicName: string }).intrinsicName ===
 			(literal ? "true" : "false")
 	);
+}
+
+/** Determine if a type is definitely falsy. This function doesn't unwrap union types. */
+export function isFalsyType(type: ts.Type): boolean {
+	if (
+		type.flags &
+		(ts.TypeFlags.Undefined | ts.TypeFlags.Null | ts.TypeFlags.Void)
+	)
+		return true;
+	if (isLiteralType(type)) return !type.value;
+	return isBooleanLiteralType(type, false);
 }
 
 /** Detects whether an expression is affected by an enclosing 'as const' assertion and therefore treated literally. */
@@ -189,6 +203,56 @@ function isReadonlyPropertyFromMappedType(
 	);
 }
 
+/** Determines if a type thenable and can be used with `await`. */
+export function isThenableType(
+	checker: ts.TypeChecker,
+	node: ts.Node,
+	type: ts.Type
+): boolean;
+/** Determines if a type thenable and can be used with `await`. */
+export function isThenableType(
+	checker: ts.TypeChecker,
+	node: ts.Expression,
+	type?: ts.Type
+): boolean;
+export function isThenableType(
+	checker: ts.TypeChecker,
+	node: ts.Node,
+	type = checker.getTypeAtLocation(node)!
+): boolean {
+	for (const ty of unionTypeParts(checker.getApparentType(type))) {
+		const then = ty.getProperty("then");
+		if (then === undefined) continue;
+		const thenType = checker.getTypeOfSymbolAtLocation(then, node);
+		for (const t of unionTypeParts(thenType))
+			for (const signature of t.getCallSignatures())
+				if (
+					signature.parameters.length !== 0 &&
+					isCallback(checker, signature.parameters[0], node)
+				)
+					return true;
+	}
+	return false;
+}
+
+function isCallback(
+	checker: ts.TypeChecker,
+	param: ts.Symbol,
+	node: ts.Node
+): boolean {
+	let type: ts.Type | undefined = checker.getApparentType(
+		checker.getTypeOfSymbolAtLocation(param, node)
+	);
+	if ((param.valueDeclaration as ts.ParameterDeclaration).dotDotDotToken) {
+		// unwrap array type of rest parameter
+		type = type.getNumberIndexType();
+		if (type === undefined) return false;
+	}
+	for (const t of unionTypeParts(type))
+		if (t.getCallSignatures().length !== 0) return true;
+	return false;
+}
+
 export function isTupleType(type: ts.Type): type is ts.TupleType {
 	return (
 		(type.flags & ts.TypeFlags.Object &&
@@ -207,6 +271,27 @@ export function isTypeReference(type: ts.Type): type is ts.TypeReference {
 		(type.flags & ts.TypeFlags.Object) !== 0 &&
 		((type as ts.ObjectType).objectFlags & ts.ObjectFlags.Reference) !== 0
 	);
+}
+
+function charSize(ch: number) {
+	return ch >= 0x10000 ? 2 : 1;
+}
+
+/**
+ * Determines whether the given text can be used to access a property with a PropertyAccessExpression while preserving the property's name.
+ */
+export function isValidPropertyAccess(
+	text: string,
+	languageVersion = ts.ScriptTarget.Latest
+): boolean {
+	if (text.length === 0) return false;
+	let ch = text.codePointAt(0)!;
+	if (!ts.isIdentifierStart(ch, languageVersion)) return false;
+	for (let i = charSize(ch); i < text.length; i += charSize(ch)) {
+		ch = text.codePointAt(i)!;
+		if (!ts.isIdentifierPart(ch, languageVersion)) return false;
+	}
+	return true;
 }
 
 export function someTypePart(
