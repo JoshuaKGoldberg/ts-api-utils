@@ -37,8 +37,6 @@ npm i ts-api-tools
 
 ```ts
 import * as tools from "ts-api-tools";
-
-tools.isConditionalType(type);
 ```
 
 `ts-api-tools` provides several categories of utility functions:
