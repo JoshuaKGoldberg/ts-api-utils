@@ -1,5 +1,5 @@
-import ts from "typescript";
 import tsvfs from "@typescript/vfs";
+import ts from "typescript";
 
 export function createNode<Node extends ts.Node>(
 	nodeOrSourceText: Node | string
@@ -20,10 +20,15 @@ export function createNode<Node extends ts.Node>(
 		: statement) as unknown as Node;
 }
 
+interface SourceFileAndTypeChecker {
+	sourceFile: ts.SourceFile;
+	typeChecker: ts.TypeChecker;
+}
+
 export function createSourceFileAndTypeChecker(
 	sourceText: string,
 	fileName = "file.ts"
-) {
+): SourceFileAndTypeChecker {
 	const compilerOptions = {};
 	const fsMap = tsvfs
 		.createDefaultMapFromNodeModules(compilerOptions)
