@@ -30,11 +30,18 @@
 		"release-it": "^15.6.0",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.0.3",
-		"typescript": "^4.9.4",
+		"tsup": "^6.5.0",
+		"typescript": "4.9.3",
 		"vitest": "^0.28.0"
 	},
 	"engines": {
 		"node": ">=18"
+	},
+	"exports": {
+		".": {
+			"import": "./lib/index.js",
+			"require": "./lib/index.cjs"
+		}
 	},
 	"license": "MIT",
 	"lint-staged": {
@@ -52,6 +59,7 @@
 	},
 	"scripts": {
 		"build": "tsc",
+		"build:release": "tsup src/index.ts --format cjs --outDir lib",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
