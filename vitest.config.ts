@@ -13,5 +13,6 @@ export default defineConfig({
 			// https://github.com/JoshuaKGoldberg/ts-api-tools/issues/100
 			provider: "istanbul",
 		},
+		exclude: ["lib", "node_modules"],
 	},
 });

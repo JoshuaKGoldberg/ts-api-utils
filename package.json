@@ -4,6 +4,7 @@
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
+		"@typescript/vfs": "^1.4.0",
 		"@vitest/coverage-istanbul": "^0.28.0",
 		"cspell": "^6.19.2",
 		"eslint": "^8.32.0",
