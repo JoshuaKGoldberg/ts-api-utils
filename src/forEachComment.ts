@@ -1,7 +1,5 @@
-// Code largely based on ajafff/tsutils:
-// https://github.com/ajafff/tsutils/blob/03b4df15d14702f9c7a128ac3fae77171778d613/util/util.ts
-// Original license MIT:
-// https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
+// Code largely based on https://github.com/ajafff/tsutils
+// Original license: https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
 
 import * as ts from "typescript";
 
