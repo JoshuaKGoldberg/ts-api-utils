@@ -6,9 +6,6 @@ import * as ts from "typescript";
 export const enum ScopeBoundary {
 	None = 0,
 	Function = 1,
-	Block = 2,
-	Type = 4,
-	ConditionalType = 8,
 }
 
 export function isFunctionScopeBoundary(node: ts.Node): ScopeBoundary {
