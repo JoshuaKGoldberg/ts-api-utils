@@ -1,6 +1,7 @@
 import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
+import { createNode } from "../test/utils";
 import {
 	isConstAssertionExpression,
 	isEntityNameExpression,
@@ -11,44 +12,22 @@ import {
 
 describe("isEntityNameExpression", () => {
 	it.each([
-		[false, "a string literal", ts.factory.createStringLiteral("abc")],
-		[
-			false,
-			"a property access expression with an call expression expression",
-			ts.factory.createPropertyAccessExpression(
-				ts.factory.createCallExpression(
-					ts.factory.createIdentifier("abc"),
-					undefined /* typeArguments */,
-					undefined /* argumentsArray */
-				),
-				"def"
-			),
-		],
-		[true, "an identifier", ts.factory.createIdentifier("abc")],
-		[
-			true,
-			"a property access expression with an identifier expression",
-			ts.factory.createPropertyAccessExpression(
-				ts.factory.createIdentifier("abc"),
-				"def"
-			),
-		],
-	])("returns %j when given %s", (expected, _, node) => {
-		expect(isEntityNameExpression(node)).toBe(expected);
+		[false, `"abc"`],
+		[false, `abc().def`],
+		[true, "abc"],
+		[true, `abc.def`],
+	])("returns %j when given %s", (expected, sourceText) => {
+		expect(isEntityNameExpression(createNode(sourceText))).toBe(expected);
 	});
 });
 
 describe("isExpression", () => {
 	it.each([
-		[
-			false,
-			"a literal type node with null",
-			ts.factory.createLiteralTypeNode(ts.factory.createNull()),
-		],
-		[true, "an identifier", ts.factory.createIdentifier("abc")],
-		[true, "a string literal", ts.factory.createStringLiteral("abc")],
-	])("returns %j when given %s", (expected, _, node) => {
-		expect(isExpression(node)).toBe(expected);
+		[false, `type T = null`],
+		[true, `abc`],
+		[true, `"abc"`],
+	])("returns %j when given %s", (expected, sourceText) => {
+		expect(isExpression(createNode(sourceText))).toBe(expected);
 	});
 });
 
@@ -80,7 +59,7 @@ describe("isParameterDeclaration", () => {
 			),
 		],
 	])("returns %j when given %s", (expected, _, node) => {
-		expect(isParameterDeclaration(node)).toBe(expected);
+		expect(isParameterDeclaration(createNode(node))).toBe(expected);
 	});
 });
 
@@ -124,6 +103,6 @@ describe("isConstAssertionExpression", () => {
 			),
 		],
 	])("returns %j when given %s", (expected, _, node) => {
-		expect(isConstAssertionExpression(node)).toBe(expected);
+		expect(isConstAssertionExpression(createNode(node))).toBe(expected);
 	});
 });

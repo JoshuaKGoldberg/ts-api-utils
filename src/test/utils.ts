@@ -1,14 +1,33 @@
 import ts from "typescript";
 import tsvfs from "@typescript/vfs";
 
-export function getSourceFileAndTypeChecker(
-	textContent: string,
+export function createNode<Node extends ts.Node>(
+	nodeOrSourceText: Node | string
+): Node {
+	if (typeof nodeOrSourceText !== "string") {
+		return nodeOrSourceText;
+	}
+
+	const sourceFile = ts.createSourceFile(
+		"file.ts",
+		nodeOrSourceText,
+		ts.ScriptTarget.ESNext
+	);
+	const statement = sourceFile.statements.at(-1)!;
+
+	return (ts.isExpressionStatement(statement)
+		? statement.expression
+		: statement) as unknown as Node;
+}
+
+export function createSourceFileAndTypeChecker(
+	sourceText: string,
 	fileName = "file.ts"
 ) {
 	const compilerOptions = {};
 	const fsMap = tsvfs
 		.createDefaultMapFromNodeModules(compilerOptions)
-		.set(fileName, textContent);
+		.set(fileName, sourceText);
 	const system = tsvfs.createSystem(fsMap);
 	const host = tsvfs.createVirtualCompilerHost(system, compilerOptions, ts);
 	const program = ts.createProgram({
