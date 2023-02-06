@@ -42,7 +42,7 @@ describe("isExpression", () => {
 	it.each([
 		[
 			false,
-			"an literal type node with null",
+			"a literal type node with null",
 			ts.factory.createLiteralTypeNode(ts.factory.createNull()),
 		],
 		[true, "an identifier", ts.factory.createIdentifier("abc")],
