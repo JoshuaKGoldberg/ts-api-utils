@@ -253,6 +253,8 @@ tools.isConstAssertion(node);
 
 #### `isBindableObjectDefinePropertyCall`
 
+Determines whether a call to `Object.defineProperty` is statically analyzable.
+
 - `function isBindableObjectDefinePropertyCall(node: ts.CallExpression): boolean`
 
 ```ts
@@ -264,6 +266,8 @@ tools.isBindableObjectDefinePropertyCall(node);
 ```
 
 #### `isInConstContext`
+
+Detects whether an expression is affected by an enclosing 'as const' assertion and therefore treated literally.
 
 - `function isInConstContext(node: ts.Expression): boolean`
 
