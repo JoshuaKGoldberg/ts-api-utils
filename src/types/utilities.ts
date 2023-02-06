@@ -95,10 +95,8 @@ function isReadonlyPropertyFromMappedType(
 
 	const { modifiersType } = type as { modifiersType?: ts.Type };
 
-	return /* modifiersType && */ isPropertyReadonlyInType(
-		modifiersType!,
-		name,
-		typeChecker
+	return (
+		modifiersType && isPropertyReadonlyInType(modifiersType, name, typeChecker)
 	);
 }
 
