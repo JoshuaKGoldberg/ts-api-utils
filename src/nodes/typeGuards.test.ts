@@ -5,6 +5,7 @@ import { createNode } from "../test/utils";
 import {
 	isAccessorDeclaration,
 	isArrayBindingPattern,
+	isBindingPattern,
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isExpression,
@@ -60,6 +61,27 @@ describe("isArrayBindingPattern", () => {
 		[false, "an object destructuring assignment", objectDestructuring.name],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isArrayBindingPattern(node)).toBe(expected);
+	});
+});
+
+describe("isBindingPattern", () => {
+	const arrayDestructuring = (
+		createNode(
+			"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
+		) as ts.VariableStatement
+	).declarationList.declarations[0];
+
+	const objectDestructuring = (
+		createNode(
+			"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
+		) as ts.VariableStatement
+	).declarationList.declarations[0];
+
+	it.each([
+		[true, "an array destructuring assignment", arrayDestructuring.name],
+		[true, "an object destructuring assignment", objectDestructuring.name],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isBindingPattern(node)).toBe(expected);
 	});
 });
 

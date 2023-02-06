@@ -37,6 +37,13 @@ export function isConstAssertionExpression(
 	);
 }
 
+export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
+	return (
+		node.kind === ts.SyntaxKind.ArrayBindingPattern ||
+		node.kind === ts.SyntaxKind.ObjectBindingPattern
+	);
+}
+
 export function isEntityNameExpression(
 	node: ts.Node
 ): node is ts.EntityNameExpression {
