@@ -44,6 +44,12 @@
 			"require": "./lib/index.cjs"
 		}
 	},
+	"files": [
+		"lib/",
+		"package.json",
+		"LICENSE.md",
+		"README.md"
+	],
 	"license": "MIT",
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
