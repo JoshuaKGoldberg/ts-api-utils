@@ -113,7 +113,7 @@ describe("isAsExpression", () => {
 		],
 		[
 			false,
-			"a casting expression",
+			"a type assertion expression",
 			(createNode("const foo = <unknown>1") as ts.VariableDeclaration)
 				.initializer,
 		],
