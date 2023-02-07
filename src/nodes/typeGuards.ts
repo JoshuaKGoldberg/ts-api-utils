@@ -28,6 +28,10 @@ export function isArrayTypeNode(node: ts.Node): node is ts.ArrayTypeNode {
 	return node.kind === ts.SyntaxKind.ArrayType;
 }
 
+export function isArrowFunction(node: ts.Node): node is ts.ArrowFunction {
+	return node.kind === ts.SyntaxKind.ArrowFunction;
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
