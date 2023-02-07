@@ -103,23 +103,20 @@ describe("isAsExpression", () => {
 		[
 			true,
 			"an as const expression",
-			(createNode("const foo = 1 as const") as ts.VariableDeclaration)
-				.initializer,
+			createNode("const foo = 1 as const") as ts.VariableDeclaration,
 		],
 		[
 			true,
 			"an as X expression",
-			(createNode("const foo = 1 as unknown") as ts.VariableDeclaration)
-				.initializer,
+			createNode("const foo = 1 as unknown") as ts.VariableDeclaration,
 		],
 		[
 			false,
 			"a type assertion expression",
-			(createNode("const foo = <unknown>1") as ts.VariableDeclaration)
-				.initializer,
+			createNode("const foo = <unknown>1") as ts.VariableDeclaration,
 		],
 	])("returns %j when given %s", (expected, _, node) => {
-		expect(isAsExpression(node!)).toBe(expected);
+		expect(isAsExpression(node.initializer!)).toBe(expected);
 	});
 });
 
@@ -128,23 +125,20 @@ describe("isAssertionExpression", () => {
 		[
 			true,
 			"an as const expression",
-			(createNode("const foo = 1 as const") as ts.VariableDeclaration)
-				.initializer,
+			createNode("const foo = 1 as const") as ts.VariableDeclaration,
 		],
 		[
 			true,
 			"an as X expression",
-			(createNode("const foo = 1 as unknown") as ts.VariableDeclaration)
-				.initializer,
+			createNode("const foo = 1 as unknown") as ts.VariableDeclaration,
 		],
 		[
 			true,
 			"a type assertion expression",
-			(createNode("const foo = <unknown>1") as ts.VariableDeclaration)
-				.initializer,
+			createNode("const foo = <unknown>1") as ts.VariableDeclaration,
 		],
 	])("returns %j when given %s", (expected, _, node) => {
-		expect(isAssertionExpression(node!)).toBe(expected);
+		expect(isAssertionExpression(node.initializer!)).toBe(expected);
 	});
 });
 
@@ -371,22 +365,19 @@ describe("isTypeAssertion", () => {
 		[
 			false,
 			"an as const expression",
-			(createNode("const foo = 1 as const") as ts.VariableDeclaration)
-				.initializer,
+			createNode("const foo = 1 as const") as ts.VariableDeclaration,
 		],
 		[
 			false,
 			"an as X expression",
-			(createNode("const foo = 1 as unknown") as ts.VariableDeclaration)
-				.initializer,
+			createNode("const foo = 1 as unknown") as ts.VariableDeclaration,
 		],
 		[
 			true,
 			"a type assertion expression",
-			(createNode("const foo = <unknown>1") as ts.VariableDeclaration)
-				.initializer,
+			createNode("const foo = <unknown>1") as ts.VariableDeclaration,
 		],
 	])("returns %j when given %s", (expected, _, node) => {
-		expect(isTypeAssertion(node!)).toBe(expected);
+		expect(isTypeAssertion(node.initializer!)).toBe(expected);
 	});
 });
