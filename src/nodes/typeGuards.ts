@@ -149,3 +149,7 @@ export function isParameterDeclaration(
 ): node is ts.ParameterDeclaration {
 	return node.kind === ts.SyntaxKind.Parameter;
 }
+
+export function isTupleTypeNode(node: ts.Node): node is ts.TupleTypeNode {
+	return node.kind === ts.SyntaxKind.TupleType;
+}

@@ -15,6 +15,7 @@ import {
 	isNumericOrStringLikeLiteral,
 	isObjectBindingPattern,
 	isParameterDeclaration,
+	isTupleTypeNode,
 } from "./typeGuards";
 
 describe("isAccessorDeclaration", () => {
@@ -263,5 +264,22 @@ describe("isParameterDeclaration", () => {
 		],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isParameterDeclaration(createNode(node))).toBe(expected);
+	});
+});
+
+describe("isTupleTypeNode", () => {
+	const arrayTypeLiteral = createNode(
+		"type T = string[]"
+	) as ts.TypeLiteralNode;
+
+	const tupleTypeLiteral = createNode(
+		"type T = [string]"
+	) as ts.TypeLiteralNode;
+
+	it.each([
+		[false, "an array type literal", arrayTypeLiteral],
+		[true, "an tuple type literal", tupleTypeLiteral],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isTupleTypeNode(node)).toBe(expected);
 	});
 });
