@@ -19,6 +19,7 @@
 		"infile",
 		"knip",
 		"lcov",
+		"packagejson",
 		"quickstart",
 		"tsup",
 		"tsutils",

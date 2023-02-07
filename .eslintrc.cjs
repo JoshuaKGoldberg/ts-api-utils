@@ -39,6 +39,7 @@ module.exports = {
 		},
 		{
 			files: "*.json",
+			excludedFiles: ["package.json"],
 			parser: "jsonc-eslint-parser",
 			rules: {
 				"jsonc/sort-keys": "error",

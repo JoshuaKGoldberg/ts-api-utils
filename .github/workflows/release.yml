@@ -26,7 +26,7 @@ jobs:
           script: |
             try {
               await github.request(
-                `DELETE /repos/JoshuaKGoldberg/ts-api-tools/branches/main/protection`,
+                `DELETE /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
               );
             } catch (error) {
               if (!error.message?.includes?.("Branch not protected")) {
@@ -43,10 +43,10 @@ jobs:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           # Note: keep this inline script in sync with script/setup.js!
           # Todo: it would be nice to not have two sources of truth...
-          # https://github.com/JoshuaKGoldberg/ts-api-tools/issues/145
+          # https://github.com/JoshuaKGoldberg/ts-api-utils/issues/145
           script: |
             github.request(
-              `PUT /repos/JoshuaKGoldberg/ts-api-tools/branches/main/protection`,
+              `PUT /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
               {
                 allow_deletions: false,
                 allow_force_pushes: true,
@@ -56,7 +56,7 @@ jobs:
                 branch: "main",
                 enforce_admins: false,
                 owner: "JoshuaKGoldberg",
-                repo: "ts-api-tools",
+                repo: "ts-api-utils",
                 required_conversation_resolution: true,
                 required_linear_history: false,
                 required_pull_request_reviews: null,
