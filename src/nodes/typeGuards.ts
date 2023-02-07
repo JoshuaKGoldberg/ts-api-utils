@@ -32,6 +32,10 @@ export function isArrowFunction(node: ts.Node): node is ts.ArrowFunction {
 	return node.kind === ts.SyntaxKind.ArrowFunction;
 }
 
+export function isAsExpression(node: ts.Node): node is ts.AsExpression {
+	return node.kind === ts.SyntaxKind.AsExpression;
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
