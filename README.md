@@ -13,14 +13,14 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 	</a>
-	<a href="https://codecov.io/gh/JoshuaKGoldberg/ts-api-tools" target="_blank">
-		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/ts-api-tools/branch/main/graph/badge.svg?token=eVIFY4MhfQ"/>
+	<a href="https://codecov.io/gh/JoshuaKGoldberg/ts-api-utils" target="_blank">
+		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/ts-api-utils/branch/main/graph/badge.svg?token=eVIFY4MhfQ"/>
 	</a>
-	<a href="https://github.com/JoshuaKGoldberg/ts-api-tools/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
+	<a href="https://github.com/JoshuaKGoldberg/ts-api-utils/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
 		<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
 	</a>
-	<a href="https://github.com/JoshuaKGoldberg/ts-api-tools/blob/main/LICENSE.md" target="_blank">
-	    <img alt="License: MIT" src="https://img.shields.io/github/license/JoshuaKGoldberg/ts-api-tools?color=21bb42">
+	<a href="https://github.com/JoshuaKGoldberg/ts-api-utils/blob/main/LICENSE.md" target="_blank">
+	    <img alt="License: MIT" src="https://img.shields.io/github/license/JoshuaKGoldberg/ts-api-utils?color=21bb42">
     </a>
 	<a href="https://github.com/sponsors/JoshuaKGoldberg" target="_blank">
     	<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
@@ -32,14 +32,14 @@
 ## Usage
 
 ```shell
-npm i ts-api-tools
+npm i ts-api-utils
 ```
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 ```
 
-`ts-api-tools` provides several categories of utility functions:
+`ts-api-utils` provides several categories of utility functions:
 
 - [Comments](#comments)
 - [Compiler Options](#compiler-options)
@@ -55,7 +55,7 @@ import * as tools from "ts-api-tools";
 - [Type Utilities](#type-utilities)
 
 > This package is a partial fork of and replacement for [`tsutils`](https://github.com/ajafff/tsutils) ([original license: MIT](https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE)).
-> See [#3](https://github.com/JoshuaKGoldberg/ts-api-tools/issues/3) for notes on API coverage compared to `tsutils`.
+> See [#3](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/3) for notes on API coverage compared to `tsutils`.
 
 ### Comments
 
@@ -67,11 +67,11 @@ Iterates over all comments owned by `node` or its children.
 - `function forEachComment(node: ts.Node, callback: ForEachCommentCallback, sourceFile?: ts.SourceFile): void`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.forEachComment(node, (fullText, comment) => {
+tsutils.forEachComment(node, (fullText, comment) => {
 	console.log(`Found comment at position ${comment.pos}: '${fullText}'.`);
 });
 ```
@@ -89,14 +89,14 @@ This function only handles boolean flags.
 - `function isCompilerOptionEnabled(options: ts.CompilerOptions, option: BooleanCompilerOptions): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 const options = {
 	allowJs: true,
 };
 
-tools.isCompilerOptionEnabled(options, "allowJs"); // true
-tools.isCompilerOptionEnabled(options, "allowSyntheticDefaultImports"); // false
+tsutils.isCompilerOptionEnabled(options, "allowJs"); // true
+tsutils.isCompilerOptionEnabled(options, "allowSyntheticDefaultImports"); // false
 ```
 
 #### `isStrictCompilerOptionEnabled`
@@ -107,22 +107,22 @@ Checks if a given compiler option is enabled, accounting for whether all flags (
 - `function isStrictCompilerOptionEnabled(options: ts.CompilerOptions, option: StrictCompilerOption): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 const optionsLenient = {
 	noImplicitAny: true,
 };
 
-tools.isStrictCompilerOptionEnabled(optionsLenient, "noImplicitAny"); // true
-tools.isStrictCompilerOptionEnabled(optionsLenient, "noImplicitThis"); // false
+tsutils.isStrictCompilerOptionEnabled(optionsLenient, "noImplicitAny"); // true
+tsutils.isStrictCompilerOptionEnabled(optionsLenient, "noImplicitThis"); // false
 
 const optionsStrict = {
 	noImplicitThis: false,
 	strict: true,
 };
 
-tools.isStrictCompilerOptionEnabled(optionsStrict, "noImplicitAny"); // true
-tools.isStrictCompilerOptionEnabled(optionsStrict, "noImplicitThis"); // false
+tsutils.isStrictCompilerOptionEnabled(optionsStrict, "noImplicitAny"); // true
+tsutils.isStrictCompilerOptionEnabled(optionsStrict, "noImplicitThis"); // false
 ```
 
 ### Flags
@@ -132,11 +132,11 @@ tools.isStrictCompilerOptionEnabled(optionsStrict, "noImplicitThis"); // false
 - `function isModifierFlagSet(node: ts.Declaration, flag: ts.ModifierFlags): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isModifierFlagSet(node, ts.ModifierFlags.Abstract);
+tsutils.isModifierFlagSet(node, ts.ModifierFlags.Abstract);
 ```
 
 #### `isNodeFlagSet`
@@ -144,11 +144,11 @@ tools.isModifierFlagSet(node, ts.ModifierFlags.Abstract);
 - `function isNodeFlagSet(node: ts.Node, flag: ts.NodeFlags): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isNodeFlagSet(node, ts.NodeFlags.AwaitContext);
+tsutils.isNodeFlagSet(node, ts.NodeFlags.AwaitContext);
 ```
 
 #### `isObjectFlagSet`
@@ -156,11 +156,11 @@ tools.isNodeFlagSet(node, ts.NodeFlags.AwaitContext);
 - `function isObjectFlagSet(node: ts.ObjectType, flag: ts.ObjectFlags): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isObjectFlagSet(node, ts.ObjectFlags.Anonymous);
+tsutils.isObjectFlagSet(node, ts.ObjectFlags.Anonymous);
 ```
 
 #### `isSymbolFlagSet`
@@ -168,11 +168,11 @@ tools.isObjectFlagSet(node, ts.ObjectFlags.Anonymous);
 - `function isSymbolFlagSet(symbol: ts.Symbol, flag: ts.SymbolFlags): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const symbol: ts.Symbol;
 
-tools.isSymbolFlagSet(symbol, ts.SymbolFlags.Accessor);
+tsutils.isSymbolFlagSet(symbol, ts.SymbolFlags.Accessor);
 ```
 
 #### `isTypeFlagSet`
@@ -180,11 +180,11 @@ tools.isSymbolFlagSet(symbol, ts.SymbolFlags.Accessor);
 - `function isTypeFlagSet(type: ts.Type, flag: ts.TypeFlags): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isTypeFlagSet(type, ts.TypeFlags.Any);
+tsutils.isTypeFlagSet(type, ts.TypeFlags.Any);
 ```
 
 ### Node Type Guards
@@ -194,11 +194,11 @@ tools.isTypeFlagSet(type, ts.TypeFlags.Any);
 - `function isEntityNameExpression(node: ts.Node): node is ts.EntityNameExpression`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isEntityNameExpression(node);
+tsutils.isEntityNameExpression(node);
 ```
 
 #### `isExpression`
@@ -206,11 +206,11 @@ tools.isEntityNameExpression(node);
 - `function isExpression(node: ts.Node): node is ts.Expression`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isExpression(node);
+tsutils.isExpression(node);
 ```
 
 #### `isNumericOrStringLikeLiteral`
@@ -218,11 +218,11 @@ tools.isExpression(node);
 - `function isNumericOrStringLikeLiteral(node: ts.Node): node is NumericOrStringLikeLiteral`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isNumericOrStringLikeLiteral(node);
+tsutils.isNumericOrStringLikeLiteral(node);
 ```
 
 #### `isParameterDeclaration`
@@ -230,11 +230,11 @@ tools.isNumericOrStringLikeLiteral(node);
 - `function isParameterDeclaration(node: ts.Node): node is ts.ParameterDeclaration`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isParameterDeclaration(node);
+tsutils.isParameterDeclaration(node);
 ```
 
 #### `isConstAssertion`
@@ -242,11 +242,11 @@ tools.isParameterDeclaration(node);
 - `function isConstAssertion(node: ts.AssertionExpression): node is ConstAssertionExpression`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isConstAssertion(node);
+tsutils.isConstAssertion(node);
 ```
 
 ### Node Utilities
@@ -258,11 +258,11 @@ Determines whether a call to `Object.defineProperty` is statically analyzable.
 - `function isBindableObjectDefinePropertyCall(node: ts.CallExpression): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isBindableObjectDefinePropertyCall(node);
+tsutils.isBindableObjectDefinePropertyCall(node);
 ```
 
 #### `isInConstContext`
@@ -272,11 +272,11 @@ Detects whether an expression is affected by an enclosing 'as const' assertion a
 - `function isInConstContext(node: ts.Expression): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Expression;
 
-tools.isInConstContext(node);
+tsutils.isInConstContext(node);
 ```
 
 ### Modifiers
@@ -286,11 +286,11 @@ tools.isInConstContext(node);
 - `function hasModifier(modifiers: Iterable<ts.Modifier> | undefined, ...kinds: ts.Modifier): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const modifiers: ts.Modifier[];
 
-tools.hasModifier(modifiers, ts.SyntaxKind.AbstractKeyword);
+tsutils.hasModifier(modifiers, ts.SyntaxKind.AbstractKeyword);
 ```
 
 ### Scopes
@@ -301,11 +301,11 @@ tools.hasModifier(modifiers, ts.SyntaxKind.AbstractKeyword);
 - `function isFunctionScopeBoundary(node: ts.Node): ScopeBoundary`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.isFunctionScopeBoundary(node);
+tsutils.isFunctionScopeBoundary(node);
 ```
 
 ### Syntax
@@ -315,11 +315,11 @@ tools.isFunctionScopeBoundary(node);
 - `function isAssignmentKind(kind: ts.SyntaxKind): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const kind: ts.SyntaxKind;
 
-tools.isAssignmentKind(kind);
+tsutils.isAssignmentKind(kind);
 ```
 
 #### `isNumericPropertyName`
@@ -327,10 +327,10 @@ tools.isAssignmentKind(kind);
 - `function isNumericPropertyName(name: string | ts.__String): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
-tools.isNumericPropertyName("abc"); // false
-tools.isNumericPropertyName("123"); // true
+tsutils.isNumericPropertyName("abc"); // false
+tsutils.isNumericPropertyName("123"); // true
 ```
 
 ### `isValidPropertyAccess`
@@ -340,10 +340,10 @@ Determines whether the given text can be used to access a property with a Proper
 - `function isValidPropertyAccess(text: string, languageVersion?: ts.ScriptTarget): void`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
-tools.isValidPropertyAccess("abc"); // true
-tools.isValidPropertyAccess("123"); // false
+tsutils.isValidPropertyAccess("abc"); // true
+tsutils.isValidPropertyAccess("123"); // false
 ```
 
 ### Tokens
@@ -356,11 +356,11 @@ Iterates over all tokens of `node`.
 - `function forEachToken(node: ts.Node, callback: ForEachTokenCallback, sourceFile?: ts.SourceFile): void`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 
-tools.forEachToken(node, (token) => {
+tsutils.forEachToken(node, (token) => {
 	console.log("Found token:", token.getText());
 });
 ```
@@ -372,11 +372,11 @@ tools.forEachToken(node, (token) => {
 - `function getCallSignaturesOfType(type: ts.Type): readonly ts.Signature[]`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.getCallSignaturesOfType(type);
+tsutils.getCallSignaturesOfType(type);
 ```
 
 #### `getPropertyOfType`
@@ -384,12 +384,12 @@ tools.getCallSignaturesOfType(type);
 - `function getPropertyOfType(type: ts.Type, name: ts.__String): ts.Symbol | undefined`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const property: ts.Symbol;
 declare const type: ts.Type;
 
-tools.getPropertyOfType(type, property.getEscapedName());
+tsutils.getPropertyOfType(type, property.getEscapedName());
 ```
 
 ### Type Type Guards
@@ -399,11 +399,11 @@ tools.getPropertyOfType(type, property.getEscapedName());
 - `function isConditionalType(type: ts.Type): type is ts.ConditionalType`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isConditionalType(type);
+tsutils.isConditionalType(type);
 ```
 
 #### `isIntersectionType`
@@ -411,11 +411,11 @@ tools.isConditionalType(type);
 - `function isIntersectionType(type: ts.Type): type is ts.IntersectionType`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isIntersectionType(type);
+tsutils.isIntersectionType(type);
 ```
 
 #### `isLiteralType`
@@ -423,11 +423,11 @@ tools.isIntersectionType(type);
 - `function isLiteralType(type: ts.Type): type is ts.LiteralType`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isLiteralType(type);
+tsutils.isLiteralType(type);
 ```
 
 #### `isObjectType`
@@ -435,11 +435,11 @@ tools.isLiteralType(type);
 - `function isObjectType(type: ts.Type): type is ts.ObjectType`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isObjectType(type);
+tsutils.isObjectType(type);
 ```
 
 #### `isUnionOrIntersectionType`
@@ -447,11 +447,11 @@ tools.isObjectType(type);
 - `function isUnionOrIntersectionType(type: ts.Type): type is ts.UnionOrIntersectionType`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isUnionOrIntersectionType(type);
+tsutils.isUnionOrIntersectionType(type);
 ```
 
 #### `isUnionType`
@@ -459,11 +459,11 @@ tools.isUnionOrIntersectionType(type);
 - `function isUnionType(type: ts.Type): type is ts.UnionType`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isUnionType(type);
+tsutils.isUnionType(type);
 ```
 
 #### `isUniqueESSymbolType`
@@ -471,11 +471,11 @@ tools.isUnionType(type);
 - `function isUniqueESSymbolType(type: ts.Type): type is ts.UniqueESSymbolType`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isUniqueESSymbolType(type);
+tsutils.isUniqueESSymbolType(type);
 ```
 
 #### `isTupleType`
@@ -483,11 +483,11 @@ tools.isUniqueESSymbolType(type);
 - `function isTupleType(type: ts.Type): type is ts.TupleType`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isTupleType(type);
+tsutils.isTupleType(type);
 ```
 
 #### `isTupleTypeReference`
@@ -495,11 +495,11 @@ tools.isTupleType(type);
 - `function isTupleTypeReference(type: ts.Type): type is TupleTypeReference`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isTupleTypeReference(type);
+tsutils.isTupleTypeReference(type);
 ```
 
 #### `isTypeReference`
@@ -507,11 +507,11 @@ tools.isTupleTypeReference(type);
 - `function isTypeReference(type: ts.Type): type is ts.TypeReference`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isTypeReference(type);
+tsutils.isTypeReference(type);
 ```
 
 ### Type Utilities
@@ -521,12 +521,12 @@ tools.isTypeReference(type);
 - `function getWellKnownSymbolPropertyOfType(type: ts.Type, wellKnownSymbolName: string, typeChecker: ts.TypeChecker): ts.Symbol | undefined`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 declare const typeChecker: ts.TypeChecker;
 
-tools.getWellKnownSymbolPropertyOfType(type, "asyncIterator", typeChecker);
+tsutils.getWellKnownSymbolPropertyOfType(type, "asyncIterator", typeChecker);
 ```
 
 #### `isBooleanLiteralType`
@@ -536,11 +536,11 @@ Determines whether the given type is a boolean literal type and matches the give
 - `function isBooleanLiteralType(type: ts.Type, literal: boolean)`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isBooleanLiteralType(type);
+tsutils.isBooleanLiteralType(type);
 ```
 
 #### `isFalsyType`
@@ -551,11 +551,11 @@ This function doesn't unwrap union types.
 - `function isFalsyType(type: ts.Type): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.isFalsyType(type);
+tsutils.isFalsyType(type);
 ```
 
 #### `isPropertyReadonlyInType`
@@ -565,13 +565,13 @@ Determines whether writing to a certain property of a given type is allowed.
 - `function isPropertyReadonlyInType(type: ts.Type, name: ts.__String, typeChecker: ts.TypeChecker): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const property: ts.Symbol;
 declare const type: ts.Type;
 declare const typeChecker: ts.TypeChecker;
 
-tools.isPropertyReadonlyInType(type, property.getEscapedName(), typeChecker);
+tsutils.isPropertyReadonlyInType(type, property.getEscapedName(), typeChecker);
 ```
 
 #### `isThenableType`
@@ -582,18 +582,18 @@ Determines whether a type is thenable and thus can be used with `await`.
 - `function isThenableType(typeChecker: ts.TypeChecker, node: ts.Expression, type?: ts.Type): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const node: ts.Node;
 declare const type: ts.Type;
 declare const typeChecker: ts.TypeChecker;
 
-tools.isThenableType(typeChecker, node, type);
+tsutils.isThenableType(typeChecker, node, type);
 
 declare const expression: ts.Expression;
 
-tools.isThenableType(typeChecker, expression);
-tools.isThenableType(typeChecker, expression, type);
+tsutils.isThenableType(typeChecker, expression);
+tsutils.isThenableType(typeChecker, expression, type);
 ```
 
 #### `someTypePart`
@@ -603,12 +603,12 @@ tools.isThenableType(typeChecker, expression, type);
 - `function someTypePart(type: ts.Type, predicate: SomeTypePartPredicate, callback: SomeTypePartCallback): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 declare const typeChecker: ts.TypeChecker;
 
-tools.someTypePart(type, tools.isUnionOrIntersectionType, (subType) => {
+tsutils.someTypePart(type, tsutils.isUnionOrIntersectionType, (subType) => {
 	console.log("Got a literal type:", typeChecker.typeToString(subType));
 });
 ```
@@ -618,12 +618,12 @@ tools.someTypePart(type, tools.isUnionOrIntersectionType, (subType) => {
 - `function symbolHasReadonlyDeclaration(symbol: ts.Symbol, typeChecker: ts.TypeChecker): boolean`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const symbol: ts.Symbol;
 declare const typeChecker: ts.TypeChecker;
 
-tools.symbolHasReadonlyDeclaration(symbol, typeChecker);
+tsutils.symbolHasReadonlyDeclaration(symbol, typeChecker);
 ```
 
 #### `unionTypeParts`
@@ -631,11 +631,11 @@ tools.symbolHasReadonlyDeclaration(symbol, typeChecker);
 - `function unionTypeParts(type: ts.Type): ts.Type[]`
 
 ```ts
-import * as tools from "ts-api-tools";
+import * as tsutils. from "ts-api-utils";
 
 declare const type: ts.Type;
 
-tools.unionTypeParts(type);
+tsutils.unionTypeParts(type);
 ```
 
 ## Development
@@ -656,9 +656,9 @@ Many thanks to [@ajafff](https://github.com/ajafff) for creating the original [`
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ajafff"><img src="https://avatars.githubusercontent.com/u/11968040?v=4?s=100" width="100px;" alt="Klaus Meinhardt"/><br /><sub><b>Klaus Meinhardt</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=ajafff" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=ajafff" title="Tests">⚠️</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/RebeccaStevens"><img src="https://avatars.githubusercontent.com/u/7224206?v=4?s=100" width="100px;" alt="Rebecca Stevens"/><br /><sub><b>Rebecca Stevens</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-tools/commits?author=RebeccaStevens" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ajafff"><img src="https://avatars.githubusercontent.com/u/11968040?v=4?s=100" width="100px;" alt="Klaus Meinhardt"/><br /><sub><b>Klaus Meinhardt</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=ajafff" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=ajafff" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/RebeccaStevens"><img src="https://avatars.githubusercontent.com/u/7224206?v=4?s=100" width="100px;" alt="Rebecca Stevens"/><br /><sub><b>Rebecca Stevens</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=RebeccaStevens" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
