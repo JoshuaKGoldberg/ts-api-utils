@@ -9,6 +9,7 @@ import {
 	isArrayTypeNode,
 	isArrowFunction,
 	isAsExpression,
+	isAssertionExpression,
 	isBindingElement,
 	isBindingPattern,
 	isConstAssertionExpression,
@@ -117,6 +118,31 @@ describe("isAsExpression", () => {
 		],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isAsExpression(node!)).toBe(expected);
+	});
+});
+
+describe("isAssertionExpression", () => {
+	it.each([
+		[
+			true,
+			"an as const expression",
+			(createNode("const foo = 1 as const") as ts.VariableDeclaration)
+				.initializer,
+		],
+		[
+			true,
+			"an as X expression",
+			(createNode("const foo = 1 as unknown") as ts.VariableDeclaration)
+				.initializer,
+		],
+		[
+			true,
+			"a type assertion expression",
+			(createNode("const foo = <unknown>1") as ts.VariableDeclaration)
+				.initializer,
+		],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isAssertionExpression(node!)).toBe(expected);
 	});
 });
 

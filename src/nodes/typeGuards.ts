@@ -36,6 +36,15 @@ export function isAsExpression(node: ts.Node): node is ts.AsExpression {
 	return node.kind === ts.SyntaxKind.AsExpression;
 }
 
+export function isAssertionExpression(
+	node: ts.Node
+): node is ts.AssertionExpression {
+	return (
+		node.kind === ts.SyntaxKind.AsExpression ||
+		node.kind === ts.SyntaxKind.TypeAssertionExpression
+	);
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
