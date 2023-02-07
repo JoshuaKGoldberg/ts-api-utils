@@ -6,6 +6,7 @@ import {
 	isAccessorDeclaration,
 	isArrayBindingPattern,
 	isArrayLiteralExpression,
+	isArrayTypeNode,
 	isBindingElement,
 	isBindingPattern,
 	isConstAssertionExpression,
@@ -42,6 +43,23 @@ describe("isAccessorDeclaration", () => {
 		],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isAccessorDeclaration(node)).toBe(expected);
+	});
+});
+
+describe("isArrayTypeNode", () => {
+	const arrayTypeLiteral = createNode(
+		"type T = string[]"
+	) as ts.TypeAliasDeclaration;
+
+	const tupleTypeLiteral = createNode(
+		"type T = [string]"
+	) as ts.TypeAliasDeclaration;
+
+	it.each([
+		[true, "an array type literal", arrayTypeLiteral.type],
+		[false, "an tuple type literal", tupleTypeLiteral.type],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isArrayTypeNode(node)).toBe(expected);
 	});
 });
 

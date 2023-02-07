@@ -24,6 +24,10 @@ export function isArrayLiteralExpression(
 	return node.kind === ts.SyntaxKind.ArrayLiteralExpression;
 }
 
+export function isArrayTypeNode(node: ts.Node): node is ts.ArrayTypeNode {
+	return node.kind === ts.SyntaxKind.ArrayType;
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
