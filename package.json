@@ -16,6 +16,12 @@
 		}
 	},
 	"main": "./lib/index.js",
+	"files": [
+		"lib/",
+		"package.json",
+		"LICENSE.md",
+		"README.md"
+	],
 	"scripts": {
 		"build": "tsc",
 		"build:release": "tsup src/index.ts --format cjs --outDir lib",
