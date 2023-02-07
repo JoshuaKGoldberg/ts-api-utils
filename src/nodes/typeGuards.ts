@@ -18,6 +18,12 @@ export function isArrayBindingPattern(
 	return node.kind === ts.SyntaxKind.ArrayBindingPattern;
 }
 
+export function isArrayLiteralExpression(
+	node: ts.Node
+): node is ts.ArrayLiteralExpression {
+	return node.kind === ts.SyntaxKind.ArrayLiteralExpression;
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;

@@ -5,6 +5,7 @@ import { createNode } from "../test/utils";
 import {
 	isAccessorDeclaration,
 	isArrayBindingPattern,
+	isArrayLiteralExpression,
 	isBindingElement,
 	isBindingPattern,
 	isConstAssertionExpression,
@@ -62,6 +63,15 @@ describe("isArrayBindingPattern", () => {
 		[false, "an object destructuring assignment", objectDestructuring.name],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isArrayBindingPattern(node)).toBe(expected);
+	});
+});
+
+describe("isArrayLiteralExpression", () => {
+	it.each([
+		[true, "an array literal", "[1, 2, 3]"],
+		[false, "an object literal", "{ a: 1 }"],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isArrayLiteralExpression(createNode(node))).toBe(expected);
 	});
 });
 
