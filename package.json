@@ -1,10 +1,10 @@
 {
-	"name": "ts-api-tools",
+	"name": "ts-api-utils",
 	"version": "0.0.20",
 	"description": "Utility functions for working with TypeScript's API. Based on the wonderful tsutils.",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/ts-api-tools"
+		"url": "https://github.com/JoshuaKGoldberg/ts-api-utils"
 	},
 	"license": "MIT",
 	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
