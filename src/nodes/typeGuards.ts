@@ -45,6 +45,10 @@ export function isAssertionExpression(
 	);
 }
 
+export function isAwaitExpression(node: ts.Node): node is ts.AwaitExpression {
+	return node.kind === ts.SyntaxKind.AwaitExpression;
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;

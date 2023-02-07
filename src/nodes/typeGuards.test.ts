@@ -10,6 +10,7 @@ import {
 	isArrowFunction,
 	isAsExpression,
 	isAssertionExpression,
+	isAwaitExpression,
 	isBindingElement,
 	isBindingPattern,
 	isConstAssertionExpression,
@@ -144,6 +145,23 @@ describe("isAssertionExpression", () => {
 		],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isAssertionExpression(node!)).toBe(expected);
+	});
+});
+
+describe("isAwaitExpression", () => {
+	it.each([
+		[
+			true,
+			"an await expression",
+			createNode("const foo = await 1") as ts.VariableDeclaration,
+		],
+		[
+			false,
+			"an non-await expression",
+			createNode("const foo = 1") as ts.VariableDeclaration,
+		],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isAwaitExpression(node.initializer!)).toBe(expected);
 	});
 });
 
