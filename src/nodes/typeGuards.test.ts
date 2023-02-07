@@ -46,17 +46,13 @@ describe("isAccessorDeclaration", () => {
 });
 
 describe("isArrayBindingPattern", () => {
-	const arrayDestructuring = (
-		createNode(
-			"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
-		) as ts.VariableStatement
-	).declarationList.declarations[0];
+	const arrayDestructuring = createNode(
+		"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
+	) as ts.VariableDeclaration;
 
-	const objectDestructuring = (
-		createNode(
-			"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
-		) as ts.VariableStatement
-	).declarationList.declarations[0];
+	const objectDestructuring = createNode(
+		"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
+	) as ts.VariableDeclaration;
 
 	it.each([
 		[true, "an array destructuring assignment", arrayDestructuring.name],
@@ -80,16 +76,16 @@ describe("isBindingElement", () => {
 		(
 			createNode(
 				"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
-			) as ts.VariableStatement
-		).declarationList.declarations[0].name as ts.BindingPattern
+			) as ts.VariableDeclaration
+		).name as ts.BindingPattern
 	).elements;
 
 	const objectDestructuringElements = (
 		(
 			createNode(
 				"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
-			) as ts.VariableStatement
-		).declarationList.declarations[0].name as ts.BindingPattern
+			) as ts.VariableDeclaration
+		).name as ts.BindingPattern
 	).elements;
 
 	it.each([
@@ -129,17 +125,13 @@ describe("isBindingElement", () => {
 });
 
 describe("isBindingPattern", () => {
-	const arrayDestructuring = (
-		createNode(
-			"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
-		) as ts.VariableStatement
-	).declarationList.declarations[0];
+	const arrayDestructuring = createNode(
+		"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
+	) as ts.VariableDeclaration;
 
-	const objectDestructuring = (
-		createNode(
-			"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
-		) as ts.VariableStatement
-	).declarationList.declarations[0];
+	const objectDestructuring = createNode(
+		"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
+	) as ts.VariableDeclaration;
 
 	it.each([
 		[true, "an array destructuring assignment", arrayDestructuring.name],
@@ -230,17 +222,13 @@ describe("isNumericOrStringLikeLiteral", () => {
 });
 
 describe("isObjectBindingPattern", () => {
-	const arrayDestructuring = (
-		createNode(
-			"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
-		) as ts.VariableStatement
-	).declarationList.declarations[0];
+	const arrayDestructuring = createNode(
+		"const [a, , [c], ...rest] = [1, 2, [3], 4, 5]"
+	) as ts.VariableDeclaration;
 
-	const objectDestructuring = (
-		createNode(
-			"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
-		) as ts.VariableStatement
-	).declarationList.declarations[0];
+	const objectDestructuring = createNode(
+		"const { a, ...rest } = { a: 1, b: 2, c: 3 }"
+	) as ts.VariableDeclaration;
 
 	it.each([
 		[false, "an array destructuring assignment", arrayDestructuring.name],
