@@ -19,6 +19,8 @@ export function createNode<Node extends ts.Node>(
 		? statement.expression
 		: ts.isVariableStatement(statement)
 		? statement.declarationList.declarations[0]
+		: ts.isTypeAliasDeclaration(statement)
+		? statement.type
 		: statement) as unknown as Node;
 }
 

@@ -23,23 +23,16 @@ describe("isAccessorDeclaration", () => {
 			true,
 			"a setter on an object",
 			(
-				(
-					createNode(
-						"type T = { set abc(value: unknown) { } }"
-					) as ts.TypeAliasDeclaration
-				).type as ts.TypeLiteralNode
+				createNode(
+					"type T = { set abc(value: unknown) { } }"
+				) as ts.TypeLiteralNode
 			).members[0],
 		],
 		[
 			true,
 			"a getter on an object",
-			(
-				(
-					createNode(
-						"type T = { get abc() { return 1 } }"
-					) as ts.TypeAliasDeclaration
-				).type as ts.TypeLiteralNode
-			).members[0],
+			(createNode("type T = { get abc() { return 1 } }") as ts.TypeLiteralNode)
+				.members[0],
 		],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isAccessorDeclaration(node)).toBe(expected);
@@ -49,15 +42,15 @@ describe("isAccessorDeclaration", () => {
 describe("isArrayTypeNode", () => {
 	const arrayTypeLiteral = createNode(
 		"type T = string[]"
-	) as ts.TypeAliasDeclaration;
+	) as ts.TypeLiteralNode;
 
 	const tupleTypeLiteral = createNode(
 		"type T = [string]"
-	) as ts.TypeAliasDeclaration;
+	) as ts.TypeLiteralNode;
 
 	it.each([
-		[true, "an array type literal", arrayTypeLiteral.type],
-		[false, "an tuple type literal", tupleTypeLiteral.type],
+		[true, "an array type literal", arrayTypeLiteral],
+		[false, "an tuple type literal", tupleTypeLiteral],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isArrayTypeNode(node)).toBe(expected);
 	});
