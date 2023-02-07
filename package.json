@@ -1,6 +1,6 @@
 {
 	"name": "ts-api-tools",
-	"version": "0.0.17",
+	"version": "0.0.18",
 	"description": "Utility functions for working with TypeScript's API. Based on the wonderful tsutils.",
 	"repository": {
 		"type": "git",
