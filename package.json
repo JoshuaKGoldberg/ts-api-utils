@@ -11,6 +11,7 @@
 	"type": "module",
 	"exports": {
 		".": {
+			"types": "./lib/index.d.ts",
 			"import": "./lib/index.js",
 			"require": "./lib/index.cjs"
 		}
@@ -24,7 +25,7 @@
 	],
 	"scripts": {
 		"build": "tsc",
-		"build:release": "tsup src/index.ts --format cjs --outDir lib",
+		"build:release": "tsup src/index.ts --format cjs --outDir lib --dts",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
