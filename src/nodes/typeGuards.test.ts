@@ -19,6 +19,7 @@ import {
 	isObjectBindingPattern,
 	isParameterDeclaration,
 	isTupleTypeNode,
+	isTypeAssertion,
 } from "./typeGuards";
 
 describe("isAccessorDeclaration", () => {
@@ -344,5 +345,30 @@ describe("isTupleTypeNode", () => {
 		[true, "an tuple type literal", tupleTypeLiteral],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isTupleTypeNode(node)).toBe(expected);
+	});
+});
+
+describe("isTypeAssertion", () => {
+	it.each([
+		[
+			false,
+			"an as const expression",
+			(createNode("const foo = 1 as const") as ts.VariableDeclaration)
+				.initializer,
+		],
+		[
+			false,
+			"an as X expression",
+			(createNode("const foo = 1 as unknown") as ts.VariableDeclaration)
+				.initializer,
+		],
+		[
+			true,
+			"a type assertion expression",
+			(createNode("const foo = <unknown>1") as ts.VariableDeclaration)
+				.initializer,
+		],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isTypeAssertion(node!)).toBe(expected);
 	});
 });

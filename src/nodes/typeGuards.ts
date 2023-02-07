@@ -170,3 +170,7 @@ export function isParameterDeclaration(
 export function isTupleTypeNode(node: ts.Node): node is ts.TupleTypeNode {
 	return node.kind === ts.SyntaxKind.TupleType;
 }
+
+export function isTypeAssertion(node: ts.Node): node is ts.TypeAssertion {
+	return node.kind === ts.SyntaxKind.TypeAssertionExpression;
+}
