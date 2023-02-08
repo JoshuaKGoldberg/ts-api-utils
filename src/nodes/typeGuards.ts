@@ -89,6 +89,10 @@ export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
 	);
 }
 
+export function isBreakStatement(node: ts.Node): node is ts.BreakStatement {
+	return node.kind === ts.SyntaxKind.BreakStatement;
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;

@@ -17,6 +17,7 @@ import {
 	isBlock,
 	isBlockLike,
 	isBooleanLiteral,
+	isBreakStatement,
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isExpression,
@@ -292,6 +293,15 @@ describe("isBooleanLiteral", () => {
 		[false, "true expression", "1 === 1"],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isBooleanLiteral(createNode(node))).toBe(expected);
+	});
+});
+
+describe("isBreakStatement", () => {
+	it.each([
+		[true, "break", "break"],
+		[false, "continue", "continue"],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isBreakStatement(createNode(node))).toBe(expected);
 	});
 });
 
