@@ -1,4 +1,4 @@
 export * from "./alias";
 export * from "./compound";
-export * from "./simple";
+export * from "./single";
 export * from "./union";

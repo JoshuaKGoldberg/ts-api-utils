@@ -176,7 +176,7 @@ import {
 	isVariableStatement,
 	isWhileStatement,
 	isWithStatement,
-} from "./simple";
+} from "./single";
 
 export function isAccessExpression(node: ts.Node): node is ts.AccessExpression { return isPropertyAccessExpression(node) || isElementAccessExpression(node) }
 export function isAccessibilityModifier(node: ts.Node): node is ts.AccessibilityModifier { return isPublicKeyword(node) || isPrivateKeyword(node) || isProtectedKeyword(node) }

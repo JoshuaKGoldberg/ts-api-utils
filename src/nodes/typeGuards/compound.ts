@@ -17,7 +17,7 @@ import {
 	isPropertyAccessExpression,
 	isSuperExpression,
 	isTypeReferenceNode,
-} from "./simple";
+} from "./single";
 import {
 	isEntityNameExpression,
 	isJSDocNamespaceBody,

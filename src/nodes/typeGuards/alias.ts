@@ -1,3 +1,3 @@
-import { isBlock } from "./simple";
+import { isBlock } from "./single";
 
 export const isFunctionBody = isBlock;
