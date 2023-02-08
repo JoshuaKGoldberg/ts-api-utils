@@ -83,12 +83,6 @@ export function isNumericOrStringLikeLiteral(
 	}
 }
 
-export function isParameterDeclaration(
-	node: ts.Node
-): node is ts.ParameterDeclaration {
-	return node.kind === ts.SyntaxKind.Parameter;
-}
-
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;

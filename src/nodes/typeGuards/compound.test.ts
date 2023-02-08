@@ -1,14 +1,13 @@
 import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createNode } from "../test/utils";
+import { createNode } from "../../test/utils";
 import {
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isExpression,
 	isNumericOrStringLikeLiteral,
-	isParameterDeclaration,
-} from "./typeGuards";
+} from "./compound";
 
 describe("isEntityNameExpression", () => {
 	it.each([
@@ -43,23 +42,6 @@ describe("isNumericOrStringLikeLiteral", () => {
 		[true, "a string literal", ts.factory.createStringLiteral("abc")],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isNumericOrStringLikeLiteral(node)).toBe(expected);
-	});
-});
-
-describe("isParameterDeclaration", () => {
-	it.each([
-		[false, "an identifier", ts.factory.createIdentifier("abc")],
-		[
-			true,
-			"a parameter declaration",
-			ts.factory.createParameterDeclaration(
-				undefined /* modifiers */,
-				undefined /* dotDotDotToken */,
-				"abc"
-			),
-		],
-	])("returns %j when given %s", (expected, _, node) => {
-		expect(isParameterDeclaration(createNode(node))).toBe(expected);
 	});
 });
 
