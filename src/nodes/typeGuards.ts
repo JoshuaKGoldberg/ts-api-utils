@@ -89,6 +89,15 @@ export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
 	);
 }
 
+export function isBreakOrContinueStatement(
+	node: ts.Node
+): node is ts.BreakOrContinueStatement {
+	return (
+		node.kind === ts.SyntaxKind.BreakStatement ||
+		node.kind === ts.SyntaxKind.ContinueStatement
+	);
+}
+
 export function isBreakStatement(node: ts.Node): node is ts.BreakStatement {
 	return node.kind === ts.SyntaxKind.BreakStatement;
 }
