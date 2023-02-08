@@ -79,11 +79,6 @@ export function isOutKeyword(node: ts.Node): node is ts.OutKeyword {
 export function isOverrideKeyword(node: ts.Node): node is ts.OverrideKeyword {
 	return node.kind === ts.SyntaxKind.OverrideKeyword;
 }
-export function isParameterDeclaration(
-	node: ts.Node
-): node is ts.ParameterDeclaration {
-	return node.kind === ts.SyntaxKind.Parameter;
-}
 export function isPrivateKeyword(node: ts.Node): node is ts.PrivateKeyword {
 	return node.kind === ts.SyntaxKind.PrivateKeyword;
 }
@@ -283,7 +278,7 @@ export {
 	isObjectLiteralExpression,
 	isOmittedExpression,
 	isOptionalTypeNode,
-	isParameter,
+	isParameter as isParameterDeclaration,
 	isParenthesizedExpression,
 	isParenthesizedTypeNode,
 	isPartiallyEmittedExpression,
