@@ -49,6 +49,10 @@ export function isAwaitExpression(node: ts.Node): node is ts.AwaitExpression {
 	return node.kind === ts.SyntaxKind.AwaitExpression;
 }
 
+export function isBinaryExpression(node: ts.Node): node is ts.BinaryExpression {
+	return node.kind === ts.SyntaxKind.BinaryExpression;
+}
+
 export function isBindingElement(node: ts.Node): node is ts.BindingElement {
 	return node.kind === ts.SyntaxKind.BindingElement;
 }

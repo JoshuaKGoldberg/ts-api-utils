@@ -11,6 +11,7 @@ import {
 	isAsExpression,
 	isAssertionExpression,
 	isAwaitExpression,
+	isBinaryExpression,
 	isBindingElement,
 	isBindingPattern,
 	isConstAssertionExpression,
@@ -156,6 +157,18 @@ describe("isAwaitExpression", () => {
 		],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isAwaitExpression(node.initializer!)).toBe(expected);
+	});
+});
+
+describe("isBinaryExpression", () => {
+	it.each([
+		[true, "a = assignment", "a = b"],
+		[true, "a += assignment", "a += b"],
+		[true, "a == comparison", "a == b"],
+		[true, "a > comparison", "a > b"],
+		[false, "an identifier", "a"],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isBinaryExpression(createNode(node))).toBe(expected);
 	});
 });
 
