@@ -68,6 +68,20 @@ export function isBlock(node: ts.Node): node is ts.Block {
 	return node.kind === ts.SyntaxKind.Block;
 }
 
+export function isBlockLike(node: ts.Node): node is ts.BlockLike {
+	switch (node.kind) {
+		case ts.SyntaxKind.SourceFile:
+		case ts.SyntaxKind.Block:
+		case ts.SyntaxKind.ModuleBlock:
+		case ts.SyntaxKind.CaseClause:
+		case ts.SyntaxKind.DefaultClause:
+			return true;
+
+		default:
+			return false;
+	}
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;

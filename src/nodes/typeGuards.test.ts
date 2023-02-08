@@ -15,6 +15,7 @@ import {
 	isBindingElement,
 	isBindingPattern,
 	isBlock,
+	isBlockLike,
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isExpression,
@@ -268,6 +269,18 @@ describe("isBlock", () => {
 		],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isBlock(node)).toBe(expected);
+	});
+});
+
+describe("isBlockLike", () => {
+	it.each([
+		[true, "an actual block", createNode("{ foo() }")],
+		// TODO: Test SourceFile
+		// TODO: Test ModuleBlock
+		// TODO: Test CaseClause
+		// TODO: Test DefaultClause
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isBlockLike(node)).toBe(expected);
 	});
 });
 
