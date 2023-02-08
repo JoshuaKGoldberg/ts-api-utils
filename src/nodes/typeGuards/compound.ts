@@ -3,97 +3,51 @@
 
 import * as ts from "typescript";
 
+import { isNodeFlagSet } from "../../flags";
 import {
+	isArrayLiteralExpression,
+	isBinaryExpression,
+	isCallExpression,
+	isElementAccessExpression,
+	isEqualsToken,
+	isIdentifier,
 	isModuleDeclaration,
+	isNonNullExpression,
+	isObjectLiteralExpression,
 	isPropertyAccessExpression,
+	isSuperExpression,
 	isTypeReferenceNode,
 } from "./simple";
+import {
+	isEntityNameExpression,
+	isJSDocNamespaceBody,
+	isJsxTagNameExpression,
+	isNamespaceBody,
+} from "./union";
 
-export function isAccessorDeclaration(
+export function isArrayDestructuringAssignment(
 	node: ts.Node
-): node is ts.AccessorDeclaration {
+): node is ts.ArrayDestructuringAssignment {
 	return (
-		node.kind === ts.SyntaxKind.GetAccessor ||
-		node.kind === ts.SyntaxKind.SetAccessor
+		isEqualsAssignmentExpression(node) && isArrayLiteralExpression(node.left)
 	);
 }
 
-export function isAssertionExpression(
+export function isAssignmentExpression(
 	node: ts.Node
-): node is ts.AssertionExpression {
-	return (
-		node.kind === ts.SyntaxKind.AsExpression ||
-		node.kind === ts.SyntaxKind.TypeAssertionExpression
-	);
+): node is ts.AssignmentExpression<ts.AssignmentOperatorToken> {
+	return isBinaryExpression(node) && isLeftHandSideExpression(node.left);
 }
 
-export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
-	return (
-		node.kind === ts.SyntaxKind.ArrayBindingPattern ||
-		node.kind === ts.SyntaxKind.ObjectBindingPattern
-	);
-}
-
-export function isBlockLike(node: ts.Node): node is ts.BlockLike {
-	switch (node.kind) {
-		case ts.SyntaxKind.SourceFile:
-		case ts.SyntaxKind.Block:
-		case ts.SyntaxKind.ModuleBlock:
-		case ts.SyntaxKind.CaseClause:
-		case ts.SyntaxKind.DefaultClause:
-			return true;
-		default:
-			return false;
-	}
-}
-
-export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
-	return (
-		node.kind === ts.SyntaxKind.TrueKeyword ||
-		node.kind === ts.SyntaxKind.FalseKeyword
-	);
-}
-
-export function isBreakOrContinueStatement(
+export function isEqualsAssignmentExpression(
 	node: ts.Node
-): node is ts.BreakOrContinueStatement {
-	return (
-		node.kind === ts.SyntaxKind.BreakStatement ||
-		node.kind === ts.SyntaxKind.ContinueStatement
-	);
+): node is ts.AssignmentExpression<ts.EqualsToken> {
+	return isAssignmentExpression(node) && isEqualsToken(node.operatorToken);
 }
 
-export function isCallLikeExpression(
-	node: ts.Node
-): node is ts.CallLikeExpression {
-	switch (node.kind) {
-		case ts.SyntaxKind.CallExpression:
-		case ts.SyntaxKind.Decorator:
-		case ts.SyntaxKind.JsxOpeningElement:
-		case ts.SyntaxKind.JsxSelfClosingElement:
-		case ts.SyntaxKind.NewExpression:
-		case ts.SyntaxKind.TaggedTemplateExpression:
-			return true;
-		default:
-			return false;
-	}
-}
-
-export function isCaseOrDefaultClause(
-	node: ts.Node
-): node is ts.CaseOrDefaultClause {
+export function isCallChain(node: ts.Node): node is ts.CallChain {
 	return (
-		node.kind === ts.SyntaxKind.CaseClause ||
-		node.kind === ts.SyntaxKind.DefaultClause
-	);
-}
-
-export function isClassLikeDeclaration(
-	node: ts.Node
-): node is ts.ClassLikeDeclaration {
-	return (
-		node.kind === ts.SyntaxKind.ClassDeclaration ||
-		node.kind === ts.SyntaxKind.ClassExpression
+		isCallExpression(node) && isNodeFlagSet(node, ts.NodeFlags.OptionalChain)
 	);
 }
 
@@ -111,80 +65,74 @@ export function isConstAssertionExpression(
 ): node is ConstAssertionExpression {
 	return (
 		isTypeReferenceNode(node.type) &&
-		node.type.typeName.kind === ts.SyntaxKind.Identifier &&
+		isIdentifier(node.type.typeName) &&
 		node.type.typeName.escapedText === "const"
 	);
 }
 
-export function isEntityNameExpression(
+export function isElementAccessChain(
 	node: ts.Node
-): node is ts.EntityNameExpression {
+): node is ts.ElementAccessChain {
 	return (
-		node.kind === ts.SyntaxKind.Identifier ||
-		(isPropertyAccessExpression(node) &&
-			isEntityNameExpression(node.expression))
+		isElementAccessExpression(node) &&
+		isNodeFlagSet(node, ts.NodeFlags.OptionalChain)
 	);
 }
 
 export function isExpression(node: ts.Node): node is ts.Expression {
-	switch (node.kind) {
-		case ts.SyntaxKind.ArrayLiteralExpression:
-		case ts.SyntaxKind.ArrowFunction:
-		case ts.SyntaxKind.AsExpression:
-		case ts.SyntaxKind.AwaitExpression:
-		case ts.SyntaxKind.BinaryExpression:
-		case ts.SyntaxKind.CallExpression:
-		case ts.SyntaxKind.ClassExpression:
-		case ts.SyntaxKind.CommaListExpression:
-		case ts.SyntaxKind.ConditionalExpression:
-		case ts.SyntaxKind.DeleteExpression:
-		case ts.SyntaxKind.ElementAccessExpression:
-		case ts.SyntaxKind.FalseKeyword:
-		case ts.SyntaxKind.FunctionExpression:
-		case ts.SyntaxKind.Identifier:
-		case ts.SyntaxKind.JsxElement:
-		case ts.SyntaxKind.JsxFragment:
-		case ts.SyntaxKind.JsxExpression:
-		case ts.SyntaxKind.JsxOpeningElement:
-		case ts.SyntaxKind.JsxOpeningFragment:
-		case ts.SyntaxKind.JsxSelfClosingElement:
-		case ts.SyntaxKind.MetaProperty:
-		case ts.SyntaxKind.NewExpression:
-		case ts.SyntaxKind.NonNullExpression:
-		case ts.SyntaxKind.NoSubstitutionTemplateLiteral:
-		case ts.SyntaxKind.NullKeyword:
-		case ts.SyntaxKind.NumericLiteral:
-		case ts.SyntaxKind.ObjectLiteralExpression:
-		case ts.SyntaxKind.OmittedExpression:
-		case ts.SyntaxKind.ParenthesizedExpression:
-		case ts.SyntaxKind.PostfixUnaryExpression:
-		case ts.SyntaxKind.PrefixUnaryExpression:
-		case ts.SyntaxKind.PropertyAccessExpression:
-		case ts.SyntaxKind.RegularExpressionLiteral:
-		case ts.SyntaxKind.SpreadElement:
-		case ts.SyntaxKind.StringLiteral:
-		case ts.SyntaxKind.SuperKeyword:
-		case ts.SyntaxKind.TaggedTemplateExpression:
-		case ts.SyntaxKind.TemplateExpression:
-		case ts.SyntaxKind.ThisKeyword:
-		case ts.SyntaxKind.TrueKeyword:
-		case ts.SyntaxKind.TypeAssertionExpression:
-		case ts.SyntaxKind.TypeOfExpression:
-		case ts.SyntaxKind.VoidExpression:
-		case ts.SyntaxKind.YieldExpression:
-			return true;
-		default:
-			return false;
-	}
+	return ts.isExpression(node);
 }
 
-export function isForInOrOfStatement(
-	node: ts.Node
-): node is ts.ForInOrOfStatement {
-	return (
-		node.kind === ts.SyntaxKind.ForOfStatement ||
-		node.kind === ts.SyntaxKind.ForInStatement
-	);
+export type ExpressionNode =
+	| ts.ArrayLiteralExpression
+	| ts.ArrowFunction
+	| ts.AsExpression
+	| ts.AwaitExpression
+	| ts.BigIntLiteral
+	| ts.BinaryExpression
+	| ts.CallExpression
+	| ts.ClassExpression
+	| ts.ConditionalExpression
+	| ts.DeleteExpression
+	| ts.ElementAccessExpression
+	| ts.ExpressionWithTypeArguments
+	| ts.FalseLiteral
+	| ts.FunctionExpression
+	| ts.Identifier
+	| ts.JSDocMemberName
+	| ts.JsxElement
+	| ts.JsxFragment
+	| ts.JsxSelfClosingElement
+	| ts.MetaProperty
+	| ts.NewExpression
+	| ts.NonNullExpression
+	| ts.NoSubstitutionTemplateLiteral
+	| ts.NullLiteral
+	| ts.NumericLiteral
+	| ts.ObjectLiteralExpression
+	| ts.OmittedExpression
+	| ts.ParenthesizedExpression
+	| ts.PostfixUnaryExpression
+	| ts.PrefixUnaryExpression
+	| ts.PrivateIdentifier
+	| ts.PropertyAccessExpression
+	| ts.QualifiedName
+	| ts.RegularExpressionLiteral
+	| ts.SatisfiesExpression
+	| ts.SpreadElement
+	| ts.StringLiteral
+	| ts.SuperExpression
+	| ts.TaggedTemplateExpression
+	| ts.TemplateExpression
+	| ts.ThisExpression
+	| ts.TrueLiteral
+	| ts.TypeAssertion
+	| ts.TypeOfExpression
+	| ts.VoidExpression
+	| ts.YieldExpression;
+
+export function isExpressionNode(node: ts.Node): node is ExpressionNode {
+	return ts.isExpressionNode(node);
 }
 
 export function isIterationStatement(
@@ -202,20 +150,28 @@ export function isIterationStatement(
 	}
 }
 
-export function isJsxAttributeLike(node: ts.Node): node is ts.JsxAttributeLike {
+export function isJSDocNamespaceDeclaration(
+	node: ts.Node
+): node is ts.JSDocNamespaceDeclaration {
 	return (
-		node.kind === ts.SyntaxKind.JsxAttribute ||
-		node.kind === ts.SyntaxKind.JsxSpreadAttribute
+		isModuleDeclaration(node) &&
+		isIdentifier(node.name) &&
+		(node.body === undefined || isJSDocNamespaceBody(node.body))
 	);
 }
 
-export function isJsxOpeningLikeElement(
+export function isJsxTagNamePropertyAccess(
 	node: ts.Node
-): node is ts.JsxOpeningLikeElement {
+): node is ts.JsxTagNamePropertyAccess {
 	return (
-		node.kind === ts.SyntaxKind.JsxOpeningElement ||
-		node.kind === ts.SyntaxKind.JsxSelfClosingElement
+		isPropertyAccessExpression(node) && isJsxTagNameExpression(node.expression)
 	);
+}
+
+export function isLeftHandSideExpression(
+	node: ts.Node
+): node is ts.LeftHandSideExpression {
+	return ts.isLeftHandSideExpression(node);
 }
 
 export function isLiteralExpression(
@@ -232,10 +188,15 @@ export function isNamespaceDeclaration(
 ): node is ts.NamespaceDeclaration {
 	return (
 		isModuleDeclaration(node) &&
-		node.name.kind === ts.SyntaxKind.Identifier &&
+		isIdentifier(node.name) &&
 		node.body !== undefined &&
-		(node.body.kind === ts.SyntaxKind.ModuleBlock ||
-			isNamespaceDeclaration(node.body))
+		isNamespaceBody(node.body)
+	);
+}
+
+export function isNonNullChain(node: ts.Node): node is ts.NonNullChain {
+	return (
+		isNonNullExpression(node) && isNodeFlagSet(node, ts.NodeFlags.OptionalChain)
 	);
 }
 
@@ -257,35 +218,43 @@ export function isNumericOrStringLikeLiteral(
 	}
 }
 
-export function isSignatureDeclaration(
+export function isObjectDestructuringAssignment(
 	node: ts.Node
-): node is ts.SignatureDeclaration {
-	switch (node.kind) {
-		case ts.SyntaxKind.CallSignature:
-		case ts.SyntaxKind.ConstructSignature:
-		case ts.SyntaxKind.MethodSignature:
-		case ts.SyntaxKind.IndexSignature:
-		case ts.SyntaxKind.FunctionType:
-		case ts.SyntaxKind.ConstructorType:
-		case ts.SyntaxKind.JSDocFunctionType:
-		case ts.SyntaxKind.FunctionDeclaration:
-		case ts.SyntaxKind.MethodDeclaration:
-		case ts.SyntaxKind.Constructor:
-		case ts.SyntaxKind.GetAccessor:
-		case ts.SyntaxKind.SetAccessor:
-		case ts.SyntaxKind.FunctionExpression:
-		case ts.SyntaxKind.ArrowFunction:
-			return true;
-		default:
-			return false;
-	}
+): node is ts.ObjectDestructuringAssignment {
+	return (
+		isEqualsAssignmentExpression(node) && isObjectLiteralExpression(node.left)
+	);
 }
 
-export function isTemplateLiteral(node: ts.Node): node is ts.TemplateLiteral {
+export function isPropertyAccessChain(
+	node: ts.Node
+): node is ts.PropertyAccessChain {
 	return (
-		node.kind === ts.SyntaxKind.TemplateExpression ||
-		node.kind === ts.SyntaxKind.NoSubstitutionTemplateLiteral
+		isPropertyAccessExpression(node) &&
+		isNodeFlagSet(node, ts.NodeFlags.OptionalChain)
 	);
+}
+
+export function isPropertyAccessEntityNameExpression(
+	node: ts.Node
+): node is ts.PropertyAccessEntityNameExpression {
+	return (
+		isPropertyAccessExpression(node) &&
+		isIdentifier(node.name) &&
+		isEntityNameExpression(node.expression)
+	);
+}
+
+export function isSuperElementAccessExpression(
+	node: ts.Node
+): node is ts.SuperElementAccessExpression {
+	return isElementAccessExpression(node) && isSuperExpression(node.expression);
+}
+
+export function isSuperPropertyAccessExpression(
+	node: ts.Node
+): node is ts.SuperPropertyAccessExpression {
+	return isPropertyAccessExpression(node) && isSuperExpression(node.expression);
 }
 
 export function isTextualLiteral(

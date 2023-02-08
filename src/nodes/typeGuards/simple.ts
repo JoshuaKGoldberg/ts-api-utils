@@ -237,6 +237,7 @@ export function isUnparsedPrepend(node: ts.Node): node is ts.UnparsedPrepend { r
 export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue { return node.kind === ts.SyntaxKind.UnparsedPrologue; }
 export function isUnparsedSource(node: ts.Node): node is ts.UnparsedSource { return node.kind === ts.SyntaxKind.UnparsedSource; }
 export function isUnparsedSyntheticReference(node: ts.Node): node is ts.UnparsedSyntheticReference { return node.kind === ts.SyntaxKind.UnparsedSyntheticReference; }
+export function isUnparsedTextLike(node: ts.Node): node is ts.UnparsedTextLike { return node.kind === ts.SyntaxKind.UnparsedText || node.kind === ts.SyntaxKind.UnparsedInternalText; }
 export function isVariableDeclaration(node: ts.Node): node is ts.VariableDeclaration { return node.kind === ts.SyntaxKind.VariableDeclaration; }
 export function isVariableDeclarationList(node: ts.Node): node is ts.VariableDeclarationList { return node.kind === ts.SyntaxKind.VariableDeclarationList; }
 export function isVariableStatement(node: ts.Node): node is ts.VariableStatement { return node.kind === ts.SyntaxKind.VariableStatement; }

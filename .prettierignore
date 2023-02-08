@@ -2,6 +2,7 @@ lib/
 pnpm-lock.yaml
 
 src/nodes/typeGuards/simple.ts
+src/nodes/typeGuards/union.ts
 
 # See https://github.com/all-contributors/cli/issues/347
 .all-contributorsrc
