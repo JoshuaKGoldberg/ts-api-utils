@@ -14,6 +14,7 @@ import {
 	isBinaryExpression,
 	isBindingElement,
 	isBindingPattern,
+	isBlock,
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isExpression,
@@ -239,6 +240,34 @@ describe("isBindingPattern", () => {
 		[true, "an object destructuring assignment", objectDestructuring.name],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isBindingPattern(node)).toBe(expected);
+	});
+});
+
+describe("isBlock", () => {
+	it.each([
+		[true, "a lone block", createNode("{ foo() }")],
+		[
+			true,
+			"an if statement's block",
+			(createNode("if(true) { foo() }") as ts.IfStatement).thenStatement,
+		],
+		[
+			true,
+			"a while loop's block",
+			(createNode("while(true) { foo() }") as ts.WhileStatement).statement,
+		],
+		[
+			false,
+			"an if statement's non-block statement",
+			(createNode("if(true) foo()") as ts.IfStatement).thenStatement,
+		],
+		[
+			false,
+			"a while loop's non-block statement",
+			(createNode("while(true) foo()") as ts.WhileStatement).statement,
+		],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isBlock(node)).toBe(expected);
 	});
 });
 

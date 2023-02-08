@@ -64,6 +64,10 @@ export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
 	);
 }
 
+export function isBlock(node: ts.Node): node is ts.Block {
+	return node.kind === ts.SyntaxKind.Block;
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
