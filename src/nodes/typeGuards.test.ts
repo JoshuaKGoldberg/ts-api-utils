@@ -19,6 +19,7 @@ import {
 	isBooleanLiteral,
 	isBreakStatement,
 	isConstAssertionExpression,
+	isContinueStatement,
 	isEntityNameExpression,
 	isExpression,
 	isNumericOrStringLikeLiteral,
@@ -346,6 +347,15 @@ describe("isConstAssertionExpression", () => {
 		],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isConstAssertionExpression(createNode(node))).toBe(expected);
+	});
+});
+
+describe("isContinueStatement", () => {
+	it.each([
+		[false, "break", "break"],
+		[true, "continue", "continue"],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isContinueStatement(createNode(node))).toBe(expected);
 	});
 });
 

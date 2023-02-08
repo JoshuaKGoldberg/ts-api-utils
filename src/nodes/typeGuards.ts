@@ -112,6 +112,12 @@ export function isConstAssertionExpression(
 	);
 }
 
+export function isContinueStatement(
+	node: ts.Node
+): node is ts.ContinueStatement {
+	return node.kind === ts.SyntaxKind.ContinueStatement;
+}
+
 export function isEntityNameExpression(
 	node: ts.Node
 ): node is ts.EntityNameExpression {
