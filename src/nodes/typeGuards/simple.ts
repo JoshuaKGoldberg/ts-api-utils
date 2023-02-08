@@ -1,680 +1,246 @@
 // Code largely based on https://github.com/ajafff/tsutils
 // Original license: https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
 
-import * as ts from "typescript";
-
-export function isArrayBindingPattern(
-	node: ts.Node
-): node is ts.ArrayBindingPattern {
-	return node.kind === ts.SyntaxKind.ArrayBindingPattern;
-}
-
-export function isArrayLiteralExpression(
-	node: ts.Node
-): node is ts.ArrayLiteralExpression {
-	return node.kind === ts.SyntaxKind.ArrayLiteralExpression;
-}
-
-export function isArrayTypeNode(node: ts.Node): node is ts.ArrayTypeNode {
-	return node.kind === ts.SyntaxKind.ArrayType;
-}
-
-export function isArrowFunction(node: ts.Node): node is ts.ArrowFunction {
-	return node.kind === ts.SyntaxKind.ArrowFunction;
-}
-
-export function isAsExpression(node: ts.Node): node is ts.AsExpression {
-	return node.kind === ts.SyntaxKind.AsExpression;
-}
-
-export function isAwaitExpression(node: ts.Node): node is ts.AwaitExpression {
-	return node.kind === ts.SyntaxKind.AwaitExpression;
-}
-
-export function isBigIntLiteral(node: ts.Node): node is ts.BigIntLiteral {
-	return node.kind === ts.SyntaxKind.BigIntLiteral;
-}
-
-export function isBinaryExpression(node: ts.Node): node is ts.BinaryExpression {
-	return node.kind === ts.SyntaxKind.BinaryExpression;
-}
-
-export function isBindingElement(node: ts.Node): node is ts.BindingElement {
-	return node.kind === ts.SyntaxKind.BindingElement;
-}
-
-export function isBlock(node: ts.Node): node is ts.Block {
-	return node.kind === ts.SyntaxKind.Block;
-}
-
-export function isBreakStatement(node: ts.Node): node is ts.BreakStatement {
-	return node.kind === ts.SyntaxKind.BreakStatement;
-}
-
-export function isCallExpression(node: ts.Node): node is ts.CallExpression {
-	return node.kind === ts.SyntaxKind.CallExpression;
-}
-
-export function isCallSignatureDeclaration(
-	node: ts.Node
-): node is ts.CallSignatureDeclaration {
-	return node.kind === ts.SyntaxKind.CallSignature;
-}
-
-export function isCaseBlock(node: ts.Node): node is ts.CaseBlock {
-	return node.kind === ts.SyntaxKind.CaseBlock;
-}
-
-export function isCaseClause(node: ts.Node): node is ts.CaseClause {
-	return node.kind === ts.SyntaxKind.CaseClause;
-}
-
-export function isCatchClause(node: ts.Node): node is ts.CatchClause {
-	return node.kind === ts.SyntaxKind.CatchClause;
-}
-
-export function isClassDeclaration(node: ts.Node): node is ts.ClassDeclaration {
-	return node.kind === ts.SyntaxKind.ClassDeclaration;
-}
-
-export function isClassExpression(node: ts.Node): node is ts.ClassExpression {
-	return node.kind === ts.SyntaxKind.ClassExpression;
-}
-
-export function isCommaListExpression(
-	node: ts.Node
-): node is ts.CommaListExpression {
-	return node.kind === ts.SyntaxKind.CommaListExpression;
-}
-
-export function isConditionalExpression(
-	node: ts.Node
-): node is ts.ConditionalExpression {
-	return node.kind === ts.SyntaxKind.ConditionalExpression;
-}
-
-export function isConditionalTypeNode(
-	node: ts.Node
-): node is ts.ConditionalTypeNode {
-	return node.kind === ts.SyntaxKind.ConditionalType;
-}
-
-export function isConstructorDeclaration(
-	node: ts.Node
-): node is ts.ConstructorDeclaration {
-	return node.kind === ts.SyntaxKind.Constructor;
-}
-
-export function isConstructorTypeNode(
-	node: ts.Node
-): node is ts.ConstructorTypeNode {
-	return node.kind === ts.SyntaxKind.ConstructorType;
-}
-
-export function isConstructSignatureDeclaration(
-	node: ts.Node
-): node is ts.ConstructSignatureDeclaration {
-	return node.kind === ts.SyntaxKind.ConstructSignature;
-}
-
-export function isContinueStatement(
-	node: ts.Node
-): node is ts.ContinueStatement {
-	return node.kind === ts.SyntaxKind.ContinueStatement;
-}
-
-export function isComputedPropertyName(
-	node: ts.Node
-): node is ts.ComputedPropertyName {
-	return node.kind === ts.SyntaxKind.ComputedPropertyName;
-}
-
-export function isDebuggerStatement(
-	node: ts.Node
-): node is ts.DebuggerStatement {
-	return node.kind === ts.SyntaxKind.DebuggerStatement;
-}
-
-export function isDecorator(node: ts.Node): node is ts.Decorator {
-	return node.kind === ts.SyntaxKind.Decorator;
-}
-
-export function isDefaultClause(node: ts.Node): node is ts.DefaultClause {
-	return node.kind === ts.SyntaxKind.DefaultClause;
-}
-
-export function isDeleteExpression(node: ts.Node): node is ts.DeleteExpression {
-	return node.kind === ts.SyntaxKind.DeleteExpression;
-}
-
-export function isDoStatement(node: ts.Node): node is ts.DoStatement {
-	return node.kind === ts.SyntaxKind.DoStatement;
-}
-
-export function isElementAccessExpression(
-	node: ts.Node
-): node is ts.ElementAccessExpression {
-	return node.kind === ts.SyntaxKind.ElementAccessExpression;
-}
-
-export function isEmptyStatement(node: ts.Node): node is ts.EmptyStatement {
-	return node.kind === ts.SyntaxKind.EmptyStatement;
-}
-
-export function isEntityName(node: ts.Node): node is ts.EntityName {
-	return node.kind === ts.SyntaxKind.Identifier || isQualifiedName(node);
-}
-
-export function isEnumDeclaration(node: ts.Node): node is ts.EnumDeclaration {
-	return node.kind === ts.SyntaxKind.EnumDeclaration;
-}
-
-export function isEnumMember(node: ts.Node): node is ts.EnumMember {
-	return node.kind === ts.SyntaxKind.EnumMember;
-}
-
-export function isExportAssignment(node: ts.Node): node is ts.ExportAssignment {
-	return node.kind === ts.SyntaxKind.ExportAssignment;
-}
-
-export function isExportDeclaration(
-	node: ts.Node
-): node is ts.ExportDeclaration {
-	return node.kind === ts.SyntaxKind.ExportDeclaration;
-}
-
-export function isExportSpecifier(node: ts.Node): node is ts.ExportSpecifier {
-	return node.kind === ts.SyntaxKind.ExportSpecifier;
-}
-
-export function isExpressionStatement(
-	node: ts.Node
-): node is ts.ExpressionStatement {
-	return node.kind === ts.SyntaxKind.ExpressionStatement;
-}
-
-export function isExpressionWithTypeArguments(
-	node: ts.Node
-): node is ts.ExpressionWithTypeArguments {
-	return node.kind === ts.SyntaxKind.ExpressionWithTypeArguments;
-}
-
-export function isExternalModuleReference(
-	node: ts.Node
-): node is ts.ExternalModuleReference {
-	return node.kind === ts.SyntaxKind.ExternalModuleReference;
-}
-
-export function isForInStatement(node: ts.Node): node is ts.ForInStatement {
-	return node.kind === ts.SyntaxKind.ForInStatement;
-}
-
-export function isForOfStatement(node: ts.Node): node is ts.ForOfStatement {
-	return node.kind === ts.SyntaxKind.ForOfStatement;
-}
-
-export function isForStatement(node: ts.Node): node is ts.ForStatement {
-	return node.kind === ts.SyntaxKind.ForStatement;
-}
-
-export function isFunctionDeclaration(
-	node: ts.Node
-): node is ts.FunctionDeclaration {
-	return node.kind === ts.SyntaxKind.FunctionDeclaration;
-}
-
-export function isFunctionExpression(
-	node: ts.Node
-): node is ts.FunctionExpression {
-	return node.kind === ts.SyntaxKind.FunctionExpression;
-}
-
-export function isFunctionTypeNode(node: ts.Node): node is ts.FunctionTypeNode {
-	return node.kind === ts.SyntaxKind.FunctionType;
-}
-
-export function isGetAccessorDeclaration(
-	node: ts.Node
-): node is ts.GetAccessorDeclaration {
-	return node.kind === ts.SyntaxKind.GetAccessor;
-}
-
-export function isIdentifier(node: ts.Node): node is ts.Identifier {
-	return node.kind === ts.SyntaxKind.Identifier;
-}
-
-export function isIfStatement(node: ts.Node): node is ts.IfStatement {
-	return node.kind === ts.SyntaxKind.IfStatement;
-}
-
-export function isImportClause(node: ts.Node): node is ts.ImportClause {
-	return node.kind === ts.SyntaxKind.ImportClause;
-}
-
-export function isImportDeclaration(
-	node: ts.Node
-): node is ts.ImportDeclaration {
-	return node.kind === ts.SyntaxKind.ImportDeclaration;
-}
-
-export function isImportEqualsDeclaration(
-	node: ts.Node
-): node is ts.ImportEqualsDeclaration {
-	return node.kind === ts.SyntaxKind.ImportEqualsDeclaration;
-}
-
-export function isImportSpecifier(node: ts.Node): node is ts.ImportSpecifier {
-	return node.kind === ts.SyntaxKind.ImportSpecifier;
-}
-
-export function isImportTypeNode(node: ts.Node): node is ts.ImportTypeNode {
-	return node.kind === ts.SyntaxKind.ImportType;
-}
-
-export function isIndexedAccessTypeNode(
-	node: ts.Node
-): node is ts.IndexedAccessTypeNode {
-	return node.kind === ts.SyntaxKind.IndexedAccessType;
-}
-
-export function isIndexSignatureDeclaration(
-	node: ts.Node
-): node is ts.IndexSignatureDeclaration {
-	return node.kind === ts.SyntaxKind.IndexSignature;
-}
-
-export function isInferTypeNode(node: ts.Node): node is ts.InferTypeNode {
-	return node.kind === ts.SyntaxKind.InferType;
-}
-
-export function isInterfaceDeclaration(
-	node: ts.Node
-): node is ts.InterfaceDeclaration {
-	return node.kind === ts.SyntaxKind.InterfaceDeclaration;
-}
-
-export function isIntersectionTypeNode(
-	node: ts.Node
-): node is ts.IntersectionTypeNode {
-	return node.kind === ts.SyntaxKind.IntersectionType;
-}
-
-export function isJsDoc(node: ts.Node): node is ts.JSDoc {
-	return node.kind === ts.SyntaxKind.JSDoc;
-}
-
-export function isJsxAttribute(node: ts.Node): node is ts.JsxAttribute {
-	return node.kind === ts.SyntaxKind.JsxAttribute;
-}
-
-export function isJsxAttributes(node: ts.Node): node is ts.JsxAttributes {
-	return node.kind === ts.SyntaxKind.JsxAttributes;
-}
-
-export function isJsxClosingElement(
-	node: ts.Node
-): node is ts.JsxClosingElement {
-	return node.kind === ts.SyntaxKind.JsxClosingElement;
-}
-
-export function isJsxClosingFragment(
-	node: ts.Node
-): node is ts.JsxClosingFragment {
-	return node.kind === ts.SyntaxKind.JsxClosingFragment;
-}
-
-export function isJsxElement(node: ts.Node): node is ts.JsxElement {
-	return node.kind === ts.SyntaxKind.JsxElement;
-}
-
-export function isJsxExpression(node: ts.Node): node is ts.JsxExpression {
-	return node.kind === ts.SyntaxKind.JsxExpression;
-}
-
-export function isJsxFragment(node: ts.Node): node is ts.JsxFragment {
-	return node.kind === ts.SyntaxKind.JsxFragment;
-}
-
-export function isJsxOpeningElement(
-	node: ts.Node
-): node is ts.JsxOpeningElement {
-	return node.kind === ts.SyntaxKind.JsxOpeningElement;
-}
-
-export function isJsxOpeningFragment(
-	node: ts.Node
-): node is ts.JsxOpeningFragment {
-	return node.kind === ts.SyntaxKind.JsxOpeningFragment;
-}
-
-export function isJsxSelfClosingElement(
-	node: ts.Node
-): node is ts.JsxSelfClosingElement {
-	return node.kind === ts.SyntaxKind.JsxSelfClosingElement;
-}
-
-export function isJsxSpreadAttribute(
-	node: ts.Node
-): node is ts.JsxSpreadAttribute {
-	return node.kind === ts.SyntaxKind.JsxSpreadAttribute;
-}
-
-export function isJsxText(node: ts.Node): node is ts.JsxText {
-	return node.kind === ts.SyntaxKind.JsxText;
-}
-
-export function isLabeledStatement(node: ts.Node): node is ts.LabeledStatement {
-	return node.kind === ts.SyntaxKind.LabeledStatement;
-}
-
-export function isLiteralTypeNode(node: ts.Node): node is ts.LiteralTypeNode {
-	return node.kind === ts.SyntaxKind.LiteralType;
-}
-
-export function isMappedTypeNode(node: ts.Node): node is ts.MappedTypeNode {
-	return node.kind === ts.SyntaxKind.MappedType;
-}
-
-export function isMetaProperty(node: ts.Node): node is ts.MetaProperty {
-	return node.kind === ts.SyntaxKind.MetaProperty;
-}
-
-export function isMethodDeclaration(
-	node: ts.Node
-): node is ts.MethodDeclaration {
-	return node.kind === ts.SyntaxKind.MethodDeclaration;
-}
-
-export function isMethodSignature(node: ts.Node): node is ts.MethodSignature {
-	return node.kind === ts.SyntaxKind.MethodSignature;
-}
-
-export function isModuleBlock(node: ts.Node): node is ts.ModuleBlock {
-	return node.kind === ts.SyntaxKind.ModuleBlock;
-}
-
-export function isModuleDeclaration(
-	node: ts.Node
-): node is ts.ModuleDeclaration {
-	return node.kind === ts.SyntaxKind.ModuleDeclaration;
-}
-
-export function isNamedExports(node: ts.Node): node is ts.NamedExports {
-	return node.kind === ts.SyntaxKind.NamedExports;
-}
-
-export function isNamedImports(node: ts.Node): node is ts.NamedImports {
-	return node.kind === ts.SyntaxKind.NamedImports;
-}
-
-export function isNamespaceImport(node: ts.Node): node is ts.NamespaceImport {
-	return node.kind === ts.SyntaxKind.NamespaceImport;
-}
-
-export function isNamespaceExportDeclaration(
-	node: ts.Node
-): node is ts.NamespaceExportDeclaration {
-	return node.kind === ts.SyntaxKind.NamespaceExportDeclaration;
-}
-
-export function isNewExpression(node: ts.Node): node is ts.NewExpression {
-	return node.kind === ts.SyntaxKind.NewExpression;
-}
-
-export function isNonNullExpression(
-	node: ts.Node
-): node is ts.NonNullExpression {
-	return node.kind === ts.SyntaxKind.NonNullExpression;
-}
-
-export function isNoSubstitutionTemplateLiteral(
-	node: ts.Node
-): node is ts.NoSubstitutionTemplateLiteral {
-	return node.kind === ts.SyntaxKind.NoSubstitutionTemplateLiteral;
-}
-
-export function isNullLiteral(node: ts.Node): node is ts.NullLiteral {
-	return node.kind === ts.SyntaxKind.NullKeyword;
-}
-
-export function isNumericLiteral(node: ts.Node): node is ts.NumericLiteral {
-	return node.kind === ts.SyntaxKind.NumericLiteral;
-}
-
-export function isObjectBindingPattern(
-	node: ts.Node
-): node is ts.ObjectBindingPattern {
-	return node.kind === ts.SyntaxKind.ObjectBindingPattern;
-}
-
-export function isObjectLiteralExpression(
-	node: ts.Node
-): node is ts.ObjectLiteralExpression {
-	return node.kind === ts.SyntaxKind.ObjectLiteralExpression;
-}
-
-export function isOmittedExpression(
-	node: ts.Node
-): node is ts.OmittedExpression {
-	return node.kind === ts.SyntaxKind.OmittedExpression;
-}
-
-export function isOptionalTypeNode(node: ts.Node): node is ts.OptionalTypeNode {
-	return node.kind === ts.SyntaxKind.OptionalType;
-}
-
-export function isParameterDeclaration(
-	node: ts.Node
-): node is ts.ParameterDeclaration {
-	return node.kind === ts.SyntaxKind.Parameter;
-}
-
-export function isParenthesizedExpression(
-	node: ts.Node
-): node is ts.ParenthesizedExpression {
-	return node.kind === ts.SyntaxKind.ParenthesizedExpression;
-}
-
-export function isParenthesizedTypeNode(
-	node: ts.Node
-): node is ts.ParenthesizedTypeNode {
-	return node.kind === ts.SyntaxKind.ParenthesizedType;
-}
-
-export function isPostfixUnaryExpression(
-	node: ts.Node
-): node is ts.PostfixUnaryExpression {
-	return node.kind === ts.SyntaxKind.PostfixUnaryExpression;
-}
-
-export function isPrefixUnaryExpression(
-	node: ts.Node
-): node is ts.PrefixUnaryExpression {
-	return node.kind === ts.SyntaxKind.PrefixUnaryExpression;
-}
-
-export function isPropertyAccessExpression(
-	node: ts.Node
-): node is ts.PropertyAccessExpression {
-	return node.kind === ts.SyntaxKind.PropertyAccessExpression;
-}
-
-export function isPropertyAssignment(
-	node: ts.Node
-): node is ts.PropertyAssignment {
-	return node.kind === ts.SyntaxKind.PropertyAssignment;
-}
-
-export function isPropertyDeclaration(
-	node: ts.Node
-): node is ts.PropertyDeclaration {
-	return node.kind === ts.SyntaxKind.PropertyDeclaration;
-}
-
-export function isPropertySignature(
-	node: ts.Node
-): node is ts.PropertySignature {
-	return node.kind === ts.SyntaxKind.PropertySignature;
-}
-
-export function isQualifiedName(node: ts.Node): node is ts.QualifiedName {
-	return node.kind === ts.SyntaxKind.QualifiedName;
-}
-
-export function isRegularExpressionLiteral(
-	node: ts.Node
-): node is ts.RegularExpressionLiteral {
-	return node.kind === ts.SyntaxKind.RegularExpressionLiteral;
-}
-
-export function isRestTypeNode(node: ts.Node): node is ts.RestTypeNode {
-	return node.kind === ts.SyntaxKind.RestType;
-}
-
-export function isReturnStatement(node: ts.Node): node is ts.ReturnStatement {
-	return node.kind === ts.SyntaxKind.ReturnStatement;
-}
-
-export function isSetAccessorDeclaration(
-	node: ts.Node
-): node is ts.SetAccessorDeclaration {
-	return node.kind === ts.SyntaxKind.SetAccessor;
-}
-
-export function isShorthandPropertyAssignment(
-	node: ts.Node
-): node is ts.ShorthandPropertyAssignment {
-	return node.kind === ts.SyntaxKind.ShorthandPropertyAssignment;
-}
-
-export function isSourceFile(node: ts.Node): node is ts.SourceFile {
-	return node.kind === ts.SyntaxKind.SourceFile;
-}
-
-export function isSpreadAssignment(node: ts.Node): node is ts.SpreadAssignment {
-	return node.kind === ts.SyntaxKind.SpreadAssignment;
-}
-
-export function isSpreadElement(node: ts.Node): node is ts.SpreadElement {
-	return node.kind === ts.SyntaxKind.SpreadElement;
-}
-
-export function isStringLiteral(node: ts.Node): node is ts.StringLiteral {
-	return node.kind === ts.SyntaxKind.StringLiteral;
-}
-
-export function isSwitchStatement(node: ts.Node): node is ts.SwitchStatement {
-	return node.kind === ts.SyntaxKind.SwitchStatement;
-}
-
-export function isSyntaxList(node: ts.Node): node is ts.SyntaxList {
-	return node.kind === ts.SyntaxKind.SyntaxList;
-}
-
-export function isSyntheticExpression(
-	node: ts.Node
-): node is ts.SyntheticExpression {
-	return node.kind === ts.SyntaxKind.SyntheticExpression;
-}
-
-export function isTaggedTemplateExpression(
-	node: ts.Node
-): node is ts.TaggedTemplateExpression {
-	return node.kind === ts.SyntaxKind.TaggedTemplateExpression;
-}
-
-export function isTemplateExpression(
-	node: ts.Node
-): node is ts.TemplateExpression {
-	return node.kind === ts.SyntaxKind.TemplateExpression;
-}
-
-export function isThrowStatement(node: ts.Node): node is ts.ThrowStatement {
-	return node.kind === ts.SyntaxKind.ThrowStatement;
-}
-
-export function isTryStatement(node: ts.Node): node is ts.TryStatement {
-	return node.kind === ts.SyntaxKind.TryStatement;
-}
-
-export function isTupleTypeNode(node: ts.Node): node is ts.TupleTypeNode {
-	return node.kind === ts.SyntaxKind.TupleType;
-}
-
-export function isTypeAliasDeclaration(
-	node: ts.Node
-): node is ts.TypeAliasDeclaration {
-	return node.kind === ts.SyntaxKind.TypeAliasDeclaration;
-}
-
-export function isTypeAssertion(node: ts.Node): node is ts.TypeAssertion {
-	return node.kind === ts.SyntaxKind.TypeAssertionExpression;
-}
-
-export function isTypeLiteralNode(node: ts.Node): node is ts.TypeLiteralNode {
-	return node.kind === ts.SyntaxKind.TypeLiteral;
-}
-
-export function isTypeOfExpression(node: ts.Node): node is ts.TypeOfExpression {
-	return node.kind === ts.SyntaxKind.TypeOfExpression;
-}
-
-export function isTypeOperatorNode(node: ts.Node): node is ts.TypeOperatorNode {
-	return node.kind === ts.SyntaxKind.TypeOperator;
-}
-
-export function isTypeParameterDeclaration(
-	node: ts.Node
-): node is ts.TypeParameterDeclaration {
-	return node.kind === ts.SyntaxKind.TypeParameter;
-}
-
-export function isTypePredicateNode(
-	node: ts.Node
-): node is ts.TypePredicateNode {
-	return node.kind === ts.SyntaxKind.TypePredicate;
-}
-
-export function isTypeReferenceNode(
-	node: ts.Node
-): node is ts.TypeReferenceNode {
-	return node.kind === ts.SyntaxKind.TypeReference;
-}
-
-export function isTypeQueryNode(node: ts.Node): node is ts.TypeQueryNode {
-	return node.kind === ts.SyntaxKind.TypeQuery;
-}
-
-export function isUnionTypeNode(node: ts.Node): node is ts.UnionTypeNode {
-	return node.kind === ts.SyntaxKind.UnionType;
-}
-
-export function isVariableDeclaration(
-	node: ts.Node
-): node is ts.VariableDeclaration {
-	return node.kind === ts.SyntaxKind.VariableDeclaration;
-}
-
-export function isVariableStatement(
-	node: ts.Node
-): node is ts.VariableStatement {
-	return node.kind === ts.SyntaxKind.VariableStatement;
-}
-
-export function isVariableDeclarationList(
-	node: ts.Node
-): node is ts.VariableDeclarationList {
-	return node.kind === ts.SyntaxKind.VariableDeclarationList;
-}
-
-export function isVoidExpression(node: ts.Node): node is ts.VoidExpression {
-	return node.kind === ts.SyntaxKind.VoidExpression;
-}
-
-export function isWhileStatement(node: ts.Node): node is ts.WhileStatement {
-	return node.kind === ts.SyntaxKind.WhileStatement;
-}
-
-export function isWithStatement(node: ts.Node): node is ts.WithStatement {
-	return node.kind === ts.SyntaxKind.WithStatement;
-}
+import * as ts from "typescript"
+
+export function isAbstractKeyword(node: ts.Node): node is ts.AbstractKeyword { return node.kind === ts.SyntaxKind.AbstractKeyword; }
+export function isAccessorKeyword(node: ts.Node): node is ts.AccessorKeyword { return node.kind === ts.SyntaxKind.AccessorKeyword; }
+export function isArrayBindingPattern(node: ts.Node): node is ts.ArrayBindingPattern { return node.kind === ts.SyntaxKind.ArrayBindingPattern; }
+export function isArrayLiteralExpression(node: ts.Node): node is ts.ArrayLiteralExpression { return node.kind === ts.SyntaxKind.ArrayLiteralExpression; }
+export function isArrayTypeNode(node: ts.Node): node is ts.ArrayTypeNode { return node.kind === ts.SyntaxKind.ArrayType; }
+export function isArrowFunction(node: ts.Node): node is ts.ArrowFunction { return node.kind === ts.SyntaxKind.ArrowFunction; }
+export function isAsExpression(node: ts.Node): node is ts.AsExpression { return node.kind === ts.SyntaxKind.AsExpression; }
+export function isAssertClause(node: ts.Node): node is ts.AssertClause { return node.kind === ts.SyntaxKind.AssertClause; }
+export function isAssertEntry(node: ts.Node): node is ts.AssertEntry { return node.kind === ts.SyntaxKind.AssertEntry; }
+export function isAssertKeyword(node: ts.Node): node is ts.AssertKeyword { return node.kind === ts.SyntaxKind.AssertKeyword; }
+export function isAssertsKeyword(node: ts.Node): node is ts.AssertsKeyword { return node.kind === ts.SyntaxKind.AssertsKeyword; }
+export function isAsteriskToken(node: ts.Node): node is ts.AsteriskToken { return node.kind === ts.SyntaxKind.AsteriskToken; }
+export function isAsyncKeyword(node: ts.Node): node is ts.AsyncKeyword { return node.kind === ts.SyntaxKind.AsyncKeyword; }
+export function isAwaitExpression(node: ts.Node): node is ts.AwaitExpression { return node.kind === ts.SyntaxKind.AwaitExpression; }
+export function isAwaitKeyword(node: ts.Node): node is ts.AwaitKeyword { return node.kind === ts.SyntaxKind.AwaitKeyword; }
+export function isBigIntLiteral(node: ts.Node): node is ts.BigIntLiteral { return node.kind === ts.SyntaxKind.BigIntLiteral; }
+export function isBinaryExpression(node: ts.Node): node is ts.BinaryExpression { return node.kind === ts.SyntaxKind.BinaryExpression; }
+export function isBindingElement(node: ts.Node): node is ts.BindingElement { return node.kind === ts.SyntaxKind.BindingElement; }
+export function isBlock(node: ts.Node): node is ts.Block { return node.kind === ts.SyntaxKind.Block; }
+export function isBreakStatement(node: ts.Node): node is ts.BreakStatement { return node.kind === ts.SyntaxKind.BreakStatement; }
+export function isBundle(node: ts.Node): node is ts.Bundle { return node.kind === ts.SyntaxKind.Bundle; }
+export function isCallExpression(node: ts.Node): node is ts.CallExpression { return node.kind === ts.SyntaxKind.CallExpression; }
+export function isCallSignatureDeclaration(node: ts.Node): node is ts.CallSignatureDeclaration { return node.kind === ts.SyntaxKind.CallSignature; }
+export function isCaseBlock(node: ts.Node): node is ts.CaseBlock { return node.kind === ts.SyntaxKind.CaseBlock; }
+export function isCaseClause(node: ts.Node): node is ts.CaseClause { return node.kind === ts.SyntaxKind.CaseClause; }
+export function isCatchClause(node: ts.Node): node is ts.CatchClause { return node.kind === ts.SyntaxKind.CatchClause; }
+export function isClassDeclaration(node: ts.Node): node is ts.ClassDeclaration { return node.kind === ts.SyntaxKind.ClassDeclaration; }
+export function isClassExpression(node: ts.Node): node is ts.ClassExpression { return node.kind === ts.SyntaxKind.ClassExpression; }
+export function isClassStaticBlockDeclaration(node: ts.Node): node is ts.ClassStaticBlockDeclaration { return node.kind === ts.SyntaxKind.ClassStaticBlockDeclaration; }
+export function isColonToken(node: ts.Node): node is ts.ColonToken { return node.kind === ts.SyntaxKind.ColonToken; }
+export function isCommaListExpression(node: ts.Node): node is ts.CommaListExpression { return node.kind === ts.SyntaxKind.CommaListExpression; }
+export function isComputedPropertyName(node: ts.Node): node is ts.ComputedPropertyName { return node.kind === ts.SyntaxKind.ComputedPropertyName; }
+export function isConditionalExpression(node: ts.Node): node is ts.ConditionalExpression { return node.kind === ts.SyntaxKind.ConditionalExpression; }
+export function isConditionalTypeNode(node: ts.Node): node is ts.ConditionalTypeNode { return node.kind === ts.SyntaxKind.ConditionalType; }
+export function isConstKeyword(node: ts.Node): node is ts.ConstKeyword { return node.kind === ts.SyntaxKind.ConstKeyword; }
+export function isConstructorDeclaration(node: ts.Node): node is ts.ConstructorDeclaration { return node.kind === ts.SyntaxKind.Constructor; }
+export function isConstructorTypeNode(node: ts.Node): node is ts.ConstructorTypeNode { return node.kind === ts.SyntaxKind.ConstructorType; }
+export function isConstructSignatureDeclaration(node: ts.Node): node is ts.ConstructSignatureDeclaration { return node.kind === ts.SyntaxKind.ConstructSignature; }
+export function isContinueStatement(node: ts.Node): node is ts.ContinueStatement { return node.kind === ts.SyntaxKind.ContinueStatement; }
+export function isDebuggerStatement(node: ts.Node): node is ts.DebuggerStatement { return node.kind === ts.SyntaxKind.DebuggerStatement; }
+export function isDeclareKeyword(node: ts.Node): node is ts.DeclareKeyword { return node.kind === ts.SyntaxKind.DeclareKeyword; }
+export function isDecorator(node: ts.Node): node is ts.Decorator { return node.kind === ts.SyntaxKind.Decorator; }
+export function isDefaultClause(node: ts.Node): node is ts.DefaultClause { return node.kind === ts.SyntaxKind.DefaultClause; }
+export function isDefaultKeyword(node: ts.Node): node is ts.DefaultKeyword { return node.kind === ts.SyntaxKind.DefaultKeyword; }
+export function isDeleteExpression(node: ts.Node): node is ts.DeleteExpression { return node.kind === ts.SyntaxKind.DeleteExpression; }
+export function isDoStatement(node: ts.Node): node is ts.DoStatement { return node.kind === ts.SyntaxKind.DoStatement; }
+export function isDotDotDotToken(node: ts.Node): node is ts.DotDotDotToken { return node.kind === ts.SyntaxKind.DotDotDotToken; }
+export function isDotToken(node: ts.Node): node is ts.DotToken { return node.kind === ts.SyntaxKind.DotToken; }
+export function isElementAccessExpression(node: ts.Node): node is ts.ElementAccessExpression { return node.kind === ts.SyntaxKind.ElementAccessExpression; }
+export function isEmptyStatement(node: ts.Node): node is ts.EmptyStatement { return node.kind === ts.SyntaxKind.EmptyStatement; }
+export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken { return node.kind === ts.SyntaxKind.EndOfFileToken; }
+export function isEnumDeclaration(node: ts.Node): node is ts.EnumDeclaration { return node.kind === ts.SyntaxKind.EnumDeclaration; }
+export function isEnumMember(node: ts.Node): node is ts.EnumMember { return node.kind === ts.SyntaxKind.EnumMember; }
+export function isEqualsGreaterThanToken(node: ts.Node): node is ts.EqualsGreaterThanToken { return node.kind === ts.SyntaxKind.EqualsGreaterThanToken; }
+export function isEqualsToken(node: ts.Node): node is ts.EqualsToken { return node.kind === ts.SyntaxKind.EqualsToken; }
+export function isExclamationToken(node: ts.Node): node is ts.ExclamationToken { return node.kind === ts.SyntaxKind.ExclamationToken; }
+export function isExportAssignment(node: ts.Node): node is ts.ExportAssignment { return node.kind === ts.SyntaxKind.ExportAssignment; }
+export function isExportDeclaration(node: ts.Node): node is ts.ExportDeclaration { return node.kind === ts.SyntaxKind.ExportDeclaration; }
+export function isExportKeyword(node: ts.Node): node is ts.ExportKeyword { return node.kind === ts.SyntaxKind.ExportKeyword; }
+export function isExportSpecifier(node: ts.Node): node is ts.ExportSpecifier { return node.kind === ts.SyntaxKind.ExportSpecifier; }
+export function isExpressionStatement(node: ts.Node): node is ts.ExpressionStatement { return node.kind === ts.SyntaxKind.ExpressionStatement; }
+export function isExpressionWithTypeArguments(node: ts.Node): node is ts.ExpressionWithTypeArguments { return node.kind === ts.SyntaxKind.ExpressionWithTypeArguments; }
+export function isExternalModuleReference(node: ts.Node): node is ts.ExternalModuleReference { return node.kind === ts.SyntaxKind.ExternalModuleReference; }
+export function isFalseLiteral(node: ts.Node): node is ts.FalseLiteral { return node.kind === ts.SyntaxKind.FalseKeyword; }
+export function isForInStatement(node: ts.Node): node is ts.ForInStatement { return node.kind === ts.SyntaxKind.ForInStatement; }
+export function isForOfStatement(node: ts.Node): node is ts.ForOfStatement { return node.kind === ts.SyntaxKind.ForOfStatement; }
+export function isForStatement(node: ts.Node): node is ts.ForStatement { return node.kind === ts.SyntaxKind.ForStatement; }
+export function isFunctionDeclaration(node: ts.Node): node is ts.FunctionDeclaration { return node.kind === ts.SyntaxKind.FunctionDeclaration; }
+export function isFunctionExpression(node: ts.Node): node is ts.FunctionExpression { return node.kind === ts.SyntaxKind.FunctionExpression; }
+export function isFunctionTypeNode(node: ts.Node): node is ts.FunctionTypeNode { return node.kind === ts.SyntaxKind.FunctionType; }
+export function isGetAccessorDeclaration(node: ts.Node): node is ts.GetAccessorDeclaration { return node.kind === ts.SyntaxKind.GetAccessor; }
+export function isHeritageClause(node: ts.Node): node is ts.HeritageClause { return node.kind === ts.SyntaxKind.HeritageClause; }
+export function isIdentifier(node: ts.Node): node is ts.Identifier { return node.kind === ts.SyntaxKind.Identifier; }
+export function isIfStatement(node: ts.Node): node is ts.IfStatement { return node.kind === ts.SyntaxKind.IfStatement; }
+export function isImportClause(node: ts.Node): node is ts.ImportClause { return node.kind === ts.SyntaxKind.ImportClause; }
+export function isImportDeclaration(node: ts.Node): node is ts.ImportDeclaration { return node.kind === ts.SyntaxKind.ImportDeclaration; }
+export function isImportEqualsDeclaration(node: ts.Node): node is ts.ImportEqualsDeclaration { return node.kind === ts.SyntaxKind.ImportEqualsDeclaration; }
+export function isImportExpression(node: ts.Node): node is ts.ImportExpression { return node.kind === ts.SyntaxKind.ImportKeyword; }
+export function isImportSpecifier(node: ts.Node): node is ts.ImportSpecifier { return node.kind === ts.SyntaxKind.ImportSpecifier; }
+export function isImportTypeAssertionContainer(node: ts.Node): node is ts.ImportTypeAssertionContainer { return node.kind === ts.SyntaxKind.ImportTypeAssertionContainer; }
+export function isImportTypeNode(node: ts.Node): node is ts.ImportTypeNode { return node.kind === ts.SyntaxKind.ImportType; }
+export function isIndexedAccessTypeNode(node: ts.Node): node is ts.IndexedAccessTypeNode { return node.kind === ts.SyntaxKind.IndexedAccessType; }
+export function isIndexSignatureDeclaration(node: ts.Node): node is ts.IndexSignatureDeclaration { return node.kind === ts.SyntaxKind.IndexSignature; }
+export function isInferTypeNode(node: ts.Node): node is ts.InferTypeNode { return node.kind === ts.SyntaxKind.InferType; }
+export function isInKeyword(node: ts.Node): node is ts.InKeyword { return node.kind === ts.SyntaxKind.InKeyword; }
+export function isInputFiles(node: ts.Node): node is ts.InputFiles { return node.kind === ts.SyntaxKind.InputFiles; }
+export function isInterfaceDeclaration(node: ts.Node): node is ts.InterfaceDeclaration { return node.kind === ts.SyntaxKind.InterfaceDeclaration; }
+export function isIntersectionTypeNode(node: ts.Node): node is ts.IntersectionTypeNode { return node.kind === ts.SyntaxKind.IntersectionType; }
+/** @deprecated Use isJSDoc */
+export function isJsDoc(node: ts.Node): node is ts.JSDoc { return isJSDoc(node); }
+export function isJSDoc(node: ts.Node): node is ts.JSDoc { return node.kind === ts.SyntaxKind.JSDoc; }
+export function isJSDocAllType(node: ts.Node): node is ts.JSDocAllType { return node.kind === ts.SyntaxKind.JSDocAllType; }
+export function isJSDocAugmentsTag(node: ts.Node): node is ts.JSDocAugmentsTag { return node.kind === ts.SyntaxKind.JSDocAugmentsTag; }
+export function isJSDocAuthorTag(node: ts.Node): node is ts.JSDocAuthorTag { return node.kind === ts.SyntaxKind.JSDocAuthorTag; }
+export function isJSDocCallbackTag(node: ts.Node): node is ts.JSDocCallbackTag { return node.kind === ts.SyntaxKind.JSDocCallbackTag; }
+export function isJSDocClassTag(node: ts.Node): node is ts.JSDocClassTag { return node.kind === ts.SyntaxKind.JSDocClassTag; }
+export function isJSDocDeprecatedTag(node: ts.Node): node is ts.JSDocDeprecatedTag { return node.kind === ts.SyntaxKind.JSDocDeprecatedTag; }
+export function isJSDocEnumTag(node: ts.Node): node is ts.JSDocEnumTag { return node.kind === ts.SyntaxKind.JSDocEnumTag; }
+export function isJSDocFunctionType(node: ts.Node): node is ts.JSDocFunctionType { return node.kind === ts.SyntaxKind.JSDocFunctionType; }
+export function isJSDocImplementsTag(node: ts.Node): node is ts.JSDocImplementsTag { return node.kind === ts.SyntaxKind.JSDocImplementsTag; }
+export function isJSDocLink(node: ts.Node): node is ts.JSDocLink { return node.kind === ts.SyntaxKind.JSDocLink; }
+export function isJSDocLinkCode(node: ts.Node): node is ts.JSDocLinkCode { return node.kind === ts.SyntaxKind.JSDocLinkCode; }
+export function isJSDocLinkPlain(node: ts.Node): node is ts.JSDocLinkPlain { return node.kind === ts.SyntaxKind.JSDocLinkPlain; }
+export function isJSDocMemberName(node: ts.Node): node is ts.JSDocMemberName { return node.kind === ts.SyntaxKind.JSDocMemberName; }
+export function isJSDocNamepathType(node: ts.Node): node is ts.JSDocNamepathType { return node.kind === ts.SyntaxKind.JSDocNamepathType; }
+export function isJSDocNameReference(node: ts.Node): node is ts.JSDocNameReference { return node.kind === ts.SyntaxKind.JSDocNameReference; }
+export function isJSDocNonNullableType(node: ts.Node): node is ts.JSDocNonNullableType { return node.kind === ts.SyntaxKind.JSDocNonNullableType; }
+export function isJSDocNullableType(node: ts.Node): node is ts.JSDocNullableType { return node.kind === ts.SyntaxKind.JSDocNullableType; }
+export function isJSDocOptionalType(node: ts.Node): node is ts.JSDocOptionalType { return node.kind === ts.SyntaxKind.JSDocOptionalType; }
+export function isJSDocOverrideTag(node: ts.Node): node is ts.JSDocOverrideTag { return node.kind === ts.SyntaxKind.JSDocOverrideTag; }
+export function isJSDocParameterTag(node: ts.Node): node is ts.JSDocParameterTag { return node.kind === ts.SyntaxKind.JSDocParameterTag; }
+export function isJSDocPrivateTag(node: ts.Node): node is ts.JSDocPrivateTag { return node.kind === ts.SyntaxKind.JSDocPrivateTag; }
+export function isJSDocPropertyTag(node: ts.Node): node is ts.JSDocPropertyTag { return node.kind === ts.SyntaxKind.JSDocPropertyTag; }
+export function isJSDocProtectedTag(node: ts.Node): node is ts.JSDocProtectedTag { return node.kind === ts.SyntaxKind.JSDocProtectedTag; }
+export function isJSDocPublicTag(node: ts.Node): node is ts.JSDocPublicTag { return node.kind === ts.SyntaxKind.JSDocPublicTag; }
+export function isJSDocReadonlyTag(node: ts.Node): node is ts.JSDocReadonlyTag { return node.kind === ts.SyntaxKind.JSDocReadonlyTag; }
+export function isJSDocReturnTag(node: ts.Node): node is ts.JSDocReturnTag { return node.kind === ts.SyntaxKind.JSDocReturnTag; }
+export function isJSDocSeeTag(node: ts.Node): node is ts.JSDocSeeTag { return node.kind === ts.SyntaxKind.JSDocSeeTag; }
+export function isJSDocSignature(node: ts.Node): node is ts.JSDocSignature { return node.kind === ts.SyntaxKind.JSDocSignature; }
+export function isJSDocTemplateTag(node: ts.Node): node is ts.JSDocTemplateTag { return node.kind === ts.SyntaxKind.JSDocTemplateTag; }
+export function isJSDocText(node: ts.Node): node is ts.JSDocText { return node.kind === ts.SyntaxKind.JSDocText; }
+export function isJSDocThisTag(node: ts.Node): node is ts.JSDocThisTag { return node.kind === ts.SyntaxKind.JSDocThisTag; }
+export function isJSDocTypedefTag(node: ts.Node): node is ts.JSDocTypedefTag { return node.kind === ts.SyntaxKind.JSDocTypedefTag; }
+export function isJSDocTypeExpression(node: ts.Node): node is ts.JSDocTypeExpression { return node.kind === ts.SyntaxKind.JSDocTypeExpression; }
+export function isJSDocTypeLiteral(node: ts.Node): node is ts.JSDocTypeLiteral { return node.kind === ts.SyntaxKind.JSDocTypeLiteral; }
+export function isJSDocTypeTag(node: ts.Node): node is ts.JSDocTypeTag { return node.kind === ts.SyntaxKind.JSDocTypeTag; }
+export function isJSDocUnknownTag(node: ts.Node): node is ts.JSDocUnknownTag { return node.kind === ts.SyntaxKind.JSDocTag; }
+export function isJSDocUnknownType(node: ts.Node): node is ts.JSDocUnknownType { return node.kind === ts.SyntaxKind.JSDocUnknownType; }
+export function isJSDocVariadicType(node: ts.Node): node is ts.JSDocVariadicType { return node.kind === ts.SyntaxKind.JSDocVariadicType; }
+export function isJsonMinusNumericLiteral(node: ts.Node): node is ts.JsonMinusNumericLiteral { return node.kind === ts.SyntaxKind.PrefixUnaryExpression; }
+export function isJsxAttribute(node: ts.Node): node is ts.JsxAttribute { return node.kind === ts.SyntaxKind.JsxAttribute; }
+export function isJsxAttributes(node: ts.Node): node is ts.JsxAttributes { return node.kind === ts.SyntaxKind.JsxAttributes; }
+export function isJsxClosingElement(node: ts.Node): node is ts.JsxClosingElement { return node.kind === ts.SyntaxKind.JsxClosingElement; }
+export function isJsxClosingFragment(node: ts.Node): node is ts.JsxClosingFragment { return node.kind === ts.SyntaxKind.JsxClosingFragment; }
+export function isJsxElement(node: ts.Node): node is ts.JsxElement { return node.kind === ts.SyntaxKind.JsxElement; }
+export function isJsxExpression(node: ts.Node): node is ts.JsxExpression { return node.kind === ts.SyntaxKind.JsxExpression; }
+export function isJsxFragment(node: ts.Node): node is ts.JsxFragment { return node.kind === ts.SyntaxKind.JsxFragment; }
+export function isJsxOpeningElement(node: ts.Node): node is ts.JsxOpeningElement { return node.kind === ts.SyntaxKind.JsxOpeningElement; }
+export function isJsxOpeningFragment(node: ts.Node): node is ts.JsxOpeningFragment { return node.kind === ts.SyntaxKind.JsxOpeningFragment; }
+export function isJsxSelfClosingElement(node: ts.Node): node is ts.JsxSelfClosingElement { return node.kind === ts.SyntaxKind.JsxSelfClosingElement; }
+export function isJsxSpreadAttribute(node: ts.Node): node is ts.JsxSpreadAttribute { return node.kind === ts.SyntaxKind.JsxSpreadAttribute; }
+export function isJsxText(node: ts.Node): node is ts.JsxText { return node.kind === ts.SyntaxKind.JsxText; }
+export function isLabeledStatement(node: ts.Node): node is ts.LabeledStatement { return node.kind === ts.SyntaxKind.LabeledStatement; }
+export function isLiteralTypeNode(node: ts.Node): node is ts.LiteralTypeNode { return node.kind === ts.SyntaxKind.LiteralType; }
+export function isMappedTypeNode(node: ts.Node): node is ts.MappedTypeNode { return node.kind === ts.SyntaxKind.MappedType; }
+export function isMetaProperty(node: ts.Node): node is ts.MetaProperty { return node.kind === ts.SyntaxKind.MetaProperty; }
+export function isMethodDeclaration(node: ts.Node): node is ts.MethodDeclaration { return node.kind === ts.SyntaxKind.MethodDeclaration; }
+export function isMethodSignature(node: ts.Node): node is ts.MethodSignature { return node.kind === ts.SyntaxKind.MethodSignature; }
+export function isMinusToken(node: ts.Node): node is ts.MinusToken { return node.kind === ts.SyntaxKind.MinusToken; }
+export function isMissingDeclaration(node: ts.Node): node is ts.MissingDeclaration { return node.kind === ts.SyntaxKind.MissingDeclaration; }
+export function isModuleBlock(node: ts.Node): node is ts.ModuleBlock { return node.kind === ts.SyntaxKind.ModuleBlock; }
+export function isModuleDeclaration(node: ts.Node): node is ts.ModuleDeclaration { return node.kind === ts.SyntaxKind.ModuleDeclaration; }
+export function isNamedExports(node: ts.Node): node is ts.NamedExports { return node.kind === ts.SyntaxKind.NamedExports; }
+export function isNamedImports(node: ts.Node): node is ts.NamedImports { return node.kind === ts.SyntaxKind.NamedImports; }
+export function isNamedTupleMember(node: ts.Node): node is ts.NamedTupleMember { return node.kind === ts.SyntaxKind.NamedTupleMember; }
+export function isNamespaceExport(node: ts.Node): node is ts.NamespaceExport { return node.kind === ts.SyntaxKind.NamespaceExport; }
+export function isNamespaceExportDeclaration(node: ts.Node): node is ts.NamespaceExportDeclaration { return node.kind === ts.SyntaxKind.NamespaceExportDeclaration; }
+export function isNamespaceImport(node: ts.Node): node is ts.NamespaceImport { return node.kind === ts.SyntaxKind.NamespaceImport; }
+export function isNewExpression(node: ts.Node): node is ts.NewExpression { return node.kind === ts.SyntaxKind.NewExpression; }
+export function isNonNullExpression(node: ts.Node): node is ts.NonNullExpression { return node.kind === ts.SyntaxKind.NonNullExpression; }
+export function isNoSubstitutionTemplateLiteral(node: ts.Node): node is ts.NoSubstitutionTemplateLiteral { return node.kind === ts.SyntaxKind.NoSubstitutionTemplateLiteral; }
+export function isNotEmittedStatement(node: ts.Node): node is ts.NotEmittedStatement { return node.kind === ts.SyntaxKind.NotEmittedStatement; }
+export function isNullLiteral(node: ts.Node): node is ts.NullLiteral { return node.kind === ts.SyntaxKind.NullKeyword; }
+export function isNumericLiteral(node: ts.Node): node is ts.NumericLiteral { return node.kind === ts.SyntaxKind.NumericLiteral; }
+export function isObjectBindingPattern(node: ts.Node): node is ts.ObjectBindingPattern { return node.kind === ts.SyntaxKind.ObjectBindingPattern; }
+export function isObjectLiteralExpression(node: ts.Node): node is ts.ObjectLiteralExpression { return node.kind === ts.SyntaxKind.ObjectLiteralExpression; }
+export function isOmittedExpression(node: ts.Node): node is ts.OmittedExpression { return node.kind === ts.SyntaxKind.OmittedExpression; }
+export function isOptionalTypeNode(node: ts.Node): node is ts.OptionalTypeNode { return node.kind === ts.SyntaxKind.OptionalType; }
+export function isOutKeyword(node: ts.Node): node is ts.OutKeyword { return node.kind === ts.SyntaxKind.OutKeyword; }
+export function isOverrideKeyword(node: ts.Node): node is ts.OverrideKeyword { return node.kind === ts.SyntaxKind.OverrideKeyword; }
+export function isParameterDeclaration(node: ts.Node): node is ts.ParameterDeclaration { return node.kind === ts.SyntaxKind.Parameter; }
+export function isParenthesizedExpression(node: ts.Node): node is ts.ParenthesizedExpression { return node.kind === ts.SyntaxKind.ParenthesizedExpression; }
+export function isParenthesizedTypeNode(node: ts.Node): node is ts.ParenthesizedTypeNode { return node.kind === ts.SyntaxKind.ParenthesizedType; }
+export function isPartiallyEmittedExpression(node: ts.Node): node is ts.PartiallyEmittedExpression { return node.kind === ts.SyntaxKind.PartiallyEmittedExpression; }
+export function isPlusToken(node: ts.Node): node is ts.PlusToken { return node.kind === ts.SyntaxKind.PlusToken; }
+export function isPostfixUnaryExpression(node: ts.Node): node is ts.PostfixUnaryExpression { return node.kind === ts.SyntaxKind.PostfixUnaryExpression; }
+export function isPrefixUnaryExpression(node: ts.Node): node is ts.PrefixUnaryExpression { return node.kind === ts.SyntaxKind.PrefixUnaryExpression; }
+export function isPrivateIdentifier(node: ts.Node): node is ts.PrivateIdentifier { return node.kind === ts.SyntaxKind.PrivateIdentifier; }
+export function isPrivateKeyword(node: ts.Node): node is ts.PrivateKeyword { return node.kind === ts.SyntaxKind.PrivateKeyword; }
+export function isPropertyAccessExpression(node: ts.Node): node is ts.PropertyAccessExpression { return node.kind === ts.SyntaxKind.PropertyAccessExpression; }
+export function isPropertyAssignment(node: ts.Node): node is ts.PropertyAssignment { return node.kind === ts.SyntaxKind.PropertyAssignment; }
+export function isPropertyDeclaration(node: ts.Node): node is ts.PropertyDeclaration { return node.kind === ts.SyntaxKind.PropertyDeclaration; }
+export function isPropertySignature(node: ts.Node): node is ts.PropertySignature { return node.kind === ts.SyntaxKind.PropertySignature; }
+export function isProtectedKeyword(node: ts.Node): node is ts.ProtectedKeyword { return node.kind === ts.SyntaxKind.ProtectedKeyword; }
+export function isPublicKeyword(node: ts.Node): node is ts.PublicKeyword { return node.kind === ts.SyntaxKind.PublicKeyword; }
+export function isQualifiedName(node: ts.Node): node is ts.QualifiedName { return node.kind === ts.SyntaxKind.QualifiedName; }
+export function isQuestionDotToken(node: ts.Node): node is ts.QuestionDotToken { return node.kind === ts.SyntaxKind.QuestionDotToken; }
+export function isQuestionToken(node: ts.Node): node is ts.QuestionToken { return node.kind === ts.SyntaxKind.QuestionToken; }
+export function isReadonlyKeyword(node: ts.Node): node is ts.ReadonlyKeyword { return node.kind === ts.SyntaxKind.ReadonlyKeyword; }
+export function isRegularExpressionLiteral(node: ts.Node): node is ts.RegularExpressionLiteral { return node.kind === ts.SyntaxKind.RegularExpressionLiteral; }
+export function isRestTypeNode(node: ts.Node): node is ts.RestTypeNode { return node.kind === ts.SyntaxKind.RestType; }
+export function isReturnStatement(node: ts.Node): node is ts.ReturnStatement { return node.kind === ts.SyntaxKind.ReturnStatement; }
+export function isSatisfiesExpression(node: ts.Node): node is ts.SatisfiesExpression { return node.kind === ts.SyntaxKind.SatisfiesExpression; }
+export function isSemicolonClassElement(node: ts.Node): node is ts.SemicolonClassElement { return node.kind === ts.SyntaxKind.SemicolonClassElement; }
+export function isSetAccessorDeclaration(node: ts.Node): node is ts.SetAccessorDeclaration { return node.kind === ts.SyntaxKind.SetAccessor; }
+export function isShorthandPropertyAssignment(node: ts.Node): node is ts.ShorthandPropertyAssignment { return node.kind === ts.SyntaxKind.ShorthandPropertyAssignment; }
+export function isSourceFile(node: ts.Node): node is ts.SourceFile { return node.kind === ts.SyntaxKind.SourceFile; }
+export function isSpreadAssignment(node: ts.Node): node is ts.SpreadAssignment { return node.kind === ts.SyntaxKind.SpreadAssignment; }
+export function isSpreadElement(node: ts.Node): node is ts.SpreadElement { return node.kind === ts.SyntaxKind.SpreadElement; }
+export function isStaticKeyword(node: ts.Node): node is ts.StaticKeyword { return node.kind === ts.SyntaxKind.StaticKeyword; }
+export function isStringLiteral(node: ts.Node): node is ts.StringLiteral { return node.kind === ts.SyntaxKind.StringLiteral; }
+export function isSuperExpression(node: ts.Node): node is ts.SuperExpression { return node.kind === ts.SyntaxKind.SuperKeyword; }
+export function isSwitchStatement(node: ts.Node): node is ts.SwitchStatement { return node.kind === ts.SyntaxKind.SwitchStatement; }
+export function isSyntaxList(node: ts.Node): node is ts.SyntaxList { return node.kind === ts.SyntaxKind.SyntaxList; }
+export function isSyntheticExpression(node: ts.Node): node is ts.SyntheticExpression { return node.kind === ts.SyntaxKind.SyntheticExpression; }
+export function isTaggedTemplateExpression(node: ts.Node): node is ts.TaggedTemplateExpression { return node.kind === ts.SyntaxKind.TaggedTemplateExpression; }
+export function isTemplateExpression(node: ts.Node): node is ts.TemplateExpression { return node.kind === ts.SyntaxKind.TemplateExpression; }
+export function isTemplateHead(node: ts.Node): node is ts.TemplateHead { return node.kind === ts.SyntaxKind.TemplateHead; }
+export function isTemplateLiteralType(node: ts.Node): node is ts.TemplateLiteralTypeNode {return node.kind === ts.SyntaxKind.TemplateLiteralType; }
+export function isTemplateLiteralTypeNode(node: ts.Node): node is ts.TemplateLiteralTypeNode { return node.kind === ts.SyntaxKind.TemplateLiteralType; }
+export function isTemplateLiteralTypeSpan(node: ts.Node): node is ts.TemplateLiteralTypeSpan { return node.kind === ts.SyntaxKind.TemplateLiteralTypeSpan; }
+export function isTemplateMiddle(node: ts.Node): node is ts.TemplateMiddle { return node.kind === ts.SyntaxKind.TemplateMiddle; }
+export function isTemplateSpan(node: ts.Node): node is ts.TemplateSpan { return node.kind === ts.SyntaxKind.TemplateSpan; }
+export function isTemplateTail(node: ts.Node): node is ts.TemplateTail { return node.kind === ts.SyntaxKind.TemplateTail; }
+export function isThisExpression(node: ts.Node): node is ts.ThisExpression { return node.kind === ts.SyntaxKind.ThisKeyword; }
+export function isThisTypeNode(node: ts.Node): node is ts.ThisTypeNode { return node.kind === ts.SyntaxKind.ThisType; }
+export function isThrowStatement(node: ts.Node): node is ts.ThrowStatement { return node.kind === ts.SyntaxKind.ThrowStatement; }
+export function isTrueLiteral(node: ts.Node): node is ts.TrueLiteral { return node.kind === ts.SyntaxKind.TrueKeyword; }
+export function isTryStatement(node: ts.Node): node is ts.TryStatement { return node.kind === ts.SyntaxKind.TryStatement; }
+export function isTupleTypeNode(node: ts.Node): node is ts.TupleTypeNode { return node.kind === ts.SyntaxKind.TupleType; }
+export function isTypeAliasDeclaration(node: ts.Node): node is ts.TypeAliasDeclaration { return node.kind === ts.SyntaxKind.TypeAliasDeclaration; }
+export function isTypeAssertion(node: ts.Node): node is ts.TypeAssertion { return node.kind === ts.SyntaxKind.TypeAssertionExpression; }
+export function isTypeLiteralNode(node: ts.Node): node is ts.TypeLiteralNode { return node.kind === ts.SyntaxKind.TypeLiteral; }
+export function isTypeOfExpression(node: ts.Node): node is ts.TypeOfExpression { return node.kind === ts.SyntaxKind.TypeOfExpression; }
+export function isTypeOperatorNode(node: ts.Node): node is ts.TypeOperatorNode { return node.kind === ts.SyntaxKind.TypeOperator; }
+export function isTypeParameterDeclaration(node: ts.Node): node is ts.TypeParameterDeclaration { return node.kind === ts.SyntaxKind.TypeParameter; }
+export function isTypePredicateNode(node: ts.Node): node is ts.TypePredicateNode { return node.kind === ts.SyntaxKind.TypePredicate; }
+export function isTypeQueryNode(node: ts.Node): node is ts.TypeQueryNode { return node.kind === ts.SyntaxKind.TypeQuery; }
+export function isTypeReferenceNode(node: ts.Node): node is ts.TypeReferenceNode { return node.kind === ts.SyntaxKind.TypeReference; }
+export function isUnionTypeNode(node: ts.Node): node is ts.UnionTypeNode { return node.kind === ts.SyntaxKind.UnionType; }
+export function isUnparsedPrepend(node: ts.Node): node is ts.UnparsedPrepend { return node.kind === ts.SyntaxKind.UnparsedPrepend; }
+export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue { return node.kind === ts.SyntaxKind.UnparsedPrologue; }
+export function isUnparsedSource(node: ts.Node): node is ts.UnparsedSource { return node.kind === ts.SyntaxKind.UnparsedSource; }
+export function isUnparsedSyntheticReference(node: ts.Node): node is ts.UnparsedSyntheticReference { return node.kind === ts.SyntaxKind.UnparsedSyntheticReference; }
+export function isVariableDeclaration(node: ts.Node): node is ts.VariableDeclaration { return node.kind === ts.SyntaxKind.VariableDeclaration; }
+export function isVariableDeclarationList(node: ts.Node): node is ts.VariableDeclarationList { return node.kind === ts.SyntaxKind.VariableDeclarationList; }
+export function isVariableStatement(node: ts.Node): node is ts.VariableStatement { return node.kind === ts.SyntaxKind.VariableStatement; }
+export function isVoidExpression(node: ts.Node): node is ts.VoidExpression { return node.kind === ts.SyntaxKind.VoidExpression; }
+export function isWhileStatement(node: ts.Node): node is ts.WhileStatement { return node.kind === ts.SyntaxKind.WhileStatement; }
+export function isWithStatement(node: ts.Node): node is ts.WithStatement { return node.kind === ts.SyntaxKind.WithStatement; }
+export function isYieldExpression(node: ts.Node): node is ts.YieldExpression { return node.kind === ts.SyntaxKind.YieldExpression; }
