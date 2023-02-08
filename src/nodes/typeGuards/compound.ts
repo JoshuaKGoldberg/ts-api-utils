@@ -1,18 +1,13 @@
-// Code largely based on https://github.com/ajafff/tsutils
-// Original license: https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
-
 import * as ts from "typescript";
 
-import { isNodeFlagSet } from "../../flags";
+import { isLeftHandSideExpression } from "./internal";
 import {
 	isArrayLiteralExpression,
 	isBinaryExpression,
-	isCallExpression,
 	isElementAccessExpression,
 	isEqualsToken,
 	isIdentifier,
 	isModuleDeclaration,
-	isNonNullExpression,
 	isObjectLiteralExpression,
 	isPropertyAccessExpression,
 	isSuperExpression,
@@ -45,12 +40,6 @@ export function isEqualsAssignmentExpression(
 	return isAssignmentExpression(node) && isEqualsToken(node.operatorToken);
 }
 
-export function isCallChain(node: ts.Node): node is ts.CallChain {
-	return (
-		isCallExpression(node) && isNodeFlagSet(node, ts.NodeFlags.OptionalChain)
-	);
-}
-
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
@@ -68,71 +57,6 @@ export function isConstAssertionExpression(
 		isIdentifier(node.type.typeName) &&
 		node.type.typeName.escapedText === "const"
 	);
-}
-
-export function isElementAccessChain(
-	node: ts.Node
-): node is ts.ElementAccessChain {
-	return (
-		isElementAccessExpression(node) &&
-		isNodeFlagSet(node, ts.NodeFlags.OptionalChain)
-	);
-}
-
-export function isExpression(node: ts.Node): node is ts.Expression {
-	return ts.isExpression(node);
-}
-
-export type ExpressionNode =
-	| ts.ArrayLiteralExpression
-	| ts.ArrowFunction
-	| ts.AsExpression
-	| ts.AwaitExpression
-	| ts.BigIntLiteral
-	| ts.BinaryExpression
-	| ts.CallExpression
-	| ts.ClassExpression
-	| ts.ConditionalExpression
-	| ts.DeleteExpression
-	| ts.ElementAccessExpression
-	| ts.ExpressionWithTypeArguments
-	| ts.FalseLiteral
-	| ts.FunctionExpression
-	| ts.Identifier
-	| ts.JSDocMemberName
-	| ts.JsxElement
-	| ts.JsxFragment
-	| ts.JsxSelfClosingElement
-	| ts.MetaProperty
-	| ts.NewExpression
-	| ts.NonNullExpression
-	| ts.NoSubstitutionTemplateLiteral
-	| ts.NullLiteral
-	| ts.NumericLiteral
-	| ts.ObjectLiteralExpression
-	| ts.OmittedExpression
-	| ts.ParenthesizedExpression
-	| ts.PostfixUnaryExpression
-	| ts.PrefixUnaryExpression
-	| ts.PrivateIdentifier
-	| ts.PropertyAccessExpression
-	| ts.QualifiedName
-	| ts.RegularExpressionLiteral
-	| ts.SatisfiesExpression
-	| ts.SpreadElement
-	| ts.StringLiteral
-	| ts.SuperExpression
-	| ts.TaggedTemplateExpression
-	| ts.TemplateExpression
-	| ts.ThisExpression
-	| ts.TrueLiteral
-	| ts.TypeAssertion
-	| ts.TypeOfExpression
-	| ts.VoidExpression
-	| ts.YieldExpression;
-
-export function isExpressionNode(node: ts.Node): node is ExpressionNode {
-	return ts.isExpressionNode(node);
 }
 
 export function isIterationStatement(
@@ -168,21 +92,6 @@ export function isJsxTagNamePropertyAccess(
 	);
 }
 
-export function isLeftHandSideExpression(
-	node: ts.Node
-): node is ts.LeftHandSideExpression {
-	return ts.isLeftHandSideExpression(node);
-}
-
-export function isLiteralExpression(
-	node: ts.Node
-): node is ts.LiteralExpression {
-	return (
-		node.kind >= ts.SyntaxKind.FirstLiteralToken &&
-		node.kind <= ts.SyntaxKind.LastLiteralToken
-	);
-}
-
 export function isNamespaceDeclaration(
 	node: ts.Node
 ): node is ts.NamespaceDeclaration {
@@ -191,12 +100,6 @@ export function isNamespaceDeclaration(
 		isIdentifier(node.name) &&
 		node.body !== undefined &&
 		isNamespaceBody(node.body)
-	);
-}
-
-export function isNonNullChain(node: ts.Node): node is ts.NonNullChain {
-	return (
-		isNonNullExpression(node) && isNodeFlagSet(node, ts.NodeFlags.OptionalChain)
 	);
 }
 
@@ -223,15 +126,6 @@ export function isObjectDestructuringAssignment(
 ): node is ts.ObjectDestructuringAssignment {
 	return (
 		isEqualsAssignmentExpression(node) && isObjectLiteralExpression(node.left)
-	);
-}
-
-export function isPropertyAccessChain(
-	node: ts.Node
-): node is ts.PropertyAccessChain {
-	return (
-		isPropertyAccessExpression(node) &&
-		isNodeFlagSet(node, ts.NodeFlags.OptionalChain)
 	);
 }
 
@@ -265,3 +159,11 @@ export function isTextualLiteral(
 		node.kind === ts.SyntaxKind.NoSubstitutionTemplateLiteral
 	);
 }
+
+export {
+	isCallChain,
+	isElementAccessChain,
+	isLiteralExpression,
+	isNonNullChain,
+	isPropertyAccessChain,
+} from "typescript";
