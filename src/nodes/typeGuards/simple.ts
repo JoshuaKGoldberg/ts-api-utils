@@ -91,8 +91,6 @@ export function isInKeyword(node: ts.Node): node is ts.InKeyword { return node.k
 export function isInputFiles(node: ts.Node): node is ts.InputFiles { return node.kind === ts.SyntaxKind.InputFiles; }
 export function isInterfaceDeclaration(node: ts.Node): node is ts.InterfaceDeclaration { return node.kind === ts.SyntaxKind.InterfaceDeclaration; }
 export function isIntersectionTypeNode(node: ts.Node): node is ts.IntersectionTypeNode { return node.kind === ts.SyntaxKind.IntersectionType; }
-/** @deprecated Use isJSDoc */
-export function isJsDoc(node: ts.Node): node is ts.JSDoc { return isJSDoc(node); }
 export function isJSDoc(node: ts.Node): node is ts.JSDoc { return node.kind === ts.SyntaxKind.JSDoc; }
 export function isJSDocAllType(node: ts.Node): node is ts.JSDocAllType { return node.kind === ts.SyntaxKind.JSDocAllType; }
 export function isJSDocAugmentsTag(node: ts.Node): node is ts.JSDocAugmentsTag { return node.kind === ts.SyntaxKind.JSDocAugmentsTag; }
