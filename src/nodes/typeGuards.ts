@@ -49,6 +49,17 @@ export function isAwaitExpression(node: ts.Node): node is ts.AwaitExpression {
 	return node.kind === ts.SyntaxKind.AwaitExpression;
 }
 
+export function isBindingElement(node: ts.Node): node is ts.BindingElement {
+	return node.kind === ts.SyntaxKind.BindingElement;
+}
+
+export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
+	return (
+		node.kind === ts.SyntaxKind.ArrayBindingPattern ||
+		node.kind === ts.SyntaxKind.ObjectBindingPattern
+	);
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
@@ -65,17 +76,6 @@ export function isConstAssertionExpression(
 		ts.isTypeReferenceNode(node.type) &&
 		node.type.typeName.kind === ts.SyntaxKind.Identifier &&
 		node.type.typeName.escapedText === "const"
-	);
-}
-
-export function isBindingElement(node: ts.Node): node is ts.BindingElement {
-	return node.kind === ts.SyntaxKind.BindingElement;
-}
-
-export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
-	return (
-		node.kind === ts.SyntaxKind.ArrayBindingPattern ||
-		node.kind === ts.SyntaxKind.ObjectBindingPattern
 	);
 }
 
