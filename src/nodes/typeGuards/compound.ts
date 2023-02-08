@@ -151,15 +151,6 @@ export function isSuperPropertyAccessExpression(
 	return isPropertyAccessExpression(node) && isSuperExpression(node.expression);
 }
 
-export function isTextualLiteral(
-	node: ts.Node
-): node is ts.StringLiteral | ts.NoSubstitutionTemplateLiteral {
-	return (
-		node.kind === ts.SyntaxKind.StringLiteral ||
-		node.kind === ts.SyntaxKind.NoSubstitutionTemplateLiteral
-	);
-}
-
 export {
 	isCallChain,
 	isElementAccessChain,
