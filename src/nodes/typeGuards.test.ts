@@ -16,6 +16,7 @@ import {
 	isBindingPattern,
 	isBlock,
 	isBlockLike,
+	isBooleanLiteral,
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isExpression,
@@ -281,6 +282,16 @@ describe("isBlockLike", () => {
 		// TODO: Test DefaultClause
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isBlockLike(node)).toBe(expected);
+	});
+});
+
+describe("isBooleanLiteral", () => {
+	it.each([
+		[true, "true", "true"],
+		[true, "false", "false"],
+		[false, "true expression", "1 === 1"],
+	])("returns %j when given %s", (expected, _, node) => {
+		expect(isBooleanLiteral(createNode(node))).toBe(expected);
 	});
 });
 

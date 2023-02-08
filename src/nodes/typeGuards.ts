@@ -82,6 +82,13 @@ export function isBlockLike(node: ts.Node): node is ts.BlockLike {
 	}
 }
 
+export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
+	return (
+		node.kind === ts.SyntaxKind.TrueKeyword ||
+		node.kind === ts.SyntaxKind.FalseKeyword
+	);
+}
+
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
