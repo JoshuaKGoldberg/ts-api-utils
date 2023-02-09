@@ -22,9 +22,7 @@ export function forEachToken(
 	while (true) {
 		if (ts.isTokenKind(node.kind)) {
 			callback(node);
-			// TODO: Investigate?
-			// eslint-disable-next-line deprecation/deprecation
-		} else if (node.kind !== ts.SyntaxKind.JSDocComment) {
+		} else if (node.kind !== ts.SyntaxKind.JSDoc) {
 			const children = node.getChildren(sourceFile);
 			if (children.length === 1) {
 				node = children[0];

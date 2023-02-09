@@ -36,7 +36,7 @@ npm i ts-api-utils
 ```
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 ```
 
 `ts-api-utils` provides several categories of utility functions:
@@ -67,7 +67,7 @@ Iterates over all comments owned by `node` or its children.
 - `function forEachComment(node: ts.Node, callback: ForEachCommentCallback, sourceFile?: ts.SourceFile): void`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -89,7 +89,7 @@ This function only handles boolean flags.
 - `function isCompilerOptionEnabled(options: ts.CompilerOptions, option: BooleanCompilerOptions): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 const options = {
 	allowJs: true,
@@ -107,7 +107,7 @@ Checks if a given compiler option is enabled, accounting for whether all flags (
 - `function isStrictCompilerOptionEnabled(options: ts.CompilerOptions, option: StrictCompilerOption): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 const optionsLenient = {
 	noImplicitAny: true,
@@ -132,7 +132,7 @@ tsutils.isStrictCompilerOptionEnabled(optionsStrict, "noImplicitThis"); // false
 - `function isModifierFlagSet(node: ts.Declaration, flag: ts.ModifierFlags): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -144,7 +144,7 @@ tsutils.isModifierFlagSet(node, ts.ModifierFlags.Abstract);
 - `function isNodeFlagSet(node: ts.Node, flag: ts.NodeFlags): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -156,7 +156,7 @@ tsutils.isNodeFlagSet(node, ts.NodeFlags.AwaitContext);
 - `function isObjectFlagSet(node: ts.ObjectType, flag: ts.ObjectFlags): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -168,7 +168,7 @@ tsutils.isObjectFlagSet(node, ts.ObjectFlags.Anonymous);
 - `function isSymbolFlagSet(symbol: ts.Symbol, flag: ts.SymbolFlags): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const symbol: ts.Symbol;
 
@@ -180,7 +180,7 @@ tsutils.isSymbolFlagSet(symbol, ts.SymbolFlags.Accessor);
 - `function isTypeFlagSet(type: ts.Type, flag: ts.TypeFlags): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -194,7 +194,7 @@ tsutils.isTypeFlagSet(type, ts.TypeFlags.Any);
 - `function isEntityNameExpression(node: ts.Node): node is ts.EntityNameExpression`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -206,7 +206,7 @@ tsutils.isEntityNameExpression(node);
 - `function isExpression(node: ts.Node): node is ts.Expression`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -218,7 +218,7 @@ tsutils.isExpression(node);
 - `function isNumericOrStringLikeLiteral(node: ts.Node): node is NumericOrStringLikeLiteral`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -230,7 +230,7 @@ tsutils.isNumericOrStringLikeLiteral(node);
 - `function isParameterDeclaration(node: ts.Node): node is ts.ParameterDeclaration`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -242,7 +242,7 @@ tsutils.isParameterDeclaration(node);
 - `function isConstAssertion(node: ts.AssertionExpression): node is ConstAssertionExpression`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -258,7 +258,7 @@ Determines whether a call to `Object.defineProperty` is statically analyzable.
 - `function isBindableObjectDefinePropertyCall(node: ts.CallExpression): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -272,7 +272,7 @@ Detects whether an expression is affected by an enclosing 'as const' assertion a
 - `function isInConstContext(node: ts.Expression): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Expression;
 
@@ -286,7 +286,7 @@ tsutils.isInConstContext(node);
 - `function hasModifier(modifiers: Iterable<ts.Modifier> | undefined, ...kinds: ts.Modifier): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const modifiers: ts.Modifier[];
 
@@ -301,7 +301,7 @@ tsutils.hasModifier(modifiers, ts.SyntaxKind.AbstractKeyword);
 - `function isFunctionScopeBoundary(node: ts.Node): ScopeBoundary`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -315,7 +315,7 @@ tsutils.isFunctionScopeBoundary(node);
 - `function isAssignmentKind(kind: ts.SyntaxKind): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const kind: ts.SyntaxKind;
 
@@ -327,7 +327,7 @@ tsutils.isAssignmentKind(kind);
 - `function isNumericPropertyName(name: string | ts.__String): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 tsutils.isNumericPropertyName("abc"); // false
 tsutils.isNumericPropertyName("123"); // true
@@ -340,7 +340,7 @@ Determines whether the given text can be used to access a property with a Proper
 - `function isValidPropertyAccess(text: string, languageVersion?: ts.ScriptTarget): void`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 tsutils.isValidPropertyAccess("abc"); // true
 tsutils.isValidPropertyAccess("123"); // false
@@ -356,7 +356,7 @@ Iterates over all tokens of `node`.
 - `function forEachToken(node: ts.Node, callback: ForEachTokenCallback, sourceFile?: ts.SourceFile): void`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 
@@ -372,7 +372,7 @@ tsutils.forEachToken(node, (token) => {
 - `function getCallSignaturesOfType(type: ts.Type): readonly ts.Signature[]`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -384,7 +384,7 @@ tsutils.getCallSignaturesOfType(type);
 - `function getPropertyOfType(type: ts.Type, name: ts.__String): ts.Symbol | undefined`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const property: ts.Symbol;
 declare const type: ts.Type;
@@ -399,7 +399,7 @@ tsutils.getPropertyOfType(type, property.getEscapedName());
 - `function isConditionalType(type: ts.Type): type is ts.ConditionalType`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -411,7 +411,7 @@ tsutils.isConditionalType(type);
 - `function isIntersectionType(type: ts.Type): type is ts.IntersectionType`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -423,7 +423,7 @@ tsutils.isIntersectionType(type);
 - `function isLiteralType(type: ts.Type): type is ts.LiteralType`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -435,7 +435,7 @@ tsutils.isLiteralType(type);
 - `function isObjectType(type: ts.Type): type is ts.ObjectType`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -447,7 +447,7 @@ tsutils.isObjectType(type);
 - `function isUnionOrIntersectionType(type: ts.Type): type is ts.UnionOrIntersectionType`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -459,7 +459,7 @@ tsutils.isUnionOrIntersectionType(type);
 - `function isUnionType(type: ts.Type): type is ts.UnionType`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -471,7 +471,7 @@ tsutils.isUnionType(type);
 - `function isUniqueESSymbolType(type: ts.Type): type is ts.UniqueESSymbolType`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -483,7 +483,7 @@ tsutils.isUniqueESSymbolType(type);
 - `function isTupleType(type: ts.Type): type is ts.TupleType`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -495,7 +495,7 @@ tsutils.isTupleType(type);
 - `function isTupleTypeReference(type: ts.Type): type is TupleTypeReference`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -507,7 +507,7 @@ tsutils.isTupleTypeReference(type);
 - `function isTypeReference(type: ts.Type): type is ts.TypeReference`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -521,7 +521,7 @@ tsutils.isTypeReference(type);
 - `function getWellKnownSymbolPropertyOfType(type: ts.Type, wellKnownSymbolName: string, typeChecker: ts.TypeChecker): ts.Symbol | undefined`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 declare const typeChecker: ts.TypeChecker;
@@ -536,7 +536,7 @@ Determines whether the given type is a boolean literal type and matches the give
 - `function isBooleanLiteralType(type: ts.Type, literal: boolean)`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -551,7 +551,7 @@ This function doesn't unwrap union types.
 - `function isFalsyType(type: ts.Type): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
@@ -565,7 +565,7 @@ Determines whether writing to a certain property of a given type is allowed.
 - `function isPropertyReadonlyInType(type: ts.Type, name: ts.__String, typeChecker: ts.TypeChecker): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const property: ts.Symbol;
 declare const type: ts.Type;
@@ -582,7 +582,7 @@ Determines whether a type is thenable and thus can be used with `await`.
 - `function isThenableType(typeChecker: ts.TypeChecker, node: ts.Expression, type?: ts.Type): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const node: ts.Node;
 declare const type: ts.Type;
@@ -603,7 +603,7 @@ tsutils.isThenableType(typeChecker, expression, type);
 - `function someTypePart(type: ts.Type, predicate: SomeTypePartPredicate, callback: SomeTypePartCallback): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 declare const typeChecker: ts.TypeChecker;
@@ -618,7 +618,7 @@ tsutils.someTypePart(type, tsutils.isUnionOrIntersectionType, (subType) => {
 - `function symbolHasReadonlyDeclaration(symbol: ts.Symbol, typeChecker: ts.TypeChecker): boolean`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const symbol: ts.Symbol;
 declare const typeChecker: ts.TypeChecker;
@@ -631,7 +631,7 @@ tsutils.symbolHasReadonlyDeclaration(symbol, typeChecker);
 - `function unionTypeParts(type: ts.Type): ts.Type[]`
 
 ```ts
-import * as tsutils. from "ts-api-utils";
+import * as tsutils from "ts-api-utils";
 
 declare const type: ts.Type;
 
