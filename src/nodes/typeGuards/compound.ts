@@ -1,12 +1,12 @@
 import * as ts from "typescript";
 
-import { isSuperExpression } from "./single";
+import { isSuperExpression } from "./single.js";
 import {
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
 	isJsxTagNameExpression,
 	isNamespaceBody,
-} from "./union";
+} from "./union.js";
 
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;

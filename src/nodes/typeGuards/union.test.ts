@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { createNode } from "../../test/utils";
-import { isEntityNameExpression } from "./union";
+import { createNode } from "../../test/utils.js";
+import { isEntityNameExpression } from "./union.js";
 
 describe("isEntityNameExpression", () => {
 	it.each([

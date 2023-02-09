@@ -7,7 +7,7 @@ import {
 	isPropertyAccessEntityNameExpression,
 	isSuperElementAccessExpression,
 	isSuperPropertyAccessExpression,
-} from "./compound";
+} from "./compound.js";
 import {
 	isAccessorKeyword,
 	isEndOfFileToken,
@@ -22,7 +22,7 @@ import {
 	isStaticKeyword,
 	isThisExpression,
 	isTrueLiteral,
-} from "./single";
+} from "./single.js";
 
 export function isAccessExpression(node: ts.Node): node is ts.AccessExpression {
 	return (
