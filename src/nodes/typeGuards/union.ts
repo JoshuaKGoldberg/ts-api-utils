@@ -1,12 +1,9 @@
 import * as ts from "typescript";
 
 import {
-	isArrayDestructuringAssignment,
-	isEqualsAssignmentExpression,
 	isJSDocNamespaceDeclaration,
 	isJsxTagNamePropertyAccess,
 	isNamespaceDeclaration,
-	isObjectDestructuringAssignment,
 	isPropertyAccessEntityNameExpression,
 	isSuperElementAccessExpression,
 	isSuperPropertyAccessExpression,
@@ -49,21 +46,6 @@ export function isArrayBindingElement(
 ): node is ts.ArrayBindingElement {
 	return ts.isBindingElement(node) || ts.isOmittedExpression(node);
 }
-export function isArrayBindingOrAssignmentElement(
-	node: ts.Node
-): node is ts.ArrayBindingOrAssignmentElement {
-	return (
-		ts.isBindingElement(node) ||
-		ts.isOmittedExpression(node) ||
-		ts.isSpreadElement(node) ||
-		ts.isArrayLiteralExpression(node) ||
-		ts.isObjectLiteralExpression(node) ||
-		isEqualsAssignmentExpression(node) ||
-		ts.isIdentifier(node) ||
-		ts.isPropertyAccessExpression(node) ||
-		ts.isElementAccessExpression(node)
-	);
-}
 export function isArrayBindingOrAssignmentPattern(
 	node: ts.Node
 ): node is ts.ArrayBindingOrAssignmentPattern {
@@ -74,16 +56,6 @@ export function isAssignmentPattern(
 ): node is ts.AssignmentPattern {
 	return (
 		ts.isObjectLiteralExpression(node) || ts.isArrayLiteralExpression(node)
-	);
-}
-export function isBindingOrAssignmentElement(
-	node: ts.Node
-): node is ts.BindingOrAssignmentElement {
-	return (
-		ts.isVariableDeclaration(node) ||
-		ts.isParameter(node) ||
-		isObjectBindingOrAssignmentElement(node) ||
-		isArrayBindingOrAssignmentElement(node)
 	);
 }
 export function isBindingOrAssignmentElementRestIndicator(
@@ -143,9 +115,6 @@ export function isClassMemberModifier(
 		isAccessorKeyword(node)
 	);
 }
-export function isConciseBody(node: ts.Node): node is ts.ConciseBody {
-	return ts.isBlock(node) || ts.isExpression(node);
-}
 export function isDeclarationName(node: ts.Node): node is ts.DeclarationName {
 	return (
 		ts.isIdentifier(node) ||
@@ -179,14 +148,6 @@ export function isDeclarationWithTypeParameters(
 		ts.isJSDocSignature(node)
 	);
 }
-export function isDestructuringAssignment(
-	node: ts.Node
-): node is ts.DestructuringAssignment {
-	return (
-		isObjectDestructuringAssignment(node) ||
-		isArrayDestructuringAssignment(node)
-	);
-}
 export function isDestructuringPattern(
 	node: ts.Node
 ): node is ts.DestructuringPattern {
@@ -205,9 +166,6 @@ export function isEntityNameOrEntityNameExpression(
 	node: ts.Node
 ): node is ts.EntityNameOrEntityNameExpression {
 	return ts.isEntityName(node) || isEntityNameExpression(node);
-}
-export function isForInitializer(node: ts.Node): node is ts.ForInitializer {
-	return ts.isVariableDeclarationList(node) || ts.isExpression(node);
 }
 export function isForInOrOfStatement(
 	node: ts.Node

@@ -1,32 +1,12 @@
 import * as ts from "typescript";
 
-import { isEqualsToken, isSuperExpression } from "./single";
+import { isSuperExpression } from "./single";
 import {
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
 	isJsxTagNameExpression,
 	isNamespaceBody,
 } from "./union";
-
-export function isArrayDestructuringAssignment(
-	node: ts.Node
-): node is ts.ArrayDestructuringAssignment {
-	return (
-		isEqualsAssignmentExpression(node) && ts.isArrayLiteralExpression(node.left)
-	);
-}
-
-export function isAssignmentExpression(
-	node: ts.Node
-): node is ts.AssignmentExpression<ts.AssignmentOperatorToken> {
-	return ts.isBinaryExpression(node) && ts.isLeftHandSideExpression(node.left);
-}
-
-export function isEqualsAssignmentExpression(
-	node: ts.Node
-): node is ts.AssignmentExpression<ts.EqualsToken> {
-	return isAssignmentExpression(node) && isEqualsToken(node.operatorToken);
-}
 
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
@@ -108,15 +88,6 @@ export function isNumericOrStringLikeLiteral(
 		default:
 			return false;
 	}
-}
-
-export function isObjectDestructuringAssignment(
-	node: ts.Node
-): node is ts.ObjectDestructuringAssignment {
-	return (
-		isEqualsAssignmentExpression(node) &&
-		ts.isObjectLiteralExpression(node.left)
-	);
 }
 
 export function isPropertyAccessEntityNameExpression(
