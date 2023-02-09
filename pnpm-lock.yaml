@@ -29,6 +29,7 @@ specifiers:
   prettier: ^2.8.3
   prettier-plugin-packagejson: ^2.4.2
   release-it: ^15.6.0
+  rimraf: ^4.1.2
   sentences-per-line: ^0.2.1
   should-semantic-release: ^0.0.3
   tsup: ^6.5.0
@@ -64,6 +65,7 @@ devDependencies:
   prettier: 2.8.3
   prettier-plugin-packagejson: 2.4.2_prettier@2.8.3
   release-it: 15.6.0
+  rimraf: 4.1.2
   sentences-per-line: 0.2.1
   should-semantic-release: 0.0.3
   tsup: 6.5.0_typescript@4.9.5
@@ -6172,6 +6174,12 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rimraf/4.1.2:
+    resolution: {integrity: sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /rollup/3.9.1:
