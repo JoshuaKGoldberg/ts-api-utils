@@ -3,7 +3,7 @@
 
 import * as ts from "typescript";
 
-import { forEachToken } from "./tokens";
+import { forEachToken } from "./tokens.js";
 
 /** Exclude trailing positions that would lead to scanning for trivia inside JsxText */
 function canHaveTrailingTrivia(token: ts.Node): boolean {

@@ -9,20 +9,20 @@ import {
 	isObjectFlagSet,
 	isSymbolFlagSet,
 	isTypeFlagSet,
-} from "../flags";
+} from "../flags.js";
 import {
 	isBindableObjectDefinePropertyCall,
 	isInConstContext,
-} from "../nodes/utilities";
-import { isNumericPropertyName } from "../syntax";
-import { getPropertyOfType } from "./getters";
+} from "../nodes/utilities.js";
+import { isNumericPropertyName } from "../syntax.js";
+import { getPropertyOfType } from "./getters.js";
 import {
 	isIntersectionType,
 	isLiteralType,
 	isObjectType,
 	isTupleTypeReference,
 	isUnionType,
-} from "./typeGuards";
+} from "./typeGuards.js";
 
 /** Determines whether the given type is a boolean literal type and matches the given boolean literal. */
 export function isBooleanLiteralType(type: ts.Type, literal: boolean): boolean {
