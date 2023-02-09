@@ -30,7 +30,7 @@ specifiers:
   prettier-plugin-packagejson: ^2.4.2
   release-it: ^15.6.0
   sentences-per-line: ^0.2.1
-  should-semantic-release: ^0.0.3
+  should-semantic-release: ^0.0.4
   tsup: ^6.5.0
   typescript: 4.9.5
   vitest: ^0.28.0
@@ -65,7 +65,7 @@ devDependencies:
   prettier-plugin-packagejson: 2.4.2_prettier@2.8.3
   release-it: 15.6.0
   sentences-per-line: 0.2.1
-  should-semantic-release: 0.0.3
+  should-semantic-release: 0.0.4
   tsup: 6.5.0_typescript@4.9.5
   typescript: 4.9.5
   vitest: 0.28.2
@@ -6315,8 +6315,8 @@ packages:
       rechoir: 0.6.2
     dev: true
 
-  /should-semantic-release/0.0.3:
-    resolution: {integrity: sha512-PDgsSaTt0vbnMgoG4t8Yq/3kAQ1ES1wNPMVuqAHskk7OtaBvQtQiYxZQM4ck0zOLB6aKJdtmTWy+uBUl7aWfTQ==}
+  /should-semantic-release/0.0.4:
+    resolution: {integrity: sha512-7KOlcX5zeEsTPtsgwQ0UKxAL71gPJs7wxcenWmkvxz0LogaCzxRcyKZHEuM90z0dQj5XrIn3CnThT04+8fSlIg==}
     engines: {node: '>=18'}
     hasBin: true
     dependencies:
