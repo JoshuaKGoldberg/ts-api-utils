@@ -1,14 +1,14 @@
 import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createNode } from "../test/utils";
+import { createNode } from "../test/utils.js";
 import {
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isExpression,
 	isNumericOrStringLikeLiteral,
 	isParameterDeclaration,
-} from "./typeGuards";
+} from "./typeGuards.js";
 
 describe("isEntityNameExpression", () => {
 	it.each([
