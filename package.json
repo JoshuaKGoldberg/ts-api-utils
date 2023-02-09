@@ -24,8 +24,9 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "tsc",
-		"build:release": "tsup src/index.ts --format cjs --outDir lib --dts",
+		"build": "pnpm build:esm && pnpm build:cjs",
+		"build:cjs": "tsup src/index.ts --format cjs --outDir lib --dts",
+		"build:esm": "tsup src/index.ts --format esm --outDir lib --dts",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
