@@ -1,18 +1,6 @@
 import * as ts from "typescript";
 
-import { isLeftHandSideExpression } from "./internal";
-import {
-	isArrayLiteralExpression,
-	isBinaryExpression,
-	isElementAccessExpression,
-	isEqualsToken,
-	isIdentifier,
-	isModuleDeclaration,
-	isObjectLiteralExpression,
-	isPropertyAccessExpression,
-	isSuperExpression,
-	isTypeReferenceNode,
-} from "./single";
+import { isEqualsToken, isSuperExpression } from "./single";
 import {
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
@@ -24,14 +12,14 @@ export function isArrayDestructuringAssignment(
 	node: ts.Node
 ): node is ts.ArrayDestructuringAssignment {
 	return (
-		isEqualsAssignmentExpression(node) && isArrayLiteralExpression(node.left)
+		isEqualsAssignmentExpression(node) && ts.isArrayLiteralExpression(node.left)
 	);
 }
 
 export function isAssignmentExpression(
 	node: ts.Node
 ): node is ts.AssignmentExpression<ts.AssignmentOperatorToken> {
-	return isBinaryExpression(node) && isLeftHandSideExpression(node.left);
+	return ts.isBinaryExpression(node) && ts.isLeftHandSideExpression(node.left);
 }
 
 export function isEqualsAssignmentExpression(
@@ -53,8 +41,8 @@ export function isConstAssertionExpression(
 	node: ts.AssertionExpression
 ): node is ConstAssertionExpression {
 	return (
-		isTypeReferenceNode(node.type) &&
-		isIdentifier(node.type.typeName) &&
+		ts.isTypeReferenceNode(node.type) &&
+		ts.isIdentifier(node.type.typeName) &&
 		node.type.typeName.escapedText === "const"
 	);
 }
@@ -78,8 +66,8 @@ export function isJSDocNamespaceDeclaration(
 	node: ts.Node
 ): node is ts.JSDocNamespaceDeclaration {
 	return (
-		isModuleDeclaration(node) &&
-		isIdentifier(node.name) &&
+		ts.isModuleDeclaration(node) &&
+		ts.isIdentifier(node.name) &&
 		(node.body === undefined || isJSDocNamespaceBody(node.body))
 	);
 }
@@ -88,7 +76,8 @@ export function isJsxTagNamePropertyAccess(
 	node: ts.Node
 ): node is ts.JsxTagNamePropertyAccess {
 	return (
-		isPropertyAccessExpression(node) && isJsxTagNameExpression(node.expression)
+		ts.isPropertyAccessExpression(node) &&
+		isJsxTagNameExpression(node.expression)
 	);
 }
 
@@ -96,8 +85,8 @@ export function isNamespaceDeclaration(
 	node: ts.Node
 ): node is ts.NamespaceDeclaration {
 	return (
-		isModuleDeclaration(node) &&
-		isIdentifier(node.name) &&
+		ts.isModuleDeclaration(node) &&
+		ts.isIdentifier(node.name) &&
 		node.body !== undefined &&
 		isNamespaceBody(node.body)
 	);
@@ -125,7 +114,8 @@ export function isObjectDestructuringAssignment(
 	node: ts.Node
 ): node is ts.ObjectDestructuringAssignment {
 	return (
-		isEqualsAssignmentExpression(node) && isObjectLiteralExpression(node.left)
+		isEqualsAssignmentExpression(node) &&
+		ts.isObjectLiteralExpression(node.left)
 	);
 }
 
@@ -133,8 +123,8 @@ export function isPropertyAccessEntityNameExpression(
 	node: ts.Node
 ): node is ts.PropertyAccessEntityNameExpression {
 	return (
-		isPropertyAccessExpression(node) &&
-		isIdentifier(node.name) &&
+		ts.isPropertyAccessExpression(node) &&
+		ts.isIdentifier(node.name) &&
 		isEntityNameExpression(node.expression)
 	);
 }
@@ -142,19 +132,15 @@ export function isPropertyAccessEntityNameExpression(
 export function isSuperElementAccessExpression(
 	node: ts.Node
 ): node is ts.SuperElementAccessExpression {
-	return isElementAccessExpression(node) && isSuperExpression(node.expression);
+	return (
+		ts.isElementAccessExpression(node) && isSuperExpression(node.expression)
+	);
 }
 
 export function isSuperPropertyAccessExpression(
 	node: ts.Node
 ): node is ts.SuperPropertyAccessExpression {
-	return isPropertyAccessExpression(node) && isSuperExpression(node.expression);
+	return (
+		ts.isPropertyAccessExpression(node) && isSuperExpression(node.expression)
+	);
 }
-
-export {
-	isCallChain,
-	isElementAccessChain,
-	isLiteralExpression,
-	isNonNullChain,
-	isPropertyAccessChain,
-} from "typescript";

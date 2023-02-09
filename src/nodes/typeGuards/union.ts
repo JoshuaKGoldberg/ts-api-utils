@@ -11,148 +11,26 @@ import {
 	isSuperElementAccessExpression,
 	isSuperPropertyAccessExpression,
 } from "./compound";
-import { isExpression } from "./internal";
 import {
 	isAccessorKeyword,
-	isArrayBindingPattern,
-	isArrayLiteralExpression,
-	isArrowFunction,
-	isBigIntLiteral,
-	isBindingElement,
-	isBlock,
-	isBreakStatement,
-	isCallExpression,
-	isCallSignatureDeclaration,
-	isCaseClause,
-	isClassDeclaration,
-	isClassExpression,
-	isClassStaticBlockDeclaration,
-	isComputedPropertyName,
-	isConstructorDeclaration,
-	isConstructorTypeNode,
-	isConstructSignatureDeclaration,
-	isContinueStatement,
-	isDebuggerStatement,
-	isDoStatement,
-	isDotDotDotToken,
-	isElementAccessExpression,
-	isEmptyStatement,
 	isEndOfFileToken,
-	isEnumDeclaration,
-	isEnumMember,
-	isExportAssignment,
-	isExportDeclaration,
-	isExportSpecifier,
-	isExpressionStatement,
-	isExpressionWithTypeArguments,
-	isExternalModuleReference,
 	isFalseLiteral,
-	isForInStatement,
-	isForOfStatement,
-	isForStatement,
-	isFunctionDeclaration,
-	isFunctionExpression,
-	isFunctionTypeNode,
-	isGetAccessorDeclaration,
-	isIdentifier,
-	isIfStatement,
-	isImportClause,
-	isImportDeclaration,
-	isImportEqualsDeclaration,
-	isIndexSignatureDeclaration,
-	isInterfaceDeclaration,
-	isIntersectionTypeNode,
-	isJSDocCallbackTag,
-	isJSDocFunctionType,
-	isJSDocLink,
-	isJSDocLinkCode,
-	isJSDocLinkPlain,
-	isJSDocNonNullableType,
-	isJSDocNullableType,
-	isJSDocOptionalType,
-	isJSDocParameterTag,
-	isJSDocPropertyTag,
-	isJSDocSignature,
-	isJSDocTemplateTag,
 	isJSDocText,
-	isJSDocTypedefTag,
-	isJSDocTypeExpression,
-	isJSDocVariadicType,
 	isJsonMinusNumericLiteral,
-	isJsxAttribute,
-	isJsxElement,
-	isJsxExpression,
-	isJsxFragment,
-	isJsxOpeningElement,
-	isJsxSelfClosingElement,
-	isJsxSpreadAttribute,
-	isJsxText,
-	isLabeledStatement,
-	isMappedTypeNode,
-	isMethodDeclaration,
-	isMethodSignature,
-	isModuleBlock,
-	isModuleDeclaration,
-	isNamedExports,
-	isNamedImports,
-	isNamedTupleMember,
-	isNamespaceExportDeclaration,
-	isNamespaceImport,
-	isNewExpression,
-	isNoSubstitutionTemplateLiteral,
 	isNullLiteral,
-	isNumericLiteral,
-	isObjectBindingPattern,
-	isObjectLiteralExpression,
-	isOmittedExpression,
-	isParameterDeclaration,
-	isParenthesizedExpression,
-	isParenthesizedTypeNode,
-	isPrivateIdentifier,
 	isPrivateKeyword,
-	isPropertyAccessExpression,
-	isPropertyAssignment,
-	isPropertyDeclaration,
-	isPropertySignature,
 	isProtectedKeyword,
 	isPublicKeyword,
 	isReadonlyKeyword,
-	isRegularExpressionLiteral,
-	isReturnStatement,
-	isSetAccessorDeclaration,
-	isShorthandPropertyAssignment,
-	isSourceFile,
-	isSpreadAssignment,
-	isSpreadElement,
 	isStaticKeyword,
-	isStringLiteral,
-	isSwitchStatement,
-	isTaggedTemplateExpression,
-	isTemplateHead,
-	isTemplateMiddle,
-	isTemplateTail,
 	isThisExpression,
-	isThrowStatement,
 	isTrueLiteral,
-	isTryStatement,
-	isTypeAliasDeclaration,
-	isTypeLiteralNode,
-	isTypeOperatorNode,
-	isTypeParameterDeclaration,
-	isTypePredicateNode,
-	isTypeReferenceNode,
-	isUnionTypeNode,
-	isUnparsedPrepend,
-	isUnparsedTextLike,
-	isVariableDeclaration,
-	isVariableDeclarationList,
-	isVariableStatement,
-	isWhileStatement,
-	isWithStatement,
 } from "./single";
 
 export function isAccessExpression(node: ts.Node): node is ts.AccessExpression {
-	return isPropertyAccessExpression(node) || isElementAccessExpression(node);
+	return (
+		ts.isPropertyAccessExpression(node) || ts.isElementAccessExpression(node)
+	);
 }
 export function isAccessibilityModifier(
 	node: ts.Node
@@ -164,44 +42,46 @@ export function isAccessibilityModifier(
 export function isAccessorDeclaration(
 	node: ts.Node
 ): node is ts.AccessorDeclaration {
-	return isGetAccessorDeclaration(node) || isSetAccessorDeclaration(node);
+	return ts.isGetAccessorDeclaration(node) || ts.isSetAccessorDeclaration(node);
 }
 export function isArrayBindingElement(
 	node: ts.Node
 ): node is ts.ArrayBindingElement {
-	return isBindingElement(node) || isOmittedExpression(node);
+	return ts.isBindingElement(node) || ts.isOmittedExpression(node);
 }
 export function isArrayBindingOrAssignmentElement(
 	node: ts.Node
 ): node is ts.ArrayBindingOrAssignmentElement {
 	return (
-		isBindingElement(node) ||
-		isOmittedExpression(node) ||
-		isSpreadElement(node) ||
-		isArrayLiteralExpression(node) ||
-		isObjectLiteralExpression(node) ||
+		ts.isBindingElement(node) ||
+		ts.isOmittedExpression(node) ||
+		ts.isSpreadElement(node) ||
+		ts.isArrayLiteralExpression(node) ||
+		ts.isObjectLiteralExpression(node) ||
 		isEqualsAssignmentExpression(node) ||
-		isIdentifier(node) ||
-		isPropertyAccessExpression(node) ||
-		isElementAccessExpression(node)
+		ts.isIdentifier(node) ||
+		ts.isPropertyAccessExpression(node) ||
+		ts.isElementAccessExpression(node)
 	);
 }
 export function isArrayBindingOrAssignmentPattern(
 	node: ts.Node
 ): node is ts.ArrayBindingOrAssignmentPattern {
-	return isArrayBindingPattern(node) || isArrayLiteralExpression(node);
+	return ts.isArrayBindingPattern(node) || ts.isArrayLiteralExpression(node);
 }
 export function isAssignmentPattern(
 	node: ts.Node
 ): node is ts.AssignmentPattern {
-	return isObjectLiteralExpression(node) || isArrayLiteralExpression(node);
+	return (
+		ts.isObjectLiteralExpression(node) || ts.isArrayLiteralExpression(node)
+	);
 }
 export function isBindingOrAssignmentElement(
 	node: ts.Node
 ): node is ts.BindingOrAssignmentElement {
 	return (
-		isVariableDeclaration(node) ||
-		isParameterDeclaration(node) ||
+		ts.isVariableDeclaration(node) ||
+		ts.isParameter(node) ||
 		isObjectBindingOrAssignmentElement(node) ||
 		isArrayBindingOrAssignmentElement(node)
 	);
@@ -210,7 +90,9 @@ export function isBindingOrAssignmentElementRestIndicator(
 	node: ts.Node
 ): node is ts.BindingOrAssignmentElementRestIndicator {
 	return (
-		isDotDotDotToken(node) || isSpreadElement(node) || isSpreadAssignment(node)
+		ts.isDotDotDotToken(node) ||
+		ts.isSpreadElement(node) ||
+		ts.isSpreadAssignment(node)
 	);
 }
 export function isBindingOrAssignmentElementTarget(
@@ -218,10 +100,10 @@ export function isBindingOrAssignmentElementTarget(
 ): node is ts.BindingOrAssignmentElementTarget {
 	return (
 		isBindingOrAssignmentPattern(node) ||
-		isIdentifier(node) ||
-		isPropertyAccessExpression(node) ||
-		isElementAccessExpression(node) ||
-		isOmittedExpression(node)
+		ts.isIdentifier(node) ||
+		ts.isPropertyAccessExpression(node) ||
+		ts.isElementAccessExpression(node) ||
+		ts.isOmittedExpression(node)
 	);
 }
 export function isBindingOrAssignmentPattern(
@@ -233,13 +115,13 @@ export function isBindingOrAssignmentPattern(
 	);
 }
 export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
-	return isObjectBindingPattern(node) || isArrayBindingPattern(node);
+	return ts.isObjectBindingPattern(node) || ts.isArrayBindingPattern(node);
 }
 export function isBlockLike(node: ts.Node): node is ts.BlockLike {
 	return (
-		isSourceFile(node) ||
-		isBlock(node) ||
-		isModuleBlock(node) ||
+		ts.isSourceFile(node) ||
+		ts.isBlock(node) ||
+		ts.isModuleBlock(node) ||
 		ts.isCaseOrDefaultClause(node)
 	);
 }
@@ -249,7 +131,7 @@ export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
 export function isClassLikeDeclaration(
 	node: ts.Node
 ): node is ts.ClassLikeDeclaration {
-	return isClassDeclaration(node) || isClassExpression(node);
+	return ts.isClassDeclaration(node) || ts.isClassExpression(node);
 }
 export function isClassMemberModifier(
 	node: ts.Node
@@ -262,16 +144,16 @@ export function isClassMemberModifier(
 	);
 }
 export function isConciseBody(node: ts.Node): node is ts.ConciseBody {
-	return isBlock(node) || isExpression(node);
+	return ts.isBlock(node) || ts.isExpression(node);
 }
 export function isDeclarationName(node: ts.Node): node is ts.DeclarationName {
 	return (
-		isIdentifier(node) ||
-		isPrivateIdentifier(node) ||
+		ts.isIdentifier(node) ||
+		ts.isPrivateIdentifier(node) ||
 		ts.isStringLiteralLike(node) ||
-		isNumericLiteral(node) ||
-		isComputedPropertyName(node) ||
-		isElementAccessExpression(node) ||
+		ts.isNumericLiteral(node) ||
+		ts.isComputedPropertyName(node) ||
+		ts.isElementAccessExpression(node) ||
 		isBindingPattern(node) ||
 		isEntityNameExpression(node)
 	);
@@ -282,9 +164,9 @@ export function isDeclarationWithTypeParameterChildren(
 	return (
 		isSignatureDeclaration(node) ||
 		isClassLikeDeclaration(node) ||
-		isInterfaceDeclaration(node) ||
-		isTypeAliasDeclaration(node) ||
-		isJSDocTemplateTag(node)
+		ts.isInterfaceDeclaration(node) ||
+		ts.isTypeAliasDeclaration(node) ||
+		ts.isJSDocTemplateTag(node)
 	);
 }
 export function isDeclarationWithTypeParameters(
@@ -292,9 +174,9 @@ export function isDeclarationWithTypeParameters(
 ): node is ts.DeclarationWithTypeParameters {
 	return (
 		isDeclarationWithTypeParameterChildren(node) ||
-		isJSDocTypedefTag(node) ||
-		isJSDocCallbackTag(node) ||
-		isJSDocSignature(node)
+		ts.isJSDocTypedefTag(node) ||
+		ts.isJSDocCallbackTag(node) ||
+		ts.isJSDocSignature(node)
 	);
 }
 export function isDestructuringAssignment(
@@ -310,14 +192,14 @@ export function isDestructuringPattern(
 ): node is ts.DestructuringPattern {
 	return (
 		isBindingPattern(node) ||
-		isObjectLiteralExpression(node) ||
-		isArrayLiteralExpression(node)
+		ts.isObjectLiteralExpression(node) ||
+		ts.isArrayLiteralExpression(node)
 	);
 }
 export function isEntityNameExpression(
 	node: ts.Node
 ): node is ts.EntityNameExpression {
-	return isIdentifier(node) || isPropertyAccessEntityNameExpression(node);
+	return ts.isIdentifier(node) || isPropertyAccessEntityNameExpression(node);
 }
 export function isEntityNameOrEntityNameExpression(
 	node: ts.Node
@@ -325,298 +207,298 @@ export function isEntityNameOrEntityNameExpression(
 	return ts.isEntityName(node) || isEntityNameExpression(node);
 }
 export function isForInitializer(node: ts.Node): node is ts.ForInitializer {
-	return isVariableDeclarationList(node) || isExpression(node);
+	return ts.isVariableDeclarationList(node) || ts.isExpression(node);
 }
 export function isForInOrOfStatement(
 	node: ts.Node
 ): node is ts.ForInOrOfStatement {
-	return isForInStatement(node) || isForOfStatement(node);
+	return ts.isForInStatement(node) || ts.isForOfStatement(node);
 }
 export function isFunctionLikeDeclaration(
 	node: ts.Node
 ): node is ts.FunctionLikeDeclaration {
 	return (
-		isFunctionDeclaration(node) ||
-		isMethodDeclaration(node) ||
-		isGetAccessorDeclaration(node) ||
-		isSetAccessorDeclaration(node) ||
-		isConstructorDeclaration(node) ||
-		isFunctionExpression(node) ||
-		isArrowFunction(node)
+		ts.isFunctionDeclaration(node) ||
+		ts.isMethodDeclaration(node) ||
+		ts.isGetAccessorDeclaration(node) ||
+		ts.isSetAccessorDeclaration(node) ||
+		ts.isConstructorDeclaration(node) ||
+		ts.isFunctionExpression(node) ||
+		ts.isArrowFunction(node)
 	);
 }
 export function isHasDecorators(node: ts.Node): node is ts.HasDecorators {
 	return (
-		isParameterDeclaration(node) ||
-		isPropertyDeclaration(node) ||
-		isMethodDeclaration(node) ||
-		isGetAccessorDeclaration(node) ||
-		isSetAccessorDeclaration(node) ||
-		isClassExpression(node) ||
-		isClassDeclaration(node)
+		ts.isParameter(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isMethodDeclaration(node) ||
+		ts.isGetAccessorDeclaration(node) ||
+		ts.isSetAccessorDeclaration(node) ||
+		ts.isClassExpression(node) ||
+		ts.isClassDeclaration(node)
 	);
 }
 export function isHasExpressionInitializer(
 	node: ts.Node
 ): node is ts.HasExpressionInitializer {
 	return (
-		isVariableDeclaration(node) ||
-		isParameterDeclaration(node) ||
-		isBindingElement(node) ||
-		isPropertyDeclaration(node) ||
-		isPropertyAssignment(node) ||
-		isEnumMember(node)
+		ts.isVariableDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isBindingElement(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isPropertyAssignment(node) ||
+		ts.isEnumMember(node)
 	);
 }
 export function isHasInitializer(node: ts.Node): node is ts.HasInitializer {
 	return (
 		isHasExpressionInitializer(node) ||
-		isForStatement(node) ||
-		isForInStatement(node) ||
-		isForOfStatement(node) ||
-		isJsxAttribute(node)
+		ts.isForStatement(node) ||
+		ts.isForInStatement(node) ||
+		ts.isForOfStatement(node) ||
+		ts.isJsxAttribute(node)
 	);
 }
 export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 	return (
-		isParameterDeclaration(node) ||
-		isCallSignatureDeclaration(node) ||
-		isClassStaticBlockDeclaration(node) ||
-		isConstructSignatureDeclaration(node) ||
-		isMethodSignature(node) ||
-		isPropertySignature(node) ||
-		isArrowFunction(node) ||
-		isParenthesizedExpression(node) ||
-		isSpreadAssignment(node) ||
-		isShorthandPropertyAssignment(node) ||
-		isPropertyAssignment(node) ||
-		isFunctionExpression(node) ||
-		isEmptyStatement(node) ||
-		isDebuggerStatement(node) ||
-		isBlock(node) ||
-		isVariableStatement(node) ||
-		isExpressionStatement(node) ||
-		isIfStatement(node) ||
-		isDoStatement(node) ||
-		isWhileStatement(node) ||
-		isForStatement(node) ||
-		isForInStatement(node) ||
-		isForOfStatement(node) ||
-		isBreakStatement(node) ||
-		isContinueStatement(node) ||
-		isReturnStatement(node) ||
-		isWithStatement(node) ||
-		isSwitchStatement(node) ||
-		isLabeledStatement(node) ||
-		isThrowStatement(node) ||
-		isTryStatement(node) ||
-		isFunctionDeclaration(node) ||
-		isConstructorDeclaration(node) ||
-		isMethodDeclaration(node) ||
-		isVariableDeclaration(node) ||
-		isPropertyDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isCallSignatureDeclaration(node) ||
+		ts.isClassStaticBlockDeclaration(node) ||
+		ts.isConstructSignatureDeclaration(node) ||
+		ts.isMethodSignature(node) ||
+		ts.isPropertySignature(node) ||
+		ts.isArrowFunction(node) ||
+		ts.isParenthesizedExpression(node) ||
+		ts.isSpreadAssignment(node) ||
+		ts.isShorthandPropertyAssignment(node) ||
+		ts.isPropertyAssignment(node) ||
+		ts.isFunctionExpression(node) ||
+		ts.isEmptyStatement(node) ||
+		ts.isDebuggerStatement(node) ||
+		ts.isBlock(node) ||
+		ts.isVariableStatement(node) ||
+		ts.isExpressionStatement(node) ||
+		ts.isIfStatement(node) ||
+		ts.isDoStatement(node) ||
+		ts.isWhileStatement(node) ||
+		ts.isForStatement(node) ||
+		ts.isForInStatement(node) ||
+		ts.isForOfStatement(node) ||
+		ts.isBreakStatement(node) ||
+		ts.isContinueStatement(node) ||
+		ts.isReturnStatement(node) ||
+		ts.isWithStatement(node) ||
+		ts.isSwitchStatement(node) ||
+		ts.isLabeledStatement(node) ||
+		ts.isThrowStatement(node) ||
+		ts.isTryStatement(node) ||
+		ts.isFunctionDeclaration(node) ||
+		ts.isConstructorDeclaration(node) ||
+		ts.isMethodDeclaration(node) ||
+		ts.isVariableDeclaration(node) ||
+		ts.isPropertyDeclaration(node) ||
 		isAccessorDeclaration(node) ||
 		isClassLikeDeclaration(node) ||
-		isInterfaceDeclaration(node) ||
-		isTypeAliasDeclaration(node) ||
-		isEnumMember(node) ||
-		isEnumDeclaration(node) ||
-		isModuleDeclaration(node) ||
-		isImportEqualsDeclaration(node) ||
-		isImportDeclaration(node) ||
-		isNamespaceExportDeclaration(node) ||
-		isExportAssignment(node) ||
-		isIndexSignatureDeclaration(node) ||
-		isFunctionTypeNode(node) ||
-		isConstructorTypeNode(node) ||
-		isJSDocFunctionType(node) ||
-		isExportDeclaration(node) ||
-		isNamedTupleMember(node) ||
-		isExportSpecifier(node) ||
-		isCaseClause(node) ||
+		ts.isInterfaceDeclaration(node) ||
+		ts.isTypeAliasDeclaration(node) ||
+		ts.isEnumMember(node) ||
+		ts.isEnumDeclaration(node) ||
+		ts.isModuleDeclaration(node) ||
+		ts.isImportEqualsDeclaration(node) ||
+		ts.isImportDeclaration(node) ||
+		ts.isNamespaceExportDeclaration(node) ||
+		ts.isExportAssignment(node) ||
+		ts.isIndexSignatureDeclaration(node) ||
+		ts.isFunctionTypeNode(node) ||
+		ts.isConstructorTypeNode(node) ||
+		ts.isJSDocFunctionType(node) ||
+		ts.isExportDeclaration(node) ||
+		ts.isNamedTupleMember(node) ||
+		ts.isExportSpecifier(node) ||
+		ts.isCaseClause(node) ||
 		isEndOfFileToken(node)
 	);
 }
 export function isHasModifiers(node: ts.Node): node is ts.HasModifiers {
 	return (
-		isTypeParameterDeclaration(node) ||
-		isParameterDeclaration(node) ||
-		isConstructorTypeNode(node) ||
-		isPropertySignature(node) ||
-		isPropertyDeclaration(node) ||
-		isMethodSignature(node) ||
-		isMethodDeclaration(node) ||
-		isConstructorDeclaration(node) ||
-		isGetAccessorDeclaration(node) ||
-		isSetAccessorDeclaration(node) ||
-		isIndexSignatureDeclaration(node) ||
-		isFunctionExpression(node) ||
-		isArrowFunction(node) ||
-		isClassExpression(node) ||
-		isVariableStatement(node) ||
-		isFunctionDeclaration(node) ||
-		isClassDeclaration(node) ||
-		isInterfaceDeclaration(node) ||
-		isTypeAliasDeclaration(node) ||
-		isEnumDeclaration(node) ||
-		isModuleDeclaration(node) ||
-		isImportEqualsDeclaration(node) ||
-		isImportDeclaration(node) ||
-		isExportAssignment(node) ||
-		isExportDeclaration(node)
+		ts.isTypeParameterDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isConstructorTypeNode(node) ||
+		ts.isPropertySignature(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isMethodSignature(node) ||
+		ts.isMethodDeclaration(node) ||
+		ts.isConstructorDeclaration(node) ||
+		ts.isGetAccessorDeclaration(node) ||
+		ts.isSetAccessorDeclaration(node) ||
+		ts.isIndexSignatureDeclaration(node) ||
+		ts.isFunctionExpression(node) ||
+		ts.isArrowFunction(node) ||
+		ts.isClassExpression(node) ||
+		ts.isVariableStatement(node) ||
+		ts.isFunctionDeclaration(node) ||
+		ts.isClassDeclaration(node) ||
+		ts.isInterfaceDeclaration(node) ||
+		ts.isTypeAliasDeclaration(node) ||
+		ts.isEnumDeclaration(node) ||
+		ts.isModuleDeclaration(node) ||
+		ts.isImportEqualsDeclaration(node) ||
+		ts.isImportDeclaration(node) ||
+		ts.isExportAssignment(node) ||
+		ts.isExportDeclaration(node)
 	);
 }
 export function isHasType(node: ts.Node): node is ts.HasType {
 	return (
 		isSignatureDeclaration(node) ||
-		isVariableDeclaration(node) ||
-		isParameterDeclaration(node) ||
-		isPropertySignature(node) ||
-		isPropertyDeclaration(node) ||
-		isTypePredicateNode(node) ||
-		isParenthesizedTypeNode(node) ||
-		isTypeOperatorNode(node) ||
-		isMappedTypeNode(node) ||
+		ts.isVariableDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isPropertySignature(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isTypePredicateNode(node) ||
+		ts.isParenthesizedTypeNode(node) ||
+		ts.isTypeOperatorNode(node) ||
+		ts.isMappedTypeNode(node) ||
 		ts.isAssertionExpression(node) ||
-		isTypeAliasDeclaration(node) ||
-		isJSDocTypeExpression(node) ||
-		isJSDocNonNullableType(node) ||
-		isJSDocNullableType(node) ||
-		isJSDocOptionalType(node) ||
-		isJSDocVariadicType(node)
+		ts.isTypeAliasDeclaration(node) ||
+		ts.isJSDocTypeExpression(node) ||
+		ts.isJSDocNonNullableType(node) ||
+		ts.isJSDocNullableType(node) ||
+		ts.isJSDocOptionalType(node) ||
+		ts.isJSDocVariadicType(node)
 	);
 }
 export function isHasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
 	return (
-		isCallExpression(node) ||
-		isNewExpression(node) ||
-		isTaggedTemplateExpression(node) ||
-		isJsxOpeningElement(node) ||
-		isJsxSelfClosingElement(node)
+		ts.isCallExpression(node) ||
+		ts.isNewExpression(node) ||
+		ts.isTaggedTemplateExpression(node) ||
+		ts.isJsxOpeningElement(node) ||
+		ts.isJsxSelfClosingElement(node)
 	);
 }
 export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
 	return (
 		isJSDocText(node) ||
-		isJSDocLink(node) ||
-		isJSDocLinkCode(node) ||
-		isJSDocLinkPlain(node)
+		ts.isJSDocLink(node) ||
+		ts.isJSDocLinkCode(node) ||
+		ts.isJSDocLinkPlain(node)
 	);
 }
 export function isJSDocNamespaceBody(
 	node: ts.Node
 ): node is ts.JSDocNamespaceBody {
-	return isIdentifier(node) || isJSDocNamespaceDeclaration(node);
+	return ts.isIdentifier(node) || isJSDocNamespaceDeclaration(node);
 }
 export function isJSDocTypeReferencingNode(
 	node: ts.Node
 ): node is ts.JSDocTypeReferencingNode {
 	return (
-		isJSDocVariadicType(node) ||
-		isJSDocOptionalType(node) ||
-		isJSDocNullableType(node) ||
-		isJSDocNonNullableType(node)
+		ts.isJSDocVariadicType(node) ||
+		ts.isJSDocOptionalType(node) ||
+		ts.isJSDocNullableType(node) ||
+		ts.isJSDocNonNullableType(node)
 	);
 }
 export function isJsonObjectExpression(
 	node: ts.Node
 ): node is ts.JsonObjectExpression {
 	return (
-		isObjectLiteralExpression(node) ||
-		isArrayLiteralExpression(node) ||
+		ts.isObjectLiteralExpression(node) ||
+		ts.isArrayLiteralExpression(node) ||
 		isJsonMinusNumericLiteral(node) ||
-		isNumericLiteral(node) ||
-		isStringLiteral(node) ||
+		ts.isNumericLiteral(node) ||
+		ts.isStringLiteral(node) ||
 		isBooleanLiteral(node) ||
 		isNullLiteral(node)
 	);
 }
 export function isJsxAttributeLike(node: ts.Node): node is ts.JsxAttributeLike {
-	return isJsxAttribute(node) || isJsxSpreadAttribute(node);
+	return ts.isJsxAttribute(node) || ts.isJsxSpreadAttribute(node);
 }
 export function isJsxAttributeValue(
 	node: ts.Node
 ): node is ts.JsxAttributeValue {
 	return (
-		isStringLiteral(node) ||
-		isJsxExpression(node) ||
-		isJsxElement(node) ||
-		isJsxSelfClosingElement(node) ||
-		isJsxFragment(node)
+		ts.isStringLiteral(node) ||
+		ts.isJsxExpression(node) ||
+		ts.isJsxElement(node) ||
+		ts.isJsxSelfClosingElement(node) ||
+		ts.isJsxFragment(node)
 	);
 }
 export function isJsxChild(node: ts.Node): node is ts.JsxChild {
 	return (
-		isJsxText(node) ||
-		isJsxExpression(node) ||
-		isJsxElement(node) ||
-		isJsxSelfClosingElement(node) ||
-		isJsxFragment(node)
+		ts.isJsxText(node) ||
+		ts.isJsxExpression(node) ||
+		ts.isJsxElement(node) ||
+		ts.isJsxSelfClosingElement(node) ||
+		ts.isJsxFragment(node)
 	);
 }
 export function isJsxTagNameExpression(
 	node: ts.Node
 ): node is ts.JsxTagNameExpression {
 	return (
-		isIdentifier(node) ||
+		ts.isIdentifier(node) ||
 		isThisExpression(node) ||
 		isJsxTagNamePropertyAccess(node)
 	);
 }
 export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 	return (
-		isNumericLiteral(node) ||
-		isBigIntLiteral(node) ||
-		isStringLiteral(node) ||
-		isJsxText(node) ||
-		isRegularExpressionLiteral(node) ||
-		isNoSubstitutionTemplateLiteral(node)
+		ts.isNumericLiteral(node) ||
+		ts.isBigIntLiteral(node) ||
+		ts.isStringLiteral(node) ||
+		ts.isJsxText(node) ||
+		ts.isRegularExpressionLiteral(node) ||
+		ts.isNoSubstitutionTemplateLiteral(node)
 	);
 }
 export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
 	return isNamespaceBody(node) || isJSDocNamespaceBody(node);
 }
 export function isModuleName(node: ts.Node): node is ts.ModuleName {
-	return isIdentifier(node) || isStringLiteral(node);
+	return ts.isIdentifier(node) || ts.isStringLiteral(node);
 }
 export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
-	return ts.isEntityName(node) || isExternalModuleReference(node);
+	return ts.isEntityName(node) || ts.isExternalModuleReference(node);
 }
 export function isNamedImportBindings(
 	node: ts.Node
 ): node is ts.NamedImportBindings {
-	return isNamespaceImport(node) || isNamedImports(node);
+	return ts.isNamespaceImport(node) || ts.isNamedImports(node);
 }
 export function isNamedImportsOrExports(
 	node: ts.Node
 ): node is ts.NamedImportsOrExports {
-	return isNamedImports(node) || isNamedExports(node);
+	return ts.isNamedImports(node) || ts.isNamedExports(node);
 }
 export function isNamespaceBody(node: ts.Node): node is ts.NamespaceBody {
-	return isModuleBlock(node) || isNamespaceDeclaration(node);
+	return ts.isModuleBlock(node) || isNamespaceDeclaration(node);
 }
 export function isObjectBindingOrAssignmentElement(
 	node: ts.Node
 ): node is ts.ObjectBindingOrAssignmentElement {
 	return (
-		isBindingElement(node) ||
-		isPropertyAssignment(node) ||
-		isShorthandPropertyAssignment(node) ||
-		isSpreadAssignment(node)
+		ts.isBindingElement(node) ||
+		ts.isPropertyAssignment(node) ||
+		ts.isShorthandPropertyAssignment(node) ||
+		ts.isSpreadAssignment(node)
 	);
 }
 export function isObjectBindingOrAssignmentPattern(
 	node: ts.Node
 ): node is ts.ObjectBindingOrAssignmentPattern {
-	return isObjectBindingPattern(node) || isObjectLiteralExpression(node);
+	return ts.isObjectBindingPattern(node) || ts.isObjectLiteralExpression(node);
 }
 export function isObjectTypeDeclaration(
 	node: ts.Node
 ): node is ts.ObjectTypeDeclaration {
 	return (
 		isClassLikeDeclaration(node) ||
-		isInterfaceDeclaration(node) ||
-		isTypeLiteralNode(node)
+		ts.isInterfaceDeclaration(node) ||
+		ts.isTypeLiteralNode(node)
 	);
 }
 export function isParameterPropertyModifier(
@@ -628,31 +510,37 @@ export function isPropertyNameLiteral(
 	node: ts.Node
 ): node is ts.PropertyNameLiteral {
 	return (
-		isIdentifier(node) || ts.isStringLiteralLike(node) || isNumericLiteral(node)
+		ts.isIdentifier(node) ||
+		ts.isStringLiteralLike(node) ||
+		ts.isNumericLiteral(node)
 	);
 }
 export function isPseudoLiteralToken(
 	node: ts.Node
 ): node is ts.PseudoLiteralToken {
-	return isTemplateHead(node) || isTemplateMiddle(node) || isTemplateTail(node);
+	return (
+		ts.isTemplateHead(node) ||
+		ts.isTemplateMiddle(node) ||
+		ts.isTemplateTail(node)
+	);
 }
 export function isSignatureDeclaration(
 	node: ts.Node
 ): node is ts.SignatureDeclaration {
 	return (
-		isCallSignatureDeclaration(node) ||
-		isConstructSignatureDeclaration(node) ||
-		isMethodSignature(node) ||
-		isIndexSignatureDeclaration(node) ||
-		isFunctionTypeNode(node) ||
-		isConstructorTypeNode(node) ||
-		isJSDocFunctionType(node) ||
-		isFunctionDeclaration(node) ||
-		isMethodDeclaration(node) ||
-		isConstructorDeclaration(node) ||
+		ts.isCallSignatureDeclaration(node) ||
+		ts.isConstructSignatureDeclaration(node) ||
+		ts.isMethodSignature(node) ||
+		ts.isIndexSignatureDeclaration(node) ||
+		ts.isFunctionTypeNode(node) ||
+		ts.isConstructorTypeNode(node) ||
+		ts.isJSDocFunctionType(node) ||
+		ts.isFunctionDeclaration(node) ||
+		ts.isMethodDeclaration(node) ||
+		ts.isConstructorDeclaration(node) ||
 		isAccessorDeclaration(node) ||
-		isFunctionExpression(node) ||
-		isArrowFunction(node)
+		ts.isFunctionExpression(node) ||
+		ts.isArrowFunction(node)
 	);
 }
 export function isSuperProperty(node: ts.Node): node is ts.SuperProperty {
@@ -665,65 +553,41 @@ export function isTypeOnlyCompatibleAliasDeclaration(
 	node: ts.Node
 ): node is ts.TypeOnlyCompatibleAliasDeclaration {
 	return (
-		isImportClause(node) ||
-		isImportEqualsDeclaration(node) ||
-		isNamespaceImport(node) ||
+		ts.isImportClause(node) ||
+		ts.isImportEqualsDeclaration(node) ||
+		ts.isNamespaceImport(node) ||
 		ts.isImportOrExportSpecifier(node)
 	);
 }
 export function isTypeReferenceType(
 	node: ts.Node
 ): node is ts.TypeReferenceType {
-	return isTypeReferenceNode(node) || isExpressionWithTypeArguments(node);
+	return ts.isTypeReferenceNode(node) || ts.isExpressionWithTypeArguments(node);
 }
 export function isUnionOrIntersectionTypeNode(
 	node: ts.Node
 ): node is ts.UnionOrIntersectionTypeNode {
-	return isUnionTypeNode(node) || isIntersectionTypeNode(node);
+	return ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node);
 }
 export function isUnparsedSourceText(
 	node: ts.Node
 ): node is ts.UnparsedSourceText {
-	return isUnparsedPrepend(node) || isUnparsedTextLike(node);
+	return ts.isUnparsedPrepend(node) || ts.isUnparsedTextLike(node);
 }
 export function isVariableLikeDeclaration(
 	node: ts.Node
 ): node is ts.VariableLikeDeclaration {
 	return (
-		isVariableDeclaration(node) ||
-		isParameterDeclaration(node) ||
-		isBindingElement(node) ||
-		isPropertyDeclaration(node) ||
-		isPropertyAssignment(node) ||
-		isPropertySignature(node) ||
-		isJsxAttribute(node) ||
-		isShorthandPropertyAssignment(node) ||
-		isEnumMember(node) ||
-		isJSDocPropertyTag(node) ||
-		isJSDocParameterTag(node)
+		ts.isVariableDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isBindingElement(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isPropertyAssignment(node) ||
+		ts.isPropertySignature(node) ||
+		ts.isJsxAttribute(node) ||
+		ts.isShorthandPropertyAssignment(node) ||
+		ts.isEnumMember(node) ||
+		ts.isJSDocPropertyTag(node) ||
+		ts.isJSDocParameterTag(node)
 	);
 }
-
-export {
-	isAssertionExpression,
-	isAssertionKey,
-	isBindingName,
-	isBreakOrContinueStatement,
-	isCallLikeExpression,
-	isCaseOrDefaultClause,
-	isEntityName,
-	isFunctionOrConstructorTypeNode,
-	isImportOrExportSpecifier,
-	isJsxOpeningLikeElement,
-	isMemberName,
-	isModifier,
-	isModifierLike,
-	isNamedExportBindings,
-	isObjectLiteralElementLike,
-	isOptionalChain,
-	isPropertyName,
-	isStringLiteralLike,
-	isTemplateLiteral,
-	isTemplateLiteralToken,
-	isUnparsedNode,
-} from "typescript";
