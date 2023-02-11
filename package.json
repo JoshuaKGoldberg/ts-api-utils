@@ -37,7 +37,7 @@
 		"prepare": "husky install",
 		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest",
-		"typecheck": "tsc --noEmit"
+		"type-check": "tsc --noEmit"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"

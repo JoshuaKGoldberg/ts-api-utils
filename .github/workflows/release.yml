@@ -72,7 +72,7 @@ jobs:
                     { context: "prettier" },
                     { context: "spelling" },
                     { context: "test" },
-                    { context: "typecheck" },
+                    { context: "type-check" },
                   ],
                   strict: false,
                 },
