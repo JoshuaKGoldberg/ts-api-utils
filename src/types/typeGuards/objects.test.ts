@@ -1,4 +1,3 @@
-import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../../test/utils.js";
@@ -10,7 +9,7 @@ function getTypeForTypeNode(sourceText: string) {
 	const node = sourceFile.statements.at(-1)!;
 
 	const type = typeChecker.getTypeAtLocation(node);
-	if ((type as any).intrinsicName === "error") {
+	if ((type as { intrinsicName?: string }).intrinsicName === "error") {
 		throw new Error("test case error");
 	}
 	return type;
