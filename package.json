@@ -36,7 +36,8 @@
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
 		"should-semantic-release": "should-semantic-release --verbose",
-		"test": "vitest"
+		"test": "vitest",
+		"typecheck": "tsc --noEmit"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
