@@ -1,19 +1,16 @@
 import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../test/utils.js";
+import { createSourceFileAndTypeChecker } from "../../test/utils.js";
 import {
 	isConditionalType,
 	isIntersectionType,
 	isLiteralType,
 	isObjectType,
-	isTupleType,
-	isTupleTypeReference,
-	isTypeReference,
 	isUnionOrIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
-} from "./typeGuards.js";
+} from "./simple.js";
 
 function getTypeForTypeNode(sourceText: string) {
 	const { sourceFile, typeChecker } =
@@ -108,53 +105,5 @@ describe("isUnionType", () => {
 		const type = getTypeForTypeNode(sourceText);
 
 		expect(isUnionType(type)).toBe(expected);
-	});
-});
-
-describe("isTupleType", () => {
-	it.each([
-		[false, "type Test = {};"],
-		[false, "type Test = string[];"],
-		[true, "type Test = [];"],
-	])("returns %j when given %s", (expected, sourceText) => {
-		const type = getTypeForTypeNode(sourceText);
-
-		expect(isTupleType(type)).toBe(expected);
-	});
-});
-
-describe("isTupleTypeReference", () => {
-	it.each([
-		[false, "type Test = string[];"],
-		[false, "type Test = 1[];"],
-		[
-			true,
-			`
-                type Data = [];
-                type Test = [Data];
-            `,
-		],
-	])("returns %j when given %s", (expected, sourceText) => {
-		const type = getTypeForTypeNode(sourceText);
-
-		expect(isTupleTypeReference(type)).toBe(expected);
-	});
-});
-
-describe("isTypeReference", () => {
-	it.each([
-		[false, "type Test = string;"],
-		[false, "type Test = 1;"],
-		[
-			true,
-			`
-                type Data = [];
-                type Test = Data;
-            `,
-		],
-	])("returns %j when given %s", (expected, sourceText) => {
-		const type = getTypeForTypeNode(sourceText);
-
-		expect(isTypeReference(type)).toBe(expected);
 	});
 });

@@ -22,7 +22,7 @@ import {
 	isObjectType,
 	isTupleTypeReference,
 	isUnionType,
-} from "./typeGuards.js";
+} from "./typeGuards/index.js";
 
 /** Determines whether the given type is a boolean literal type and matches the given boolean literal. */
 export function isBooleanLiteralType(type: ts.Type, literal: boolean): boolean {
