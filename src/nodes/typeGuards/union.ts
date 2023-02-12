@@ -522,11 +522,6 @@ export function isTypeReferenceType(
 ): node is ts.TypeReferenceType {
 	return ts.isTypeReferenceNode(node) || ts.isExpressionWithTypeArguments(node);
 }
-export function isUnionOrIntersectionTypeNode(
-	node: ts.Node
-): node is ts.UnionOrIntersectionTypeNode {
-	return ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node);
-}
 export function isUnparsedSourceText(
 	node: ts.Node
 ): node is ts.UnparsedSourceText {
