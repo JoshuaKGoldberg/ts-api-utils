@@ -8,13 +8,13 @@ import {
 } from "./single.js";
 
 export function isFunctionOrConstructorTypeNode(
-	node: ts.TypeNode
+	node: ts.Node
 ): node is ts.FunctionOrConstructorTypeNode {
 	return isFunctionTypeNode(node) || isConstructorTypeNode(node);
 }
 
 export function isUnionOrIntersectionTypeNode(
-	node: ts.TypeNode
+	node: ts.Node
 ): node is ts.UnionOrIntersectionTypeNode {
 	return isUnionTypeNode(node) || isIntersectionTypeNode(node);
 }
