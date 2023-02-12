@@ -6,6 +6,7 @@ export * from "./nodes/typeGuards/index.js";
 export * from "./scopes.js";
 export * from "./syntax.js";
 export * from "./tokens.js";
+export * from "./typeNodes/typeGuards/index.js";
 export * from "./types/getters.js";
 export * from "./types/typeGuards.js";
 export * from "./types/utilities.js";
