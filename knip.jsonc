@@ -3,5 +3,5 @@
 	"entry": "src/index.ts!",
 	"project": "src/**/*.ts!",
 	// TODO: https://github.com/JoshuaKGoldberg/ts-api-utils/issues/45
-	"ignore": ["src/nodes/typeGuards/!(*.test).ts"]
+	"ignore": ["src/nodes/typeGuards/**/!(*.test).ts"]
 }
