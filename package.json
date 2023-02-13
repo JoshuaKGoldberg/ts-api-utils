@@ -74,11 +74,11 @@
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.0.4",
 		"tsup": "^6.5.0",
-		"typescript": "4.9.5",
+		"typescript": "5.0.0-beta",
 		"vitest": "^0.28.0"
 	},
 	"peerDependencies": {
-		"typescript": ">=4"
+		"typescript": ">=5 || 5.0.0-beta"
 	},
 	"packageManager": "pnpm@7.27.0",
 	"engines": {
