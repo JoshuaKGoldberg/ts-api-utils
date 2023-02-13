@@ -42,7 +42,7 @@ export function isExpression(node: ts.Node): node is ts.Expression {
 	);
 }
 
-export function isExpressionNode(node: ts.Node): node is ts.Expression {
+export function isExpressionNode(node: ts.Node): boolean {
 	if (
 		isSuperKeyword(node) ||
 		isNullKeyword(node) ||
