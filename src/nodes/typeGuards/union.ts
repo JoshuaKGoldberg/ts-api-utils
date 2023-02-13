@@ -527,11 +527,6 @@ export function isUnionOrIntersectionTypeNode(
 ): node is ts.UnionOrIntersectionTypeNode {
 	return ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node);
 }
-export function isUnparsedSourceText(
-	node: ts.Node
-): node is ts.UnparsedSourceText {
-	return ts.isUnparsedPrepend(node) || ts.isUnparsedTextLike(node);
-}
 export function isVariableLikeDeclaration(
 	node: ts.Node
 ): node is ts.VariableLikeDeclaration {

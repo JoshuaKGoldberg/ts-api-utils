@@ -116,10 +116,6 @@ export function isInKeyword(node: ts.Node): node is ts.InKeyword {
 	return node.kind === ts.SyntaxKind.InKeyword;
 }
 
-export function isInputFiles(node: ts.Node): node is ts.InputFiles {
-	return node.kind === ts.SyntaxKind.InputFiles;
-}
-
 export function isJSDocText(node: ts.Node): node is ts.JSDocText {
 	return node.kind === ts.SyntaxKind.JSDocText;
 }
@@ -220,26 +216,4 @@ export function isTrueKeyword(node: ts.Node): node is TrueKeyword {
 
 export function isTrueLiteral(node: ts.Node): node is ts.TrueLiteral {
 	return node.kind === ts.SyntaxKind.TrueKeyword;
-}
-
-export function isUndefinedKeyword(node: ts.Node): node is UndefinedKeyword {
-	return node.kind === ts.SyntaxKind.UndefinedKeyword;
-}
-
-export function isUnknownKeyword(node: ts.Node): node is UnknownKeyword {
-	return node.kind === ts.SyntaxKind.UnknownKeyword;
-}
-
-export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue {
-	return node.kind === ts.SyntaxKind.UnparsedPrologue;
-}
-
-export function isUnparsedSyntheticReference(
-	node: ts.Node
-): node is ts.UnparsedSyntheticReference {
-	return node.kind === ts.SyntaxKind.UnparsedSyntheticReference;
-}
-
-export function isVoidKeyword(node: ts.Node): node is VoidKeyword {
-	return node.kind === ts.SyntaxKind.VoidKeyword;
 }
