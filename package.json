@@ -24,8 +24,7 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "pnpm build:clean && tsup src/index.ts --format cjs,esm --outDir lib --dts",
-		"build:clean": "rimraf lib",
+		"build": "tsup src/index.ts --clean --format cjs,esm --outDir lib --dts",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
@@ -72,7 +71,6 @@
 		"prettier": "^2.8.3",
 		"prettier-plugin-packagejson": "^2.4.2",
 		"release-it": "^15.6.0",
-		"rimraf": "^4.1.2",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.0.4",
 		"tsup": "^6.5.0",
