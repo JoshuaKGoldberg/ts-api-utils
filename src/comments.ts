@@ -70,9 +70,7 @@ export function forEachComment(
 				ts.forEachLeadingCommentRange(
 					fullText,
 					// skip shebang at position 0
-					// TODO: Investigate
-					// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-					token.pos === 0 ? (ts.getShebang(fullText) || "").length : token.pos,
+					token.pos === 0 ? (ts.getShebang(fullText) ?? "").length : token.pos,
 					commentCallback
 				);
 			if (notJsx || canHaveTrailingTrivia(token))

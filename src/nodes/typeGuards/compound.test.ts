@@ -1,35 +1,11 @@
 import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createNode } from "../test/utils";
+import { createNode } from "../../test/utils.js";
 import {
 	isConstAssertionExpression,
-	isEntityNameExpression,
-	isExpression,
 	isNumericOrStringLikeLiteral,
-	isParameterDeclaration,
-} from "./typeGuards";
-
-describe("isEntityNameExpression", () => {
-	it.each([
-		[false, `"abc"`],
-		[false, `abc().def`],
-		[true, "abc"],
-		[true, `abc.def`],
-	])("returns %j when given %s", (expected, sourceText) => {
-		expect(isEntityNameExpression(createNode(sourceText))).toBe(expected);
-	});
-});
-
-describe("isExpression", () => {
-	it.each([
-		[false, `type T = null`],
-		[true, `abc`],
-		[true, `"abc"`],
-	])("returns %j when given %s", (expected, sourceText) => {
-		expect(isExpression(createNode(sourceText))).toBe(expected);
-	});
-});
+} from "./compound.js";
 
 describe("isNumericOrStringLikeLiteral", () => {
 	it.each([
@@ -43,23 +19,6 @@ describe("isNumericOrStringLikeLiteral", () => {
 		[true, "a string literal", ts.factory.createStringLiteral("abc")],
 	])("returns %j when given %s", (expected, _, node) => {
 		expect(isNumericOrStringLikeLiteral(node)).toBe(expected);
-	});
-});
-
-describe("isParameterDeclaration", () => {
-	it.each([
-		[false, "an identifier", ts.factory.createIdentifier("abc")],
-		[
-			true,
-			"a parameter declaration",
-			ts.factory.createParameterDeclaration(
-				undefined /* modifiers */,
-				undefined /* dotDotDotToken */,
-				"abc"
-			),
-		],
-	])("returns %j when given %s", (expected, _, node) => {
-		expect(isParameterDeclaration(createNode(node))).toBe(expected);
 	});
 });
 

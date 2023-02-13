@@ -5,7 +5,7 @@ import {
 	isAssignmentKind,
 	isNumericPropertyName,
 	isValidPropertyAccess,
-} from "./syntax";
+} from "./syntax.js";
 
 describe("isAssignmentKind", () => {
 	it.each([
