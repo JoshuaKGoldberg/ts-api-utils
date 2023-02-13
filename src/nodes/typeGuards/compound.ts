@@ -1,12 +1,12 @@
 import * as ts from "typescript";
 
-import { isSuperExpression } from "./single.js";
+import { isSuperExpression } from "./single";
 import {
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
 	isJsxTagNameExpression,
 	isNamespaceBody,
-} from "./union.js";
+} from "./union";
 
 export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
@@ -44,7 +44,7 @@ export function isIterationStatement(
 
 export function isJSDocNamespaceDeclaration(
 	node: ts.Node
-): node is ts.JSDocNamespaceDeclaration {
+): node is tsDocNamespaceDeclaration {
 	return (
 		ts.isModuleDeclaration(node) &&
 		ts.isIdentifier(node.name) &&
