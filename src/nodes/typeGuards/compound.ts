@@ -43,7 +43,7 @@ export function isIterationStatement(
 
 export function isJSDocNamespaceDeclaration(
 	node: ts.Node
-): node is tsDocNamespaceDeclaration {
+): node is ts.JSDocNamespaceDeclaration {
 	return (
 		ts.isModuleDeclaration(node) &&
 		ts.isIdentifier(node.name) &&

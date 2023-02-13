@@ -2,7 +2,6 @@ import * as ts from "typescript";
 
 import {
 	isJSDocNamespaceDeclaration,
-	isJsxTagNamePropertyAccess,
 	isNamespaceDeclaration,
 	isPropertyAccessEntityNameExpression,
 	isSuperElementAccessExpression,
