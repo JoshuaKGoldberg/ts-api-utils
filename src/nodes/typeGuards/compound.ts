@@ -4,7 +4,6 @@ import { isSuperExpression } from "./single";
 import {
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
-	isJsxTagNameExpression,
 	isNamespaceBody,
 } from "./union";
 
@@ -57,7 +56,7 @@ export function isJsxTagNamePropertyAccess(
 ): node is ts.JsxTagNamePropertyAccess {
 	return (
 		ts.isPropertyAccessExpression(node) &&
-		isJsxTagNameExpression(node.expression)
+		ts.isJsxTagNameExpression(node.expression)
 	);
 }
 

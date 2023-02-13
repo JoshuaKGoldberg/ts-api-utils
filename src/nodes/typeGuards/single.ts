@@ -34,28 +34,8 @@ export function isAssertKeyword(node: ts.Node): node is ts.AssertKeyword {
 	return node.kind === ts.SyntaxKind.AssertKeyword;
 }
 
-export function isAssertsKeyword(node: ts.Node): node is ts.AssertsKeyword {
-	return node.kind === ts.SyntaxKind.AssertsKeyword;
-}
-
 export function isAsyncKeyword(node: ts.Node): node is ts.AsyncKeyword {
 	return node.kind === ts.SyntaxKind.AsyncKeyword;
-}
-
-export function isAwaitKeyword(node: ts.Node): node is ts.AwaitKeyword {
-	return node.kind === ts.SyntaxKind.AwaitKeyword;
-}
-
-export function isBigIntKeyword(node: ts.Node): node is BigIntKeyword {
-	return node.kind === ts.SyntaxKind.BigIntKeyword;
-}
-
-export function isBooleanKeyword(node: ts.Node): node is BooleanKeyword {
-	return node.kind === ts.SyntaxKind.BooleanKeyword;
-}
-
-export function isColonToken(node: ts.Node): node is ts.ColonToken {
-	return node.kind === ts.SyntaxKind.ColonToken;
 }
 
 export function isConstKeyword(node: ts.Node): node is ts.ConstKeyword {
@@ -78,18 +58,8 @@ export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken {
 	return node.kind === ts.SyntaxKind.EndOfFileToken;
 }
 
-export function isEqualsGreaterThanToken(
-	node: ts.Node
-): node is ts.EqualsGreaterThanToken {
-	return node.kind === ts.SyntaxKind.EqualsGreaterThanToken;
-}
-
 export function isEqualsToken(node: ts.Node): node is ts.EqualsToken {
 	return node.kind === ts.SyntaxKind.EqualsToken;
-}
-
-export function isExclamationToken(node: ts.Node): node is ts.ExclamationToken {
-	return node.kind === ts.SyntaxKind.ExclamationToken;
 }
 
 export function isExportKeyword(node: ts.Node): node is ts.ExportKeyword {
@@ -164,14 +134,6 @@ export function isProtectedKeyword(node: ts.Node): node is ts.ProtectedKeyword {
 
 export function isPublicKeyword(node: ts.Node): node is ts.PublicKeyword {
 	return node.kind === ts.SyntaxKind.PublicKeyword;
-}
-
-export function isQuestionDotToken(node: ts.Node): node is ts.QuestionDotToken {
-	return node.kind === ts.SyntaxKind.QuestionDotToken;
-}
-
-export function isQuestionToken(node: ts.Node): node is ts.QuestionToken {
-	return node.kind === ts.SyntaxKind.QuestionToken;
 }
 
 export function isReadonlyKeyword(node: ts.Node): node is ts.ReadonlyKeyword {

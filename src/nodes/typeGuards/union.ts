@@ -20,7 +20,6 @@ import {
 	isPublicKeyword,
 	isReadonlyKeyword,
 	isStaticKeyword,
-	isThisExpression,
 	isTrueLiteral,
 } from "./single";
 
@@ -40,11 +39,6 @@ export function isAccessorDeclaration(
 	node: ts.Node
 ): node is ts.AccessorDeclaration {
 	return ts.isGetAccessorDeclaration(node) || ts.isSetAccessorDeclaration(node);
-}
-export function isArrayBindingElement(
-	node: ts.Node
-): node is ts.ArrayBindingElement {
-	return ts.isBindingElement(node) || ts.isOmittedExpression(node);
 }
 export function isArrayBindingOrAssignmentPattern(
 	node: ts.Node
@@ -371,9 +365,6 @@ export function isJsonObjectExpression(
 		isNullLiteral(node)
 	);
 }
-export function isJsxAttributeLike(node: ts.Node): node is ts.JsxAttributeLike {
-	return ts.isJsxAttribute(node) || ts.isJsxSpreadAttribute(node);
-}
 export function isJsxAttributeValue(
 	node: ts.Node
 ): node is ts.JsxAttributeValue {
@@ -385,24 +376,6 @@ export function isJsxAttributeValue(
 		ts.isJsxFragment(node)
 	);
 }
-export function isJsxChild(node: ts.Node): node is ts.JsxChild {
-	return (
-		ts.isJsxText(node) ||
-		ts.isJsxExpression(node) ||
-		ts.isJsxElement(node) ||
-		ts.isJsxSelfClosingElement(node) ||
-		ts.isJsxFragment(node)
-	);
-}
-export function isJsxTagNameExpression(
-	node: ts.Node
-): node is ts.JsxTagNameExpression {
-	return (
-		ts.isIdentifier(node) ||
-		isThisExpression(node) ||
-		isJsxTagNamePropertyAccess(node)
-	);
-}
 export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 	return (
 		ts.isNumericLiteral(node) ||
@@ -412,20 +385,6 @@ export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 		ts.isRegularExpressionLiteral(node) ||
 		ts.isNoSubstitutionTemplateLiteral(node)
 	);
-}
-export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
-	return isNamespaceBody(node) || isJSDocNamespaceBody(node);
-}
-export function isModuleName(node: ts.Node): node is ts.ModuleName {
-	return ts.isIdentifier(node) || ts.isStringLiteral(node);
-}
-export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
-	return ts.isEntityName(node) || ts.isExternalModuleReference(node);
-}
-export function isNamedImportBindings(
-	node: ts.Node
-): node is ts.NamedImportBindings {
-	return ts.isNamespaceImport(node) || ts.isNamedImports(node);
 }
 export function isNamedImportsOrExports(
 	node: ts.Node
