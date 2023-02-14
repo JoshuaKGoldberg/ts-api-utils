@@ -13,13 +13,12 @@ pnpm install
 
 ## Building
 
-Run [TypeScript](https://typescriptlang.org) locally to type check and build source files from `src/` into output files in `lib/`:
+Run [tsup](https://tsup.egoist.dev) locally to type check and build source files from `src/` into output files in `lib/`.
+Add `--watch` to run it continuously in a terminal:
 
 ```shell
 pnpm build --watch
 ```
-
-You should also see suggestions from TypeScript in your editor.
 
 ## Formatting
 
@@ -52,3 +51,14 @@ Add the `--coverage` flag to compute test coverage and place reports in the `cov
 ```shell
 pnpm run test --coverage
 ```
+
+## Type Checking
+
+You can run the TypeScript compiler (`tsc`) with `pnpm type-check`.
+Add `--watch` to have it run continuously:
+
+```shell
+pnpm type-check --watch
+```
+
+You should also see suggestions from TypeScript in your editor.

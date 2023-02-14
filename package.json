@@ -24,8 +24,7 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "tsc",
-		"build:release": "tsup src/index.ts --format cjs --outDir lib --dts",
+		"build": "tsup src/index.ts --clean --format cjs,esm --outDir lib --dts",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
@@ -36,7 +35,8 @@
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
 		"should-semantic-release": "should-semantic-release --verbose",
-		"test": "vitest"
+		"test": "vitest",
+		"type-check": "tsc --noEmit"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
