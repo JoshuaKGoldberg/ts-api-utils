@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/prepare
-      - run: pnpm build:release
+      - run: pnpm build
       - run: git config user.name "${GITHUB_ACTOR}"
       - run: git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - env:
@@ -26,7 +26,7 @@ jobs:
           script: |
             try {
               await github.request(
-                `DELETE /repos/JoshuaKGoldberg/ts-api-tools/branches/main/protection`,
+                `DELETE /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
               );
             } catch (error) {
               if (!error.message?.includes?.("Branch not protected")) {
@@ -43,10 +43,10 @@ jobs:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           # Note: keep this inline script in sync with script/setup.js!
           # Todo: it would be nice to not have two sources of truth...
-          # https://github.com/JoshuaKGoldberg/ts-api-tools/issues/145
+          # https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
           script: |
             github.request(
-              `PUT /repos/JoshuaKGoldberg/ts-api-tools/branches/main/protection`,
+              `PUT /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
               {
                 allow_deletions: false,
                 allow_force_pushes: true,
@@ -56,7 +56,7 @@ jobs:
                 branch: "main",
                 enforce_admins: false,
                 owner: "JoshuaKGoldberg",
-                repo: "ts-api-tools",
+                repo: "ts-api-utils",
                 required_conversation_resolution: true,
                 required_linear_history: false,
                 required_pull_request_reviews: null,
@@ -72,6 +72,7 @@ jobs:
                     { context: "prettier" },
                     { context: "spelling" },
                     { context: "test" },
+                    { context: "type-check" },
                   ],
                   strict: false,
                 },

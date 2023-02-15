@@ -7,7 +7,7 @@ import {
 	isIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
-} from "./typeGuards";
+} from "./typeGuards.js";
 
 export function getCallSignaturesOfType(
 	type: ts.Type

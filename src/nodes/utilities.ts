@@ -7,7 +7,7 @@ import {
 	isConstAssertionExpression,
 	isEntityNameExpression,
 	isNumericOrStringLikeLiteral,
-} from "./typeGuards";
+} from "./typeGuards/index.js";
 
 /** Determines whether a call to `Object.defineProperty` is statically analyzable. */
 export function isBindableObjectDefinePropertyCall(

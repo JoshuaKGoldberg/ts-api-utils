@@ -39,6 +39,7 @@ module.exports = {
 		},
 		{
 			files: "*.json",
+			excludedFiles: ["package.json"],
 			parser: "jsonc-eslint-parser",
 			rules: {
 				"jsonc/sort-keys": "error",
@@ -57,6 +58,7 @@ module.exports = {
 	plugins: [
 		"@typescript-eslint",
 		"deprecation",
+		"import",
 		"no-only-tests",
 		"regexp",
 		"simple-import-sort",
@@ -66,6 +68,7 @@ module.exports = {
 	root: true,
 	rules: {
 		// These off-by-default rules work well for this repo and we like them on.
+		"import/extensions": ["error", "ignorePackages"],
 		"no-only-tests/no-only-tests": "error",
 		"simple-import-sort/exports": "error",
 		"simple-import-sort/imports": "error",
