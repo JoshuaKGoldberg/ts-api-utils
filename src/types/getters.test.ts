@@ -1,8 +1,8 @@
 import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../test/utils";
-import { getWellKnownSymbolPropertyOfType } from "./getters";
+import { createSourceFileAndTypeChecker } from "../test/utils.js";
+import { getWellKnownSymbolPropertyOfType } from "./getters.js";
 
 describe("getWellKnownSymbolPropertyOfType", () => {
 	// https://github.com/JoshuaKGoldberg/ts-api-tools/issues/15
