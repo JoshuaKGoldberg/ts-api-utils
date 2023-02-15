@@ -62,7 +62,8 @@ jobs:
                 required_pull_request_reviews: null,
                 required_status_checks: {
                   checks: [
-                    { context: "build" },
+                    { context: "build (16.13.0)" },
+                    { context: "build (18.x)" },
                     { context: "compliance" },
                     { context: "knip" },
                     { context: "lint" },
@@ -71,7 +72,8 @@ jobs:
                     { context: "packages" },
                     { context: "prettier" },
                     { context: "spelling" },
-                    { context: "test" },
+                    { context: "test (16.13.0)" },
+                    { context: "test (18.x)" },
                     { context: "type-check" },
                   ],
                   strict: false,

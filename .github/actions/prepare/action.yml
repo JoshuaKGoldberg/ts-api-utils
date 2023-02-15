@@ -1,13 +1,19 @@
 name: Prepare
 description: Prepares the repo for a typical CI job
 
+inputs:
+  node-version:
+    required: false
+    description: "The node version to use"
+    default: 18
+
 runs:
   using: "composite"
   steps:
     - uses: pnpm/action-setup@v2
     - uses: actions/setup-node@v3
       with:
-        node-version: "18"
+        node-version: ${{ inputs.node-version }}
         cache: "pnpm"
     - run: pnpm install --frozen-lockfile
       shell: bash
