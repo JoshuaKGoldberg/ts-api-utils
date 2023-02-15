@@ -1,8 +1,8 @@
 import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../test/utils";
-import { isPropertyReadonlyInType } from "./utilities";
+import { createSourceFileAndTypeChecker } from "../test/utils.js";
+import { isPropertyReadonlyInType } from "./utilities.js";
 
 describe("isPropertyReadonlyInType", () => {
 	it("does not crash when the type is a mapped type parameter extending any", () => {
