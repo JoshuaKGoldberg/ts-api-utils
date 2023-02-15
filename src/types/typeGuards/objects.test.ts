@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../../test/utils.js";
-import { isInterfaceType, isTupleType, isTypeReference } from "./objects.js";
+import { isTupleType, isTypeReference } from "./objects.js";
 
 function getTypeForTypeNode(sourceText: string) {
 	const { sourceFile, typeChecker } =
@@ -14,22 +14,6 @@ function getTypeForTypeNode(sourceText: string) {
 	}
 	return type;
 }
-
-describe("isInterfaceType", () => {
-	it.each([
-		[false, "type Test = { foo: number }"],
-		[false, "interface Test { foo: number }"],
-		[true, "class Test { foo: number }"],
-		[
-			true,
-			"const test = new (class { foo: number })(); type Test = typeof test",
-		],
-	])("returns %j when given %s", (expected, sourceText) => {
-		const type = getTypeForTypeNode(sourceText);
-
-		expect(isInterfaceType(type)).toBe(expected);
-	});
-});
 
 describe("isTupleType", () => {
 	it.each([

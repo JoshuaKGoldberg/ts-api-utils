@@ -1,10 +1,6 @@
 import * as ts from "typescript";
 
-import { isInterfaceType, isTupleType, isTypeReference } from "./objects.js";
-
-export function isGenericType(type: ts.Type): type is ts.GenericType {
-	return isTypeReference(type) && isInterfaceType(type);
-}
+import { isTupleType, isTypeReference } from "./objects.js";
 
 export function isTupleTypeReference(
 	type: ts.Type
