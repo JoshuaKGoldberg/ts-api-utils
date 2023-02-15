@@ -37,7 +37,8 @@
         "bug",
         "projectManagement",
         "doc",
-        "test"
+        "test",
+        "tool"
       ]
     }
   ],
