@@ -35,7 +35,8 @@
         "code",
         "bug",
         "projectManagement",
-        "doc"
+        "doc",
+        "test"
       ]
     }
   ],
