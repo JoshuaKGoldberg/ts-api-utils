@@ -29,6 +29,7 @@ export function isAccessExpression(node: ts.Node): node is ts.AccessExpression {
 		ts.isPropertyAccessExpression(node) || ts.isElementAccessExpression(node)
 	);
 }
+
 export function isAccessibilityModifier(
 	node: ts.Node
 ): node is ts.AccessibilityModifier {
@@ -36,21 +37,25 @@ export function isAccessibilityModifier(
 		isPublicKeyword(node) || isPrivateKeyword(node) || isProtectedKeyword(node)
 	);
 }
+
 export function isAccessorDeclaration(
 	node: ts.Node
 ): node is ts.AccessorDeclaration {
 	return ts.isGetAccessorDeclaration(node) || ts.isSetAccessorDeclaration(node);
 }
+
 export function isArrayBindingElement(
 	node: ts.Node
 ): node is ts.ArrayBindingElement {
 	return ts.isBindingElement(node) || ts.isOmittedExpression(node);
 }
+
 export function isArrayBindingOrAssignmentPattern(
 	node: ts.Node
 ): node is ts.ArrayBindingOrAssignmentPattern {
 	return ts.isArrayBindingPattern(node) || ts.isArrayLiteralExpression(node);
 }
+
 export function isAssignmentPattern(
 	node: ts.Node
 ): node is ts.AssignmentPattern {
@@ -58,6 +63,7 @@ export function isAssignmentPattern(
 		ts.isObjectLiteralExpression(node) || ts.isArrayLiteralExpression(node)
 	);
 }
+
 export function isBindingOrAssignmentElementRestIndicator(
 	node: ts.Node
 ): node is ts.BindingOrAssignmentElementRestIndicator {
@@ -67,6 +73,7 @@ export function isBindingOrAssignmentElementRestIndicator(
 		ts.isSpreadAssignment(node)
 	);
 }
+
 export function isBindingOrAssignmentElementTarget(
 	node: ts.Node
 ): node is ts.BindingOrAssignmentElementTarget {
@@ -78,6 +85,7 @@ export function isBindingOrAssignmentElementTarget(
 		ts.isOmittedExpression(node)
 	);
 }
+
 export function isBindingOrAssignmentPattern(
 	node: ts.Node
 ): node is ts.BindingOrAssignmentPattern {
@@ -86,9 +94,11 @@ export function isBindingOrAssignmentPattern(
 		isArrayBindingOrAssignmentPattern(node)
 	);
 }
+
 export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
 	return ts.isObjectBindingPattern(node) || ts.isArrayBindingPattern(node);
 }
+
 export function isBlockLike(node: ts.Node): node is ts.BlockLike {
 	return (
 		ts.isSourceFile(node) ||
@@ -97,14 +107,17 @@ export function isBlockLike(node: ts.Node): node is ts.BlockLike {
 		ts.isCaseOrDefaultClause(node)
 	);
 }
+
 export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
 	return isTrueLiteral(node) || isFalseLiteral(node);
 }
+
 export function isClassLikeDeclaration(
 	node: ts.Node
 ): node is ts.ClassLikeDeclaration {
 	return ts.isClassDeclaration(node) || ts.isClassExpression(node);
 }
+
 export function isClassMemberModifier(
 	node: ts.Node
 ): node is ts.ClassMemberModifier {
@@ -115,6 +128,7 @@ export function isClassMemberModifier(
 		isAccessorKeyword(node)
 	);
 }
+
 export function isDeclarationName(node: ts.Node): node is ts.DeclarationName {
 	return (
 		ts.isIdentifier(node) ||
@@ -127,6 +141,7 @@ export function isDeclarationName(node: ts.Node): node is ts.DeclarationName {
 		isEntityNameExpression(node)
 	);
 }
+
 export function isDeclarationWithTypeParameterChildren(
 	node: ts.Node
 ): node is ts.DeclarationWithTypeParameterChildren {
@@ -138,6 +153,7 @@ export function isDeclarationWithTypeParameterChildren(
 		ts.isJSDocTemplateTag(node)
 	);
 }
+
 export function isDeclarationWithTypeParameters(
 	node: ts.Node
 ): node is ts.DeclarationWithTypeParameters {
@@ -148,6 +164,7 @@ export function isDeclarationWithTypeParameters(
 		ts.isJSDocSignature(node)
 	);
 }
+
 export function isDestructuringPattern(
 	node: ts.Node
 ): node is ts.DestructuringPattern {
@@ -157,21 +174,25 @@ export function isDestructuringPattern(
 		ts.isArrayLiteralExpression(node)
 	);
 }
+
 export function isEntityNameExpression(
 	node: ts.Node
 ): node is ts.EntityNameExpression {
 	return ts.isIdentifier(node) || isPropertyAccessEntityNameExpression(node);
 }
+
 export function isEntityNameOrEntityNameExpression(
 	node: ts.Node
 ): node is ts.EntityNameOrEntityNameExpression {
 	return ts.isEntityName(node) || isEntityNameExpression(node);
 }
+
 export function isForInOrOfStatement(
 	node: ts.Node
 ): node is ts.ForInOrOfStatement {
 	return ts.isForInStatement(node) || ts.isForOfStatement(node);
 }
+
 export function isFunctionLikeDeclaration(
 	node: ts.Node
 ): node is ts.FunctionLikeDeclaration {
@@ -185,6 +206,7 @@ export function isFunctionLikeDeclaration(
 		ts.isArrowFunction(node)
 	);
 }
+
 export function isHasDecorators(node: ts.Node): node is ts.HasDecorators {
 	return (
 		ts.isParameter(node) ||
@@ -196,6 +218,7 @@ export function isHasDecorators(node: ts.Node): node is ts.HasDecorators {
 		ts.isClassDeclaration(node)
 	);
 }
+
 export function isHasExpressionInitializer(
 	node: ts.Node
 ): node is ts.HasExpressionInitializer {
@@ -208,6 +231,7 @@ export function isHasExpressionInitializer(
 		ts.isEnumMember(node)
 	);
 }
+
 export function isHasInitializer(node: ts.Node): node is ts.HasInitializer {
 	return (
 		isHasExpressionInitializer(node) ||
@@ -217,6 +241,7 @@ export function isHasInitializer(node: ts.Node): node is ts.HasInitializer {
 		ts.isJsxAttribute(node)
 	);
 }
+
 export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 	return (
 		ts.isParameter(node) ||
@@ -277,6 +302,7 @@ export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 		isEndOfFileToken(node)
 	);
 }
+
 export function isHasModifiers(node: ts.Node): node is ts.HasModifiers {
 	return (
 		ts.isTypeParameterDeclaration(node) ||
@@ -306,6 +332,7 @@ export function isHasModifiers(node: ts.Node): node is ts.HasModifiers {
 		ts.isExportDeclaration(node)
 	);
 }
+
 export function isHasType(node: ts.Node): node is ts.HasType {
 	return (
 		isSignatureDeclaration(node) ||
@@ -326,6 +353,7 @@ export function isHasType(node: ts.Node): node is ts.HasType {
 		ts.isJSDocVariadicType(node)
 	);
 }
+
 export function isHasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
 	return (
 		ts.isCallExpression(node) ||
@@ -335,6 +363,7 @@ export function isHasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
 		ts.isJsxSelfClosingElement(node)
 	);
 }
+
 export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
 	return (
 		isJSDocText(node) ||
@@ -343,11 +372,13 @@ export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
 		ts.isJSDocLinkPlain(node)
 	);
 }
+
 export function isJSDocNamespaceBody(
 	node: ts.Node
 ): node is ts.JSDocNamespaceBody {
 	return ts.isIdentifier(node) || isJSDocNamespaceDeclaration(node);
 }
+
 export function isJSDocTypeReferencingNode(
 	node: ts.Node
 ): node is ts.JSDocTypeReferencingNode {
@@ -358,6 +389,7 @@ export function isJSDocTypeReferencingNode(
 		ts.isJSDocNonNullableType(node)
 	);
 }
+
 export function isJsonObjectExpression(
 	node: ts.Node
 ): node is ts.JsonObjectExpression {
@@ -371,9 +403,11 @@ export function isJsonObjectExpression(
 		isNullLiteral(node)
 	);
 }
+
 export function isJsxAttributeLike(node: ts.Node): node is ts.JsxAttributeLike {
 	return ts.isJsxAttribute(node) || ts.isJsxSpreadAttribute(node);
 }
+
 export function isJsxAttributeValue(
 	node: ts.Node
 ): node is ts.JsxAttributeValue {
@@ -385,6 +419,7 @@ export function isJsxAttributeValue(
 		ts.isJsxFragment(node)
 	);
 }
+
 export function isJsxChild(node: ts.Node): node is ts.JsxChild {
 	return (
 		ts.isJsxText(node) ||
@@ -394,6 +429,7 @@ export function isJsxChild(node: ts.Node): node is ts.JsxChild {
 		ts.isJsxFragment(node)
 	);
 }
+
 export function isJsxTagNameExpression(
 	node: ts.Node
 ): node is ts.JsxTagNameExpression {
@@ -403,6 +439,7 @@ export function isJsxTagNameExpression(
 		isJsxTagNamePropertyAccess(node)
 	);
 }
+
 export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 	return (
 		ts.isNumericLiteral(node) ||
@@ -413,28 +450,35 @@ export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 		ts.isNoSubstitutionTemplateLiteral(node)
 	);
 }
+
 export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
 	return isNamespaceBody(node) || isJSDocNamespaceBody(node);
 }
+
 export function isModuleName(node: ts.Node): node is ts.ModuleName {
 	return ts.isIdentifier(node) || ts.isStringLiteral(node);
 }
+
 export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
 	return ts.isEntityName(node) || ts.isExternalModuleReference(node);
 }
+
 export function isNamedImportBindings(
 	node: ts.Node
 ): node is ts.NamedImportBindings {
 	return ts.isNamespaceImport(node) || ts.isNamedImports(node);
 }
+
 export function isNamedImportsOrExports(
 	node: ts.Node
 ): node is ts.NamedImportsOrExports {
 	return ts.isNamedImports(node) || ts.isNamedExports(node);
 }
+
 export function isNamespaceBody(node: ts.Node): node is ts.NamespaceBody {
 	return ts.isModuleBlock(node) || isNamespaceDeclaration(node);
 }
+
 export function isObjectBindingOrAssignmentElement(
 	node: ts.Node
 ): node is ts.ObjectBindingOrAssignmentElement {
@@ -445,11 +489,13 @@ export function isObjectBindingOrAssignmentElement(
 		ts.isSpreadAssignment(node)
 	);
 }
+
 export function isObjectBindingOrAssignmentPattern(
 	node: ts.Node
 ): node is ts.ObjectBindingOrAssignmentPattern {
 	return ts.isObjectBindingPattern(node) || ts.isObjectLiteralExpression(node);
 }
+
 export function isObjectTypeDeclaration(
 	node: ts.Node
 ): node is ts.ObjectTypeDeclaration {
@@ -459,11 +505,13 @@ export function isObjectTypeDeclaration(
 		ts.isTypeLiteralNode(node)
 	);
 }
+
 export function isParameterPropertyModifier(
 	node: ts.Node
 ): node is ts.ParameterPropertyModifier {
 	return isAccessibilityModifier(node) || isReadonlyKeyword(node);
 }
+
 export function isPropertyNameLiteral(
 	node: ts.Node
 ): node is ts.PropertyNameLiteral {
@@ -473,6 +521,7 @@ export function isPropertyNameLiteral(
 		ts.isNumericLiteral(node)
 	);
 }
+
 export function isPseudoLiteralToken(
 	node: ts.Node
 ): node is ts.PseudoLiteralToken {
@@ -482,6 +531,7 @@ export function isPseudoLiteralToken(
 		ts.isTemplateTail(node)
 	);
 }
+
 export function isSignatureDeclaration(
 	node: ts.Node
 ): node is ts.SignatureDeclaration {
@@ -501,12 +551,14 @@ export function isSignatureDeclaration(
 		ts.isArrowFunction(node)
 	);
 }
+
 export function isSuperProperty(node: ts.Node): node is ts.SuperProperty {
 	return (
 		isSuperPropertyAccessExpression(node) ||
 		isSuperElementAccessExpression(node)
 	);
 }
+
 export function isTypeOnlyCompatibleAliasDeclaration(
 	node: ts.Node
 ): node is ts.TypeOnlyCompatibleAliasDeclaration {
@@ -517,21 +569,25 @@ export function isTypeOnlyCompatibleAliasDeclaration(
 		ts.isImportOrExportSpecifier(node)
 	);
 }
+
 export function isTypeReferenceType(
 	node: ts.Node
 ): node is ts.TypeReferenceType {
 	return ts.isTypeReferenceNode(node) || ts.isExpressionWithTypeArguments(node);
 }
+
 export function isUnionOrIntersectionTypeNode(
 	node: ts.Node
 ): node is ts.UnionOrIntersectionTypeNode {
 	return ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node);
 }
+
 export function isUnparsedSourceText(
 	node: ts.Node
 ): node is ts.UnparsedSourceText {
 	return ts.isUnparsedPrepend(node) || ts.isUnparsedTextLike(node);
 }
+
 export function isVariableLikeDeclaration(
 	node: ts.Node
 ): node is ts.VariableLikeDeclaration {
