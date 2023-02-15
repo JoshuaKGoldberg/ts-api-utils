@@ -9,7 +9,8 @@
         "tool",
         "code",
         "doc",
-        "test"
+        "test",
+        "projectManagement"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
