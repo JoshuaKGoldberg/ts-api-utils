@@ -3,6 +3,7 @@
 
 import * as ts from "typescript";
 
+import { isNamedDeclaration } from "../nodes/typeGuards/index.js";
 import {
 	isIntersectionType,
 	isUnionType,
@@ -50,15 +51,21 @@ export function getWellKnownSymbolPropertyOfType(
 	const prefix = "__@" + wellKnownSymbolName;
 
 	for (const prop of type.getProperties()) {
-		if (!prop.name.startsWith(prefix)) continue;
+		if (!prop.name.startsWith(prefix)) {
+			continue;
+		}
 
 		const declaration = prop.valueDeclaration ?? prop.getDeclarations()![0];
+		if (
+			!isNamedDeclaration(declaration) ||
+			declaration.name === undefined ||
+			!ts.isComputedPropertyName(declaration.name)
+		) {
+			continue;
+		}
 
 		const globalSymbol = typeChecker.getApparentType(
-			typeChecker.getTypeAtLocation(
-				((declaration as ts.NamedDeclaration).name as ts.ComputedPropertyName)
-					.expression
-			)
+			typeChecker.getTypeAtLocation(declaration.name.expression)
 		).symbol;
 
 		if (

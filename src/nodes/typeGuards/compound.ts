@@ -61,6 +61,12 @@ export function isJsxTagNamePropertyAccess(
 	);
 }
 
+export function isNamedDeclaration(
+	node: ts.Declaration
+): node is ts.NamedDeclaration {
+	return "name" in node;
+}
+
 export function isNamespaceDeclaration(
 	node: ts.Node
 ): node is ts.NamespaceDeclaration {
