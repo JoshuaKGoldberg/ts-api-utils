@@ -6,14 +6,30 @@
     {
       "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
       "contributions": [
-        "tool",
+        "bug",
         "code",
         "doc",
-        "test"
+        "projectManagement",
+        "test",
+        "tool"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
       "profile": "http://www.joshuakgoldberg.com"
+    },
+    {
+      "login": "RebeccaStevens",
+      "name": "Rebecca Stevens",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7224206?v=4",
+      "profile": "https://github.com/RebeccaStevens",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "projectManagement",
+        "test",
+        "tool"
+      ]
     },
     {
       "login": "ajafff",
@@ -23,16 +39,6 @@
       "contributions": [
         "code",
         "test"
-      ]
-    },
-    {
-      "login": "RebeccaStevens",
-      "name": "Rebecca Stevens",
-      "avatar_url": "https://avatars.githubusercontent.com/u/7224206?v=4",
-      "profile": "https://github.com/RebeccaStevens",
-      "contributions": [
-        "code",
-        "bug"
       ]
     }
   ],
