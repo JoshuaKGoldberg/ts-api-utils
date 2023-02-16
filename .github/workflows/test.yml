@@ -15,13 +15,25 @@ jobs:
         node_version:
           - "16.13.0"
           - "18.x"
+        ts_version:
+          - "next"
+          - "latest"
+          - "4.4.4"
+          - "4.3.5"
+          - "4.2.4"
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
         with:
           node-version: ${{ matrix.node_version }}
+
+      - run: pnpm remove typescript
+      - run: pnpm add -D typescript@"${{ matrix.ts_version }}"
+
       - run: pnpm run test --coverage
       - name: Codecov
         uses: codecov/codecov-action@v3
+        if: matrix.node_version == '18.x'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          flags: ${{ matrix.ts_version }}
