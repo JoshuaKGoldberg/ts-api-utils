@@ -1,3 +1,4 @@
+import * as semver from "semver";
 import * as ts from "typescript";
 
 import {
@@ -67,11 +68,15 @@ export function isAssignmentPattern(
 export function isBindingOrAssignmentElementRestIndicator(
 	node: ts.Node
 ): node is ts.BindingOrAssignmentElementRestIndicator {
-	return (
-		ts.isDotDotDotToken(node) ||
-		ts.isSpreadElement(node) ||
-		ts.isSpreadAssignment(node)
-	);
+	if (ts.isSpreadElement(node) || ts.isSpreadAssignment(node)) {
+		return true;
+	}
+
+	if (semver.satisfies(ts.version, ">=4.4")) {
+		return ts.isDotDotDotToken(node);
+	}
+
+	return false;
 }
 
 export function isBindingOrAssignmentElementTarget(
@@ -243,10 +248,9 @@ export function isHasInitializer(node: ts.Node): node is ts.HasInitializer {
 }
 
 export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
-	return (
+	if (
 		ts.isParameter(node) ||
 		ts.isCallSignatureDeclaration(node) ||
-		ts.isClassStaticBlockDeclaration(node) ||
 		ts.isConstructSignatureDeclaration(node) ||
 		ts.isMethodSignature(node) ||
 		ts.isPropertySignature(node) ||
@@ -300,7 +304,15 @@ export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 		ts.isExportSpecifier(node) ||
 		ts.isCaseClause(node) ||
 		isEndOfFileToken(node)
-	);
+	) {
+		return true;
+	}
+
+	if (semver.satisfies(ts.version, ">=4.4")) {
+		return ts.isClassStaticBlockDeclaration(node);
+	}
+
+	return false;
 }
 
 export function isHasModifiers(node: ts.Node): node is ts.HasModifiers {
@@ -365,12 +377,19 @@ export function isHasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
 }
 
 export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
-	return (
-		isJSDocText(node) ||
-		ts.isJSDocLink(node) ||
-		ts.isJSDocLinkCode(node) ||
-		ts.isJSDocLinkPlain(node)
-	);
+	if (isJSDocText(node)) {
+		return true;
+	}
+
+	if (semver.satisfies(ts.version, ">=4.4")) {
+		return (
+			ts.isJSDocLink(node) ||
+			ts.isJSDocLinkCode(node) ||
+			ts.isJSDocLinkPlain(node)
+		);
+	}
+
+	return false;
 }
 
 export function isJSDocNamespaceBody(

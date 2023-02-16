@@ -41,7 +41,11 @@
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
 	},
+	"dependencies": {
+		"semver": "^7.3.8"
+	},
 	"devDependencies": {
+		"@types/semver": "^7.3.13",
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
 		"@typescript/vfs": "^1.4.0",
@@ -78,7 +82,7 @@
 		"vitest": "^0.28.0"
 	},
 	"peerDependencies": {
-		"typescript": ">=4"
+		"typescript": ">=4.2.0"
 	},
 	"packageManager": "pnpm@7.27.0",
 	"engines": {

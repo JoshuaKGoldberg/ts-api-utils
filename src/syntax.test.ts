@@ -1,3 +1,4 @@
+import * as semver from "semver";
 import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
@@ -7,13 +8,20 @@ import {
 	isValidPropertyAccess,
 } from "./syntax.js";
 
+const isTS4dot4 = semver.satisfies(ts.version, ">=4.4");
+
 describe("isAssignmentKind", () => {
-	it.each([
-		[false, ts.SyntaxKind.HashToken],
+	const tests: [boolean, ts.SyntaxKind][] = [
 		[true, ts.SyntaxKind.FirstAssignment],
 		[true, ts.SyntaxKind.LastAssignment],
 		[false, ts.SyntaxKind.Identifier],
-	])("returns %j when given %j", (expected, input) => {
+	];
+
+	if (isTS4dot4) {
+		tests.push([false, ts.SyntaxKind.HashToken]);
+	}
+
+	it.each(tests)("returns %j when given %j", (expected, input) => {
 		expect(isAssignmentKind(input)).toBe(expected);
 	});
 });
