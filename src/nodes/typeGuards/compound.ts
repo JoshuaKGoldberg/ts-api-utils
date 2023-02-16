@@ -61,6 +61,23 @@ export function isJsxTagNamePropertyAccess(
 	);
 }
 
+/**
+ * ts.NamedDeclaration but the name property isn't optional.
+ */
+export interface NamedDeclaration extends ts.NamedDeclaration {
+	name: ts.NamedDeclaration["name"] extends infer T | undefined
+		? T extends undefined
+			? never
+			: T
+		: never;
+}
+
+export function isNamedDeclaration(
+	node: ts.Declaration
+): node is NamedDeclaration {
+	return "name" in node;
+}
+
 export function isNamespaceDeclaration(
 	node: ts.Node
 ): node is ts.NamespaceDeclaration {
