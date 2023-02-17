@@ -29,7 +29,7 @@
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
 		"lint:knip": "knip --config knip.jsonc",
-		"lint:knip:production": "knip -c knip.production.jsonc --production",
+		"lint:knip:production": "knip --config knip.production.jsonc --production",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:package": "npmPkgJsonLint .",
 		"lint:packages": "pnpm-deduplicate --list",
