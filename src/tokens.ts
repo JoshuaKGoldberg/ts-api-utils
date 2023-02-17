@@ -3,8 +3,9 @@
 // Original license MIT:
 // https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
 
-import * as semver from "semver";
 import * as ts from "typescript";
+
+import { isTsVersionAtLeast } from "./utils.js";
 
 export type ForEachTokenCallback = (token: ts.Node) => void;
 
@@ -19,7 +20,7 @@ export function forEachToken(
 	callback: ForEachTokenCallback,
 	sourceFile: ts.SourceFile = node.getSourceFile()
 ): void {
-	const isTS4dot3 = semver.satisfies(ts.version, ">=4.3");
+	const isTS4dot3 = isTsVersionAtLeast(4, 3);
 
 	const queue = [];
 	while (true) {

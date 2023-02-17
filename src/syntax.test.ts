@@ -1,4 +1,3 @@
-import * as semver from "semver";
 import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
@@ -7,8 +6,9 @@ import {
 	isNumericPropertyName,
 	isValidPropertyAccess,
 } from "./syntax.js";
+import { isTsVersionAtLeast } from "./utils.js";
 
-const isTS4dot4 = semver.satisfies(ts.version, ">=4.4");
+const isTS4dot4 = isTsVersionAtLeast(4, 4);
 
 describe("isAssignmentKind", () => {
 	const tests: [boolean, ts.SyntaxKind][] = [

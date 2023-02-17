@@ -1,6 +1,6 @@
-import * as semver from "semver";
 import * as ts from "typescript";
 
+import { isTsVersionAtLeast } from "../../utils.js";
 import {
 	isJSDocNamespaceDeclaration,
 	isJsxTagNamePropertyAccess,
@@ -72,7 +72,7 @@ export function isBindingOrAssignmentElementRestIndicator(
 		return true;
 	}
 
-	if (semver.satisfies(ts.version, ">=4.4")) {
+	if (isTsVersionAtLeast(4, 4)) {
 		return ts.isDotDotDotToken(node);
 	}
 
@@ -308,7 +308,7 @@ export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 		return true;
 	}
 
-	if (semver.satisfies(ts.version, ">=4.4")) {
+	if (isTsVersionAtLeast(4, 4)) {
 		return ts.isClassStaticBlockDeclaration(node);
 	}
 
@@ -381,7 +381,7 @@ export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
 		return true;
 	}
 
-	if (semver.satisfies(ts.version, ">=4.4")) {
+	if (isTsVersionAtLeast(4, 4)) {
 		return (
 			ts.isJSDocLink(node) ||
 			ts.isJSDocLinkCode(node) ||
