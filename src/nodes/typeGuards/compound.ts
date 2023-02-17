@@ -61,20 +61,13 @@ export function isJsxTagNamePropertyAccess(
 	);
 }
 
-/**
- * ts.NamedDeclaration but the name property isn't optional.
- */
-export interface NamedDeclaration extends ts.NamedDeclaration {
-	name: ts.NamedDeclaration["name"] extends infer T | undefined
-		? T extends undefined
-			? never
-			: T
-		: never;
+export interface NamedDeclarationWithName extends ts.NamedDeclaration {
+	name: NonNullable<ts.NamedDeclaration["name"]>;
 }
 
-export function isNamedDeclaration(
+export function isNamedDeclarationWithName(
 	node: ts.Declaration
-): node is NamedDeclaration {
+): node is NamedDeclarationWithName {
 	return "name" in node;
 }
 
