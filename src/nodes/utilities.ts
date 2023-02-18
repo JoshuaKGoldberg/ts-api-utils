@@ -9,7 +9,13 @@ import {
 	isNumericOrStringLikeLiteral,
 } from "./typeGuards/index.js";
 
-/** Determines whether a call to `Object.defineProperty` is statically analyzable. */
+/**
+ * Determines whether a call to {@link Object.defineProperty} is statically analyzable.
+ *
+ * @internal
+ * @param node
+ * @returns
+ */
 export function isBindableObjectDefinePropertyCall(
 	node: ts.CallExpression
 ): boolean {
@@ -24,7 +30,13 @@ export function isBindableObjectDefinePropertyCall(
 	);
 }
 
-/** Detects whether an expression is affected by an enclosing 'as const' assertion and therefore treated literally. */
+/**
+ * Detects whether an expression is affected by an enclosing `as const` assertion and therefore treated literally.
+ *
+ * @internal
+ * @param node
+ * @returns
+ */
 export function isInConstContext(node: ts.Expression): boolean {
 	let current: ts.Node = node;
 	while (true) {

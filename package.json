@@ -25,9 +25,11 @@
 	],
 	"scripts": {
 		"build": "tsup src/index.ts --clean --format cjs,esm --outDir lib --dts",
+		"docs": "typedoc",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
+		"lint:docs": "typedoc --validation --treatWarningsAsErrors",
 		"lint:knip": "knip --config knip.jsonc",
 		"lint:knip:production": "knip --config knip.production.jsonc --production",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
@@ -75,6 +77,10 @@
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.0.4",
 		"tsup": "^6.5.0",
+		"typedoc": "^0.23.25",
+		"typedoc-plugin-coverage": "^2.0.0",
+		"typedoc-plugin-mdn-links": "^2.0.2",
+		"typedoc-plugin-versions": "^0.2.3",
 		"typescript": "4.9.5",
 		"vitest": "^0.28.0"
 	},

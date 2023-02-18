@@ -8,6 +8,11 @@ export const enum ScopeBoundary {
 	Function = 1,
 }
 
+/**
+ * @category Scope Utilities
+ * @param node
+ * @returns
+ */
 export function isFunctionScopeBoundary(node: ts.Node): ScopeBoundary {
 	switch (node.kind) {
 		case ts.SyntaxKind.FunctionExpression:

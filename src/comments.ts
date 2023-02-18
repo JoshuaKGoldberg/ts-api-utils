@@ -5,7 +5,13 @@ import * as ts from "typescript";
 
 import { forEachToken } from "./tokens.js";
 
-/** Exclude trailing positions that would lead to scanning for trivia inside JsxText */
+/**
+ * Exclude trailing positions that would lead to scanning for trivia inside `JsxText`.
+ *
+ * @category Nodes - Other Utilities
+ * @param token
+ * @returns
+ */
 function canHaveTrailingTrivia(token: ts.Node): boolean {
 	switch (token.kind) {
 		case ts.SyntaxKind.CloseBraceToken:
@@ -35,6 +41,13 @@ function canHaveTrailingTrivia(token: ts.Node): boolean {
 	return true;
 }
 
+/**
+ * Test if a node is a `JsxElement` or `JsxFragment`.
+ *
+ * @category Nodes - Other Utilities
+ * @param token
+ * @returns
+ */
 function isJsxElementOrFragment(
 	node: ts.Node
 ): node is ts.JsxElement | ts.JsxFragment {
@@ -44,12 +57,25 @@ function isJsxElementOrFragment(
 	);
 }
 
+/**
+ * Callback type used for {@link forEachComment}.
+ *
+ * @category Callbacks
+ */
 export type ForEachCommentCallback = (
 	fullText: string,
 	comment: ts.CommentRange
 ) => void;
 
-/** Iterates over all comments owned by `node` or its children */
+/**
+ * Iterates over all comments owned by `node` or its children.
+ *
+ * @category Nodes - Other Utilities
+ * @param node
+ * @param callback
+ * @param sourceFile
+ * @returns
+ */
 export function forEachComment(
 	node: ts.Node,
 	callback: ForEachCommentCallback,

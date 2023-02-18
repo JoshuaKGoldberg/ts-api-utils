@@ -3,6 +3,14 @@
 
 import * as ts from "typescript";
 
+/**
+ * Test if the given iterable contains a modifier of any of the given kinds.
+ *
+ * @category Modifier Utilities
+ * @param modifiers
+ * @param kinds
+ * @returns
+ */
 export function hasModifier(
 	modifiers: Iterable<ts.Modifier> | undefined,
 	...kinds: ts.ModifierSyntaxKind[]

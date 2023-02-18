@@ -1,0 +1,73 @@
+name: Release Docs
+
+on:
+  workflow_run:
+    workflows:
+      - Release
+    types:
+      - completed
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "release"
+  cancel-in-progress: true
+
+jobs:
+  get_old_docs:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: get the gh-pages repo
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+
+      - name: tar the existing docs
+        run: |
+          mkdir -p ./docs
+          tar -cvf old-docs.tar ./docs
+
+      - name: create a document artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: old-docs
+          path: old-docs.tar
+
+  update_and_deploy_docs:
+    needs: get_old_docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout src
+        uses: actions/checkout@v3
+
+      - run: mkdir -p ./docs
+      - name: Download the existing documents artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: old-docs
+
+      - run: tar -xf old-docs.tar ./docs -C ./docs
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build docs
+        run: pnpm run docs
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: docs/
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1

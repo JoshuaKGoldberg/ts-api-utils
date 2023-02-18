@@ -3,6 +3,11 @@
 
 import * as ts from "typescript";
 
+/**
+ * An option that can be tested with {@link isCompilerOptionEnabled}.
+ *
+ * @category Compiler Options
+ */
 export type BooleanCompilerOptions = keyof {
 	[K in keyof ts.CompilerOptions as NonNullable<
 		ts.CompilerOptions[K]
@@ -16,6 +21,11 @@ export type BooleanCompilerOptions = keyof {
  * It handles dependencies of options, e.g. `declaration` is implicitly enabled by `composite` or `strictNullChecks` is enabled by `strict`.
  * However, it does not check dependencies that are already checked and reported as errors, e.g. `checkJs` without `allowJs`.
  * This function only handles boolean flags.
+ *
+ * @category Compiler Options
+ * @param options
+ * @param option
+ * @returns
  */
 export function isCompilerOptionEnabled(
 	options: ts.CompilerOptions,
@@ -79,6 +89,11 @@ export function isCompilerOptionEnabled(
 	return options[option] === true;
 }
 
+/**
+ * An option that can be tested with `isStrictCompilerOptionEnabled`.
+ *
+ * @category Compiler Options
+ */
 export type StrictCompilerOption =
 	| "alwaysStrict"
 	| "noImplicitAny"
@@ -91,6 +106,11 @@ export type StrictCompilerOption =
 /**
  * Checks if a given compiler option is enabled, accounting for whether all flags
  * (except `strictPropertyInitialization`) have been enabled by `strict: true`.
+ *
+ * @category Compiler Options
+ * @param options
+ * @param option
+ * @returns
  */
 export function isStrictCompilerOptionEnabled(
 	options: ts.CompilerOptions,

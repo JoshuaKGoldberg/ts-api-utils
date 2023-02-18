@@ -65,6 +65,7 @@ jobs:
                     { context: "build (16.13.0)" },
                     { context: "build (18.x)" },
                     { context: "compliance" },
+                    { context: "docs" },
                     { context: "knip" },
                     { context: "lint" },
                     { context: "markdown" },
