@@ -47,7 +47,8 @@ import * as tsutils from "ts-api-utils";
 
 ### API
 
-`ts-api-utils` provides several many utility functions. Checkout our API docs for details:
+`ts-api-utils` provides several many utility functions.
+Checkout our API docs for details:
 
 📝 [ts-api-utils API docs](https://joshuakgoldberg.github.io/ts-api-utils).
 

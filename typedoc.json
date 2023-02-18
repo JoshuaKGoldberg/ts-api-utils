@@ -1,6 +1,5 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
-	"categorizeByGroup": true,
 	"categoryOrder": [
 		"Node Types",
 		"Nodes - Type Guards",
@@ -15,8 +14,8 @@
 	],
 	"cleanOutputDir": true,
 	"defaultCategory": "Other",
-	"entryPoints": ["./src/index.ts"],
 	"entryPointStrategy": "resolve",
+	"entryPoints": ["./src/index.ts"],
 	"exclude": ["./**/test/", "./**/*.test.*"],
 	"excludeExternals": true,
 	"excludeInternal": true,
