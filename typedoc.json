@@ -12,9 +12,7 @@
 		"*",
 		"Other"
 	],
-	"cleanOutputDir": true,
 	"defaultCategory": "Other",
-	"entryPointStrategy": "resolve",
 	"entryPoints": ["./src/index.ts"],
 	"exclude": ["./**/test/", "./**/*.test.*"],
 	"excludeExternals": true,
