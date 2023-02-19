@@ -9,8 +9,6 @@ import { forEachToken } from "./tokens.js";
  * Exclude trailing positions that would lead to scanning for trivia inside `JsxText`.
  *
  * @category Nodes - Other Utilities
- * @param token
- * @returns
  */
 function canHaveTrailingTrivia(token: ts.Node): boolean {
 	switch (token.kind) {
@@ -45,8 +43,6 @@ function canHaveTrailingTrivia(token: ts.Node): boolean {
  * Test if a node is a `JsxElement` or `JsxFragment`.
  *
  * @category Nodes - Other Utilities
- * @param token
- * @returns
  */
 function isJsxElementOrFragment(
 	node: ts.Node
@@ -71,10 +67,6 @@ export type ForEachCommentCallback = (
  * Iterates over all comments owned by `node` or its children.
  *
  * @category Nodes - Other Utilities
- * @param node
- * @param callback
- * @param sourceFile
- * @returns
  */
 export function forEachComment(
 	node: ts.Node,

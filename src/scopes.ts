@@ -10,8 +10,6 @@ export const enum ScopeBoundary {
 
 /**
  * @category Scope Utilities
- * @param node
- * @returns
  */
 export function isFunctionScopeBoundary(node: ts.Node): ScopeBoundary {
 	switch (node.kind) {

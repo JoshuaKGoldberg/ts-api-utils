@@ -16,8 +16,8 @@ export type ForEachTokenCallback = (token: ts.Node) => void;
  * Iterates over all tokens of `node`
  *
  * @category Nodes - Other Utilities
- * @param node The node whose tokens should be visited
- * @param callback Is called for every token contained in `node`
+ * @param node - The node whose tokens should be visited
+ * @param callback - Is called for every token contained in `node`
  */
 export function forEachToken(
 	node: ts.Node,

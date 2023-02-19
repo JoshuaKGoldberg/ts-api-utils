@@ -23,9 +23,6 @@ export type BooleanCompilerOptions = keyof {
  * This function only handles boolean flags.
  *
  * @category Compiler Options
- * @param options
- * @param option
- * @returns
  */
 export function isCompilerOptionEnabled(
 	options: ts.CompilerOptions,
@@ -108,9 +105,6 @@ export type StrictCompilerOption =
  * (except `strictPropertyInitialization`) have been enabled by `strict: true`.
  *
  * @category Compiler Options
- * @param options
- * @param option
- * @returns
  */
 export function isStrictCompilerOptionEnabled(
 	options: ts.CompilerOptions,

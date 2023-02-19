@@ -5,8 +5,6 @@ import * as ts from "typescript";
 
 /**
  * @category Syntax Utilities
- * @param kind
- * @returns
  */
 export function isAssignmentKind(kind: ts.SyntaxKind): boolean {
 	return (
@@ -17,8 +15,6 @@ export function isAssignmentKind(kind: ts.SyntaxKind): boolean {
 
 /**
  * @category Syntax Utilities
- * @param name
- * @returns
  */
 export function isNumericPropertyName(name: string | ts.__String): boolean {
 	return String(+name) === name;
@@ -32,9 +28,6 @@ function charSize(ch: number) {
  * Determines whether the given text can be used to access a property with a `PropertyAccessExpression` while preserving the property's name.
  *
  * @category Syntax Utilities
- * @param text
- * @param languageVersion
- * @returns
  */
 export function isValidPropertyAccess(
 	text: string,

@@ -7,9 +7,6 @@ import * as ts from "typescript";
  * Test if the given flag is set on the combined flags.
  *
  * @category Nodes - Flag Utilities
- * @param allFlags
- * @param flag
- * @returns
  */
 function isFlagSet(allFlags: number, flag: number): boolean {
 	return (allFlags & flag) !== 0;
@@ -19,9 +16,6 @@ function isFlagSet(allFlags: number, flag: number): boolean {
  * Test if the given flag is set on the given object.
  *
  * @category Nodes - Flag Utilities
- * @param obj
- * @param flag
- * @returns
  */
 function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
 	return isFlagSet(obj.flags, flag);
@@ -31,9 +25,6 @@ function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
  * Test if the given node has the given `ModifierFlags` set.
  *
  * @category Nodes - Flag Utilities
- * @param node
- * @param flag
- * @returns
  */
 export function isModifierFlagSet(
 	node: ts.Declaration,
@@ -46,9 +37,6 @@ export function isModifierFlagSet(
  * Test if the given node has the given `NodeFlags` set.
  *
  * @category Nodes - Flag Utilities
- * @param node
- * @param flag
- * @returns
  */
 export const isNodeFlagSet: (node: ts.Node, flag: ts.NodeFlags) => boolean =
 	isFlagSetOnObject;
@@ -57,9 +45,6 @@ export const isNodeFlagSet: (node: ts.Node, flag: ts.NodeFlags) => boolean =
  * Test if the given node has the given `ObjectFlags` set.
  *
  * @category Nodes - Flag Utilities
- * @param node
- * @param flag
- * @returns
  */
 export function isObjectFlagSet(
 	objectType: ts.ObjectType,
@@ -72,9 +57,6 @@ export function isObjectFlagSet(
  * Test if the given node has the given `SymbolFlags` set.
  *
  * @category Nodes - Flag Utilities
- * @param node
- * @param flag
- * @returns
  */
 export const isSymbolFlagSet: (
 	symbol: ts.Symbol,
@@ -85,9 +67,6 @@ export const isSymbolFlagSet: (
  * Test if the given node has the given `TypeFlags` set.
  *
  * @category Nodes - Flag Utilities
- * @param node
- * @param flag
- * @returns
  */
 export const isTypeFlagSet: (type: ts.Type, flag: ts.TypeFlags) => boolean =
 	isFlagSetOnObject;
