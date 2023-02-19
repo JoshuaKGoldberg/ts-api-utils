@@ -2,6 +2,7 @@ import * as ts from "typescript";
 
 import { isSuperExpression } from "./single.js";
 import {
+	isDeclarationName,
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
 	isJsxTagNameExpression,
@@ -68,7 +69,12 @@ export interface NamedDeclarationWithName extends ts.NamedDeclaration {
 export function isNamedDeclarationWithName(
 	node: ts.Declaration
 ): node is NamedDeclarationWithName {
-	return "name" in node;
+	return (
+		"name" in node &&
+		node.name !== undefined &&
+		node.name !== null &&
+		isDeclarationName(node.name as ts.Node)
+	);
 }
 
 export function isNamespaceDeclaration(
