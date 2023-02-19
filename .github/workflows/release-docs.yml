@@ -49,6 +49,8 @@ jobs:
       - name: Checkout src
         uses: actions/checkout@v3
 
+      - uses: ./.github/actions/git-config
+
       - run: mkdir -p ./gh-pages
       - name: Download the existing documents artifact
         uses: actions/download-artifact@v3
@@ -75,3 +77,21 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+
+      - name: Update Coverage Badge
+        env:
+          PACKAGE_VERSION: >
+            $(cat package.json \
+              | grep version \
+              | head -1 \
+              | awk -F: '{ print $2 }' \
+              | sed 's/[",]//g')
+        run: cp ./gh-pages/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
+
+      - run: COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)
+      - if: $COVERAGE_CHANGED != "0"
+        run: >
+          git add docs/coverage.svg
+          git diff --name-only --cached --diff-filter=AM 
+          git commit -m "docs: updated documentation coverage"
+          git push
