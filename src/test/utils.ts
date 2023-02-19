@@ -29,7 +29,7 @@ export function createSourceFileAndTypeChecker(
 	sourceText: string,
 	fileName = "file.ts"
 ): SourceFileAndTypeChecker {
-	const compilerOptions = {};
+	const compilerOptions = { target: ts.ScriptTarget.ES2018 };
 	const fsMap = tsvfs
 		.createDefaultMapFromNodeModules(compilerOptions)
 		.set(fileName, sourceText);

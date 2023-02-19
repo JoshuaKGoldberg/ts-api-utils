@@ -3,11 +3,12 @@
 
 import * as ts from "typescript";
 
+import { isNamedDeclarationWithName } from "../nodes/typeGuards/index.js";
 import {
 	isIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
-} from "./typeGuards.js";
+} from "./typeGuards/index.js";
 
 export function getCallSignaturesOfType(
 	type: ts.Type
@@ -50,15 +51,21 @@ export function getWellKnownSymbolPropertyOfType(
 	const prefix = "__@" + wellKnownSymbolName;
 
 	for (const prop of type.getProperties()) {
-		if (!prop.name.startsWith(prefix)) continue;
+		if (!prop.name.startsWith(prefix)) {
+			continue;
+		}
+
+		const declaration = prop.valueDeclaration ?? prop.getDeclarations()![0];
+		if (
+			!isNamedDeclarationWithName(declaration) ||
+			declaration.name === undefined ||
+			!ts.isComputedPropertyName(declaration.name)
+		) {
+			continue;
+		}
 
 		const globalSymbol = typeChecker.getApparentType(
-			typeChecker.getTypeAtLocation(
-				(
-					(prop.valueDeclaration as ts.NamedDeclaration)
-						.name as ts.ComputedPropertyName
-				).expression
-			)
+			typeChecker.getTypeAtLocation(declaration.name.expression)
 		).symbol;
 
 		if (

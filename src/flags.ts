@@ -4,6 +4,18 @@
 import * as ts from "typescript";
 
 /**
+ * Test if the given flag is set on the combined flags.
+ *
+ * @category Nodes - Flag Utilities
+ * @param allFlags
+ * @param flag
+ * @returns
+ */
+function isFlagSet(allFlags: number, flag: number): boolean {
+	return (allFlags & flag) !== 0;
+}
+
+/**
  * Test if the given flag is set on the given object.
  *
  * @category Nodes - Flag Utilities
@@ -11,8 +23,8 @@ import * as ts from "typescript";
  * @param flag
  * @returns
  */
-function isFlagSet(obj: { flags: number }, flag: number): boolean {
-	return (obj.flags & flag) !== 0;
+function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
+	return isFlagSet(obj.flags, flag);
 }
 
 /**
@@ -27,7 +39,7 @@ export function isModifierFlagSet(
 	node: ts.Declaration,
 	flag: ts.ModifierFlags
 ): boolean {
-	return (ts.getCombinedModifierFlags(node) & flag) !== 0;
+	return isFlagSet(ts.getCombinedModifierFlags(node), flag);
 }
 
 /**
@@ -39,7 +51,7 @@ export function isModifierFlagSet(
  * @returns
  */
 export const isNodeFlagSet: (node: ts.Node, flag: ts.NodeFlags) => boolean =
-	isFlagSet;
+	isFlagSetOnObject;
 
 /**
  * Test if the given node has the given `ObjectFlags` set.
@@ -53,7 +65,7 @@ export function isObjectFlagSet(
 	objectType: ts.ObjectType,
 	flag: ts.ObjectFlags
 ): boolean {
-	return (objectType.objectFlags & flag) !== 0;
+	return isFlagSet(objectType.objectFlags, flag);
 }
 
 /**
@@ -67,7 +79,7 @@ export function isObjectFlagSet(
 export const isSymbolFlagSet: (
 	symbol: ts.Symbol,
 	flag: ts.SymbolFlags
-) => boolean = isFlagSet;
+) => boolean = isFlagSetOnObject;
 
 /**
  * Test if the given node has the given `TypeFlags` set.
@@ -78,4 +90,4 @@ export const isSymbolFlagSet: (
  * @returns
  */
 export const isTypeFlagSet: (type: ts.Type, flag: ts.TypeFlags) => boolean =
-	isFlagSet;
+	isFlagSetOnObject;

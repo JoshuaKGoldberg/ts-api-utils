@@ -2,6 +2,7 @@ import * as ts from "typescript";
 
 import { isSuperExpression } from "./single.js";
 import {
+	isDeclarationName,
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
 	isJsxTagNameExpression,
@@ -96,6 +97,33 @@ export function isJsxTagNamePropertyAccess(
 	return (
 		ts.isPropertyAccessExpression(node) &&
 		isJsxTagNameExpression(node.expression)
+	);
+}
+
+/**
+ * a `NamedDeclaration` that definitely has a name.
+ *
+ * @category Node Types
+ */
+export interface NamedDeclarationWithName extends ts.NamedDeclaration {
+	name: ts.DeclarationName;
+}
+
+/**
+ * Test if a node is a {@link NamedDeclarationWithName}.
+ *
+ * @category Nodes - Type Guards
+ * @param node - The node in question.
+ * @returns True if the given node appears to be a {@link NamedDeclarationWithName}.
+ */
+export function isNamedDeclarationWithName(
+	node: ts.Declaration
+): node is NamedDeclarationWithName {
+	return (
+		"name" in node &&
+		node.name !== undefined &&
+		node.name !== null &&
+		isDeclarationName(node.name as ts.Node)
 	);
 }
 
