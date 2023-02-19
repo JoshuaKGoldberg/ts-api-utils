@@ -27,5 +27,14 @@
 		"typedoc-plugin-mdn-links",
 		"typedoc-plugin-versions"
 	],
-	"readme": "./docs/index.md"
+	"readme": "./docs/index.md",
+	"requiredToBeDocumented": [
+		"CallSignature",
+		"Class",
+		"Enum",
+		"Function",
+		"Interface",
+		"Namespace",
+		"TypeAlias"
+	]
 }

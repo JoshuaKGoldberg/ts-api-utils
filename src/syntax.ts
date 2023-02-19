@@ -4,6 +4,8 @@
 import * as ts from "typescript";
 
 /**
+ * Test of the kind given is for assignment.
+ *
  * @category Syntax Utilities
  */
 export function isAssignmentKind(kind: ts.SyntaxKind): boolean {
@@ -14,8 +16,11 @@ export function isAssignmentKind(kind: ts.SyntaxKind): boolean {
 }
 
 /**
+ * Test if a string is numeric.
+ *
  * @category Syntax Utilities
  */
+// TODO: rename => isNumericString
 export function isNumericPropertyName(name: string | ts.__String): boolean {
 	return String(+name) === name;
 }

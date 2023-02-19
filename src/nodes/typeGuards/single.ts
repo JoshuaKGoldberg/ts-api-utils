@@ -1,86 +1,120 @@
 import * as ts from "typescript";
 
 /**
+ * A node that represents the any keyword.
+ *
  * @category Node Types
  */
 export type AnyKeyword = ts.KeywordToken<ts.SyntaxKind.AnyKeyword>;
 
 /**
+ * A node that represents the bigint keyword.
+ *
  * @category Node Types
  */
 export type BigIntKeyword = ts.KeywordToken<ts.SyntaxKind.BigIntKeyword>;
 
 /**
+ * A node that represents the boolean keyword.
+ *
  * @category Node Types
  */
 export type BooleanKeyword = ts.KeywordToken<ts.SyntaxKind.BooleanKeyword>;
 
 /**
+ * A node that represents the false keyword.
+ *
  * @category Node Types
  */
 export type FalseKeyword = ts.KeywordToken<ts.SyntaxKind.FalseKeyword>;
 
 /**
+ * A node that represents the import keyword.
+ *
  * @category Node Types
  */
 export type ImportKeyword = ts.KeywordToken<ts.SyntaxKind.ImportKeyword>;
 
 /**
+ * A node that represents the never keyword.
+ *
  * @category Node Types
  */
 export type NeverKeyword = ts.KeywordToken<ts.SyntaxKind.NeverKeyword>;
 
 /**
+ * A node that represents the null keyword.
+ *
  * @category Node Types
  */
 export type NullKeyword = ts.KeywordToken<ts.SyntaxKind.NullKeyword>;
 
 /**
+ * A node that represents the number keyword.
+ *
  * @category Node Types
  */
 export type NumberKeyword = ts.KeywordToken<ts.SyntaxKind.NumberKeyword>;
 
 /**
+ * A node that represents the object keyword.
+ *
  * @category Node Types
  */
 export type ObjectKeyword = ts.KeywordToken<ts.SyntaxKind.ObjectKeyword>;
 
 /**
+ * A node that represents the string keyword.
+ *
  * @category Node Types
  */
 export type StringKeyword = ts.KeywordToken<ts.SyntaxKind.StringKeyword>;
 
 /**
+ * A node that represents the super keyword.
+ *
  * @category Node Types
  */
 export type SuperKeyword = ts.KeywordToken<ts.SyntaxKind.SuperKeyword>;
 
 /**
+ * A node that represents the symbol keyword.
+ *
  * @category Node Types
  */
 export type SymbolKeyword = ts.KeywordToken<ts.SyntaxKind.SymbolKeyword>;
 
 /**
+ * A node that represents the this keyword.
+ *
  * @category Node Types
  */
 export type ThisKeyword = ts.KeywordToken<ts.SyntaxKind.ThisKeyword>;
 
 /**
+ * A node that represents the true keyword.
+ *
  * @category Node Types
  */
 export type TrueKeyword = ts.KeywordToken<ts.SyntaxKind.TrueKeyword>;
 
 /**
+ * A node that represents the undefined keyword.
+ *
  * @category Node Types
  */
 export type UndefinedKeyword = ts.KeywordToken<ts.SyntaxKind.UndefinedKeyword>;
 
 /**
+ * A node that represents the unknown keyword.
+ *
  * @category Node Types
  */
 export type UnknownKeyword = ts.KeywordToken<ts.SyntaxKind.UnknownKeyword>;
 
 /**
+ * A node that represents the void keyword.
+ *
  * @category Node Types
  */
 export type VoidKeyword = ts.KeywordToken<ts.SyntaxKind.VoidKeyword>;

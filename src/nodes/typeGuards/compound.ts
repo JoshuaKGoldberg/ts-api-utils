@@ -146,6 +146,8 @@ export function isNamespaceDeclaration(
 }
 
 /**
+ * A number or sting literal (including string literals declare with \`\` quotes).
+ *
  * @category Node Types
  */
 export type NumericOrStringLikeLiteral =
