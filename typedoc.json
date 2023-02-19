@@ -27,5 +27,5 @@
 		"typedoc-plugin-mdn-links",
 		"typedoc-plugin-versions"
 	],
-	"readme": "none"
+	"readme": "./docs/index.md"
 }
