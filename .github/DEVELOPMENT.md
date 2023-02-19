@@ -30,7 +30,9 @@ It should be applied automatically when you save files in VS Code or make a Git 
 This package includes several forms of linting to enforce consistent code quality and styling.
 Each should be shown in VS Code, and can be run manually on the command-line:
 
+- `pnpm lint:docs` ([typedocs](https://typedoc.org/)): Checks that all the code is documented
 - `pnpm lint:knip` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
+- `pnpm lint:knip:production` ([knip](https://github.com/webpro/knip)): The same as `lint:knip` but looks purely at production code/dependencies
 - `pnpm lint:md` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
 - `pnpm lint:package` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the `package.json` file
 - `pnpm lint:packages` ([pnpm-deduplicate](https://github.com/ocavue/pnpm-deduplicate)): Deduplicates packages in the `pnpm-lock.yml` file
@@ -62,3 +64,8 @@ pnpm type-check --watch
 ```
 
 You should also see suggestions from TypeScript in your editor.
+
+## Documentation
+
+You can generate documentation site with `pnpm docs`.
+To browse the docs locally you'll need a local webserver server (for vscode users, we recommend [Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)).
