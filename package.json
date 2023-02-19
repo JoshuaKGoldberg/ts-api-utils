@@ -1,6 +1,6 @@
 {
 	"name": "ts-api-utils",
-	"version": "0.0.22",
+	"version": "0.0.26",
 	"description": "Utility functions for working with TypeScript's API. Successor to the wonderful tsutils.",
 	"repository": {
 		"type": "git",
@@ -28,7 +28,8 @@
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
-		"lint:knip": "knip",
+		"lint:knip": "knip --config knip.jsonc",
+		"lint:knip:production": "knip --config knip.production.jsonc --production",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:package": "npmPkgJsonLint .",
 		"lint:packages": "pnpm-deduplicate --list",
@@ -58,7 +59,7 @@
 		"eslint-plugin-regexp": "^1.12.0",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-plugin-typescript-sort-keys": "^2.1.0",
-		"eslint-plugin-vitest": "^0.0.32",
+		"eslint-plugin-vitest": "^0.0.34",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
 		"knip": "^1.12.3",

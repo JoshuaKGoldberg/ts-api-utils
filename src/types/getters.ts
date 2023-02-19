@@ -3,12 +3,12 @@
 
 import * as ts from "typescript";
 
-import { isNamedDeclaration } from "../nodes/typeGuards/index.js";
+import { isNamedDeclarationWithName } from "../nodes/typeGuards/index.js";
 import {
 	isIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
-} from "./typeGuards.js";
+} from "./typeGuards/index.js";
 
 export function getCallSignaturesOfType(
 	type: ts.Type
@@ -57,7 +57,7 @@ export function getWellKnownSymbolPropertyOfType(
 
 		const declaration = prop.valueDeclaration ?? prop.getDeclarations()![0];
 		if (
-			!isNamedDeclaration(declaration) ||
+			!isNamedDeclarationWithName(declaration) ||
 			declaration.name === undefined ||
 			!ts.isComputedPropertyName(declaration.name)
 		) {

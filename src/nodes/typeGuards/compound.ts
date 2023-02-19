@@ -2,6 +2,7 @@ import * as ts from "typescript";
 
 import { isSuperExpression } from "./single.js";
 import {
+	isDeclarationName,
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
 	isJsxTagNameExpression,
@@ -61,14 +62,19 @@ export function isJsxTagNamePropertyAccess(
 	);
 }
 
-/**
- * @remarks This always returns true.
- * @see https://github.com/JoshuaKGoldberg/ts-api-utils/pull/16#discussion_r1106579774
- */
-export function isNamedDeclaration(
+export interface NamedDeclarationWithName extends ts.NamedDeclaration {
+	name: ts.DeclarationName;
+}
+
+export function isNamedDeclarationWithName(
 	node: ts.Declaration
-): node is ts.NamedDeclaration {
-	return true;
+): node is NamedDeclarationWithName {
+	return (
+		"name" in node &&
+		node.name !== undefined &&
+		node.name !== null &&
+		isDeclarationName(node.name as ts.Node)
+	);
 }
 
 export function isNamespaceDeclaration(
