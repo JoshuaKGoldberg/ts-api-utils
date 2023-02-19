@@ -87,7 +87,7 @@ export function isCompilerOptionEnabled(
 }
 
 /**
- * An option that can be tested with `isStrictCompilerOptionEnabled`.
+ * An option that can be tested with {@link isStrictCompilerOptionEnabled}.
  *
  * @category Compiler Options
  */
