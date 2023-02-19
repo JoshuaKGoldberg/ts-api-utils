@@ -30,8 +30,8 @@ jobs:
 
       - name: tar the existing docs
         run: |
-          mkdir -p ./docs
-          tar -cvf old-docs.tar ./docs
+          mkdir -p ./gh-pages
+          tar -cvf old-docs.tar ./gh-pages
 
       - name: create a document artifact
         uses: actions/upload-artifact@v3
@@ -49,13 +49,13 @@ jobs:
       - name: Checkout src
         uses: actions/checkout@v3
 
-      - run: mkdir -p ./docs
+      - run: mkdir -p ./gh-pages
       - name: Download the existing documents artifact
         uses: actions/download-artifact@v3
         with:
           name: old-docs
 
-      - run: tar -xf old-docs.tar ./docs -C ./docs
+      - run: tar -xf old-docs.tar ./gh-pages -C ./gh-pages
 
       - uses: actions/setup-node@v3
         with:
@@ -70,7 +70,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: docs/
+          path: ./gh-pages
 
       - name: Deploy to GitHub Pages
         id: deployment

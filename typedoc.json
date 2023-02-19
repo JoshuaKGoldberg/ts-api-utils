@@ -21,7 +21,7 @@
 	"excludePrivate": true,
 	"hideGenerator": true,
 	"includeVersion": true,
-	"out": "./docs",
+	"out": "./gh-pages",
 	"plugin": [
 		"typedoc-plugin-coverage",
 		"typedoc-plugin-mdn-links",
