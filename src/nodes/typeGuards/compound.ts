@@ -2,6 +2,7 @@ import * as ts from "typescript";
 
 import { isSuperExpression } from "./single.js";
 import {
+	isDeclarationName,
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
 	isJsxTagNameExpression,
@@ -58,6 +59,21 @@ export function isJsxTagNamePropertyAccess(
 	return (
 		ts.isPropertyAccessExpression(node) &&
 		isJsxTagNameExpression(node.expression)
+	);
+}
+
+export interface NamedDeclarationWithName extends ts.NamedDeclaration {
+	name: NonNullable<ts.NamedDeclaration["name"]>;
+}
+
+export function isNamedDeclarationWithName(
+	node: ts.Declaration
+): node is NamedDeclarationWithName {
+	return (
+		"name" in node &&
+		node.name !== undefined &&
+		node.name !== null &&
+		isDeclarationName(node.name as ts.Node)
 	);
 }
 
