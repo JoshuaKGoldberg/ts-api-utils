@@ -6,7 +6,7 @@ import * as ts from "typescript";
 /**
  * Test if the given flag is set on the combined flags.
  *
- * @category Nodes - Flag Utilities
+ * @internal
  */
 function isFlagSet(allFlags: number, flag: number): boolean {
 	return (allFlags & flag) !== 0;
@@ -15,7 +15,7 @@ function isFlagSet(allFlags: number, flag: number): boolean {
 /**
  * Test if the given flag is set on the given object.
  *
- * @category Nodes - Flag Utilities
+ * @internal
  */
 function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
 	return isFlagSet(obj.flags, flag);

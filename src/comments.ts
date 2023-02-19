@@ -8,7 +8,7 @@ import { forEachToken } from "./tokens.js";
 /**
  * Exclude trailing positions that would lead to scanning for trivia inside `JsxText`.
  *
- * @category Nodes - Other Utilities
+ * @internal
  */
 function canHaveTrailingTrivia(token: ts.Node): boolean {
 	switch (token.kind) {
@@ -42,7 +42,7 @@ function canHaveTrailingTrivia(token: ts.Node): boolean {
 /**
  * Test if a node is a `JsxElement` or `JsxFragment`.
  *
- * @category Nodes - Other Utilities
+ * @internal
  */
 function isJsxElementOrFragment(
 	node: ts.Node
