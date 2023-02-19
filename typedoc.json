@@ -20,6 +20,7 @@
 	"excludeInternal": true,
 	"excludeNotDocumented": false,
 	"excludePrivate": true,
+	"excludeProtected": true,
 	"hideGenerator": true,
 	"includeVersion": true,
 	"out": "./gh-pages",
@@ -30,12 +31,13 @@
 	],
 	"readme": "./docs/index.md",
 	"requiredToBeDocumented": [
+		"Accessor",
 		"CallSignature",
 		"Class",
 		"Enum",
 		"Function",
 		"Interface",
-		"Namespace",
+		"Method",
 		"TypeAlias"
 	]
 }
