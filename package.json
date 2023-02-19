@@ -1,6 +1,6 @@
 {
 	"name": "ts-api-utils",
-	"version": "0.0.25",
+	"version": "0.0.26",
 	"description": "Utility functions for working with TypeScript's API. Successor to the wonderful tsutils.",
 	"repository": {
 		"type": "git",
