@@ -68,4 +68,9 @@ You should also see suggestions from TypeScript in your editor.
 ## Documentation
 
 You can generate documentation site with `pnpm docs`.
-To browse the docs locally you'll need a local webserver server (for vscode users, we recommend [Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)).
+To browse the docs locally you'll need a local webserver server (for VS Code users, we recommend [Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)).
+
+## Publishing
+
+Publishing will automatically happen when commits are pushed to the main branch.
+The documentation site will also be automatically updated immediately after each new release.
