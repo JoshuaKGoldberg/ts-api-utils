@@ -41,6 +41,9 @@ jobs:
 
   update_and_deploy_docs:
     needs: get_old_docs
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout src
@@ -70,4 +73,5 @@ jobs:
           path: docs/
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v1
