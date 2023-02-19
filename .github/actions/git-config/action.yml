@@ -1,4 +1,4 @@
-name: Prepare
+name: Git Config
 description: Configrue the git user
 
 runs:
