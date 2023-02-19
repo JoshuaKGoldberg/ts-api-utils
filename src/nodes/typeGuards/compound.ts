@@ -63,7 +63,7 @@ export function isJsxTagNamePropertyAccess(
 }
 
 export interface NamedDeclarationWithName extends ts.NamedDeclaration {
-	name: NonNullable<ts.NamedDeclaration["name"]>;
+	name: ts.DeclarationName;
 }
 
 export function isNamedDeclarationWithName(
