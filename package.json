@@ -79,7 +79,7 @@
 		"vitest": "^0.28.0"
 	},
 	"peerDependencies": {
-		"typescript": ">=4"
+		"typescript": ">=4.2.0"
 	},
 	"packageManager": "pnpm@7.27.0",
 	"engines": {
