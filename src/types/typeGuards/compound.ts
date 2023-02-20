@@ -8,9 +8,9 @@ import { isTupleType, isTypeReference } from "./objects.js";
  *
  * @category Type Types
  */
-export interface GeneralLiteralType extends ts.Type {
-	freshType: GeneralLiteralType;
-	regularType: GeneralLiteralType;
+export interface UnknownLiteralType extends ts.Type {
+	freshType: UnknownLiteralType;
+	regularType: UnknownLiteralType;
 	value: unknown;
 }
 
@@ -19,7 +19,7 @@ export interface GeneralLiteralType extends ts.Type {
  *
  * @category Type Types
  */
-export interface BooleanLiteralType extends GeneralLiteralType {
+export interface BooleanLiteralType extends UnknownLiteralType {
 	value: boolean;
 }
 
@@ -40,6 +40,18 @@ export interface TrueLiteralType extends BooleanLiteralType {
  */
 export interface FalseLiteralType extends BooleanLiteralType {
 	value: false;
+}
+
+/**
+ * Test if a type is a {@link UnknownLiteralType}?
+ *
+ * @param type
+ * @returns
+ */
+export function isUnknownLiteralType(
+	type: ts.Type
+): type is UnknownLiteralType {
+	return isTypeFlagSet(type, ts.TypeFlags.Literal);
 }
 
 /**
