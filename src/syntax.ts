@@ -20,7 +20,6 @@ export function isAssignmentKind(kind: ts.SyntaxKind): boolean {
  *
  * @category Syntax Utilities
  */
-// TODO: rename => isNumericString
 export function isNumericPropertyName(name: string | ts.__String): boolean {
 	return String(+name) === name;
 }

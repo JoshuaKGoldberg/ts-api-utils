@@ -29,7 +29,6 @@ import {
  *
  * @category Types - Utilities
  */
-// TODO: This can be made a type guard.
 export function isBooleanLiteralType(type: ts.Type, literal: boolean): boolean {
 	return (
 		isTypeFlagSet(type, ts.TypeFlags.BooleanLiteral) &&
@@ -169,7 +168,6 @@ export function isPropertyReadonlyInType(
  *
  * @category Types - Utilities
  */
-// TODO: type guard ?
 function isReadonlyAssignmentDeclaration(
 	node: ts.CallExpression,
 	typeChecker: ts.TypeChecker
@@ -235,7 +233,6 @@ export function isThenableType(
  *
  * @category Callbacks
  */
-// TODO: rename => SomeTypePartTypePredicate
 export type SomeTypePartPredicate = (
 	subType: ts.Type
 ) => subType is ts.UnionOrIntersectionType;
@@ -245,7 +242,6 @@ export type SomeTypePartPredicate = (
  *
  * @category Callbacks
  */
-// TODO: rename => SomeTypePartTestPredicate
 export type SomeTypePartCallback = (subType: ts.Type) => boolean;
 
 /**
@@ -272,7 +268,6 @@ export function symbolHasReadonlyDeclaration(
 	symbol: ts.Symbol,
 	typeChecker: ts.TypeChecker
 ): boolean {
-	// TODO: refactor
 	return !!(
 		(symbol.flags & ts.SymbolFlags.Accessor) === ts.SymbolFlags.GetAccessor ||
 		symbol.declarations?.some(
