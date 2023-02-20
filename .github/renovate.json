@@ -2,6 +2,6 @@
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"automerge": true,
 	"internalChecksFilter": "strict",
-	"labels": ["dependencies"],
+	"labels": ["area: dependencies"],
 	"stabilityDays": 3
 }
