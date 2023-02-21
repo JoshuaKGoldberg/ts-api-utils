@@ -1,5 +1,6 @@
 import * as ts from "typescript";
 
+import { isTsVersionAtLeast } from "../../utils.js";
 import {
 	isJSDocNamespaceDeclaration,
 	isJsxTagNamePropertyAccess,
@@ -116,11 +117,15 @@ export function isAssignmentPattern(
 export function isBindingOrAssignmentElementRestIndicator(
 	node: ts.Node
 ): node is ts.BindingOrAssignmentElementRestIndicator {
-	return (
-		ts.isDotDotDotToken(node) ||
-		ts.isSpreadElement(node) ||
-		ts.isSpreadAssignment(node)
-	);
+	if (ts.isSpreadElement(node) || ts.isSpreadAssignment(node)) {
+		return true;
+	}
+
+	if (isTsVersionAtLeast(4, 4)) {
+		return ts.isDotDotDotToken(node);
+	}
+
+	return false;
 }
 
 /**
@@ -425,10 +430,9 @@ export function isHasInitializer(node: ts.Node): node is ts.HasInitializer {
  * @returns True if the given node appears to be a `HasJSDoc`.
  */
 export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
-	return (
+	if (
 		ts.isParameter(node) ||
 		ts.isCallSignatureDeclaration(node) ||
-		ts.isClassStaticBlockDeclaration(node) ||
 		ts.isConstructSignatureDeclaration(node) ||
 		ts.isMethodSignature(node) ||
 		ts.isPropertySignature(node) ||
@@ -482,7 +486,15 @@ export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 		ts.isExportSpecifier(node) ||
 		ts.isCaseClause(node) ||
 		isEndOfFileToken(node)
-	);
+	) {
+		return true;
+	}
+
+	if (isTsVersionAtLeast(4, 4)) {
+		return ts.isClassStaticBlockDeclaration(node);
+	}
+
+	return false;
 }
 
 /**
@@ -575,12 +587,19 @@ export function isHasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
  * @returns True if the given node appears to be a `JSDocComment`.
  */
 export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
-	return (
-		isJSDocText(node) ||
-		ts.isJSDocLink(node) ||
-		ts.isJSDocLinkCode(node) ||
-		ts.isJSDocLinkPlain(node)
-	);
+	if (isJSDocText(node)) {
+		return true;
+	}
+
+	if (isTsVersionAtLeast(4, 4)) {
+		return (
+			ts.isJSDocLink(node) ||
+			ts.isJSDocLinkCode(node) ||
+			ts.isJSDocLinkPlain(node)
+		);
+	}
+
+	return false;
 }
 
 /**

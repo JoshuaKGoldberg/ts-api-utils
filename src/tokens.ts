@@ -5,6 +5,8 @@
 
 import * as ts from "typescript";
 
+import { isTsVersionAtLeast } from "./utils.js";
+
 /**
  * Callback type used for {@link forEachToken}.
  *
@@ -24,11 +26,16 @@ export function forEachToken(
 	callback: ForEachTokenCallback,
 	sourceFile: ts.SourceFile = node.getSourceFile()
 ): void {
+	const isTS4dot3 = isTsVersionAtLeast(4, 3);
+
 	const queue = [];
 	while (true) {
-		if (ts.isTokenKind(node.kind)) {
+		if (isTS4dot3 && ts.isTokenKind(node.kind)) {
 			callback(node);
-		} else if (node.kind !== ts.SyntaxKind.JSDoc) {
+		} else if (
+			// eslint-disable-next-line deprecation/deprecation -- need for support of TS < 4.7
+			node.kind !== ts.SyntaxKind.JSDocComment
+		) {
 			const children = node.getChildren(sourceFile);
 			if (children.length === 1) {
 				node = children[0];

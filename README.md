@@ -1,4 +1,4 @@
-<h1 align="center">TypeScript API Tools</h1>
+<h1 align="center">TypeScript API Utils</h1>
 
 <p align="center">
 	Utility functions for working with TypeScript's API.

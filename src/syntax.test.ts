@@ -6,14 +6,22 @@ import {
 	isNumericPropertyName,
 	isValidPropertyAccess,
 } from "./syntax.js";
+import { isTsVersionAtLeast } from "./utils.js";
+
+const isTS4dot4 = isTsVersionAtLeast(4, 4);
 
 describe("isAssignmentKind", () => {
-	it.each([
-		[false, ts.SyntaxKind.HashToken],
+	const tests: [boolean, ts.SyntaxKind][] = [
 		[true, ts.SyntaxKind.FirstAssignment],
 		[true, ts.SyntaxKind.LastAssignment],
 		[false, ts.SyntaxKind.Identifier],
-	])("returns %j when given %j", (expected, input) => {
+	];
+
+	if (isTS4dot4) {
+		tests.push([false, ts.SyntaxKind.HashToken]);
+	}
+
+	it.each(tests)("returns %j when given %j", (expected, input) => {
 		expect(isAssignmentKind(input)).toBe(expected);
 	});
 });
