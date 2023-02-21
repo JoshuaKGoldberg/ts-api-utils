@@ -164,7 +164,7 @@ export function isPropertyReadonlyInType(
 }
 
 /**
- * Returns true for `Object.defineProperty(o, 'prop', {value, writable: false})` and  `Object.defineProperty(o, 'prop', {get: () => 1})`
+ * Returns true for `Object.defineProperty(o, 'prop', {value, writable: false})` and `Object.defineProperty(o, 'prop', {get: () => 1})`
  *
  * @category Types - Utilities
  */
