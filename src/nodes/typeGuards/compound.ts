@@ -32,7 +32,6 @@ export type ConstAssertionIdentifier = ts.Identifier & {
  * Test if a node is a {@link ConstAssertionExpression}.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
  * @returns Whether the given node appears to be a {@link ConstAssertionExpression}.
  */
 export function isConstAssertionExpression(
@@ -49,8 +48,7 @@ export function isConstAssertionExpression(
  * Test if a node is an `IterationStatement`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `IterationStatement`.
+ * @returns Whether the given node appears to be an `IterationStatement`.
  */
 export function isIterationStatement(
 	node: ts.Node
@@ -71,8 +69,7 @@ export function isIterationStatement(
  * Test if a node is a `JSDocNamespaceDeclaration`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JSDocNamespaceDeclaration`.
+ * @returns Whether the given node appears to be a `JSDocNamespaceDeclaration`.
  */
 export function isJSDocNamespaceDeclaration(
 	node: ts.Node
@@ -88,8 +85,7 @@ export function isJSDocNamespaceDeclaration(
  * Test if a node is a `JsxTagNamePropertyAccess`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JsxTagNamePropertyAccess`.
+ * @returns Whether the given node appears to be a `JsxTagNamePropertyAccess`.
  */
 export function isJsxTagNamePropertyAccess(
 	node: ts.Node
@@ -113,8 +109,7 @@ export interface NamedDeclarationWithName extends ts.NamedDeclaration {
  * Test if a node is a {@link NamedDeclarationWithName}.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a {@link NamedDeclarationWithName}.
+ * @returns Whether the given node appears to be a {@link NamedDeclarationWithName}.
  */
 export function isNamedDeclarationWithName(
 	node: ts.Declaration
@@ -131,8 +126,7 @@ export function isNamedDeclarationWithName(
  * Test if a node is a `NamespaceDeclaration`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `NamespaceDeclaration`.
+ * @returns Whether the given node appears to be a `NamespaceDeclaration`.
  */
 export function isNamespaceDeclaration(
 	node: ts.Node
@@ -159,8 +153,7 @@ export type NumericOrStringLikeLiteral =
  * Test if a node is a {@link NumericOrStringLikeLiteral}.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a {@link NumericOrStringLikeLiteral}.
+ * @returns Whether the given node appears to be a {@link NumericOrStringLikeLiteral}.
  */
 export function isNumericOrStringLikeLiteral(
 	node: ts.Node
@@ -179,8 +172,7 @@ export function isNumericOrStringLikeLiteral(
  * Test if a node is a `PropertyAccessEntityNameExpression`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `PropertyAccessEntityNameExpression`.
+ * @returns Whether the given node appears to be a `PropertyAccessEntityNameExpression`.
  */
 export function isPropertyAccessEntityNameExpression(
 	node: ts.Node
@@ -196,8 +188,7 @@ export function isPropertyAccessEntityNameExpression(
  * Test if a node is a `SuperElementAccessExpression`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `SuperElementAccessExpression`.
+ * @returns Whether the given node appears to be a `SuperElementAccessExpression`.
  */
 export function isSuperElementAccessExpression(
 	node: ts.Node
@@ -211,8 +202,7 @@ export function isSuperElementAccessExpression(
  * Test if a node is a `SuperPropertyAccessExpression`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `SuperPropertyAccessExpression`.
+ * @returns Whether the given node appears to be a `SuperPropertyAccessExpression`.
  */
 export function isSuperPropertyAccessExpression(
 	node: ts.Node

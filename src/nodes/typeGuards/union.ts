@@ -29,8 +29,7 @@ import {
  * Test if a node is an `AccessExpression`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `AccessExpression`.
+ * @returns Whether the given node appears to be an `AccessExpression`.
  */
 export function isAccessExpression(node: ts.Node): node is ts.AccessExpression {
 	return (
@@ -42,8 +41,7 @@ export function isAccessExpression(node: ts.Node): node is ts.AccessExpression {
  * Test if a node is an `AccessibilityModifier`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `AccessibilityModifier`.
+ * @returns Whether the given node appears to be an `AccessibilityModifier`.
  */
 export function isAccessibilityModifier(
 	node: ts.Node
@@ -57,8 +55,7 @@ export function isAccessibilityModifier(
  * Test if a node is an `AccessorDeclaration`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `AccessorDeclaration`.
+ * @returns Whether the given node appears to be an `AccessorDeclaration`.
  */
 export function isAccessorDeclaration(
 	node: ts.Node
@@ -70,8 +67,7 @@ export function isAccessorDeclaration(
  * Test if a node is an `ArrayBindingElement`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `ArrayBindingElement`.
+ * @returns Whether the given node appears to be an `ArrayBindingElement`.
  */
 export function isArrayBindingElement(
 	node: ts.Node
@@ -83,8 +79,7 @@ export function isArrayBindingElement(
  * Test if a node is an `ArrayBindingOrAssignmentPattern`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `ArrayBindingOrAssignmentPattern`.
+ * @returns Whether the given node appears to be an `ArrayBindingOrAssignmentPattern`.
  */
 export function isArrayBindingOrAssignmentPattern(
 	node: ts.Node
@@ -96,8 +91,7 @@ export function isArrayBindingOrAssignmentPattern(
  * Test if a node is an `AssignmentPattern`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `AssignmentPattern`.
+ * @returns Whether the given node appears to be an `AssignmentPattern`.
  */
 export function isAssignmentPattern(
 	node: ts.Node
@@ -111,8 +105,7 @@ export function isAssignmentPattern(
  * Test if a node is a `BindingOrAssignmentElementRestIndicator`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `BindingOrAssignmentElementRestIndicator`.
+ * @returns Whether the given node appears to be a `BindingOrAssignmentElementRestIndicator`.
  */
 export function isBindingOrAssignmentElementRestIndicator(
 	node: ts.Node
@@ -132,8 +125,7 @@ export function isBindingOrAssignmentElementRestIndicator(
  * Test if a node is a `BindingOrAssignmentElementTarget`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `BindingOrAssignmentElementTarget`.
+ * @returns Whether the given node appears to be a `BindingOrAssignmentElementTarget`.
  */
 export function isBindingOrAssignmentElementTarget(
 	node: ts.Node
@@ -151,8 +143,7 @@ export function isBindingOrAssignmentElementTarget(
  * Test if a node is a `BindingOrAssignmentPattern`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `BindingOrAssignmentPattern`.
+ * @returns Whether the given node appears to be a `BindingOrAssignmentPattern`.
  */
 export function isBindingOrAssignmentPattern(
 	node: ts.Node
@@ -167,8 +158,7 @@ export function isBindingOrAssignmentPattern(
  * Test if a node is a `BindingPattern`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `BindingPattern`.
+ * @returns Whether the given node appears to be a `BindingPattern`.
  */
 export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
 	return ts.isObjectBindingPattern(node) || ts.isArrayBindingPattern(node);
@@ -178,8 +168,7 @@ export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
  * Test if a node is a `BlockLike`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `BlockLike`.
+ * @returns Whether the given node appears to be a `BlockLike`.
  */
 export function isBlockLike(node: ts.Node): node is ts.BlockLike {
 	return (
@@ -194,8 +183,7 @@ export function isBlockLike(node: ts.Node): node is ts.BlockLike {
  * Test if a node is a `BooleanLiteral`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `BooleanLiteral`.
+ * @returns Whether the given node appears to be a `BooleanLiteral`.
  */
 export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
 	return isTrueLiteral(node) || isFalseLiteral(node);
@@ -205,8 +193,7 @@ export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
  * Test if a node is a `ClassLikeDeclaration`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `ClassLikeDeclaration`.
+ * @returns Whether the given node appears to be a `ClassLikeDeclaration`.
  */
 export function isClassLikeDeclaration(
 	node: ts.Node
@@ -218,8 +205,7 @@ export function isClassLikeDeclaration(
  * Test if a node is a `ClassMemberModifier`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `ClassMemberModifier`.
+ * @returns Whether the given node appears to be a `ClassMemberModifier`.
  */
 export function isClassMemberModifier(
 	node: ts.Node
@@ -236,8 +222,7 @@ export function isClassMemberModifier(
  * Test if a node is a `DeclarationName`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `DeclarationName`.
+ * @returns Whether the given node appears to be a `DeclarationName`.
  */
 export function isDeclarationName(node: ts.Node): node is ts.DeclarationName {
 	return (
@@ -256,8 +241,7 @@ export function isDeclarationName(node: ts.Node): node is ts.DeclarationName {
  * Test if a node is a `DeclarationWithTypeParameterChildren`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `DeclarationWithTypeParameterChildren`.
+ * @returns Whether the given node appears to be a `DeclarationWithTypeParameterChildren`.
  */
 export function isDeclarationWithTypeParameterChildren(
 	node: ts.Node
@@ -275,8 +259,7 @@ export function isDeclarationWithTypeParameterChildren(
  * Test if a node is a `DeclarationWithTypeParameters`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `DeclarationWithTypeParameters`.
+ * @returns Whether the given node appears to be a `DeclarationWithTypeParameters`.
  */
 export function isDeclarationWithTypeParameters(
 	node: ts.Node
@@ -293,8 +276,7 @@ export function isDeclarationWithTypeParameters(
  * Test if a node is a `DestructuringPattern`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `DestructuringPattern`.
+ * @returns Whether the given node appears to be a `DestructuringPattern`.
  */
 export function isDestructuringPattern(
 	node: ts.Node
@@ -310,8 +292,7 @@ export function isDestructuringPattern(
  * Test if a node is an `EntityNameExpression`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `EntityNameExpression`.
+ * @returns Whether the given node appears to be an `EntityNameExpression`.
  */
 export function isEntityNameExpression(
 	node: ts.Node
@@ -323,8 +304,7 @@ export function isEntityNameExpression(
  * Test if a node is an `EntityNameOrEntityNameExpression`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `EntityNameOrEntityNameExpression`.
+ * @returns Whether the given node appears to be an `EntityNameOrEntityNameExpression`.
  */
 export function isEntityNameOrEntityNameExpression(
 	node: ts.Node
@@ -336,8 +316,7 @@ export function isEntityNameOrEntityNameExpression(
  * Test if a node is a `ForInOrOfStatement`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `ForInOrOfStatement`.
+ * @returns Whether the given node appears to be a `ForInOrOfStatement`.
  */
 export function isForInOrOfStatement(
 	node: ts.Node
@@ -349,8 +328,7 @@ export function isForInOrOfStatement(
  * Test if a node is a `FunctionLikeDeclaration`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `FunctionLikeDeclaration`.
+ * @returns Whether the given node appears to be a `FunctionLikeDeclaration`.
  */
 export function isFunctionLikeDeclaration(
 	node: ts.Node
@@ -370,8 +348,7 @@ export function isFunctionLikeDeclaration(
  * Test if a node is a `HasDecorators`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `HasDecorators`.
+ * @returns Whether the given node appears to be a `HasDecorators`.
  */
 export function isHasDecorators(node: ts.Node): node is ts.HasDecorators {
 	return (
@@ -389,8 +366,7 @@ export function isHasDecorators(node: ts.Node): node is ts.HasDecorators {
  * Test if a node is a `HasExpressionInitializer`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `HasExpressionInitializer`.
+ * @returns Whether the given node appears to be a `HasExpressionInitializer`.
  */
 export function isHasExpressionInitializer(
 	node: ts.Node
@@ -409,8 +385,7 @@ export function isHasExpressionInitializer(
  * Test if a node is a `HasInitializer`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `HasInitializer`.
+ * @returns Whether the given node appears to be a `HasInitializer`.
  */
 export function isHasInitializer(node: ts.Node): node is ts.HasInitializer {
 	return (
@@ -426,8 +401,7 @@ export function isHasInitializer(node: ts.Node): node is ts.HasInitializer {
  * Test if a node is a `HasJSDoc`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `HasJSDoc`.
+ * @returns Whether the given node appears to be a `HasJSDoc`.
  */
 export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 	if (
@@ -501,8 +475,7 @@ export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
  * Test if a node is a `HasModifiers`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `HasModifiers`.
+ * @returns Whether the given node appears to be a `HasModifiers`.
  */
 export function isHasModifiers(node: ts.Node): node is ts.HasModifiers {
 	return (
@@ -538,8 +511,7 @@ export function isHasModifiers(node: ts.Node): node is ts.HasModifiers {
  * Test if a node is a `HasType`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `HasType`.
+ * @returns Whether the given node appears to be a `HasType`.
  */
 export function isHasType(node: ts.Node): node is ts.HasType {
 	return (
@@ -566,8 +538,7 @@ export function isHasType(node: ts.Node): node is ts.HasType {
  * Test if a node is a `HasTypeArguments`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `HasTypeArguments`.
+ * @returns Whether the given node appears to be a `HasTypeArguments`.
  */
 export function isHasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
 	return (
@@ -583,8 +554,7 @@ export function isHasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
  * Test if a node is a `JSDocComment`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JSDocComment`.
+ * @returns Whether the given node appears to be a `JSDocComment`.
  */
 export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
 	if (isJSDocText(node)) {
@@ -606,8 +576,7 @@ export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
  * Test if a node is a `JSDocNamespaceBody`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JSDocNamespaceBody`.
+ * @returns Whether the given node appears to be a `JSDocNamespaceBody`.
  */
 export function isJSDocNamespaceBody(
 	node: ts.Node
@@ -619,8 +588,7 @@ export function isJSDocNamespaceBody(
  * Test if a node is a `JSDocTypeReferencingNode`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JSDocTypeReferencingNode`.
+ * @returns Whether the given node appears to be a `JSDocTypeReferencingNode`.
  */
 export function isJSDocTypeReferencingNode(
 	node: ts.Node
@@ -637,8 +605,7 @@ export function isJSDocTypeReferencingNode(
  * Test if a node is a `JsonObjectExpression`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JsonObjectExpression`.
+ * @returns Whether the given node appears to be a `JsonObjectExpression`.
  */
 export function isJsonObjectExpression(
 	node: ts.Node
@@ -658,8 +625,7 @@ export function isJsonObjectExpression(
  * Test if a node is a `JsxAttributeLike`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JsxAttributeLike`.
+ * @returns Whether the given node appears to be a `JsxAttributeLike`.
  */
 export function isJsxAttributeLike(node: ts.Node): node is ts.JsxAttributeLike {
 	return ts.isJsxAttribute(node) || ts.isJsxSpreadAttribute(node);
@@ -669,8 +635,7 @@ export function isJsxAttributeLike(node: ts.Node): node is ts.JsxAttributeLike {
  * Test if a node is a `JsxAttributeValue`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JsxAttributeValue`.
+ * @returns Whether the given node appears to be a `JsxAttributeValue`.
  */
 export function isJsxAttributeValue(
 	node: ts.Node
@@ -688,8 +653,7 @@ export function isJsxAttributeValue(
  * Test if a node is a `JsxChild`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JsxChild`.
+ * @returns Whether the given node appears to be a `JsxChild`.
  */
 export function isJsxChild(node: ts.Node): node is ts.JsxChild {
 	return (
@@ -705,8 +669,7 @@ export function isJsxChild(node: ts.Node): node is ts.JsxChild {
  * Test if a node is a `JsxTagNameExpression`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `JsxTagNameExpression`.
+ * @returns Whether the given node appears to be a `JsxTagNameExpression`.
  */
 export function isJsxTagNameExpression(
 	node: ts.Node
@@ -722,8 +685,7 @@ export function isJsxTagNameExpression(
  * Test if a node is a `LiteralToken`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `LiteralToken`.
+ * @returns Whether the given node appears to be a `LiteralToken`.
  */
 export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 	return (
@@ -740,8 +702,7 @@ export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
  * Test if a node is a `ModuleBody`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `ModuleBody`.
+ * @returns Whether the given node appears to be a `ModuleBody`.
  */
 export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
 	return isNamespaceBody(node) || isJSDocNamespaceBody(node);
@@ -751,8 +712,7 @@ export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
  * Test if a node is a `ModuleName`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `ModuleName`.
+ * @returns Whether the given node appears to be a `ModuleName`.
  */
 export function isModuleName(node: ts.Node): node is ts.ModuleName {
 	return ts.isIdentifier(node) || ts.isStringLiteral(node);
@@ -762,8 +722,7 @@ export function isModuleName(node: ts.Node): node is ts.ModuleName {
  * Test if a node is a `ModuleReference`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `ModuleReference`.
+ * @returns Whether the given node appears to be a `ModuleReference`.
  */
 export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
 	return ts.isEntityName(node) || ts.isExternalModuleReference(node);
@@ -773,8 +732,7 @@ export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
  * Test if a node is a `NamedImportBindings`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `NamedImportBindings`.
+ * @returns Whether the given node appears to be a `NamedImportBindings`.
  */
 export function isNamedImportBindings(
 	node: ts.Node
@@ -786,8 +744,7 @@ export function isNamedImportBindings(
  * Test if a node is a `NamedImportsOrExports`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `NamedImportsOrExports`.
+ * @returns Whether the given node appears to be a `NamedImportsOrExports`.
  */
 export function isNamedImportsOrExports(
 	node: ts.Node
@@ -799,8 +756,7 @@ export function isNamedImportsOrExports(
  * Test if a node is a `NamespaceBody`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `NamespaceBody`.
+ * @returns Whether the given node appears to be a `NamespaceBody`.
  */
 export function isNamespaceBody(node: ts.Node): node is ts.NamespaceBody {
 	return ts.isModuleBlock(node) || isNamespaceDeclaration(node);
@@ -810,8 +766,7 @@ export function isNamespaceBody(node: ts.Node): node is ts.NamespaceBody {
  * Test if a node is an `ObjectBindingOrAssignmentElement`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `ObjectBindingOrAssignmentElement`.
+ * @returns Whether the given node appears to be an `ObjectBindingOrAssignmentElement`.
  */
 export function isObjectBindingOrAssignmentElement(
 	node: ts.Node
@@ -828,8 +783,7 @@ export function isObjectBindingOrAssignmentElement(
  * Test if a node is an `ObjectBindingOrAssignmentPattern`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `ObjectBindingOrAssignmentPattern`.
+ * @returns Whether the given node appears to be an `ObjectBindingOrAssignmentPattern`.
  */
 export function isObjectBindingOrAssignmentPattern(
 	node: ts.Node
@@ -841,8 +795,7 @@ export function isObjectBindingOrAssignmentPattern(
  * Test if a node is an `ObjectTypeDeclaration`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `ObjectTypeDeclaration`.
+ * @returns Whether the given node appears to be an `ObjectTypeDeclaration`.
  */
 export function isObjectTypeDeclaration(
 	node: ts.Node
@@ -858,8 +811,7 @@ export function isObjectTypeDeclaration(
  * Test if a node is a `ParameterPropertyModifier`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `ParameterPropertyModifier`.
+ * @returns Whether the given node appears to be a `ParameterPropertyModifier`.
  */
 export function isParameterPropertyModifier(
 	node: ts.Node
@@ -871,8 +823,7 @@ export function isParameterPropertyModifier(
  * Test if a node is a `PropertyNameLiteral`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `PropertyNameLiteral`.
+ * @returns Whether the given node appears to be a `PropertyNameLiteral`.
  */
 export function isPropertyNameLiteral(
 	node: ts.Node
@@ -888,8 +839,7 @@ export function isPropertyNameLiteral(
  * Test if a node is a `PseudoLiteralToken`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `PseudoLiteralToken`.
+ * @returns Whether the given node appears to be a `PseudoLiteralToken`.
  */
 export function isPseudoLiteralToken(
 	node: ts.Node
@@ -905,8 +855,7 @@ export function isPseudoLiteralToken(
  * Test if a node is a `SignatureDeclaration`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `SignatureDeclaration`.
+ * @returns Whether the given node appears to be a `SignatureDeclaration`.
  */
 export function isSignatureDeclaration(
 	node: ts.Node
@@ -932,8 +881,7 @@ export function isSignatureDeclaration(
  * Test if a node is a `SuperProperty`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `SuperProperty`.
+ * @returns Whether the given node appears to be a `SuperProperty`.
  */
 export function isSuperProperty(node: ts.Node): node is ts.SuperProperty {
 	return (
@@ -946,8 +894,7 @@ export function isSuperProperty(node: ts.Node): node is ts.SuperProperty {
  * Test if a node is a `TypeOnlyCompatibleAliasDeclaration`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `TypeOnlyCompatibleAliasDeclaration`.
+ * @returns Whether the given node appears to be a `TypeOnlyCompatibleAliasDeclaration`.
  */
 export function isTypeOnlyCompatibleAliasDeclaration(
 	node: ts.Node
@@ -964,8 +911,7 @@ export function isTypeOnlyCompatibleAliasDeclaration(
  * Test if a node is a `TypeReferenceType`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `TypeReferenceType`.
+ * @returns Whether the given node appears to be a `TypeReferenceType`.
  */
 export function isTypeReferenceType(
 	node: ts.Node
@@ -977,8 +923,7 @@ export function isTypeReferenceType(
  * Test if a node is an `UnionOrIntersectionTypeNode`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `UnionOrIntersectionTypeNode`.
+ * @returns Whether the given node appears to be an `UnionOrIntersectionTypeNode`.
  */
 export function isUnionOrIntersectionTypeNode(
 	node: ts.Node
@@ -990,8 +935,7 @@ export function isUnionOrIntersectionTypeNode(
  * Test if a node is an `UnparsedSourceText`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be an `UnparsedSourceText`.
+ * @returns Whether the given node appears to be an `UnparsedSourceText`.
  */
 export function isUnparsedSourceText(
 	node: ts.Node
@@ -1003,8 +947,7 @@ export function isUnparsedSourceText(
  * Test if a node is a `VariableLikeDeclaration`.
  *
  * @category Nodes - Type Guards
- * @param node - The node in question.
- * @returns True if the given node appears to be a `VariableLikeDeclaration`.
+ * @returns Whether the given node appears to be a `VariableLikeDeclaration`.
  */
 export function isVariableLikeDeclaration(
 	node: ts.Node
