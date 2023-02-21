@@ -12,7 +12,7 @@
 		"*",
 		"Other"
 	],
-	"customCss": "./typedoc.css",
+	"customCss": "./docs/typedoc.css",
 	"defaultCategory": "Other",
 	"entryPoints": ["./src/index.ts"],
 	"exclude": ["./**/test/", "./**/*.test.*"],
