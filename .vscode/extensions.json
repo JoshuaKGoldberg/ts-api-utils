@@ -3,7 +3,6 @@
 		"DavidAnson.vscode-markdownlint",
 		"dbaeumer.vscode-eslint",
 		"esbenp.prettier-vscode",
-		"ms-vscode.live-server",
 		"streetsidesoftware.code-spell-checker"
 	]
 }

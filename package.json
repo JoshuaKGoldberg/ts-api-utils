@@ -26,6 +26,7 @@
 	"scripts": {
 		"build": "tsup src/index.ts --clean --format cjs,esm --outDir lib --dts",
 		"docs": "typedoc",
+		"docs:serve": "http-serve docs/generated",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
@@ -62,6 +63,7 @@
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-plugin-typescript-sort-keys": "^2.1.0",
 		"eslint-plugin-vitest": "^0.0.34",
+		"http-serve": "^1.0.1",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
 		"knip": "^1.12.3",
