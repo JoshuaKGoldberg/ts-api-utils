@@ -99,7 +99,7 @@ export function getWellKnownSymbolPropertyOfType(
 }
 
 /**
- * @category Types - Getters
+ * @internal
  */
 function getPropertyNameOfWellKnownSymbol(
 	typeChecker: ts.TypeChecker,
