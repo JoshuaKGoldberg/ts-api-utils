@@ -59,38 +59,10 @@ export function isUnknownLiteralType(
  *
  * @category Types - Utilities
  */
-export function isBooleanLiteralType(type: ts.Type): type is BooleanLiteralType;
-
-/**
- * Determines whether the given type is a boolean literal type for "true".
- *
- * @category Types - Utilities
- */
 export function isBooleanLiteralType(
-	type: ts.Type,
-	literal: true
-): type is TrueLiteralType;
-
-/**
- * Determines whether the given type is a boolean literal type for "false".
- *
- * @category Types - Utilities
- */
-export function isBooleanLiteralType(
-	type: ts.Type,
-	literal: false
-): type is FalseLiteralType;
-
-export function isBooleanLiteralType(
-	type: ts.Type,
-	literal?: boolean
-): boolean {
-	return (
-		isTypeFlagSet(type, ts.TypeFlags.BooleanLiteral) &&
-		(literal === undefined ||
-			(type as unknown as { intrinsicName: string }).intrinsicName ===
-				(literal ? "true" : "false"))
-	);
+	type: ts.Type
+): type is BooleanLiteralType {
+	return isTypeFlagSet(type, ts.TypeFlags.BooleanLiteral);
 }
 
 /**
@@ -99,7 +71,10 @@ export function isBooleanLiteralType(
  * @category Types - Utilities
  */
 export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
-	return isBooleanLiteralType(type, true);
+	return (
+		isBooleanLiteralType(type) &&
+		(type as unknown as { intrinsicName: string }).intrinsicName === "true"
+	);
 }
 
 /**
@@ -108,7 +83,10 @@ export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
  * @category Types - Utilities
  */
 export function isFalseLiteralType(type: ts.Type): type is FalseLiteralType {
-	return isBooleanLiteralType(type, false);
+	return (
+		isBooleanLiteralType(type) &&
+		(type as unknown as { intrinsicName: string }).intrinsicName === "false"
+	);
 }
 
 export function isTupleTypeReference(

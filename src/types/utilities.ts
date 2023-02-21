@@ -17,7 +17,7 @@ import {
 import { isNumericPropertyName } from "../syntax.js";
 import { getPropertyOfType } from "./getters.js";
 import {
-	isBooleanLiteralType,
+	isFalseLiteralType,
 	isIntersectionType,
 	isLiteralType,
 	isObjectType,
@@ -35,7 +35,7 @@ export function isFalsyType(type: ts.Type): boolean {
 	)
 		return true;
 	if (isLiteralType(type)) return !type.value;
-	return isBooleanLiteralType(type, false);
+	return isFalseLiteralType(type);
 }
 
 function isReadonlyPropertyIntersection(
@@ -161,7 +161,7 @@ function isReadonlyAssignmentDeclaration(
 		ts.isPropertyAssignment(writableProp.valueDeclaration)
 			? typeChecker.getTypeAtLocation(writableProp.valueDeclaration.initializer)
 			: typeChecker.getTypeOfSymbolAtLocation(writableProp, node.arguments[2]);
-	return isBooleanLiteralType(writableType, false);
+	return isFalseLiteralType(writableType);
 }
 
 /** Determines whether a type is thenable and thus can be used with `await`. */
