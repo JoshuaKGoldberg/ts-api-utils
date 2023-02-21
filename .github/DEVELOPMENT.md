@@ -67,7 +67,7 @@ You should also see suggestions from TypeScript in your editor.
 
 ## Documentation
 
-You can generate documentation site with `pnpm docs`.
+You can generate a [TypeDoc](https://typedoc.org) documentation site with `pnpm docs`.
 To browse the docs locally you'll need a local webserver server (for VS Code users, we recommend [Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)).
 
 ## Publishing
