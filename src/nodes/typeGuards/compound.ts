@@ -33,7 +33,7 @@ export type ConstAssertionIdentifier = ts.Identifier & {
  *
  * @category Nodes - Type Guards
  * @param node - The node in question.
- * @returns True if the given node appears to be a {@link ConstAssertionExpression}.
+ * @returns Whether the given node appears to be a {@link ConstAssertionExpression}.
  */
 export function isConstAssertionExpression(
 	node: ts.AssertionExpression
