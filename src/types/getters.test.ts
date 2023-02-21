@@ -8,9 +8,9 @@ describe("getWellKnownSymbolPropertyOfType", () => {
 	// https://github.com/JoshuaKGoldberg/ts-api-tools/issues/15
 	it("gets the property when it does not have a value declaration", () => {
 		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
-            declare const x: Omit<{
+            declare const x: {
                 [Symbol.asyncIterator](): AsyncIterator<any>;
-            }, 'z'>
+            }
         `);
 
 		const node = (sourceFile.statements[0] as ts.VariableStatement)
