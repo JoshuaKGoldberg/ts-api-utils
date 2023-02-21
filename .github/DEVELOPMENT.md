@@ -68,7 +68,7 @@ You should also see suggestions from TypeScript in your editor.
 ## Documentation
 
 You can generate a [TypeDoc](https://typedoc.org) documentation site with `pnpm docs`.
-Once you've generated the docs, you can view them by first running `pnpm docs:server`, then browsering to http://127.0.0.1:8080 (or similar - check the console output of the last command).
+Once you've generated the docs, you can view them by first running `pnpm docs:server`, then browsering to <http://127.0.0.1:8080> (or similar - check the console output of the last command).
 
 ## Publishing
 
