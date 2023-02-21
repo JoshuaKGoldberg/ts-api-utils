@@ -49,7 +49,7 @@
 		"GetSignature",
 		"SetSignature"
 	],
-	"out": "./gh-pages",
+	"out": "./docs/generated",
 	"plugin": [
 		"typedoc-plugin-coverage",
 		"typedoc-plugin-mdn-links",

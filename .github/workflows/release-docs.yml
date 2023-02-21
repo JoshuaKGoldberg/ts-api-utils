@@ -15,7 +15,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "release"
+  group: "release-docs"
   cancel-in-progress: true
 
 jobs:
@@ -30,8 +30,8 @@ jobs:
 
       - name: tar the existing docs
         run: |
-          mkdir -p ./gh-pages
-          tar -cvf old-docs.tar ./gh-pages
+          mkdir -p ./docs/generated
+          tar -cvf old-docs.tar ./docs/generated
 
       - name: create a document artifact
         uses: actions/upload-artifact@v3
@@ -51,13 +51,13 @@ jobs:
 
       - uses: ./.github/actions/git-config
 
-      - run: mkdir -p ./gh-pages
+      - run: mkdir -p ./docs/generated
       - name: Download the existing documents artifact
         uses: actions/download-artifact@v3
         with:
           name: old-docs
 
-      - run: tar -xf old-docs.tar ./gh-pages -C ./gh-pages
+      - run: tar -xf old-docs.tar ./docs/generated -C ./docs/generated
 
       - uses: actions/setup-node@v3
         with:
@@ -72,7 +72,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./gh-pages
+          path: ./docs/generated
 
       - name: Deploy to GitHub Pages
         id: deployment
@@ -86,7 +86,7 @@ jobs:
               | head -1 \
               | awk -F: '{ print $2 }' \
               | sed 's/[",]//g')
-        run: cp ./gh-pages/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
+        run: cp ./docs/generated/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
 
       - run: COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)
       - if: $COVERAGE_CHANGED != "0"
