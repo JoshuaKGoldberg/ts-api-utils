@@ -30,7 +30,7 @@ It should be applied automatically when you save files in VS Code or make a Git 
 This package includes several forms of linting to enforce consistent code quality and styling.
 Each should be shown in VS Code, and can be run manually on the command-line:
 
-- `pnpm lint:docs` ([typedocs](https://typedoc.org/)): Checks that all the code is documented
+- `pnpm lint:docs` ([typedocs](https://typedoc.org)): Checks that all the code is documented
 - `pnpm lint:knip` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
 - `pnpm lint:knip:production` ([knip](https://github.com/webpro/knip)): The same as `lint:knip` but looks purely at production code/dependencies
 - `pnpm lint:md` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
