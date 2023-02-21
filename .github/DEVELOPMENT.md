@@ -70,6 +70,7 @@ You should also see suggestions from TypeScript in your editor.
 You can generate a [TypeDoc](https://typedoc.org) documentation site with `pnpm run docs`.
 Once you've generated the docs, you can view them by first running `pnpm docs:serve`, then browsing to <http://127.0.0.1:8080> (or similar - check the console output of the last command).
 
+> Tip: Run `pnpm run docs --watch` to keep the generated docs up-to-date as you save files.
 ## Publishing
 
 Publishing will automatically happen when commits are pushed to the main branch.
