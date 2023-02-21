@@ -3,12 +3,12 @@
 
 import * as ts from "typescript";
 
-export const enum ScopeBoundary {
-	None = 0,
-	Function = 1,
-}
-
-export function isFunctionScopeBoundary(node: ts.Node): ScopeBoundary {
+/**
+ * Is the node a scope boundary, specifically due to it being a function.
+ *
+ * @category Scopes
+ */
+export function isFunctionScopeBoundary(node: ts.Node): boolean {
 	switch (node.kind) {
 		case ts.SyntaxKind.FunctionExpression:
 		case ts.SyntaxKind.ArrowFunction:
@@ -26,13 +26,11 @@ export function isFunctionScopeBoundary(node: ts.Node): ScopeBoundary {
 		case ts.SyntaxKind.ConstructSignature:
 		case ts.SyntaxKind.ConstructorType:
 		case ts.SyntaxKind.FunctionType:
-			return ScopeBoundary.Function;
+			return true;
 		case ts.SyntaxKind.SourceFile:
 			// if SourceFile is no module, it contributes to the global scope and is therefore no scope boundary
-			return ts.isExternalModule(node as ts.SourceFile)
-				? ScopeBoundary.Function
-				: ScopeBoundary.None;
+			return ts.isExternalModule(node as ts.SourceFile);
 		default:
-			return ScopeBoundary.None;
+			return false;
 	}
 }
