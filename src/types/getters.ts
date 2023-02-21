@@ -54,6 +54,8 @@ export function getPropertyOfType(
 }
 
 /**
+ * Retrieves a type symbol corresponding to a well-known string name.
+ *
  * @category Types - Getters
  */
 export function getWellKnownSymbolPropertyOfType(
