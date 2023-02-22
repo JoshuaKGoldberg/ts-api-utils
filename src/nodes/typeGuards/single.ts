@@ -198,6 +198,7 @@ export function isAssertKeyword(node: ts.Node): node is ts.AssertKeyword {
 /**
  * Test if a node is an `AssertsKeyword`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isAssertsKeyword`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -236,6 +237,7 @@ export function isAsyncKeyword(node: ts.Node): node is ts.AsyncKeyword {
 /**
  * Test if a node is an `AwaitKeyword`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isAwaitKeyword`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -255,6 +257,7 @@ export function isAwaitKeyword(node: ts.Node): node is ts.AwaitKeyword {
 /**
  * Test if a node is a {@link BigIntKeyword}.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isBigIntKeyword`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -274,6 +277,7 @@ export function isBigIntKeyword(node: ts.Node): node is BigIntKeyword {
 /**
  * Test if a node is a {@link BooleanKeyword}.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isBooleanKeyword`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -293,6 +297,7 @@ export function isBooleanKeyword(node: ts.Node): node is BooleanKeyword {
 /**
  * Test if a node is a `ColonToken`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isColonToken`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -447,6 +452,7 @@ export function isEqualsToken(node: ts.Node): node is ts.EqualsToken {
 /**
  * Test if a node is an `ExclamationToken`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isExclamationToken`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -577,9 +583,11 @@ export function isInKeyword(node: ts.Node): node is ts.InKeyword {
 	return node.kind === ts.SyntaxKind.InKeyword;
 }
 
+/* eslint-disable deprecation/deprecation */
 /**
  * Test if a node is an `InputFiles`.
  *
+ * @deprecated With TypeScript v5
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -595,6 +603,7 @@ export function isInKeyword(node: ts.Node): node is ts.InKeyword {
 export function isInputFiles(node: ts.Node): node is ts.InputFiles {
 	return node.kind === ts.SyntaxKind.InputFiles;
 }
+/* eslint-enable deprecation/deprecation */
 
 /**
  * Test if a node is a `JSDocText`.
@@ -829,6 +838,7 @@ export function isPublicKeyword(node: ts.Node): node is ts.PublicKeyword {
 /**
  * Test if a node is a `QuestionDotToken`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isQuestionDotToken`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -848,6 +858,7 @@ export function isQuestionDotToken(node: ts.Node): node is ts.QuestionDotToken {
 /**
  * Test if a node is a `QuestionToken`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isQuestionToken`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1111,9 +1122,11 @@ export function isUnknownKeyword(node: ts.Node): node is UnknownKeyword {
 	return node.kind === ts.SyntaxKind.UnknownKeyword;
 }
 
+/* eslint-disable deprecation/deprecation */
 /**
  * Test if a node is an `UnparsedPrologue`.
  *
+ * @deprecated With TypeScript v5
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1129,10 +1142,13 @@ export function isUnknownKeyword(node: ts.Node): node is UnknownKeyword {
 export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue {
 	return node.kind === ts.SyntaxKind.UnparsedPrologue;
 }
+/* eslint-enable deprecation/deprecation */
 
+/* eslint-disable deprecation/deprecation */
 /**
  * Test if a node is an `UnparsedSyntheticReference`.
  *
+ * @deprecated With TypeScript v5
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1150,6 +1166,7 @@ export function isUnparsedSyntheticReference(
 ): node is ts.UnparsedSyntheticReference {
 	return node.kind === ts.SyntaxKind.UnparsedSyntheticReference;
 }
+/* eslint-enable deprecation/deprecation */
 
 /**
  * Test if a node is a {@link VoidKeyword}.
