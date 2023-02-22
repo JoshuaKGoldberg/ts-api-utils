@@ -38,9 +38,11 @@ jobs:
                 throw error;
               }
             }
-      - env:
+      - run: echo "SHOULD_RELEASE=$(pnpm run should-semantic-release &> /dev/null && echo '1' || echo '0')"
+      - if: ${{ env.SHOULD_RELEASE != '0' }}
+        env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: if pnpm run should-semantic-release ; then pnpm release-it --verbose ; fi
+        run: pnpm release-it --verbose
       - if: always()
         name: Recreate branch protection on main
         uses: actions/github-script@v6.4.0
@@ -93,3 +95,5 @@ jobs:
                 restrictions: null,
               }
             );
+      - if: ${{ env.SHOULD_RELEASE != '0' }}
+        uses: ./.github/workflows/release-docs.yml@main
