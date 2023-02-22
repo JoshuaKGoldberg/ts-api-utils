@@ -74,20 +74,26 @@ jobs:
       - name: Update Coverage Badge
         run: cp ./docs/generated/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
 
-      - run: echo "COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> $GITHUB_ENV
+      - id: coverage_changed
+        run: echo "coverage_changed=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> "$GITHUB_OUTPUT"
 
-      - if: ${{ inputs.push_coverage_changes && env.COVERAGE_CHANGED != '0' }}
+      - id: push_coverage
+        env:
+          COVERAGE_CHANGED: ${{ steps.coverage_changed.outputs.coverage_changed }}
+        run: echo "push_coverage=$(if [ "$COVERAGE_CHANGED" = '0' ] ; then echo '0' ; else git status --porcelain -u | grep -c docs/coverage.svg ; fi)" >> "$GITHUB_OUTPUT"
+
+      - if: steps.push_coverage.outputs.push_coverage != '0'
         uses: ./.github/actions/unprotect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
-      - if: ${{ inputs.push_coverage_changes && env.COVERAGE_CHANGED != '0' }}
+      - if: steps.push_coverage.outputs.push_coverage != '0'
         run: |
           git add docs/coverage.svg
           git commit -m "docs: updated documentation coverage"
           git push
 
-      - if: ${{ always() && inputs.push_coverage_changes && env.COVERAGE_CHANGED != '0' }}
+      - if: ${{ always() && steps.push_coverage.outputs.push_coverage != '0' }}
         uses: ./.github/actions/protect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
