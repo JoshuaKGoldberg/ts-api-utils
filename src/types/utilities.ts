@@ -46,7 +46,8 @@ function isReadonlyPropertyIntersection(
 	name: ts.__String,
 	typeChecker: ts.TypeChecker
 ) {
-	return someTypePart(type, isIntersectionType, (subType): boolean => {
+	const typeParts = isIntersectionType(type) ? type.types : [type];
+	return typeParts.some((subType): boolean => {
 		const prop = getPropertyOfType(subType, name);
 		if (prop === undefined) return false;
 		if (prop.flags & ts.SymbolFlags.Transient) {
@@ -215,37 +216,6 @@ export function isThenableType(
 					return true;
 	}
 	return false;
-}
-
-/**
- * Used by {@link someTypePart}.
- *
- * @category Callbacks
- */
-export type SomeTypePartPredicate = (
-	subType: ts.Type
-) => subType is ts.UnionOrIntersectionType;
-
-/**
- * Used by {@link someTypePart}.
- *
- * @category Callbacks
- */
-export type SomeTypePartCallback = (subType: ts.Type) => boolean;
-
-/**
- * If the given predicate holds for the given type,
- * test that some type part of that union or intersection passes the callback test.
- * Otherwise, test the give type itself with the callback.
- *
- * @category Types - Utilities
- */
-export function someTypePart(
-	type: ts.Type,
-	predicate: SomeTypePartPredicate,
-	callback: SomeTypePartCallback
-): boolean {
-	return predicate(type) ? type.types.some(callback) : callback(type);
 }
 
 /**
