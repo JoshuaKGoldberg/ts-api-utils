@@ -74,6 +74,5 @@ jobs:
       - if: ${{ env.COVERAGE_CHANGED != '0' }}
         run: >
           git add docs/coverage.svg
-          git diff --name-only --cached --diff-filter=AM 
           git commit -m "docs: updated documentation coverage"
           git push
