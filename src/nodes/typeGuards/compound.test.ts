@@ -1,11 +1,11 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createNode } from "../../test/utils.js";
+import { createNode } from "../../test/utils";
 import {
 	isConstAssertionExpression,
 	isNumericOrStringLikeLiteral,
-} from "./compound.js";
+} from "./compound";
 
 describe("isNumericOrStringLikeLiteral", () => {
 	it.each([

@@ -1,3 +1,3 @@
-export * from "./compound.js";
-export * from "./objects.js";
-export * from "./simple.js";
+export * from "./compound";
+export * from "./objects";
+export * from "./simple";
