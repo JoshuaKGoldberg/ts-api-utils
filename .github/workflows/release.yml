@@ -49,5 +49,3 @@ jobs:
     needs: release
     if: needs.release.outputs.did_release != '0'
     uses: ./.github/workflows/release-docs.yml
-    with:
-      push_coverage_changes: true

@@ -3,10 +3,6 @@ name: Release Docs
 on:
   workflow_dispatch:
   workflow_call:
-    inputs:
-      push_coverage_changes:
-        type: boolean
-        default: false
 
 permissions:
   contents: write
@@ -77,10 +73,16 @@ jobs:
       - id: coverage_changed
         run: echo "coverage_changed=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> "$GITHUB_OUTPUT"
 
+      # Debug info
+      - env:
+          UP_TO_DATE: ${{ github.ref == 'refs/heads/main' }}
+        run: echo "$UP_TO_DATE"
+
       - id: push_coverage
         env:
           COVERAGE_CHANGED: ${{ steps.coverage_changed.outputs.coverage_changed }}
-        run: echo "push_coverage=$(if [ "$COVERAGE_CHANGED" = '0' ] ; then echo '0' ; else git status --porcelain -u | grep -c docs/coverage.svg ; fi)" >> "$GITHUB_OUTPUT"
+          UP_TO_DATE: ${{ github.ref == 'refs/heads/main' }}
+        run: echo "push_coverage=$(if [[ "$COVERAGE_CHANGED" != '0' && "$UP_TO_DATE" ]] ; then echo '1' ; else echo '0' ; fi)" >> "$GITHUB_OUTPUT"
 
       - if: steps.push_coverage.outputs.push_coverage != '0'
         uses: ./.github/actions/unprotect-main
