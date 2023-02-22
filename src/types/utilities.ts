@@ -17,6 +17,7 @@ import {
 import { isNumericPropertyName } from "../syntax.js";
 import { getPropertyOfType } from "./getters.js";
 import {
+	isFalseLiteralType,
 	isIntersectionType,
 	isLiteralType,
 	isObjectType,
@@ -25,31 +26,20 @@ import {
 } from "./typeGuards/index.js";
 
 /**
- * Determines whether the given type is a boolean literal type and matches the given boolean literal.
- *
- * @category Types - Utilities
- */
-export function isBooleanLiteralType(type: ts.Type, literal: boolean): boolean {
-	return (
-		isTypeFlagSet(type, ts.TypeFlags.BooleanLiteral) &&
-		(type as unknown as { intrinsicName: string }).intrinsicName ===
-			(literal ? "true" : "false")
-	);
-}
-
-/**
  * Determines whether a type is definitely falsy. This function doesn't unwrap union types.
  *
  * @category Types - Utilities
  */
 export function isFalsyType(type: ts.Type): boolean {
 	if (
-		type.flags &
-		(ts.TypeFlags.Undefined | ts.TypeFlags.Null | ts.TypeFlags.Void)
+		isTypeFlagSet(
+			type,
+			ts.TypeFlags.Undefined | ts.TypeFlags.Null | ts.TypeFlags.Void
+		)
 	)
 		return true;
 	if (isLiteralType(type)) return !type.value;
-	return isBooleanLiteralType(type, false);
+	return isFalseLiteralType(type);
 }
 
 function isReadonlyPropertyIntersection(
@@ -183,7 +173,7 @@ function isReadonlyAssignmentDeclaration(
 		ts.isPropertyAssignment(writableProp.valueDeclaration)
 			? typeChecker.getTypeAtLocation(writableProp.valueDeclaration.initializer)
 			: typeChecker.getTypeOfSymbolAtLocation(writableProp, node.arguments[2]);
-	return isBooleanLiteralType(writableType, false);
+	return isFalseLiteralType(writableType);
 }
 
 /**
