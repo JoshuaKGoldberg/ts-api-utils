@@ -15,6 +15,8 @@ concurrency:
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      did_release: ${{ steps.should_release.outputs.should_release }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -24,19 +26,26 @@ jobs:
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - uses: ./.github/actions/unprotect-main
+
+      - id: should_release
+        run: echo "should_release=$(pnpm run should-semantic-release &> /dev/null && echo '1' || echo '0')" >> "$GITHUB_OUTPUT"
+
+      - if: steps.should_release.outputs.should_release != '0'
+        uses: ./.github/actions/unprotect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      - run: echo "SHOULD_RELEASE=$(pnpm run should-semantic-release &> /dev/null && echo '1' || echo '0')" >> $GITHUB_ENV
-      - if: ${{ env.SHOULD_RELEASE != '0' }}
+      - if: steps.should_release.outputs.should_release != '0'
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: pnpm release-it --verbose
-      - if: always()
+      - if: always() && steps.should_release.outputs.should_release != '0'
         uses: ./.github/actions/protect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      - if: ${{ env.SHOULD_RELEASE != '0' }}
-        uses: ./.github/workflows/release-docs.yml@main
-        with:
-          push_coverage_changes: true
+
+  release_docs:
+    needs: release
+    if: needs.release.outputs.did_release
+    uses: ./.github/workflows/release-docs.yml
+    with:
+      push_coverage_changes: true
