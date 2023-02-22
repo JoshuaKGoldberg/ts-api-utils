@@ -61,7 +61,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: lts/*
+          node-version: latest
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
