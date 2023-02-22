@@ -72,7 +72,7 @@ jobs:
 
       - run: echo "COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> $GITHUB_ENV
       - if: ${{ env.COVERAGE_CHANGED != '0' }}
-        run: >
+        run: |
           git add docs/coverage.svg
           git commit -m "docs: updated documentation coverage"
           git push
