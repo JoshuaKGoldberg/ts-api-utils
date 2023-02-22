@@ -15,8 +15,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "release-docs"
-  cancel-in-progress: true
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
 
 jobs:
   get_old_docs:
