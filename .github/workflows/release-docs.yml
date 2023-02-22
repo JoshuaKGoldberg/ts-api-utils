@@ -44,7 +44,7 @@ jobs:
       - name: Checkout src
         uses: actions/checkout@v3
 
-      - uses: ./.github/actions/git-config
+      - uses: ./.github/actions/prepare
 
       - run: mkdir -p ./docs/generated
       - name: Download the existing documents artifact
@@ -53,13 +53,6 @@ jobs:
           name: old-docs
 
       - run: tar -xf old-docs.tar ./docs/generated -C ./docs/generated
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: latest
-          cache: "pnpm"
-
-      - run: pnpm install --frozen-lockfile
 
       - name: Build docs
         run: pnpm run docs
