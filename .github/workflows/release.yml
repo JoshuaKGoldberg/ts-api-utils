@@ -27,7 +27,7 @@ jobs:
       - uses: ./.github/actions/unprotect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      - run: echo "SHOULD_RELEASE=$(pnpm run should-semantic-release &> /dev/null && echo '1' || echo '0')"
+      - run: echo "SHOULD_RELEASE=$(pnpm run should-semantic-release &> /dev/null && echo '1' || echo '0')" >> $GITHUB_ENV
       - if: ${{ env.SHOULD_RELEASE != '0' }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
