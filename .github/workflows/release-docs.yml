@@ -66,9 +66,8 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
 
+      - run: 'echo "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: ''{ print $2 }'' | sed ''s/[",]//g'')" >> $GITHUB_ENV'
       - name: Update Coverage Badge
-        env:
-          PACKAGE_VERSION: 'cat package.json | grep version | head -1 | awk -F: ''{ print $2 }'' | sed ''s/[",]//g'''
         run: cp ./docs/generated/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
 
       - run: echo "COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> $GITHUB_ENV
