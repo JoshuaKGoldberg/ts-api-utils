@@ -74,6 +74,8 @@ jobs:
 
       - if: ${{ env.COVERAGE_CHANGED != '0' }}
         uses: ./.github/actions/unprotect-main
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - if: ${{ env.COVERAGE_CHANGED != '0' }}
         run: |
@@ -83,3 +85,5 @@ jobs:
 
       - if: ${{ always() && env.COVERAGE_CHANGED != '0' }}
         uses: ./.github/actions/protect-main
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}

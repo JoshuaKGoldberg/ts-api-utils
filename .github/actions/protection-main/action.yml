@@ -1,6 +1,10 @@
 name: Protect main
 description: Delete branch protection on main
 
+secrets:
+  ACCESS_TOKEN:
+    required: true
+
 runs:
   using: "composite"
   steps:
