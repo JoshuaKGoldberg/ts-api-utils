@@ -128,6 +128,7 @@ export function isJsxTagNamePropertyAccess(
 ): node is ts.JsxTagNamePropertyAccess {
 	return (
 		ts.isPropertyAccessExpression(node) &&
+		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts < 5
 		isJsxTagNameExpression(node.expression)
 	);
 }

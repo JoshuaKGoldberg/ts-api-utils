@@ -93,6 +93,7 @@ export function isAccessorDeclaration(
 /**
  * Test if a node is an `ArrayBindingElement`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isArrayBindingElement`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -921,6 +922,7 @@ export function isJsonObjectExpression(
 /**
  * Test if a node is a `JsxAttributeLike`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isJsxAttributeLike`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -967,6 +969,7 @@ export function isJsxAttributeValue(
 /**
  * Test if a node is a `JsxChild`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isJsxChild`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -992,6 +995,7 @@ export function isJsxChild(node: ts.Node): node is ts.JsxChild {
 /**
  * Test if a node is a `JsxTagNameExpression`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isJsxTagNameExpression`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1043,6 +1047,7 @@ export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 /**
  * Test if a node is a `ModuleBody`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isModuleBody`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1062,6 +1067,7 @@ export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
 /**
  * Test if a node is a `ModuleName`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isModuleName`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1081,6 +1087,7 @@ export function isModuleName(node: ts.Node): node is ts.ModuleName {
 /**
  * Test if a node is a `ModuleReference`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isModuleReference`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1100,6 +1107,7 @@ export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
 /**
  * Test if a node is a `NamedImportBindings`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isNamedImportBindings`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1426,9 +1434,11 @@ export function isUnionOrIntersectionTypeNode(
 	return ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node);
 }
 
+/* eslint-disable deprecation/deprecation */
 /**
  * Test if a node is an `UnparsedSourceText`.
  *
+ * @deprecated With TypeScript v5
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1446,6 +1456,7 @@ export function isUnparsedSourceText(
 ): node is ts.UnparsedSourceText {
 	return ts.isUnparsedPrepend(node) || ts.isUnparsedTextLike(node);
 }
+/* eslint-enable deprecation/deprecation */
 
 /**
  * Test if a node is a `VariableLikeDeclaration`.
