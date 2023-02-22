@@ -5,7 +5,6 @@ import { createSourceFileAndTypeChecker } from "../../test/utils.js";
 import {
 	isConditionalType,
 	isIntersectionType,
-	isLiteralType,
 	isObjectType,
 	isUnionOrIntersectionType,
 	isUnionType,
@@ -49,17 +48,6 @@ describe("isIntersectionType", () => {
 		const type = getTypeForTypeNode(sourceText);
 
 		expect(isIntersectionType(type)).toBe(expected);
-	});
-});
-
-describe("isLiteralType", () => {
-	it.each([
-		[false, "type Test = [];"],
-		[true, "type Test = 1;"],
-	])("returns %j when given %s", (expected, sourceText) => {
-		const type = getTypeForTypeNode(sourceText);
-
-		expect(isLiteralType(type)).toBe(expected);
 	});
 });
 

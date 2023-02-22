@@ -19,7 +19,6 @@ import { getPropertyOfType } from "./getters.js";
 import {
 	isFalseLiteralType,
 	isIntersectionType,
-	isLiteralType,
 	isObjectType,
 	isTupleTypeReference,
 	isUnionType,
@@ -38,7 +37,7 @@ export function isFalsyType(type: ts.Type): boolean {
 		)
 	)
 		return true;
-	if (isLiteralType(type)) return !type.value;
+	if (type.isLiteral()) return !type.value;
 	return isFalseLiteralType(type);
 }
 
