@@ -3,6 +3,10 @@ name: Release Docs
 on:
   workflow_dispatch:
   workflow_call:
+    inputs:
+      push_coverage_changes:
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -72,18 +76,18 @@ jobs:
 
       - run: echo "COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> $GITHUB_ENV
 
-      - if: ${{ env.COVERAGE_CHANGED != '0' }}
+      - if: ${{ inputs.push_coverage_changes && env.COVERAGE_CHANGED != '0' }}
         uses: ./.github/actions/unprotect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
-      - if: ${{ env.COVERAGE_CHANGED != '0' }}
+      - if: ${{ inputs.push_coverage_changes && env.COVERAGE_CHANGED != '0' }}
         run: |
           git add docs/coverage.svg
           git commit -m "docs: updated documentation coverage"
           git push
 
-      - if: ${{ always() && env.COVERAGE_CHANGED != '0' }}
+      - if: ${{ always() && inputs.push_coverage_changes && env.COVERAGE_CHANGED != '0' }}
         uses: ./.github/actions/protect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}

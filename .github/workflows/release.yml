@@ -38,3 +38,5 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - if: ${{ env.SHOULD_RELEASE != '0' }}
         uses: ./.github/workflows/release-docs.yml@main
+        with:
+          push_coverage_changes: true
