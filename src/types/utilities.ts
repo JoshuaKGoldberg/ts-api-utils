@@ -9,20 +9,20 @@ import {
 	isObjectFlagSet,
 	isSymbolFlagSet,
 	isTypeFlagSet,
-} from "../flags.js";
+} from "../flags";
 import {
 	isBindableObjectDefinePropertyCall,
 	isInConstContext,
-} from "../nodes/utilities.js";
-import { isNumericPropertyName } from "../syntax.js";
-import { getPropertyOfType } from "./getters.js";
+} from "../nodes/utilities";
+import { isNumericPropertyName } from "../syntax";
+import { getPropertyOfType } from "./getters";
 import {
 	isFalseLiteralType,
 	isIntersectionType,
 	isObjectType,
 	isTupleTypeReference,
 	isUnionType,
-} from "./typeGuards/index.js";
+} from "./typeGuards";
 
 /**
  * Determines whether a type is definitely falsy. This function doesn't unwrap union types.
