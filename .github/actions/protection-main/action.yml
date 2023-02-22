@@ -1,7 +1,7 @@
 name: Protect main
 description: Delete branch protection on main
 
-secrets:
+inputs:
   ACCESS_TOKEN:
     required: true
 
@@ -11,7 +11,7 @@ runs:
     - name: Recreate branch protection on main
       uses: actions/github-script@v6.4.0
       with:
-        github-token: ${{ secrets.ACCESS_TOKEN }}
+        github-token: ${{ inputs.ACCESS_TOKEN }}
         # Note: keep this inline script in sync with script/setup.js!
         # Todo: it would be nice to not have two sources of truth...
         # https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
