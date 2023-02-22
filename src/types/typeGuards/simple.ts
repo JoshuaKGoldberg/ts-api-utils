@@ -70,15 +70,6 @@ export function isIntersectionType(type: ts.Type): type is ts.IntersectionType {
 }
 
 /**
- * Test if a type is a `LiteralType`.
- *
- * @category Types - Type Guards
- */
-export function isLiteralType(type: ts.Type): type is ts.LiteralType {
-	return isTypeFlagSet(type, ts.TypeFlags.Literal);
-}
-
-/**
  * Test if a type is a `NumberLiteralType`.
  *
  * @category Types - Type Guards
