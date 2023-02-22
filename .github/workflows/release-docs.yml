@@ -1,6 +1,7 @@
 name: Release Docs
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows:
       - Release
@@ -89,7 +90,7 @@ jobs:
         run: cp ./docs/generated/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
 
       - run: COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)
-      - if: $COVERAGE_CHANGED != "0"
+      - if: ${{ "$COVERAGE_CHANGED" != "0" }}
         run: >
           git add docs/coverage.svg
           git diff --name-only --cached --diff-filter=AM 
