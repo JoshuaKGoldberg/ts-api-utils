@@ -24,13 +24,13 @@ jobs:
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - uses: ./.github/actions/unprotect-main/action.yml
+      - uses: ./.github/actions/unprotect-main
       - run: echo "SHOULD_RELEASE=$(pnpm run should-semantic-release &> /dev/null && echo '1' || echo '0')"
       - if: ${{ env.SHOULD_RELEASE != '0' }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: pnpm release-it --verbose
       - if: always()
-        uses: ./.github/actions/protect-main/action.yml
+        uses: ./.github/actions/protect-main
       - if: ${{ env.SHOULD_RELEASE != '0' }}
         uses: ./.github/workflows/release-docs.yml@main
