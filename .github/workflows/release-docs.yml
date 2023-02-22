@@ -89,8 +89,8 @@ jobs:
               | sed 's/[",]//g')
         run: cp ./docs/generated/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
 
-      - run: COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)
-      - if: ${{ "$COVERAGE_CHANGED" != "0" }}
+      - run: echo "COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> $GITHUB_ENV
+      - if: ${{ env.COVERAGE_CHANGED != "0" }}
         run: >
           git add docs/coverage.svg
           git diff --name-only --cached --diff-filter=AM 
