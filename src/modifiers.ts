@@ -4,11 +4,11 @@
 import * as ts from "typescript";
 
 /**
- * Test if the given iterable contains a modifier of any of the given kinds.
+ * Test if the given iterable includes a modifier of any of the given kinds.
  *
  * @category Modifier Utilities
  */
-export function hasModifier(
+export function includesModifier(
 	modifiers: Iterable<ts.Modifier> | undefined,
 	...kinds: ts.ModifierSyntaxKind[]
 ): boolean {
