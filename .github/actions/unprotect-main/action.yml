@@ -1,0 +1,20 @@
+name: Unprotect main
+description: Delete branch protection on main
+
+runs:
+  using: "composite"
+  steps:
+    - name: Delete branch protection on main
+      uses: actions/github-script@v6.4.0
+      with:
+        github-token: ${{ secrets.ACCESS_TOKEN }}
+        script: |
+          try {
+            await github.request(
+              `DELETE /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
+            );
+          } catch (error) {
+            if (!error.message?.includes?.("Branch not protected")) {
+              throw error;
+            }
+          }

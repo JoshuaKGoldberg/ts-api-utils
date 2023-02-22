@@ -71,8 +71,15 @@ jobs:
         run: cp ./docs/generated/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
 
       - run: echo "COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> $GITHUB_ENV
+
+      - if: ${{ env.COVERAGE_CHANGED != '0' }}
+        uses: ./.github/actions/unprotect-main/action.yml
+
       - if: ${{ env.COVERAGE_CHANGED != '0' }}
         run: |
           git add docs/coverage.svg
           git commit -m "docs: updated documentation coverage"
           git push
+
+      - if: ${{ always() && env.COVERAGE_CHANGED != '0' }}
+        uses: ./.github/actions/protect-main/action.yml
