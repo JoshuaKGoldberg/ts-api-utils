@@ -10,6 +10,11 @@ import {
 	isUniqueESSymbolType,
 } from "./typeGuards/index.js";
 
+/**
+ * Get the `CallSignatures` of the given type.
+ *
+ * @category Types - Getters
+ */
 export function getCallSignaturesOfType(
 	type: ts.Type
 ): readonly ts.Signature[] {
@@ -34,6 +39,11 @@ export function getCallSignaturesOfType(
 	return type.getCallSignatures();
 }
 
+/**
+ * Get the property with the given name on the given type (if it exists).
+ *
+ * @category Types - Getters
+ */
 export function getPropertyOfType(
 	type: ts.Type,
 	name: ts.__String
@@ -43,6 +53,11 @@ export function getPropertyOfType(
 	return type.getProperties().find((s) => s.escapedName === name);
 }
 
+/**
+ * Retrieves a type symbol corresponding to a well-known string name.
+ *
+ * @category Types - Getters
+ */
 export function getWellKnownSymbolPropertyOfType(
 	type: ts.Type,
 	wellKnownSymbolName: string,
@@ -83,6 +98,9 @@ export function getWellKnownSymbolPropertyOfType(
 	return undefined;
 }
 
+/**
+ * @internal
+ */
 function getPropertyNameOfWellKnownSymbol(
 	typeChecker: ts.TypeChecker,
 	symbolConstructor: ts.Symbol | undefined,

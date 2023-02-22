@@ -1,5 +1,10 @@
 {
 	"$schema": "https://unpkg.com/knip@next/schema.json",
 	"entry": ["src/**/index.ts", "src/**/*.test.ts"],
+	"ignoreDependencies": [
+		"typedoc-plugin-coverage",
+		"typedoc-plugin-mdn-links",
+		"typedoc-plugin-versions"
+	],
 	"project": ["src/**/*.ts"]
 }

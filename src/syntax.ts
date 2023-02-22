@@ -3,6 +3,11 @@
 
 import * as ts from "typescript";
 
+/**
+ * Test of the kind given is for assignment.
+ *
+ * @category Syntax Utilities
+ */
 export function isAssignmentKind(kind: ts.SyntaxKind): boolean {
 	return (
 		kind >= ts.SyntaxKind.FirstAssignment &&
@@ -10,6 +15,11 @@ export function isAssignmentKind(kind: ts.SyntaxKind): boolean {
 	);
 }
 
+/**
+ * Test if a string is numeric.
+ *
+ * @category Syntax Utilities
+ */
 export function isNumericPropertyName(name: string | ts.__String): boolean {
 	return String(+name) === name;
 }
@@ -19,7 +29,9 @@ function charSize(ch: number) {
 }
 
 /**
- * Determines whether the given text can be used to access a property with a PropertyAccessExpression while preserving the property's name.
+ * Determines whether the given text can be used to access a property with a `PropertyAccessExpression` while preserving the property's name.
+ *
+ * @category Syntax Utilities
  */
 export function isValidPropertyAccess(
 	text: string,

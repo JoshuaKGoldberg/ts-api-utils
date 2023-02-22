@@ -25,7 +25,11 @@ import {
 	isUnionType,
 } from "./typeGuards/index.js";
 
-/** Determines whether a type is definitely falsy. This function doesn't unwrap union types. */
+/**
+ * Determines whether a type is definitely falsy. This function doesn't unwrap union types.
+ *
+ * @category Types - Utilities
+ */
 export function isFalsyType(type: ts.Type): boolean {
 	if (
 		isTypeFlagSet(
@@ -113,7 +117,11 @@ function isCallback(
 	return false;
 }
 
-/** Determines whether writing to a certain property of a given type is allowed. */
+/**
+ * Determines whether writing to a certain property of a given type is allowed.
+ *
+ * @category Types - Utilities
+ */
 export function isPropertyReadonlyInType(
 	type: ts.Type,
 	name: ts.__String,
@@ -145,7 +153,11 @@ export function isPropertyReadonlyInType(
 	return false;
 }
 
-/** Returns true for `Object.defineProperty(o, 'prop', {value, writable: false})` and  `Object.defineProperty(o, 'prop', {get: () => 1})`*/
+/**
+ * Returns true for `Object.defineProperty(o, 'prop', {value, writable: false})` and `Object.defineProperty(o, 'prop', {get: () => 1})`
+ *
+ * @category Types - Utilities
+ */
 function isReadonlyAssignmentDeclaration(
 	node: ts.CallExpression,
 	typeChecker: ts.TypeChecker
@@ -164,18 +176,28 @@ function isReadonlyAssignmentDeclaration(
 	return isFalseLiteralType(writableType);
 }
 
-/** Determines whether a type is thenable and thus can be used with `await`. */
+/**
+ * Determines whether a type is thenable and thus can be used with `await`.
+ *
+ * @category Types - Utilities
+ */
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
 	node: ts.Node,
 	type: ts.Type
 ): boolean;
-/** Determines whether a type is thenable and thus can be used with `await`. */
+
+/**
+ * Determines whether a type is thenable and thus can be used with `await`.
+ *
+ * @category Types - Utilities
+ */
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
 	node: ts.Expression,
 	type?: ts.Type
 ): boolean;
+
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
 	node: ts.Node,
@@ -196,12 +218,29 @@ export function isThenableType(
 	return false;
 }
 
+/**
+ * Used by {@link someTypePart}.
+ *
+ * @category Callbacks
+ */
 export type SomeTypePartPredicate = (
 	subType: ts.Type
 ) => subType is ts.UnionOrIntersectionType;
 
+/**
+ * Used by {@link someTypePart}.
+ *
+ * @category Callbacks
+ */
 export type SomeTypePartCallback = (subType: ts.Type) => boolean;
 
+/**
+ * If the given predicate holds for the given type,
+ * test that some type part of that union or intersection passes the callback test.
+ * Otherwise, test the give type itself with the callback.
+ *
+ * @category Types - Utilities
+ */
 export function someTypePart(
 	type: ts.Type,
 	predicate: SomeTypePartPredicate,
@@ -210,6 +249,11 @@ export function someTypePart(
 	return predicate(type) ? type.types.some(callback) : callback(type);
 }
 
+/**
+ * Test if the given symbol has a readonly declaration.
+ *
+ * @category Symbols - Utilities
+ */
 export function symbolHasReadonlyDeclaration(
 	symbol: ts.Symbol,
 	typeChecker: ts.TypeChecker
@@ -231,6 +275,13 @@ export function symbolHasReadonlyDeclaration(
 	);
 }
 
+/**
+ * Get the union type parts of the given type.
+ *
+ * If the given type is not a union type, an array contain only that type will be returned.
+ *
+ * @category Types - Utilities
+ */
 export function unionTypeParts(type: ts.Type): ts.Type[] {
 	return isUnionType(type) ? type.types : [type];
 }

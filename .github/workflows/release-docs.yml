@@ -1,0 +1,97 @@
+name: Release Docs
+
+on:
+  workflow_run:
+    workflows:
+      - Release
+    types:
+      - completed
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  get_old_docs:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: get the gh-pages repo
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+
+      - name: tar the existing docs
+        run: |
+          mkdir -p ./docs/generated
+          tar -cvf old-docs.tar ./docs/generated
+
+      - name: create a document artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: old-docs
+          path: old-docs.tar
+
+  update_and_deploy_docs:
+    needs: get_old_docs
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout src
+        uses: actions/checkout@v3
+
+      - uses: ./.github/actions/git-config
+
+      - run: mkdir -p ./docs/generated
+      - name: Download the existing documents artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: old-docs
+
+      - run: tar -xf old-docs.tar ./docs/generated -C ./docs/generated
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: latest
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build docs
+        run: pnpm run docs
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./docs/generated
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
+      - name: Update Coverage Badge
+        env:
+          PACKAGE_VERSION: >
+            $(cat package.json \
+              | grep version \
+              | head -1 \
+              | awk -F: '{ print $2 }' \
+              | sed 's/[",]//g')
+        run: cp ./docs/generated/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
+
+      - run: COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)
+      - if: $COVERAGE_CHANGED != "0"
+        run: >
+          git add docs/coverage.svg
+          git diff --name-only --cached --diff-filter=AM 
+          git commit -m "docs: updated documentation coverage"
+          git push

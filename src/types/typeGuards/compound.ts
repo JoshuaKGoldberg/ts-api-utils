@@ -89,6 +89,11 @@ export function isFalseLiteralType(type: ts.Type): type is FalseLiteralType {
 	);
 }
 
+/**
+ * Test if a type is a `TupleTypeReference`.
+ *
+ * @category Types - Type Guards
+ */
 export function isTupleTypeReference(
 	type: ts.Type
 ): type is ts.TupleTypeReference {

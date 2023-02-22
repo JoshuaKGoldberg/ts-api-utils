@@ -6,7 +6,7 @@ import * as ts from "typescript";
 /**
  * Is the node a scope boundary, specifically due to it being a function.
  *
- * @category Scopes
+ * @category Scope Utilities
  */
 export function isFunctionScopeBoundary(node: ts.Node): boolean {
 	switch (node.kind) {
