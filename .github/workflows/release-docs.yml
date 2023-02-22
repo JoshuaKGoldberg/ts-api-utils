@@ -73,7 +73,7 @@ jobs:
       - run: echo "COVERAGE_CHANGED=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> $GITHUB_ENV
 
       - if: ${{ env.COVERAGE_CHANGED != '0' }}
-        uses: ./.github/actions/unprotect-main/action.yml
+        uses: ./.github/actions/unprotect-main
 
       - if: ${{ env.COVERAGE_CHANGED != '0' }}
         run: |
@@ -82,4 +82,4 @@ jobs:
           git push
 
       - if: ${{ always() && env.COVERAGE_CHANGED != '0' }}
-        uses: ./.github/actions/protect-main/action.yml
+        uses: ./.github/actions/protect-main
