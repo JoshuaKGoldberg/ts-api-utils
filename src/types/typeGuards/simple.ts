@@ -6,6 +6,15 @@ import { isTypeFlagSet } from "../../flags.js";
  * Test if a type is a `BigIntLiteralType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isBigIntLiteralType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isBigIntLiteralType(
 	type: ts.Type
@@ -17,6 +26,15 @@ export function isBigIntLiteralType(
  * Test if a type is a `ConditionalType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isConditionalType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isConditionalType(type: ts.Type): type is ts.ConditionalType {
 	return isTypeFlagSet(type, ts.TypeFlags.Conditional);
@@ -26,6 +44,15 @@ export function isConditionalType(type: ts.Type): type is ts.ConditionalType {
  * Test if a type is a `EnumType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isEnumType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isEnumType(type: ts.Type): type is ts.EnumType {
 	return isTypeFlagSet(type, ts.TypeFlags.Enum);
@@ -35,6 +62,15 @@ export function isEnumType(type: ts.Type): type is ts.EnumType {
  * Test if a type is a `IndexType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isIndexType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isIndexType(type: ts.Type): type is ts.IndexType {
 	return isTypeFlagSet(type, ts.TypeFlags.Index);
@@ -44,6 +80,15 @@ export function isIndexType(type: ts.Type): type is ts.IndexType {
  * Test if a type is a `IndexedAccessType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isIndexedAccessType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isIndexedAccessType(
 	type: ts.Type
@@ -55,6 +100,15 @@ export function isIndexedAccessType(
  * Test if a type is a `InstantiableType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isInstantiableType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isInstantiableType(type: ts.Type): type is ts.InstantiableType {
 	return isTypeFlagSet(type, ts.TypeFlags.Instantiable);
@@ -64,6 +118,15 @@ export function isInstantiableType(type: ts.Type): type is ts.InstantiableType {
  * Test if a type is a `IntersectionType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isIntersectionType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isIntersectionType(type: ts.Type): type is ts.IntersectionType {
 	return isTypeFlagSet(type, ts.TypeFlags.Intersection);
@@ -73,6 +136,15 @@ export function isIntersectionType(type: ts.Type): type is ts.IntersectionType {
  * Test if a type is a `NumberLiteralType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isNumberLiteralType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isNumberLiteralType(
 	type: ts.Type
@@ -84,6 +156,15 @@ export function isNumberLiteralType(
  * Test if a type is a `ObjectType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isObjectType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isObjectType(type: ts.Type): type is ts.ObjectType {
 	return isTypeFlagSet(type, ts.TypeFlags.Object);
@@ -93,6 +174,15 @@ export function isObjectType(type: ts.Type): type is ts.ObjectType {
  * Test if a type is a `StringLiteralType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isStringLiteralType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isStringLiteralType(
 	type: ts.Type
@@ -104,6 +194,15 @@ export function isStringLiteralType(
  * Test if a type is a `StringMappingType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isStringMappingType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isStringMappingType(
 	type: ts.Type
@@ -115,6 +214,15 @@ export function isStringMappingType(
  * Test if a type is a `SubstitutionType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isSubstitutionType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isSubstitutionType(type: ts.Type): type is ts.SubstitutionType {
 	return isTypeFlagSet(type, ts.TypeFlags.Substitution);
@@ -124,6 +232,15 @@ export function isSubstitutionType(type: ts.Type): type is ts.SubstitutionType {
  * Test if a type is a `TemplateLiteralType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isTemplateLiteralType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isTemplateLiteralType(
 	type: ts.Type
@@ -135,6 +252,15 @@ export function isTemplateLiteralType(
  * Test if a type is a `TypeParameter`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isTypeParameter(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isTypeParameter(type: ts.Type): type is ts.TypeParameter {
 	return isTypeFlagSet(type, ts.TypeFlags.TypeParameter);
@@ -144,6 +270,15 @@ export function isTypeParameter(type: ts.Type): type is ts.TypeParameter {
  * Test if a type is a `TypeVariable`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isTypeVariable(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isTypeVariable(type: ts.Type): type is ts.TypeVariable {
 	return isTypeFlagSet(type, ts.TypeFlags.TypeVariable);
@@ -153,6 +288,15 @@ export function isTypeVariable(type: ts.Type): type is ts.TypeVariable {
  * Test if a type is a `UnionType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isUnionType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isUnionType(type: ts.Type): type is ts.UnionType {
 	return isTypeFlagSet(type, ts.TypeFlags.Union);
@@ -162,6 +306,15 @@ export function isUnionType(type: ts.Type): type is ts.UnionType {
  * Test if a type is a `UnionOrIntersectionType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isUnionOrIntersectionType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isUnionOrIntersectionType(
 	type: ts.Type
@@ -173,6 +326,15 @@ export function isUnionOrIntersectionType(
  * Test if a type is a `UniqueESSymbolType`.
  *
  * @category Types - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isUniqueESSymbolType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isUniqueESSymbolType(
 	type: ts.Type

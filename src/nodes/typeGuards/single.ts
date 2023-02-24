@@ -123,6 +123,16 @@ export type VoidKeyword = ts.KeywordToken<ts.SyntaxKind.VoidKeyword>;
  * Test if a node is an `AbstractKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isAbstractKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `AbstractKeyword`.
  */
 export function isAbstractKeyword(node: ts.Node): node is ts.AbstractKeyword {
@@ -133,6 +143,16 @@ export function isAbstractKeyword(node: ts.Node): node is ts.AbstractKeyword {
  * Test if a node is an `AccessorKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isAccessorKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `AccessorKeyword`.
  */
 export function isAccessorKeyword(node: ts.Node): node is ts.AccessorKeyword {
@@ -143,6 +163,16 @@ export function isAccessorKeyword(node: ts.Node): node is ts.AccessorKeyword {
  * Test if a node is an {@link AnyKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isAnyKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an {@link AnyKeyword}.
  */
 export function isAnyKeyword(node: ts.Node): node is AnyKeyword {
@@ -153,6 +183,16 @@ export function isAnyKeyword(node: ts.Node): node is AnyKeyword {
  * Test if a node is an `AssertKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isAssertKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `AssertKeyword`.
  */
 export function isAssertKeyword(node: ts.Node): node is ts.AssertKeyword {
@@ -163,6 +203,16 @@ export function isAssertKeyword(node: ts.Node): node is ts.AssertKeyword {
  * Test if a node is an `AssertsKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isAssertsKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `AssertsKeyword`.
  */
 export function isAssertsKeyword(node: ts.Node): node is ts.AssertsKeyword {
@@ -173,6 +223,16 @@ export function isAssertsKeyword(node: ts.Node): node is ts.AssertsKeyword {
  * Test if a node is an `AsyncKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isAsyncKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `AsyncKeyword`.
  */
 export function isAsyncKeyword(node: ts.Node): node is ts.AsyncKeyword {
@@ -183,6 +243,16 @@ export function isAsyncKeyword(node: ts.Node): node is ts.AsyncKeyword {
  * Test if a node is an `AwaitKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isAwaitKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `AwaitKeyword`.
  */
 export function isAwaitKeyword(node: ts.Node): node is ts.AwaitKeyword {
@@ -193,6 +263,16 @@ export function isAwaitKeyword(node: ts.Node): node is ts.AwaitKeyword {
  * Test if a node is a {@link BigIntKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isBigIntKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link BigIntKeyword}.
  */
 export function isBigIntKeyword(node: ts.Node): node is BigIntKeyword {
@@ -203,6 +283,16 @@ export function isBigIntKeyword(node: ts.Node): node is BigIntKeyword {
  * Test if a node is a {@link BooleanKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isBooleanKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link BooleanKeyword}.
  */
 export function isBooleanKeyword(node: ts.Node): node is BooleanKeyword {
@@ -213,6 +303,16 @@ export function isBooleanKeyword(node: ts.Node): node is BooleanKeyword {
  * Test if a node is a `ColonToken`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isColonToken(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `ColonToken`.
  */
 export function isColonToken(node: ts.Node): node is ts.ColonToken {
@@ -223,6 +323,16 @@ export function isColonToken(node: ts.Node): node is ts.ColonToken {
  * Test if a node is a `ConstKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isConstKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `ConstKeyword`.
  */
 export function isConstKeyword(node: ts.Node): node is ts.ConstKeyword {
@@ -233,6 +343,16 @@ export function isConstKeyword(node: ts.Node): node is ts.ConstKeyword {
  * Test if a node is a `DeclareKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isDeclareKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `DeclareKeyword`.
  */
 export function isDeclareKeyword(node: ts.Node): node is ts.DeclareKeyword {
@@ -243,6 +363,16 @@ export function isDeclareKeyword(node: ts.Node): node is ts.DeclareKeyword {
  * Test if a node is a `DefaultKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isDefaultKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `DefaultKeyword`.
  */
 export function isDefaultKeyword(node: ts.Node): node is ts.DefaultKeyword {
@@ -253,6 +383,16 @@ export function isDefaultKeyword(node: ts.Node): node is ts.DefaultKeyword {
  * Test if a node is a `DotToken`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isDotToken(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `DotToken`.
  */
 export function isDotToken(node: ts.Node): node is ts.DotToken {
@@ -263,6 +403,16 @@ export function isDotToken(node: ts.Node): node is ts.DotToken {
  * Test if a node is an `EndOfFileToken`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isEndOfFileToken(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `EndOfFileToken`.
  */
 export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken {
@@ -273,6 +423,16 @@ export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken {
  * Test if a node is an `EqualsGreaterThanToken`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isEqualsGreaterThanToken(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `EqualsGreaterThanToken`.
  */
 export function isEqualsGreaterThanToken(
@@ -285,6 +445,16 @@ export function isEqualsGreaterThanToken(
  * Test if a node is an `EqualsToken`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isEqualsToken(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `EqualsToken`.
  */
 export function isEqualsToken(node: ts.Node): node is ts.EqualsToken {
@@ -295,6 +465,16 @@ export function isEqualsToken(node: ts.Node): node is ts.EqualsToken {
  * Test if a node is an `ExclamationToken`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isExclamationToken(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `ExclamationToken`.
  */
 export function isExclamationToken(node: ts.Node): node is ts.ExclamationToken {
@@ -305,6 +485,16 @@ export function isExclamationToken(node: ts.Node): node is ts.ExclamationToken {
  * Test if a node is an `ExportKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isExportKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `ExportKeyword`.
  */
 export function isExportKeyword(node: ts.Node): node is ts.ExportKeyword {
@@ -315,6 +505,16 @@ export function isExportKeyword(node: ts.Node): node is ts.ExportKeyword {
  * Test if a node is a {@link FalseKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isFalseKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link FalseKeyword}.
  */
 export function isFalseKeyword(node: ts.Node): node is FalseKeyword {
@@ -325,6 +525,16 @@ export function isFalseKeyword(node: ts.Node): node is FalseKeyword {
  * Test if a node is a `FalseLiteral`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isFalseLiteral(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `FalseLiteral`.
  */
 export function isFalseLiteral(node: ts.Node): node is ts.FalseLiteral {
@@ -335,6 +545,16 @@ export function isFalseLiteral(node: ts.Node): node is ts.FalseLiteral {
  * Test if a node is an `ImportExpression`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isImportExpression(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `ImportExpression`.
  */
 export function isImportExpression(node: ts.Node): node is ts.ImportExpression {
@@ -345,6 +565,16 @@ export function isImportExpression(node: ts.Node): node is ts.ImportExpression {
  * Test if a node is an {@link ImportKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isImportKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an {@link ImportKeyword}.
  */
 export function isImportKeyword(node: ts.Node): node is ImportKeyword {
@@ -355,6 +585,16 @@ export function isImportKeyword(node: ts.Node): node is ImportKeyword {
  * Test if a node is an `InKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isInKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `InKeyword`.
  */
 export function isInKeyword(node: ts.Node): node is ts.InKeyword {
@@ -365,6 +605,16 @@ export function isInKeyword(node: ts.Node): node is ts.InKeyword {
  * Test if a node is an `InputFiles`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isInputFiles(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `InputFiles`.
  */
 export function isInputFiles(node: ts.Node): node is ts.InputFiles {
@@ -375,6 +625,16 @@ export function isInputFiles(node: ts.Node): node is ts.InputFiles {
  * Test if a node is a `JSDocText`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isJSDocText(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `JSDocText`.
  */
 export function isJSDocText(node: ts.Node): node is ts.JSDocText {
@@ -385,6 +645,16 @@ export function isJSDocText(node: ts.Node): node is ts.JSDocText {
  * Test if a node is a `JsonMinusNumericLiteral`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isJsonMinusNumericLiteral(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `JsonMinusNumericLiteral`.
  */
 export function isJsonMinusNumericLiteral(
@@ -397,6 +667,16 @@ export function isJsonMinusNumericLiteral(
  * Test if a node is a {@link NeverKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isNeverKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link NeverKeyword}.
  */
 export function isNeverKeyword(node: ts.Node): node is NeverKeyword {
@@ -407,6 +687,16 @@ export function isNeverKeyword(node: ts.Node): node is NeverKeyword {
  * Test if a node is a {@link NullKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isNullKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link NullKeyword}.
  */
 export function isNullKeyword(node: ts.Node): node is NullKeyword {
@@ -417,6 +707,16 @@ export function isNullKeyword(node: ts.Node): node is NullKeyword {
  * Test if a node is a `NullLiteral`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isNullLiteral(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `NullLiteral`.
  */
 export function isNullLiteral(node: ts.Node): node is ts.NullLiteral {
@@ -427,6 +727,16 @@ export function isNullLiteral(node: ts.Node): node is ts.NullLiteral {
  * Test if a node is a {@link NumberKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isNumberKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link NumberKeyword}.
  */
 export function isNumberKeyword(node: ts.Node): node is NumberKeyword {
@@ -437,6 +747,16 @@ export function isNumberKeyword(node: ts.Node): node is NumberKeyword {
  * Test if a node is an {@link ObjectKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isObjectKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an {@link ObjectKeyword}.
  */
 export function isObjectKeyword(node: ts.Node): node is ObjectKeyword {
@@ -447,6 +767,16 @@ export function isObjectKeyword(node: ts.Node): node is ObjectKeyword {
  * Test if a node is an `OutKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isOutKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `OutKeyword`.
  */
 export function isOutKeyword(node: ts.Node): node is ts.OutKeyword {
@@ -457,6 +787,16 @@ export function isOutKeyword(node: ts.Node): node is ts.OutKeyword {
  * Test if a node is an `OverrideKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isOverrideKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `OverrideKeyword`.
  */
 export function isOverrideKeyword(node: ts.Node): node is ts.OverrideKeyword {
@@ -467,6 +807,16 @@ export function isOverrideKeyword(node: ts.Node): node is ts.OverrideKeyword {
  * Test if a node is a `PrivateKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isPrivateKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `PrivateKeyword`.
  */
 export function isPrivateKeyword(node: ts.Node): node is ts.PrivateKeyword {
@@ -477,6 +827,16 @@ export function isPrivateKeyword(node: ts.Node): node is ts.PrivateKeyword {
  * Test if a node is a `ProtectedKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isProtectedKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `ProtectedKeyword`.
  */
 export function isProtectedKeyword(node: ts.Node): node is ts.ProtectedKeyword {
@@ -487,6 +847,16 @@ export function isProtectedKeyword(node: ts.Node): node is ts.ProtectedKeyword {
  * Test if a node is a `PublicKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isPublicKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `PublicKeyword`.
  */
 export function isPublicKeyword(node: ts.Node): node is ts.PublicKeyword {
@@ -497,6 +867,16 @@ export function isPublicKeyword(node: ts.Node): node is ts.PublicKeyword {
  * Test if a node is a `QuestionDotToken`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isQuestionDotToken(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `QuestionDotToken`.
  */
 export function isQuestionDotToken(node: ts.Node): node is ts.QuestionDotToken {
@@ -507,6 +887,16 @@ export function isQuestionDotToken(node: ts.Node): node is ts.QuestionDotToken {
  * Test if a node is a `QuestionToken`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isQuestionToken(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `QuestionToken`.
  */
 export function isQuestionToken(node: ts.Node): node is ts.QuestionToken {
@@ -517,6 +907,16 @@ export function isQuestionToken(node: ts.Node): node is ts.QuestionToken {
  * Test if a node is a `ReadonlyKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isReadonlyKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `ReadonlyKeyword`.
  */
 export function isReadonlyKeyword(node: ts.Node): node is ts.ReadonlyKeyword {
@@ -527,6 +927,16 @@ export function isReadonlyKeyword(node: ts.Node): node is ts.ReadonlyKeyword {
  * Test if a node is a `StaticKeyword`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isStaticKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `StaticKeyword`.
  */
 export function isStaticKeyword(node: ts.Node): node is ts.StaticKeyword {
@@ -537,6 +947,16 @@ export function isStaticKeyword(node: ts.Node): node is ts.StaticKeyword {
  * Test if a node is a {@link StringKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isStringKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link StringKeyword}.
  */
 export function isStringKeyword(node: ts.Node): node is StringKeyword {
@@ -547,6 +967,16 @@ export function isStringKeyword(node: ts.Node): node is StringKeyword {
  * Test if a node is a `SuperExpression`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isSuperExpression(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `SuperExpression`.
  */
 export function isSuperExpression(node: ts.Node): node is ts.SuperExpression {
@@ -557,6 +987,16 @@ export function isSuperExpression(node: ts.Node): node is ts.SuperExpression {
  * Test if a node is a {@link SuperKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isSuperKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link SuperKeyword}.
  */
 export function isSuperKeyword(node: ts.Node): node is SuperKeyword {
@@ -567,6 +1007,16 @@ export function isSuperKeyword(node: ts.Node): node is SuperKeyword {
  * Test if a node is a {@link SymbolKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isSymbolKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link SymbolKeyword}.
  */
 export function isSymbolKeyword(node: ts.Node): node is SymbolKeyword {
@@ -577,6 +1027,16 @@ export function isSymbolKeyword(node: ts.Node): node is SymbolKeyword {
  * Test if a node is a `SyntaxList`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isSyntaxList(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `SyntaxList`.
  */
 export function isSyntaxList(node: ts.Node): node is ts.SyntaxList {
@@ -587,6 +1047,16 @@ export function isSyntaxList(node: ts.Node): node is ts.SyntaxList {
  * Test if a node is a `ThisExpression`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isThisExpression(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `ThisExpression`.
  */
 export function isThisExpression(node: ts.Node): node is ts.ThisExpression {
@@ -597,6 +1067,16 @@ export function isThisExpression(node: ts.Node): node is ts.ThisExpression {
  * Test if a node is a {@link ThisKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isThisKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link ThisKeyword}.
  */
 export function isThisKeyword(node: ts.Node): node is ThisKeyword {
@@ -607,6 +1087,16 @@ export function isThisKeyword(node: ts.Node): node is ThisKeyword {
  * Test if a node is a {@link TrueKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isTrueKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link TrueKeyword}.
  */
 export function isTrueKeyword(node: ts.Node): node is TrueKeyword {
@@ -617,6 +1107,16 @@ export function isTrueKeyword(node: ts.Node): node is TrueKeyword {
  * Test if a node is a `TrueLiteral`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isTrueLiteral(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `TrueLiteral`.
  */
 export function isTrueLiteral(node: ts.Node): node is ts.TrueLiteral {
@@ -627,6 +1127,16 @@ export function isTrueLiteral(node: ts.Node): node is ts.TrueLiteral {
  * Test if a node is an {@link UndefinedKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isUndefinedKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an {@link UndefinedKeyword}.
  */
 export function isUndefinedKeyword(node: ts.Node): node is UndefinedKeyword {
@@ -637,6 +1147,16 @@ export function isUndefinedKeyword(node: ts.Node): node is UndefinedKeyword {
  * Test if a node is an {@link UnknownKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isUnknownKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an {@link UnknownKeyword}.
  */
 export function isUnknownKeyword(node: ts.Node): node is UnknownKeyword {
@@ -647,6 +1167,16 @@ export function isUnknownKeyword(node: ts.Node): node is UnknownKeyword {
  * Test if a node is an `UnparsedPrologue`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isUnparsedPrologue(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `UnparsedPrologue`.
  */
 export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue {
@@ -657,6 +1187,16 @@ export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue {
  * Test if a node is an `UnparsedSyntheticReference`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isUnparsedSyntheticReference(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `UnparsedSyntheticReference`.
  */
 export function isUnparsedSyntheticReference(
@@ -669,6 +1209,16 @@ export function isUnparsedSyntheticReference(
  * Test if a node is a {@link VoidKeyword}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isVoidKeyword(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link VoidKeyword}.
  */
 export function isVoidKeyword(node: ts.Node): node is VoidKeyword {

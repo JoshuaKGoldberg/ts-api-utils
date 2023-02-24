@@ -14,6 +14,13 @@ import {
  * Get the `CallSignatures` of the given type.
  *
  * @category Types - Getters
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * getCallSignaturesOfType(type);
+ * ```
  */
 export function getCallSignaturesOfType(
 	type: ts.Type
@@ -43,6 +50,14 @@ export function getCallSignaturesOfType(
  * Get the property with the given name on the given type (if it exists).
  *
  * @category Types - Getters
+ *
+ * @example
+ * ```ts
+ * declare const property: ts.Symbol;
+ * declare const type: ts.Type;
+ *
+ * getPropertyOfType(type, property.getEscapedName());
+ * ```
  */
 export function getPropertyOfType(
 	type: ts.Type,

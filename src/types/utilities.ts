@@ -28,6 +28,15 @@ import {
  * Determines whether a type is definitely falsy. This function doesn't unwrap union types.
  *
  * @category Types - Utilities
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isConditionalType(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isFalsyType(type: ts.Type): boolean {
 	if (
@@ -121,6 +130,17 @@ function isCallback(
  * Determines whether writing to a certain property of a given type is allowed.
  *
  * @category Types - Utilities
+ *
+ * @example
+ * ```ts
+ * declare const property: ts.Symbol;
+ * declare const type: ts.Type;
+ * declare const typeChecker: ts.TypeChecker;
+ *
+ * if (isPropertyReadonlyInType(type, property.getEscapedName(), typeChecker)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isPropertyReadonlyInType(
 	type: ts.Type,
@@ -157,6 +177,16 @@ export function isPropertyReadonlyInType(
  * Returns true for `Object.defineProperty(o, 'prop', {value, writable: false})` and `Object.defineProperty(o, 'prop', {get: () => 1})`
  *
  * @category Types - Utilities
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.CallExpression;
+ * declare const typeChecker: ts.TypeChecker;
+ *
+ * if (isReadonlyAssignmentDeclaration(node, typeChecker)) {
+ *   // ...
+ * }
+ * ```
  */
 function isReadonlyAssignmentDeclaration(
 	node: ts.CallExpression,
@@ -180,6 +210,17 @@ function isReadonlyAssignmentDeclaration(
  * Determines whether a type is thenable and thus can be used with `await`.
  *
  * @category Types - Utilities
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ * declare const type: ts.Type;
+ * declare const typeChecker: ts.TypeChecker;
+ *
+ * if (isThenableType(typeChecker, node, type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
@@ -191,6 +232,27 @@ export function isThenableType(
  * Determines whether a type is thenable and thus can be used with `await`.
  *
  * @category Types - Utilities
+ *
+ * @example
+ * ```ts
+ * declare const expression: ts.Expression;
+ * declare const typeChecker: ts.TypeChecker;
+ *
+ * if (isThenableType(typeChecker, expression)) {
+ *   // ...
+ * }
+ * ```
+ *
+ * @example
+ * ```ts
+ * declare const expression: ts.Expression;
+ * declare const typeChecker: ts.TypeChecker;
+ * declare const type: ts.Type;
+ *
+ * if (isThenableType(typeChecker, expression, type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
@@ -222,6 +284,16 @@ export function isThenableType(
  * Test if the given symbol has a readonly declaration.
  *
  * @category Symbols - Utilities
+ *
+ * @example
+ * ```ts
+ * declare const symbol: ts.Symbol;
+ * declare const typeChecker: ts.TypeChecker;
+ *
+ * if (symbolHasReadonlyDeclaration(symbol, typeChecker)) {
+ *   // ...
+ * }
+ * ```
  */
 export function symbolHasReadonlyDeclaration(
 	symbol: ts.Symbol,
@@ -250,6 +322,15 @@ export function symbolHasReadonlyDeclaration(
  * If the given type is not a union type, an array contain only that type will be returned.
  *
  * @category Types - Utilities
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * for (const typePart of unionTypeParts(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function unionTypeParts(type: ts.Type): ts.Type[] {
 	return isUnionType(type) ? type.types : [type];

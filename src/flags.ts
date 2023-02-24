@@ -25,6 +25,15 @@ function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
  * Test if the given node has the given `ModifierFlags` set.
  *
  * @category Nodes - Flag Utilities
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isModifierFlagSet(node, ts.ModifierFlags.Abstract)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isModifierFlagSet(
 	node: ts.Declaration,
@@ -37,6 +46,15 @@ export function isModifierFlagSet(
  * Test if the given node has the given `NodeFlags` set.
  *
  * @category Nodes - Flag Utilities
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isNodeFlagSet(node, ts.NodeFlags.AwaitContext)) {
+ *   // ...
+ * }
+ * ```
  */
 export const isNodeFlagSet: (node: ts.Node, flag: ts.NodeFlags) => boolean =
 	isFlagSetOnObject;
@@ -45,6 +63,15 @@ export const isNodeFlagSet: (node: ts.Node, flag: ts.NodeFlags) => boolean =
  * Test if the given node has the given `ObjectFlags` set.
  *
  * @category Nodes - Flag Utilities
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isObjectFlagSet(node, ts.ObjectFlags.Anonymous)) {
+ *   // ...
+ * }
+ * ```
  */
 export function isObjectFlagSet(
 	objectType: ts.ObjectType,
@@ -57,6 +84,15 @@ export function isObjectFlagSet(
  * Test if the given node has the given `SymbolFlags` set.
  *
  * @category Nodes - Flag Utilities
+ *
+ * @example
+ * ```ts
+ * declare const symbol: ts.Symbol;
+ *
+ * if (isSymbolFlagSet(symbol, ts.SymbolFlags.Accessor)) {
+ *   // ...
+ * }
+ * ```
  */
 export const isSymbolFlagSet: (
 	symbol: ts.Symbol,
@@ -67,6 +103,15 @@ export const isSymbolFlagSet: (
  * Test if the given node has the given `TypeFlags` set.
  *
  * @category Nodes - Flag Utilities
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isTypeFlagSet(type, ts.TypeFlags.Any)) {
+ *   // ...
+ * }
+ * ```
  */
 export const isTypeFlagSet: (type: ts.Type, flag: ts.TypeFlags) => boolean =
 	isFlagSetOnObject;

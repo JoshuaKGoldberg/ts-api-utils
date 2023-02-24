@@ -32,6 +32,16 @@ export type ConstAssertionIdentifier = ts.Identifier & {
  * Test if a node is a {@link ConstAssertionExpression}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isConstAssertionExpression(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link ConstAssertionExpression}.
  */
 export function isConstAssertionExpression(
@@ -48,6 +58,16 @@ export function isConstAssertionExpression(
  * Test if a node is an `IterationStatement`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isIterationStatement(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be an `IterationStatement`.
  */
 export function isIterationStatement(
@@ -69,6 +89,16 @@ export function isIterationStatement(
  * Test if a node is a `JSDocNamespaceDeclaration`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isJSDocNamespaceDeclaration(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `JSDocNamespaceDeclaration`.
  */
 export function isJSDocNamespaceDeclaration(
@@ -85,6 +115,16 @@ export function isJSDocNamespaceDeclaration(
  * Test if a node is a `JsxTagNamePropertyAccess`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isJsxTagNamePropertyAccess(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `JsxTagNamePropertyAccess`.
  */
 export function isJsxTagNamePropertyAccess(
@@ -109,6 +149,16 @@ export interface NamedDeclarationWithName extends ts.NamedDeclaration {
  * Test if a node is a {@link NamedDeclarationWithName}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isNamedDeclarationWithName(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link NamedDeclarationWithName}.
  */
 export function isNamedDeclarationWithName(
@@ -153,6 +203,16 @@ export type NumericOrStringLikeLiteral =
  * Test if a node is a {@link NumericOrStringLikeLiteral}.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isNumericOrStringLikeLiteral(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a {@link NumericOrStringLikeLiteral}.
  */
 export function isNumericOrStringLikeLiteral(
@@ -172,6 +232,16 @@ export function isNumericOrStringLikeLiteral(
  * Test if a node is a `PropertyAccessEntityNameExpression`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isPropertyAccessEntityNameExpression(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `PropertyAccessEntityNameExpression`.
  */
 export function isPropertyAccessEntityNameExpression(
@@ -188,6 +258,16 @@ export function isPropertyAccessEntityNameExpression(
  * Test if a node is a `SuperElementAccessExpression`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isSuperElementAccessExpression(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `SuperElementAccessExpression`.
  */
 export function isSuperElementAccessExpression(
@@ -202,6 +282,16 @@ export function isSuperElementAccessExpression(
  * Test if a node is a `SuperPropertyAccessExpression`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isSuperPropertyAccessExpression(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `SuperPropertyAccessExpression`.
  */
 export function isSuperPropertyAccessExpression(
