@@ -412,6 +412,7 @@ export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken {
 /**
  * Test if a node is an `EqualsGreaterThanToken`.
  *
+ * @deprecated With TypeScript v5 in favor of typescript's `isEqualsGreaterThanToken`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
