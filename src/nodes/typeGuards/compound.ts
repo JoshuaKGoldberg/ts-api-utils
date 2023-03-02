@@ -190,14 +190,13 @@ export function isNamespaceDeclaration(
 }
 
 /**
- * A number or sting literal (including string literals declare with \`\` quotes).
+ * A number or string-like literal.
  *
  * @category Node Types
  */
 export type NumericOrStringLikeLiteral =
 	| ts.NumericLiteral
-	| ts.StringLiteral
-	| ts.NoSubstitutionTemplateLiteral;
+	| ts.StringLiteralLike;
 
 /**
  * Test if a node is a {@link NumericOrStringLikeLiteral}.

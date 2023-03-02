@@ -1,6 +1,6 @@
 {
 	"name": "ts-api-utils",
-	"version": "0.0.39",
+	"version": "0.0.42",
 	"description": "Utility functions for working with TypeScript's API. Successor to the wonderful tsutils.",
 	"repository": {
 		"type": "git",
@@ -65,11 +65,11 @@
 		"eslint-plugin-regexp": "^1.12.0",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-plugin-typescript-sort-keys": "^2.1.0",
-		"eslint-plugin-vitest": "^0.0.46",
+		"eslint-plugin-vitest": "^0.0.48",
 		"http-serve": "^1.0.1",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
-		"knip": "^1.12.3",
+		"knip": "^1.14.1",
 		"lint-staged": "^13.1.0",
 		"markdownlint": "^0.27.0",
 		"markdownlint-cli": "^0.33.0",
@@ -88,12 +88,12 @@
 		"typedoc-plugin-mdn-links": "^2.0.2",
 		"typedoc-plugin-versions": "^0.2.3",
 		"typescript": "4.9.5",
-		"vitest": "^0.28.0"
+		"vitest": "^0.29.0"
 	},
 	"peerDependencies": {
 		"typescript": ">=4.2.0"
 	},
-	"packageManager": "pnpm@7.27.1",
+	"packageManager": "pnpm@7.28.0",
 	"engines": {
 		"node": ">=16.13.0"
 	}
