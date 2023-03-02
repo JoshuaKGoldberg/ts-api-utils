@@ -176,6 +176,16 @@ export function isNamedDeclarationWithName(
  * Test if a node is a `NamespaceDeclaration`.
  *
  * @category Nodes - Type Guards
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (isNamespaceDeclaration(node)) {
+ *   // ...
+ * }
+ * ```
+ *
  * @returns Whether the given node appears to be a `NamespaceDeclaration`.
  */
 export function isNamespaceDeclaration(

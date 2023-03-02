@@ -72,6 +72,14 @@ export function getPropertyOfType(
  * Retrieves a type symbol corresponding to a well-known string name.
  *
  * @category Types - Getters
+ *
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ * declare const typeChecker: ts.TypeChecker;
+ *
+ * getWellKnownSymbolPropertyOfType(type, "asyncIterator", typeChecker);
+ * ```
  */
 export function getWellKnownSymbolPropertyOfType(
 	type: ts.Type,
