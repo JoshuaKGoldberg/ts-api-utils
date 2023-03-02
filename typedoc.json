@@ -17,7 +17,8 @@
 		"byKind": [
 			{
 				"kinds": "Function",
-				"tags": ["example"]
+				"tags": ["example"],
+				"type": "code-only"
 			}
 		]
 	},
