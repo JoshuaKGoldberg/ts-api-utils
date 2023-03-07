@@ -18,6 +18,16 @@ export type ForEachTokenCallback = (token: ts.Node) => void;
  * Iterates over all tokens of `node`
  *
  * @category Nodes - Other Utilities
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * forEachToken(node, (token) => {
+ * 	console.log("Found token:", token.getText());
+ * });
+ * ```
+ *
  * @param node - The node whose tokens should be visited
  * @param callback - Is called for every token contained in `node`
  */

@@ -23,6 +23,16 @@ export type BooleanCompilerOptions = keyof {
  * This function only handles boolean flags.
  *
  * @category Compiler Options
+ *
+ * @example
+ * ```ts
+ * const options = {
+ * 	allowJs: true,
+ * };
+ *
+ * isCompilerOptionEnabled(options, "allowJs"); // true
+ * isCompilerOptionEnabled(options, "allowSyntheticDefaultImports"); // false
+ * ```
  */
 export function isCompilerOptionEnabled(
 	options: ts.CompilerOptions,
@@ -105,6 +115,27 @@ export type StrictCompilerOption =
  * (except `strictPropertyInitialization`) have been enabled by `strict: true`.
  *
  * @category Compiler Options
+ *
+ * @example
+ * ```ts
+ * const optionsLenient = {
+ * 	noImplicitAny: true,
+ * };
+ *
+ * isStrictCompilerOptionEnabled(optionsLenient, "noImplicitAny"); // true
+ * isStrictCompilerOptionEnabled(optionsLenient, "noImplicitThis"); // false
+ * ```
+ *
+ * @example
+ * ```ts
+ * const optionsStrict = {
+ * 	noImplicitThis: false,
+ * 	strict: true,
+ * };
+ *
+ * isStrictCompilerOptionEnabled(optionsStrict, "noImplicitAny"); // true
+ * isStrictCompilerOptionEnabled(optionsStrict, "noImplicitThis"); // false
+ * ```
  */
 export function isStrictCompilerOptionEnabled(
 	options: ts.CompilerOptions,

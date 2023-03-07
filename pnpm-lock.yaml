@@ -34,8 +34,9 @@ specifiers:
   sentences-per-line: ^0.2.1
   should-semantic-release: ^0.0.4
   tsup: ^6.5.0
-  typedoc: ^0.23.25
+  typedoc: ^0.23.26
   typedoc-plugin-coverage: ^2.0.0
+  typedoc-plugin-custom-validation: ^1.1.0
   typedoc-plugin-mdn-links: ^2.0.2
   typedoc-plugin-versions: ^0.2.3
   typescript: 4.9.5
@@ -77,6 +78,7 @@ devDependencies:
   tsup: 6.6.3_typescript@4.9.5
   typedoc: 0.23.26_typescript@4.9.5
   typedoc-plugin-coverage: 2.0.0_typedoc@0.23.26
+  typedoc-plugin-custom-validation: 1.1.0_typedoc@0.23.26
   typedoc-plugin-mdn-links: 2.0.2_typedoc@0.23.26
   typedoc-plugin-versions: 0.2.3_typedoc@0.23.26
   typescript: 4.9.5
@@ -7048,6 +7050,14 @@ packages:
     engines: {node: '>= 14'}
     peerDependencies:
       typedoc: ^0.22.12 || 0.23.x
+    dependencies:
+      typedoc: 0.23.26_typescript@4.9.5
+    dev: true
+
+  /typedoc-plugin-custom-validation/1.1.0_typedoc@0.23.26:
+    resolution: {integrity: sha512-W3zEPgAuXXqXWoZtDEYdPQHXWVp9NfqPzQLi7uUSkrEL7LNODYaCLM2EyITzWK6JZqbr4B+nj8g0Yaofp/AvHw==}
+    peerDependencies:
+      typedoc: ^0.23.26
     dependencies:
       typedoc: 0.23.26_typescript@4.9.5
     dev: true

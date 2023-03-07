@@ -13,6 +13,15 @@
 		"Other"
 	],
 	"customCss": "./docs/typedoc.css",
+	"customValidation": {
+		"byKind": [
+			{
+				"kinds": "Function",
+				"tags": ["example"],
+				"type": "code-only"
+			}
+		]
+	},
 	"defaultCategory": "Other",
 	"entryPoints": ["./src/index.ts"],
 	"exclude": ["./**/test/", "./**/*.test.*"],
@@ -52,6 +61,7 @@
 	"out": "./docs/generated",
 	"plugin": [
 		"typedoc-plugin-coverage",
+		"typedoc-plugin-custom-validation",
 		"typedoc-plugin-mdn-links",
 		"typedoc-plugin-versions"
 	],

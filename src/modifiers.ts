@@ -7,6 +7,13 @@ import * as ts from "typescript";
  * Test if the given iterable includes a modifier of any of the given kinds.
  *
  * @category Modifier Utilities
+ *
+ * @example
+ * ```ts
+ * declare const modifiers: ts.Modifier[];
+ *
+ * hasModifier(modifiers, ts.SyntaxKind.AbstractKeyword);
+ * ```
  */
 export function includesModifier(
 	modifiers: Iterable<ts.Modifier> | undefined,

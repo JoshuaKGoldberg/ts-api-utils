@@ -67,6 +67,15 @@ export type ForEachCommentCallback = (
  * Iterates over all comments owned by `node` or its children.
  *
  * @category Nodes - Other Utilities
+ *
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * tsutils.forEachComment(node, (fullText, comment) => {
+ *    console.log(`Found comment at position ${comment.pos}: '${fullText}'.`);
+ * });
+ * ```
  */
 export function forEachComment(
 	node: ts.Node,
