@@ -42,9 +42,6 @@ npm i ts-api-utils
 import * as tsutils from "ts-api-utils";
 ```
 
-> This package is a partial fork of and replacement for [`tsutils`](https://github.com/ajafff/tsutils) ([original license: MIT](https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE)).
-> See [#3](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/3) for notes on API coverage compared to `tsutils`.
-
 ### API
 
 `ts-api-utils` provides many utility functions.
@@ -59,7 +56,7 @@ Thanks! 💖
 
 ## Contributors
 
-Many thanks to [@ajafff](https://github.com/ajafff) for creating the original [`tsutils`](https://github.com/ajafff/tsutils) that this project is based on and uses a significant majority of code from! 🙌
+Many thanks to [@ajafff](https://github.com/ajafff) for creating the original [`tsutils`](https://github.com/ajafff/tsutils) ([original license: MIT](https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE)) that this project was originally based on! 🙏
 
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
