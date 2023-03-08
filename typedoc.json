@@ -62,6 +62,7 @@
 	"plugin": [
 		"typedoc-plugin-coverage",
 		"typedoc-plugin-custom-validation",
+		"typedoc-plugin-konamimojisplosion",
 		"typedoc-plugin-mdn-links",
 		"typedoc-plugin-versions"
 	],
