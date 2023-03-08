@@ -37,6 +37,7 @@ specifiers:
   typedoc: ^0.23.26
   typedoc-plugin-coverage: ^2.0.0
   typedoc-plugin-custom-validation: ^1.1.0
+  typedoc-plugin-konamimojisplosion: ^0.0.1
   typedoc-plugin-mdn-links: ^2.0.2
   typedoc-plugin-versions: ^0.2.3
   typescript: 4.9.5
@@ -79,6 +80,7 @@ devDependencies:
   typedoc: 0.23.26_typescript@4.9.5
   typedoc-plugin-coverage: 2.0.0_typedoc@0.23.26
   typedoc-plugin-custom-validation: 1.1.0_typedoc@0.23.26
+  typedoc-plugin-konamimojisplosion: 0.0.1
   typedoc-plugin-mdn-links: 2.0.2_typedoc@0.23.26
   typedoc-plugin-versions: 0.2.3_typedoc@0.23.26
   typescript: 4.9.5
@@ -7060,6 +7062,11 @@ packages:
       typedoc: ^0.23.26
     dependencies:
       typedoc: 0.23.26_typescript@4.9.5
+    dev: true
+
+  /typedoc-plugin-konamimojisplosion/0.0.1:
+    resolution: {integrity: sha512-6T+V7IjYW6Ee4UXGGAv5Irja2X5qPINAqbGApVJHusimUk7gKPGQW2zv2cJ9EARJsjQ/UeGG00eNgZKqRYeK6g==}
+    engines: {node: '>=18'}
     dev: true
 
   /typedoc-plugin-mdn-links/2.0.2_typedoc@0.23.26:
