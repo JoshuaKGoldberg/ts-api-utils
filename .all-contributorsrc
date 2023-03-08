@@ -40,6 +40,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "jmchor",
+      "name": "Johannes Chorzempa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/110151013?v=4",
+      "profile": "https://blog.jmchor.dev",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
