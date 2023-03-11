@@ -36,3 +36,5 @@ if (isAbstractKeyword(node)) {
 ```
 
 See the sidebar for the full list of available functions and types.
+
+> Tip: if a function you'd want to use appears to be missing, check whether it exists on TypeScript itself.
