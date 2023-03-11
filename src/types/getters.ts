@@ -14,7 +14,6 @@ import {
  * Get the `CallSignatures` of the given type.
  *
  * @category Types - Getters
- *
  * @example
  * ```ts
  * declare const type: ts.Type;
@@ -50,7 +49,6 @@ export function getCallSignaturesOfType(
  * Get the property with the given name on the given type (if it exists).
  *
  * @category Types - Getters
- *
  * @example
  * ```ts
  * declare const property: ts.Symbol;
@@ -72,7 +70,6 @@ export function getPropertyOfType(
  * Retrieves a type symbol corresponding to a well-known string name.
  *
  * @category Types - Getters
- *
  * @example
  * ```ts
  * declare const type: ts.Type;

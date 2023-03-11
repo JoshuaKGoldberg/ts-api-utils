@@ -7,7 +7,6 @@ import { isObjectType } from "./simple.js";
  * Test if a type is a `EvolvingArrayType`.
  *
  * @category Types - Type Guards
- *
  * @example
  * ```ts
  * declare const type: ts.Type;
@@ -29,7 +28,6 @@ export function isEvolvingArrayType(
  * Test if a type is a `TupleType`.
  *
  * @category Types - Type Guards
- *
  * @example
  * ```ts
  * declare const type: ts.Type;
@@ -47,7 +45,6 @@ export function isTupleType(type: ts.Type): type is ts.TupleType {
  * Test if a type is a `TypeReference`.
  *
  * @category Types - Type Guards
- *
  * @example
  * ```ts
  * declare const type: ts.Type;

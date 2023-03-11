@@ -32,7 +32,6 @@ export type ConstAssertionIdentifier = ts.Identifier & {
  * Test if a node is a {@link ConstAssertionExpression}.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -58,7 +57,6 @@ export function isConstAssertionExpression(
  * Test if a node is an `IterationStatement`.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -89,7 +87,6 @@ export function isIterationStatement(
  * Test if a node is a `JSDocNamespaceDeclaration`.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -115,7 +112,6 @@ export function isJSDocNamespaceDeclaration(
  * Test if a node is a `JsxTagNamePropertyAccess`.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -149,7 +145,6 @@ export interface NamedDeclarationWithName extends ts.NamedDeclaration {
  * Test if a node is a {@link NamedDeclarationWithName}.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -176,7 +171,6 @@ export function isNamedDeclarationWithName(
  * Test if a node is a `NamespaceDeclaration`.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -212,7 +206,6 @@ export type NumericOrStringLikeLiteral =
  * Test if a node is a {@link NumericOrStringLikeLiteral}.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -241,7 +234,6 @@ export function isNumericOrStringLikeLiteral(
  * Test if a node is a `PropertyAccessEntityNameExpression`.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -267,7 +259,6 @@ export function isPropertyAccessEntityNameExpression(
  * Test if a node is a `SuperElementAccessExpression`.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -291,7 +282,6 @@ export function isSuperElementAccessExpression(
  * Test if a node is a `SuperPropertyAccessExpression`.
  *
  * @category Nodes - Type Guards
- *
  * @example
  * ```ts
  * declare const node: ts.Node;

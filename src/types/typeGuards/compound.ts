@@ -46,7 +46,6 @@ export interface FalseLiteralType extends BooleanLiteralType {
  * Test if a type is a {@link UnknownLiteralType}?
  *
  * @category Types - Type Guards
- *
  * @example
  * ```ts
  * declare const type: ts.Type;
@@ -66,7 +65,6 @@ export function isUnknownLiteralType(
  * Determines whether the given type is a boolean literal type.
  *
  * @category Types - Type Guards
- *
  * @example
  * ```ts
  * declare const type: ts.Type;
@@ -86,7 +84,6 @@ export function isBooleanLiteralType(
  * Determines whether the given type is a boolean literal type for "true".
  *
  * @category Types - Type Guards
- *
  * @example
  * ```ts
  * declare const type: ts.Type;
@@ -107,7 +104,6 @@ export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
  * Determines whether the given type is a boolean literal type for "false".
  *
  * @category Types - Type Guards
- *
  * @example
  * ```ts
  * declare const type: ts.Type;
@@ -128,7 +124,6 @@ export function isFalseLiteralType(type: ts.Type): type is FalseLiteralType {
  * Test if a type is a `TupleTypeReference`.
  *
  * @category Types - Type Guards
- *
  * @example
  * ```ts
  * declare const type: ts.Type;

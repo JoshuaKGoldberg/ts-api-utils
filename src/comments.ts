@@ -67,7 +67,6 @@ export type ForEachCommentCallback = (
  * Iterates over all comments owned by `node` or its children.
  *
  * @category Nodes - Other Utilities
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
