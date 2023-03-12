@@ -6,6 +6,7 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
+		"plugin:jsdoc/recommended-error",
 		"plugin:regexp/recommended",
 		"prettier",
 	],
@@ -78,36 +79,38 @@ module.exports = {
 		"no-inner-declarations": "off",
 
 		// JSDoc rules
-		"jsdoc/check-access": "error",
-		"jsdoc/check-alignment": "error",
 		"jsdoc/check-indentation": "error",
 		"jsdoc/check-line-alignment": "error",
-		"jsdoc/check-param-names": "error",
-		"jsdoc/check-property-names": "error",
-		"jsdoc/check-tag-names": ["error", { definedTags: ["category"] }],
-		"jsdoc/check-values": "error",
-		"jsdoc/empty-tags": "error",
-		"jsdoc/multiline-blocks": "error",
-		"jsdoc/newline-after-description": "error",
+		"jsdoc/check-tag-names": [
+			"error",
+			{
+				definedTags: ["category"],
+			},
+		],
 		"jsdoc/no-bad-blocks": "error",
 		"jsdoc/no-defaults": "error",
-		"jsdoc/no-multi-asterisks": "error",
 		"jsdoc/no-types": "error",
 		"jsdoc/require-asterisk-prefix": "error",
 		"jsdoc/require-description": "error",
 		"jsdoc/require-hyphen-before-param-description": "error",
-		"jsdoc/require-param-description": "error",
-		"jsdoc/require-param-name": "error",
-		"jsdoc/require-property-description": "error",
-		"jsdoc/require-property-name": "error",
-		"jsdoc/require-returns-check": "error",
-		"jsdoc/require-returns-description": "error",
 		"jsdoc/require-throws": "error",
 		"jsdoc/tag-lines": [
 			"error",
 			"never",
-			{ noEndLines: true, tags: { example: { lines: "always" } } },
+			{
+				noEndLines: true,
+				tags: {
+					example: { lines: "always" },
+				},
+			},
 		],
+		"jsdoc/require-jsdoc": "off",
+		"jsdoc/require-param-type": "off",
+		"jsdoc/require-param": "off",
+		"jsdoc/require-property-type": "off",
+		"jsdoc/require-property": "off",
+		"jsdoc/require-returns-type": "off",
+		"jsdoc/require-returns": "off",
 	},
 	settings: {
 		jsdoc: {
