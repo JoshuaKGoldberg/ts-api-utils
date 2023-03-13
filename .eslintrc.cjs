@@ -104,6 +104,8 @@ module.exports = {
 				},
 			},
 		],
+        // Todo: pending a "recommended-typescript" config in eslint-plugin-jsdoc
+        // https://github.com/gajus/eslint-plugin-jsdoc/issues/615#issuecomment-1338669655
 		"jsdoc/require-jsdoc": "off",
 		"jsdoc/require-param-type": "off",
 		"jsdoc/require-param": "off",
