@@ -5,7 +5,7 @@
 
 import * as ts from "typescript";
 
-import { isTsVersionAtLeast } from "./utils.js";
+import { isTsVersionAtLeast } from "./utils";
 
 /**
  * Callback type used for {@link forEachToken}.

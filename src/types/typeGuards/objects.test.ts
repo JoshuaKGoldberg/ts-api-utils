@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../../test/utils.js";
-import { isTupleType, isTypeReference } from "./objects.js";
+import { createSourceFileAndTypeChecker } from "../../test/utils";
+import { isTupleType, isTypeReference } from "./objects";
 
 function getTypeForTypeNode(sourceText: string) {
 	const { sourceFile, typeChecker } =
