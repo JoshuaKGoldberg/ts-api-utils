@@ -1,4 +1,4 @@
-import * as ts from "typescript";
+import ts from "typescript";
 
 import { isObjectFlagSet } from "../../flags.js";
 import { isObjectType } from "./simple.js";
