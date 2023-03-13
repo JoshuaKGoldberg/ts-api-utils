@@ -89,7 +89,6 @@ module.exports = {
 		],
 		"jsdoc/no-bad-blocks": "error",
 		"jsdoc/no-defaults": "error",
-		"jsdoc/no-types": "error",
 		"jsdoc/require-asterisk-prefix": "error",
 		"jsdoc/require-description": "error",
 		"jsdoc/require-hyphen-before-param-description": "error",
@@ -104,15 +103,16 @@ module.exports = {
 				},
 			},
 		],
-        // Todo: pending a "recommended-typescript" config in eslint-plugin-jsdoc
-        // https://github.com/gajus/eslint-plugin-jsdoc/issues/615#issuecomment-1338669655
 		"jsdoc/require-jsdoc": "off",
-		"jsdoc/require-param-type": "off",
 		"jsdoc/require-param": "off",
-		"jsdoc/require-property-type": "off",
 		"jsdoc/require-property": "off",
-		"jsdoc/require-returns-type": "off",
 		"jsdoc/require-returns": "off",
+		// Todo: pending a "recommended-typescript" config in eslint-plugin-jsdoc
+		// https://github.com/gajus/eslint-plugin-jsdoc/issues/615#issuecomment-1338669655
+		"jsdoc/no-types": "error",
+		"jsdoc/require-param-type": "off",
+		"jsdoc/require-property-type": "off",
+		"jsdoc/require-returns-type": "off",
 	},
 	settings: {
 		jsdoc: {
