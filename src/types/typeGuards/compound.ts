@@ -1,4 +1,4 @@
-import * as ts from "typescript";
+import ts from "typescript";
 
 import { isTypeFlagSet } from "../../flags.js";
 import { isTupleType, isTypeReference } from "./objects.js";

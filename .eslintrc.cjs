@@ -65,6 +65,7 @@ module.exports = {
 		"regexp",
 		"simple-import-sort",
 		"typescript-sort-keys",
+		"unicorn",
 		"vitest",
 	],
 	root: true,
@@ -74,6 +75,17 @@ module.exports = {
 		"no-only-tests/no-only-tests": "error",
 		"simple-import-sort/exports": "error",
 		"simple-import-sort/imports": "error",
+		"unicorn/import-style": [
+			"error",
+			{
+				extendDefaultStyles: false,
+				styles: {
+					typescript: {
+						default: true,
+					},
+				},
+			},
+		],
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-inner-declarations": "off",

@@ -1,4 +1,4 @@
-import * as ts from "typescript";
+import ts from "typescript";
 
 /**
  * A node that represents the any keyword.
