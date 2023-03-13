@@ -40,7 +40,7 @@ specifiers:
   typedoc-plugin-coverage: ^2.0.0
   typedoc-plugin-custom-validation: ^1.1.0
   typedoc-plugin-konamimojisplosion: ^0.0.2
-  typedoc-plugin-mdn-links: ^2.0.2
+  typedoc-plugin-mdn-links: ^3.0.0
   typedoc-plugin-versions: ^0.2.3
   typescript: 4.9.5
   vitest: ^0.29.0
@@ -85,7 +85,7 @@ devDependencies:
   typedoc-plugin-coverage: 2.0.0_typedoc@0.23.26
   typedoc-plugin-custom-validation: 1.1.0_typedoc@0.23.26
   typedoc-plugin-konamimojisplosion: 0.0.2
-  typedoc-plugin-mdn-links: 2.0.2_typedoc@0.23.26
+  typedoc-plugin-mdn-links: 3.0.3_typedoc@0.23.26
   typedoc-plugin-versions: 0.2.3_typedoc@0.23.26
   typescript: 4.9.5
   vitest: 0.29.2
@@ -2470,7 +2470,7 @@ packages:
     dev: true
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
   /config-chain/1.1.13:
@@ -7193,10 +7193,10 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /typedoc-plugin-mdn-links/2.0.2_typedoc@0.23.26:
-    resolution: {integrity: sha512-Fzjvfsj3rxvmZNqWRvq9JTGBkOkrPp0kBtvJCJ4U5Jm14OF1KoRErtmwgVQcPLA5Xs8h5I/W4uZBaL8SDHsgxQ==}
+  /typedoc-plugin-mdn-links/3.0.3_typedoc@0.23.26:
+    resolution: {integrity: sha512-NXhIpwQnsg7BcyMCHVqj3tUK+DL4g3Bt96JbFl4APzTGFkA+iM6GfZ/fn3TAqJ8O0CXG5R9BfWxolw1m1omNuQ==}
     peerDependencies:
-      typedoc: 0.22.x || 0.23.x
+      typedoc: '>= 0.23.14 || 0.24.x'
     dependencies:
       typedoc: 0.23.26_typescript@4.9.5
     dev: true
