@@ -18,7 +18,6 @@ export type ForEachTokenCallback = (token: ts.Node) => void;
  * Iterates over all tokens of `node`
  *
  * @category Nodes - Other Utilities
- *
  * @example
  * ```ts
  * declare const node: ts.Node;

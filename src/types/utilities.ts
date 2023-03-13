@@ -28,7 +28,6 @@ import {
  * Determines whether a type is definitely falsy. This function doesn't unwrap union types.
  *
  * @category Types - Utilities
- *
  * @example
  * ```ts
  * declare const type: ts.Type;
@@ -130,7 +129,6 @@ function isCallback(
  * Determines whether writing to a certain property of a given type is allowed.
  *
  * @category Types - Utilities
- *
  * @example
  * ```ts
  * declare const property: ts.Symbol;
@@ -177,7 +175,6 @@ export function isPropertyReadonlyInType(
  * Returns true for `Object.defineProperty(o, 'prop', {value, writable: false})` and `Object.defineProperty(o, 'prop', {get: () => 1})`
  *
  * @category Types - Utilities
- *
  * @example
  * ```ts
  * declare const node: ts.CallExpression;
@@ -210,7 +207,6 @@ function isReadonlyAssignmentDeclaration(
  * Determines whether a type is thenable and thus can be used with `await`.
  *
  * @category Types - Utilities
- *
  * @example
  * ```ts
  * declare const node: ts.Node;
@@ -232,7 +228,6 @@ export function isThenableType(
  * Determines whether a type is thenable and thus can be used with `await`.
  *
  * @category Types - Utilities
- *
  * @example
  * ```ts
  * declare const expression: ts.Expression;
@@ -284,7 +279,6 @@ export function isThenableType(
  * Test if the given symbol has a readonly declaration.
  *
  * @category Symbols - Utilities
- *
  * @example
  * ```ts
  * declare const symbol: ts.Symbol;
@@ -322,7 +316,6 @@ export function symbolHasReadonlyDeclaration(
  * If the given type is not a union type, an array contain only that type will be returned.
  *
  * @category Types - Utilities
- *
  * @example
  * ```ts
  * declare const type: ts.Type;

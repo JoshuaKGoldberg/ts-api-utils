@@ -6,6 +6,7 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
+		"plugin:jsdoc/recommended-error",
 		"plugin:regexp/recommended",
 		"prettier",
 	],
@@ -59,6 +60,7 @@ module.exports = {
 		"@typescript-eslint",
 		"deprecation",
 		"import",
+		"jsdoc",
 		"no-only-tests",
 		"regexp",
 		"simple-import-sort",
@@ -75,5 +77,46 @@ module.exports = {
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-inner-declarations": "off",
+
+		// JSDoc rules
+		"jsdoc/check-indentation": "error",
+		"jsdoc/check-line-alignment": "error",
+		"jsdoc/check-tag-names": [
+			"error",
+			{
+				definedTags: ["category"],
+			},
+		],
+		"jsdoc/no-bad-blocks": "error",
+		"jsdoc/no-defaults": "error",
+		"jsdoc/require-asterisk-prefix": "error",
+		"jsdoc/require-description": "error",
+		"jsdoc/require-hyphen-before-param-description": "error",
+		"jsdoc/require-throws": "error",
+		"jsdoc/tag-lines": [
+			"error",
+			"never",
+			{
+				noEndLines: true,
+				tags: {
+					example: { lines: "always" },
+				},
+			},
+		],
+		"jsdoc/require-jsdoc": "off",
+		"jsdoc/require-param": "off",
+		"jsdoc/require-property": "off",
+		"jsdoc/require-returns": "off",
+		// Todo: pending a "recommended-typescript" config in eslint-plugin-jsdoc
+		// https://github.com/gajus/eslint-plugin-jsdoc/issues/615#issuecomment-1338669655
+		"jsdoc/no-types": "error",
+		"jsdoc/require-param-type": "off",
+		"jsdoc/require-property-type": "off",
+		"jsdoc/require-returns-type": "off",
+	},
+	settings: {
+		jsdoc: {
+			ignoreInternal: true,
+		},
 	},
 };

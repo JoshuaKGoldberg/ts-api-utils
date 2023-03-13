@@ -23,7 +23,6 @@ export type BooleanCompilerOptions = keyof {
  * This function only handles boolean flags.
  *
  * @category Compiler Options
- *
  * @example
  * ```ts
  * const options = {
@@ -115,7 +114,6 @@ export type StrictCompilerOption =
  * (except `strictPropertyInitialization`) have been enabled by `strict: true`.
  *
  * @category Compiler Options
- *
  * @example
  * ```ts
  * const optionsLenient = {
