@@ -550,14 +550,14 @@ export function isFunctionLikeDeclaration(
  * ```ts
  * declare const node: ts.Node;
  *
- * if (isHasDecorators(node)) {
+ * if (hasDecorators(node)) {
  *   // ...
  * }
  * ```
  *
  * @returns Whether the given node appears to be a `HasDecorators`.
  */
-export function isHasDecorators(node: ts.Node): node is ts.HasDecorators {
+export function hasDecorators(node: ts.Node): node is ts.HasDecorators {
 	return (
 		ts.isParameter(node) ||
 		ts.isPropertyDeclaration(node) ||
@@ -577,14 +577,14 @@ export function isHasDecorators(node: ts.Node): node is ts.HasDecorators {
  * ```ts
  * declare const node: ts.Node;
  *
- * if (isHasExpressionInitializer(node)) {
+ * if (hasExpressionInitializer(node)) {
  *   // ...
  * }
  * ```
  *
  * @returns Whether the given node appears to be a `HasExpressionInitializer`.
  */
-export function isHasExpressionInitializer(
+export function hasExpressionInitializer(
 	node: ts.Node
 ): node is ts.HasExpressionInitializer {
 	return (
@@ -605,16 +605,16 @@ export function isHasExpressionInitializer(
  * ```ts
  * declare const node: ts.Node;
  *
- * if (isHasInitializer(node)) {
+ * if (hasInitializer(node)) {
  *   // ...
  * }
  * ```
  *
  * @returns Whether the given node appears to be a `HasInitializer`.
  */
-export function isHasInitializer(node: ts.Node): node is ts.HasInitializer {
+export function hasInitializer(node: ts.Node): node is ts.HasInitializer {
 	return (
-		isHasExpressionInitializer(node) ||
+		hasExpressionInitializer(node) ||
 		ts.isForStatement(node) ||
 		ts.isForInStatement(node) ||
 		ts.isForOfStatement(node) ||
@@ -630,14 +630,14 @@ export function isHasInitializer(node: ts.Node): node is ts.HasInitializer {
  * ```ts
  * declare const node: ts.Node;
  *
- * if (isHasJSDoc(node)) {
+ * if (hasJSDoc(node)) {
  *   // ...
  * }
  * ```
  *
  * @returns Whether the given node appears to be a `HasJSDoc`.
  */
-export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
+export function hasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 	if (
 		ts.isParameter(node) ||
 		ts.isCallSignatureDeclaration(node) ||
@@ -713,14 +713,14 @@ export function isHasJSDoc(node: ts.Node): node is ts.HasJSDoc {
  * ```ts
  * declare const node: ts.Node;
  *
- * if (isHasModifiers(node)) {
+ * if (hasModifiers(node)) {
  *   // ...
  * }
  * ```
  *
  * @returns Whether the given node appears to be a `HasModifiers`.
  */
-export function isHasModifiers(node: ts.Node): node is ts.HasModifiers {
+export function hasModifiers(node: ts.Node): node is ts.HasModifiers {
 	return (
 		ts.isTypeParameterDeclaration(node) ||
 		ts.isParameter(node) ||
@@ -758,14 +758,14 @@ export function isHasModifiers(node: ts.Node): node is ts.HasModifiers {
  * ```ts
  * declare const node: ts.Node;
  *
- * if (isHasType(node)) {
+ * if (hasType(node)) {
  *   // ...
  * }
  * ```
  *
  * @returns Whether the given node appears to be a `HasType`.
  */
-export function isHasType(node: ts.Node): node is ts.HasType {
+export function hasType(node: ts.Node): node is ts.HasType {
 	return (
 		isSignatureDeclaration(node) ||
 		ts.isVariableDeclaration(node) ||
@@ -794,14 +794,14 @@ export function isHasType(node: ts.Node): node is ts.HasType {
  * ```ts
  * declare const node: ts.Node;
  *
- * if (isHasTypeArguments(node)) {
+ * if (hasTypeArguments(node)) {
  *   // ...
  * }
  * ```
  *
  * @returns Whether the given node appears to be a `HasTypeArguments`.
  */
-export function isHasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
+export function hasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
 	return (
 		ts.isCallExpression(node) ||
 		ts.isNewExpression(node) ||
