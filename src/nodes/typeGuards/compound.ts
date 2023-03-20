@@ -1,13 +1,13 @@
 import ts from "typescript";
 
-import { isSuperExpression } from "./single.js";
+import { isSuperExpression } from "./single";
 import {
 	isDeclarationName,
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
 	isJsxTagNameExpression,
 	isNamespaceBody,
-} from "./union.js";
+} from "./union";
 
 /**
  * An `AssertionExpression` that is declared as const.
@@ -128,6 +128,7 @@ export function isJsxTagNamePropertyAccess(
 ): node is ts.JsxTagNamePropertyAccess {
 	return (
 		ts.isPropertyAccessExpression(node) &&
+		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts < 5
 		isJsxTagNameExpression(node.expression)
 	);
 }

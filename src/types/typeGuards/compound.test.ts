@@ -1,8 +1,8 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../../test/utils.js";
-import { isTupleTypeReference } from "./compound.js";
+import { createSourceFileAndTypeChecker } from "../../test/utils";
+import { isTupleTypeReference } from "./compound";
 
 function getTypeForTypeNode(sourceText: string) {
 	const { sourceFile, typeChecker } =

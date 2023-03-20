@@ -1,6 +1,6 @@
 import ts from "typescript";
 
-import { isTsVersionAtLeast } from "../../utils.js";
+import { isTsVersionAtLeast } from "../../utils";
 import {
 	isJSDocNamespaceDeclaration,
 	isJsxTagNamePropertyAccess,
@@ -8,7 +8,7 @@ import {
 	isPropertyAccessEntityNameExpression,
 	isSuperElementAccessExpression,
 	isSuperPropertyAccessExpression,
-} from "./compound.js";
+} from "./compound";
 import {
 	isAccessorKeyword,
 	isEndOfFileToken,
@@ -23,7 +23,7 @@ import {
 	isStaticKeyword,
 	isThisExpression,
 	isTrueLiteral,
-} from "./single.js";
+} from "./single";
 
 /**
  * Test if a node is an `AccessExpression`.
@@ -72,6 +72,7 @@ export function isAccessibilityModifier(
 /**
  * Test if a node is an `AccessorDeclaration`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isAccessor`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -93,6 +94,7 @@ export function isAccessorDeclaration(
 /**
  * Test if a node is an `ArrayBindingElement`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isArrayBindingElement`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -300,6 +302,7 @@ export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
 /**
  * Test if a node is a `ClassLikeDeclaration`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isClassLike`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -392,6 +395,7 @@ export function isDeclarationWithTypeParameterChildren(
 ): node is ts.DeclarationWithTypeParameterChildren {
 	return (
 		isSignatureDeclaration(node) ||
+		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
 		isClassLikeDeclaration(node) ||
 		ts.isInterfaceDeclaration(node) ||
 		ts.isTypeAliasDeclaration(node) ||
@@ -516,6 +520,7 @@ export function isForInOrOfStatement(
 /**
  * Test if a node is a `FunctionLikeDeclaration`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isFunctionLike`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -639,67 +644,82 @@ export function hasInitializer(node: ts.Node): node is ts.HasInitializer {
  */
 export function hasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 	if (
-		ts.isParameter(node) ||
-		ts.isCallSignatureDeclaration(node) ||
-		ts.isConstructSignatureDeclaration(node) ||
-		ts.isMethodSignature(node) ||
-		ts.isPropertySignature(node) ||
+		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		isAccessorDeclaration(node) ||
 		ts.isArrowFunction(node) ||
-		ts.isParenthesizedExpression(node) ||
-		ts.isSpreadAssignment(node) ||
-		ts.isShorthandPropertyAssignment(node) ||
-		ts.isPropertyAssignment(node) ||
-		ts.isFunctionExpression(node) ||
-		ts.isEmptyStatement(node) ||
-		ts.isDebuggerStatement(node) ||
 		ts.isBlock(node) ||
-		ts.isVariableStatement(node) ||
-		ts.isExpressionStatement(node) ||
-		ts.isIfStatement(node) ||
+		ts.isBreakStatement(node) ||
+		ts.isCallSignatureDeclaration(node) ||
+		ts.isCaseClause(node) ||
+		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		isClassLikeDeclaration(node) ||
+		ts.isConstructorDeclaration(node) ||
+		ts.isConstructorTypeNode(node) ||
+		ts.isConstructSignatureDeclaration(node) ||
+		ts.isContinueStatement(node) ||
+		ts.isDebuggerStatement(node) ||
 		ts.isDoStatement(node) ||
-		ts.isWhileStatement(node) ||
-		ts.isForStatement(node) ||
+		ts.isEmptyStatement(node) ||
+		isEndOfFileToken(node) ||
+		ts.isEnumDeclaration(node) ||
+		ts.isEnumMember(node) ||
+		ts.isExportAssignment(node) ||
+		ts.isExportDeclaration(node) ||
+		ts.isExportSpecifier(node) ||
+		ts.isExpressionStatement(node) ||
 		ts.isForInStatement(node) ||
 		ts.isForOfStatement(node) ||
-		ts.isBreakStatement(node) ||
-		ts.isContinueStatement(node) ||
-		ts.isReturnStatement(node) ||
-		ts.isWithStatement(node) ||
-		ts.isSwitchStatement(node) ||
+		ts.isForStatement(node) ||
+		ts.isFunctionDeclaration(node) ||
+		ts.isFunctionExpression(node) ||
+		ts.isFunctionTypeNode(node) ||
+		ts.isIfStatement(node) ||
+		ts.isImportDeclaration(node) ||
+		ts.isImportEqualsDeclaration(node) ||
+		ts.isIndexSignatureDeclaration(node) ||
+		ts.isInterfaceDeclaration(node) ||
+		ts.isJSDocFunctionType(node) ||
 		ts.isLabeledStatement(node) ||
+		ts.isMethodDeclaration(node) ||
+		ts.isMethodSignature(node) ||
+		ts.isModuleDeclaration(node) ||
+		ts.isNamedTupleMember(node) ||
+		ts.isNamespaceExportDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isParenthesizedExpression(node) ||
+		ts.isPropertyAssignment(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isPropertySignature(node) ||
+		ts.isReturnStatement(node) ||
+		ts.isShorthandPropertyAssignment(node) ||
+		ts.isSpreadAssignment(node) ||
+		ts.isSwitchStatement(node) ||
 		ts.isThrowStatement(node) ||
 		ts.isTryStatement(node) ||
-		ts.isFunctionDeclaration(node) ||
-		ts.isConstructorDeclaration(node) ||
-		ts.isMethodDeclaration(node) ||
-		ts.isVariableDeclaration(node) ||
-		ts.isPropertyDeclaration(node) ||
-		isAccessorDeclaration(node) ||
-		isClassLikeDeclaration(node) ||
-		ts.isInterfaceDeclaration(node) ||
 		ts.isTypeAliasDeclaration(node) ||
-		ts.isEnumMember(node) ||
-		ts.isEnumDeclaration(node) ||
-		ts.isModuleDeclaration(node) ||
-		ts.isImportEqualsDeclaration(node) ||
-		ts.isImportDeclaration(node) ||
-		ts.isNamespaceExportDeclaration(node) ||
-		ts.isExportAssignment(node) ||
-		ts.isIndexSignatureDeclaration(node) ||
-		ts.isFunctionTypeNode(node) ||
-		ts.isConstructorTypeNode(node) ||
-		ts.isJSDocFunctionType(node) ||
-		ts.isExportDeclaration(node) ||
-		ts.isNamedTupleMember(node) ||
-		ts.isExportSpecifier(node) ||
-		ts.isCaseClause(node) ||
-		isEndOfFileToken(node)
+		ts.isVariableDeclaration(node) ||
+		ts.isVariableStatement(node) ||
+		ts.isWhileStatement(node) ||
+		ts.isWithStatement(node)
 	) {
 		return true;
 	}
 
-	if (isTsVersionAtLeast(4, 4)) {
-		return ts.isClassStaticBlockDeclaration(node);
+	if (isTsVersionAtLeast(4, 4) && ts.isClassStaticBlockDeclaration(node)) {
+		return true;
+	}
+
+	if (
+		isTsVersionAtLeast(5, 0) &&
+		(ts.isBinaryExpression(node) ||
+			ts.isElementAccessExpression(node) ||
+			ts.isIdentifier(node) ||
+			ts.isJSDocSignature(node) ||
+			ts.isObjectLiteralExpression(node) ||
+			ts.isPropertyAccessExpression(node) ||
+			ts.isTypeParameterDeclaration(node))
+	) {
+		return true;
 	}
 
 	return false;
@@ -921,6 +941,7 @@ export function isJsonObjectExpression(
 /**
  * Test if a node is a `JsxAttributeLike`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isJsxAttributeLike`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -967,6 +988,7 @@ export function isJsxAttributeValue(
 /**
  * Test if a node is a `JsxChild`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isJsxChild`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -992,6 +1014,7 @@ export function isJsxChild(node: ts.Node): node is ts.JsxChild {
 /**
  * Test if a node is a `JsxTagNameExpression`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isJsxTagNameExpression`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1043,6 +1066,7 @@ export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 /**
  * Test if a node is a `ModuleBody`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isModuleBody`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1062,6 +1086,7 @@ export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
 /**
  * Test if a node is a `ModuleName`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isModuleName`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1081,6 +1106,7 @@ export function isModuleName(node: ts.Node): node is ts.ModuleName {
 /**
  * Test if a node is a `ModuleReference`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isModuleReference`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1100,6 +1126,7 @@ export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
 /**
  * Test if a node is a `NamedImportBindings`.
  *
+ * @deprecated With TypeScript v5, in favor of typescript's `isNamedImportBindings`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1224,6 +1251,7 @@ export function isObjectTypeDeclaration(
 	node: ts.Node
 ): node is ts.ObjectTypeDeclaration {
 	return (
+		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
 		isClassLikeDeclaration(node) ||
 		ts.isInterfaceDeclaration(node) ||
 		ts.isTypeLiteralNode(node)
@@ -1330,6 +1358,7 @@ export function isSignatureDeclaration(
 		ts.isFunctionDeclaration(node) ||
 		ts.isMethodDeclaration(node) ||
 		ts.isConstructorDeclaration(node) ||
+		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
 		isAccessorDeclaration(node) ||
 		ts.isFunctionExpression(node) ||
 		ts.isArrowFunction(node)
@@ -1376,12 +1405,22 @@ export function isSuperProperty(node: ts.Node): node is ts.SuperProperty {
 export function isTypeOnlyCompatibleAliasDeclaration(
 	node: ts.Node
 ): node is ts.TypeOnlyCompatibleAliasDeclaration {
-	return (
+	if (
 		ts.isImportClause(node) ||
 		ts.isImportEqualsDeclaration(node) ||
 		ts.isNamespaceImport(node) ||
 		ts.isImportOrExportSpecifier(node)
-	);
+	) {
+		return true;
+	}
+
+	if (
+		isTsVersionAtLeast(5, 0) &&
+		(ts.isExportDeclaration(node) || ts.isNamespaceExport(node))
+	) {
+		return true;
+	}
+	return false;
 }
 
 /**
@@ -1426,9 +1465,11 @@ export function isUnionOrIntersectionTypeNode(
 	return ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node);
 }
 
+/* eslint-disable deprecation/deprecation */
 /**
  * Test if a node is an `UnparsedSourceText`.
  *
+ * @deprecated With TypeScript v5
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1446,6 +1487,7 @@ export function isUnparsedSourceText(
 ): node is ts.UnparsedSourceText {
 	return ts.isUnparsedPrepend(node) || ts.isUnparsedTextLike(node);
 }
+/* eslint-enable deprecation/deprecation */
 
 /**
  * Test if a node is a `VariableLikeDeclaration`.

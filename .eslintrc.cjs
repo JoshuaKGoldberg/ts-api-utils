@@ -71,7 +71,13 @@ module.exports = {
 	root: true,
 	rules: {
 		// These off-by-default rules work well for this repo and we like them on.
-		"import/extensions": ["error", "ignorePackages"],
+		"import/extensions": ["error"],
+		"import/no-useless-path-segments": [
+			"error",
+			{
+				noUselessIndex: true,
+			},
+		],
 		"no-only-tests/no-only-tests": "error",
 		"simple-import-sort/exports": "error",
 		"simple-import-sort/imports": "error",

@@ -29,17 +29,26 @@ export function createSourceFileAndTypeChecker(
 	sourceText: string,
 	fileName = "file.ts"
 ): SourceFileAndTypeChecker {
-	const compilerOptions = { target: ts.ScriptTarget.ES2018 };
-	const fsMap = tsvfs
-		.createDefaultMapFromNodeModules(compilerOptions)
-		.set(fileName, sourceText);
+	const compilerOptions: ts.CompilerOptions = {
+		lib: ["ES2018"],
+		target: ts.ScriptTarget.ES2018,
+	};
+
+	const fsMap = tsvfs.createDefaultMapFromNodeModules(compilerOptions, ts);
+	fsMap.set(fileName, sourceText);
+
 	const system = tsvfs.createSystem(fsMap);
-	const host = tsvfs.createVirtualCompilerHost(system, compilerOptions, ts);
-	const program = ts.createProgram({
-		rootNames: [...fsMap.keys()],
-		options: compilerOptions,
-		host: host.compilerHost,
-	});
+	const env = tsvfs.createVirtualTypeScriptEnvironment(
+		system,
+		[fileName],
+		ts,
+		compilerOptions
+	);
+
+	const program = env.languageService.getProgram();
+	if (program === undefined) {
+		throw new Error("Failed to get program.");
+	}
 
 	return {
 		sourceFile: program.getSourceFile(fileName)!,

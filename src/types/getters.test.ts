@@ -1,9 +1,9 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../test/utils.js";
-import { isTsVersionAtLeast } from "../utils.js";
-import { getWellKnownSymbolPropertyOfType } from "./getters.js";
+import { createSourceFileAndTypeChecker } from "../test/utils";
+import { isTsVersionAtLeast } from "../utils";
+import { getWellKnownSymbolPropertyOfType } from "./getters";
 
 describe("getWellKnownSymbolPropertyOfType", () => {
 	it("finds the symbol for an `asyncIterator` property", () => {
