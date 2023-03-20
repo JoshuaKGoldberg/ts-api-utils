@@ -72,7 +72,7 @@ export function isAccessibilityModifier(
 /**
  * Test if a node is an `AccessorDeclaration`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isAccessor`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isAccessor`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -94,7 +94,7 @@ export function isAccessorDeclaration(
 /**
  * Test if a node is an `ArrayBindingElement`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isArrayBindingElement`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isArrayBindingElement`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -302,7 +302,7 @@ export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
 /**
  * Test if a node is a `ClassLikeDeclaration`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isClassLike`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isClassLike`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -520,7 +520,7 @@ export function isForInOrOfStatement(
 /**
  * Test if a node is a `FunctionLikeDeclaration`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isFunctionLike`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isFunctionLike`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -941,7 +941,7 @@ export function isJsonObjectExpression(
 /**
  * Test if a node is a `JsxAttributeLike`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isJsxAttributeLike`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isJsxAttributeLike`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -988,7 +988,7 @@ export function isJsxAttributeValue(
 /**
  * Test if a node is a `JsxChild`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isJsxChild`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isJsxChild`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1014,7 +1014,7 @@ export function isJsxChild(node: ts.Node): node is ts.JsxChild {
 /**
  * Test if a node is a `JsxTagNameExpression`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isJsxTagNameExpression`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isJsxTagNameExpression`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1066,7 +1066,7 @@ export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 /**
  * Test if a node is a `ModuleBody`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isModuleBody`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isModuleBody`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1086,7 +1086,7 @@ export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
 /**
  * Test if a node is a `ModuleName`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isModuleName`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isModuleName`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1106,7 +1106,7 @@ export function isModuleName(node: ts.Node): node is ts.ModuleName {
 /**
  * Test if a node is a `ModuleReference`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isModuleReference`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isModuleReference`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1126,7 +1126,7 @@ export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
 /**
  * Test if a node is a `NamedImportBindings`.
  *
- * @deprecated With TypeScript v5 in favor of typescript's `isNamedImportBindings`.
+ * @deprecated With TypeScript v5, in favor of typescript's `isNamedImportBindings`.
  * @category Nodes - Type Guards
  * @example
  * ```ts
