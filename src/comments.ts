@@ -3,7 +3,7 @@
 
 import ts from "typescript";
 
-import { forEachToken } from "./tokens.js";
+import { forEachToken } from "./tokens";
 
 /**
  * Exclude trailing positions that would lead to scanning for trivia inside `JsxText`.

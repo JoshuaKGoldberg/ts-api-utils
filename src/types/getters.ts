@@ -3,12 +3,12 @@
 
 import ts from "typescript";
 
-import { isNamedDeclarationWithName } from "../nodes/typeGuards/index.js";
+import { isNamedDeclarationWithName } from "../nodes/typeGuards";
 import {
 	isIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
-} from "./typeGuards/index.js";
+} from "./typeGuards";
 
 /**
  * Get the `CallSignatures` of the given type.

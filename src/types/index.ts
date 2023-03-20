@@ -1,3 +1,3 @@
-export * from "./getters.js";
-export * from "./typeGuards/index.js";
-export * from "./utilities.js";
+export * from "./getters";
+export * from "./typeGuards";
+export * from "./utilities";

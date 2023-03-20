@@ -5,8 +5,8 @@ import {
 	isAssignmentKind,
 	isNumericPropertyName,
 	isValidPropertyAccess,
-} from "./syntax.js";
-import { isTsVersionAtLeast } from "./utils.js";
+} from "./syntax";
+import { isTsVersionAtLeast } from "./utils";
 
 const isTS4dot4 = isTsVersionAtLeast(4, 4);
 

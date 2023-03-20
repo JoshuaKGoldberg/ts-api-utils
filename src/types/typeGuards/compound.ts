@@ -1,7 +1,7 @@
 import ts from "typescript";
 
-import { isTypeFlagSet } from "../../flags.js";
-import { isTupleType, isTypeReference } from "./objects.js";
+import { isTypeFlagSet } from "../../flags";
+import { isTupleType, isTypeReference } from "./objects";
 
 /**
  * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
