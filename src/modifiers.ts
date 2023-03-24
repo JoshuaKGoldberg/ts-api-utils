@@ -11,7 +11,7 @@ import ts from "typescript";
  * ```ts
  * declare const modifiers: ts.Modifier[];
  *
- * hasModifier(modifiers, ts.SyntaxKind.AbstractKeyword);
+ * includesModifier(modifiers, ts.SyntaxKind.AbstractKeyword);
  * ```
  */
 export function includesModifier(
