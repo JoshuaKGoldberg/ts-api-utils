@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../../test/utils";
+import { isIntrinsicType } from "./compound";
 import { isTupleType, isTypeReference } from "./objects";
 
 function getTypeForTypeNode(sourceText: string) {
@@ -9,7 +10,7 @@ function getTypeForTypeNode(sourceText: string) {
 	const node = sourceFile.statements.at(-1)!;
 
 	const type = typeChecker.getTypeAtLocation(node);
-	if ((type as { intrinsicName?: string }).intrinsicName === "error") {
+	if (isIntrinsicType(type) && type.intrinsicName === "error") {
 		throw new Error("test case error");
 	}
 	return type;

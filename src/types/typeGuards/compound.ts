@@ -4,13 +4,30 @@ import { isTypeFlagSet } from "../../flags";
 import { isTupleType, isTypeReference } from "./objects";
 
 /**
+ * An intrinsic type.
+ *
+ * @category Type Types
+ */
+export interface IntrinsicType extends ts.Type {
+	intrinsicName: string;
+	objectFlags: ts.ObjectFlags;
+}
+
+/**
+ * A type that is both an `IntrinsicType` and a `FreshableType`
+ *
+ * @category Type Types
+ */
+export interface FreshableIntrinsicType
+	extends ts.FreshableType,
+		IntrinsicType {}
+
+/**
  * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
  *
  * @category Type Types
  */
-export interface UnknownLiteralType extends ts.Type {
-	freshType: UnknownLiteralType;
-	regularType: UnknownLiteralType;
+export interface UnknownLiteralType extends FreshableIntrinsicType {
 	value: unknown;
 }
 
@@ -30,6 +47,7 @@ export interface BooleanLiteralType extends UnknownLiteralType {
  */
 
 export interface TrueLiteralType extends BooleanLiteralType {
+	intrinsicName: "true";
 	value: true;
 }
 
@@ -39,7 +57,42 @@ export interface TrueLiteralType extends BooleanLiteralType {
  * @category Type Types
  */
 export interface FalseLiteralType extends BooleanLiteralType {
+	intrinsicName: "false";
 	value: false;
+}
+
+// ts.TypeFlags.Intrinsic
+const IntrinsicTypeFlags =
+	(ts.TypeFlags as any).Intrinsic ??
+	ts.TypeFlags.Any |
+		ts.TypeFlags.Unknown |
+		ts.TypeFlags.String |
+		ts.TypeFlags.Number |
+		ts.TypeFlags.BigInt |
+		ts.TypeFlags.Boolean |
+		ts.TypeFlags.BooleanLiteral |
+		ts.TypeFlags.ESSymbol |
+		ts.TypeFlags.Void |
+		ts.TypeFlags.Undefined |
+		ts.TypeFlags.Null |
+		ts.TypeFlags.Never |
+		ts.TypeFlags.NonPrimitive;
+
+/**
+ * Test if a type is an {@link IntrinsicType}.
+ *
+ * @category Types - Type Guards
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isIntrinsicType(type)) {
+ *   // ...
+ * }
+ * ```
+ */
+export function isIntrinsicType(type: ts.Type): type is IntrinsicType {
+	return isTypeFlagSet(type, IntrinsicTypeFlags);
 }
 
 /**
@@ -94,10 +147,7 @@ export function isBooleanLiteralType(
  * ```
  */
 export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
-	return (
-		isBooleanLiteralType(type) &&
-		(type as unknown as { intrinsicName: string }).intrinsicName === "true"
-	);
+	return isBooleanLiteralType(type) && type.intrinsicName === "true";
 }
 
 /**
@@ -114,10 +164,7 @@ export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
  * ```
  */
 export function isFalseLiteralType(type: ts.Type): type is FalseLiteralType {
-	return (
-		isBooleanLiteralType(type) &&
-		(type as unknown as { intrinsicName: string }).intrinsicName === "false"
-	);
+	return isBooleanLiteralType(type) && type.intrinsicName === "false";
 }
 
 /**
