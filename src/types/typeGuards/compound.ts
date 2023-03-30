@@ -1,7 +1,7 @@
 import ts from "typescript";
 
 import { isTupleType, isTypeReference } from "./objects";
-import { type IntrinsicType, isFreshableType, isIntrinsicType } from "./simple";
+import { type IntrinsicType, isFreshableType, isIntrinsicType } from "./single";
 
 /**
  * A type that is both an {@link IntrinsicType} and a `FreshableType`

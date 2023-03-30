@@ -9,7 +9,7 @@ import {
 	isUnionOrIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
-} from "./simple";
+} from "./single";
 
 function getTypeForTypeNode(sourceText: string) {
 	const { sourceFile, typeChecker } =
