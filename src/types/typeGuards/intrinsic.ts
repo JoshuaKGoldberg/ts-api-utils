@@ -122,6 +122,23 @@ export interface IntrinsicType extends ts.Type {
 	objectFlags: ts.ObjectFlags;
 }
 
+// ts.TypeFlags.Intrinsic
+const IntrinsicTypeFlags =
+	(ts.TypeFlags as { Intrinsic?: number }).Intrinsic ??
+	ts.TypeFlags.Any |
+		ts.TypeFlags.Unknown |
+		ts.TypeFlags.String |
+		ts.TypeFlags.Number |
+		ts.TypeFlags.BigInt |
+		ts.TypeFlags.Boolean |
+		ts.TypeFlags.BooleanLiteral |
+		ts.TypeFlags.ESSymbol |
+		ts.TypeFlags.Void |
+		ts.TypeFlags.Undefined |
+		ts.TypeFlags.Null |
+		ts.TypeFlags.Never |
+		ts.TypeFlags.NonPrimitive;
+
 /**
  * Test if a type is an {@link IntrinsicType}.
  *
@@ -136,23 +153,6 @@ export interface IntrinsicType extends ts.Type {
  * ```
  */
 export function isIntrinsicType(type: ts.Type): type is IntrinsicType {
-	// ts.TypeFlags.Intrinsic
-	const IntrinsicTypeFlags =
-		(ts.TypeFlags as { Intrinsic?: number }).Intrinsic ??
-		ts.TypeFlags.Any |
-			ts.TypeFlags.Unknown |
-			ts.TypeFlags.String |
-			ts.TypeFlags.Number |
-			ts.TypeFlags.BigInt |
-			ts.TypeFlags.Boolean |
-			ts.TypeFlags.BooleanLiteral |
-			ts.TypeFlags.ESSymbol |
-			ts.TypeFlags.Void |
-			ts.TypeFlags.Undefined |
-			ts.TypeFlags.Null |
-			ts.TypeFlags.Never |
-			ts.TypeFlags.NonPrimitive;
-
 	return isTypeFlagSet(type, IntrinsicTypeFlags);
 }
 
