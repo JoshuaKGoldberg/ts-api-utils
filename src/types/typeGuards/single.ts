@@ -3,25 +3,6 @@ import ts from "typescript";
 import { isTypeFlagSet } from "../../flags";
 
 /**
- * Test if a type is a `BigIntLiteralType`.
- *
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isBigIntLiteralType(type)) {
- *   // ...
- * }
- * ```
- */
-export function isBigIntLiteralType(
-	type: ts.Type
-): type is ts.BigIntLiteralType {
-	return isTypeFlagSet(type, ts.TypeFlags.BigIntLiteral);
-}
-
-/**
  * Test if a type is a `ConditionalType`.
  *
  * @category Types - Type Guards
@@ -53,6 +34,23 @@ export function isConditionalType(type: ts.Type): type is ts.ConditionalType {
  */
 export function isEnumType(type: ts.Type): type is ts.EnumType {
 	return isTypeFlagSet(type, ts.TypeFlags.Enum);
+}
+
+/**
+ * Test if a type is a `FreshableType`.
+ *
+ * @category Types - Type Guards
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isFreshableType(type)) {
+ *   // ...
+ * }
+ * ```
+ */
+export function isFreshableType(type: ts.Type): type is ts.FreshableType {
+	return isTypeFlagSet(type, ts.TypeFlags.Freshable);
 }
 
 /**
@@ -126,25 +124,6 @@ export function isIntersectionType(type: ts.Type): type is ts.IntersectionType {
 }
 
 /**
- * Test if a type is a `NumberLiteralType`.
- *
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isNumberLiteralType(type)) {
- *   // ...
- * }
- * ```
- */
-export function isNumberLiteralType(
-	type: ts.Type
-): type is ts.NumberLiteralType {
-	return isTypeFlagSet(type, ts.TypeFlags.NumberLiteral);
-}
-
-/**
  * Test if a type is a `ObjectType`.
  *
  * @category Types - Type Guards
@@ -159,25 +138,6 @@ export function isNumberLiteralType(
  */
 export function isObjectType(type: ts.Type): type is ts.ObjectType {
 	return isTypeFlagSet(type, ts.TypeFlags.Object);
-}
-
-/**
- * Test if a type is a `StringLiteralType`.
- *
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isStringLiteralType(type)) {
- *   // ...
- * }
- * ```
- */
-export function isStringLiteralType(
-	type: ts.Type
-): type is ts.StringLiteralType {
-	return isTypeFlagSet(type, ts.TypeFlags.StringLiteral);
 }
 
 /**
@@ -214,25 +174,6 @@ export function isStringMappingType(
  */
 export function isSubstitutionType(type: ts.Type): type is ts.SubstitutionType {
 	return isTypeFlagSet(type, ts.TypeFlags.Substitution);
-}
-
-/**
- * Test if a type is a `TemplateLiteralType`.
- *
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isTemplateLiteralType(type)) {
- *   // ...
- * }
- * ```
- */
-export function isTemplateLiteralType(
-	type: ts.Type
-): type is ts.TemplateLiteralType {
-	return isTypeFlagSet(type, ts.TypeFlags.TemplateLiteral);
 }
 
 /**
