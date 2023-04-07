@@ -34,7 +34,7 @@ specifiers:
   prettier-plugin-packagejson: ^2.4.2
   release-it: ^15.6.0
   sentences-per-line: ^0.2.1
-  should-semantic-release: ^0.0.4
+  should-semantic-release: ^0.1.0
   tsup: ^6.5.0
   typedoc: ^0.23.27
   typedoc-plugin-coverage: ^2.0.0
@@ -79,7 +79,7 @@ devDependencies:
   prettier-plugin-packagejson: 2.4.3_prettier@2.8.4
   release-it: 15.7.0
   sentences-per-line: 0.2.1
-  should-semantic-release: 0.0.4
+  should-semantic-release: 0.1.1
   tsup: 6.6.3_typescript@5.0.2
   typedoc: 0.23.27_typescript@5.0.2
   typedoc-plugin-coverage: 2.0.0_typedoc@0.23.27
@@ -1217,6 +1217,11 @@ packages:
     resolution: {integrity: sha512-LUewfj94xCMH2rbD5YJ+6AQ4AVjFYTgpp6rboWM5T7N3IsIF65SBEOVcYMGAEzO/kKNiNaW4LoWtoThOhH06gw==}
     dependencies:
       '@octokit/openapi-types': 16.0.0
+    dev: true
+
+  /@pkgjs/parseargs/0.11.0:
+    resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
+    engines: {node: '>=14'}
     dev: true
 
   /@pkgr/utils/2.3.1:
@@ -6378,11 +6383,12 @@ packages:
       vscode-textmate: 8.0.0
     dev: true
 
-  /should-semantic-release/0.0.4:
-    resolution: {integrity: sha512-7KOlcX5zeEsTPtsgwQ0UKxAL71gPJs7wxcenWmkvxz0LogaCzxRcyKZHEuM90z0dQj5XrIn3CnThT04+8fSlIg==}
+  /should-semantic-release/0.1.1:
+    resolution: {integrity: sha512-gqZVaRzwRenYqfLv5ZLfUHvudjDvpHmdO4yGBark3+OnUA4AGgpwwLD1+aPPH8atXjKPJmplzN+FfKmJi6Ujfw==}
     engines: {node: '>=18'}
     hasBin: true
     dependencies:
+      '@pkgjs/parseargs': 0.11.0
       conventional-commits-parser: 3.2.4
     dev: true
 
