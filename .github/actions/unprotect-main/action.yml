@@ -9,7 +9,7 @@ runs:
   using: "composite"
   steps:
     - name: Delete branch protection on main
-      uses: actions/github-script@v6.4.0
+      uses: actions/github-script@v6.4.1
       with:
         github-token: ${{ inputs.ACCESS_TOKEN }}
         script: |
