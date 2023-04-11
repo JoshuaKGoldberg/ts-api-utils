@@ -84,7 +84,7 @@
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.1.0",
 		"tsup": "^6.5.0",
-		"typedoc": "^0.23.27",
+		"typedoc": "^0.24.0",
 		"typedoc-plugin-coverage": "^2.0.0",
 		"typedoc-plugin-custom-validation": "^1.1.0",
 		"typedoc-plugin-konamimojisplosion": "^0.0.2",
