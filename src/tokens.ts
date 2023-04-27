@@ -35,11 +35,9 @@ export function forEachToken(
 	callback: ForEachTokenCallback,
 	sourceFile: ts.SourceFile = node.getSourceFile()
 ): void {
-	const isTS4dot3 = isTsVersionAtLeast(4, 3);
-
 	const queue = [];
 	while (true) {
-		if (isTS4dot3 && ts.isTokenKind(node.kind)) {
+		if (ts.isTokenKind(node.kind)) {
 			callback(node);
 		} else if (
 			// eslint-disable-next-line deprecation/deprecation -- need for support of TS < 4.7
