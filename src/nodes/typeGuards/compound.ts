@@ -72,11 +72,11 @@ export function isIterationStatement(
 	node: ts.Node
 ): node is ts.IterationStatement {
 	switch (node.kind) {
-		case ts.SyntaxKind.ForStatement:
-		case ts.SyntaxKind.ForOfStatement:
-		case ts.SyntaxKind.ForInStatement:
-		case ts.SyntaxKind.WhileStatement:
 		case ts.SyntaxKind.DoStatement:
+		case ts.SyntaxKind.ForInStatement:
+		case ts.SyntaxKind.ForOfStatement:
+		case ts.SyntaxKind.ForStatement:
+		case ts.SyntaxKind.WhileStatement:
 			return true;
 		default:
 			return false;
