@@ -49,6 +49,25 @@ export function isFalsyType(type: ts.Type): boolean {
 	return isFalseLiteralType(type);
 }
 
+/**
+ * Get the union type parts of the given type.
+ *
+ * If the given type is not a union type, an array contain only that type will be returned.
+ *
+ * @category Types - Utilities
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * for (const typePart of intersectionTypeParts(type)) {
+ *   // ...
+ * }
+ * ```
+ */
+export function intersectionTypeParts(type: ts.Type): ts.Type[] {
+	return isIntersectionType(type) ? type.types : [type];
+}
+
 function isReadonlyPropertyIntersection(
 	type: ts.Type,
 	name: ts.__String,
