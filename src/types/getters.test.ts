@@ -2,7 +2,6 @@ import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../test/utils";
-import { isTsVersionAtLeast } from "../utils";
 import {
 	getCallSignaturesOfType,
 	getWellKnownSymbolPropertyOfType,
