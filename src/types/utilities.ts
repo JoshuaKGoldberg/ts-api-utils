@@ -32,7 +32,7 @@ import {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isConditionalType(type)) {
+ * if (isFalsyType(type)) {
  *   // ...
  * }
  * ```

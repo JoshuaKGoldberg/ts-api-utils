@@ -71,7 +71,7 @@ export type ForEachCommentCallback = (
  * ```ts
  * declare const node: ts.Node;
  *
- * tsutils.forEachComment(node, (fullText, comment) => {
+ * forEachComment(node, (fullText, comment) => {
  *    console.log(`Found comment at position ${comment.pos}: '${fullText}'.`);
  * });
  * ```
