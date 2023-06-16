@@ -19,7 +19,7 @@ export interface IntrinsicAnyType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isAnyType(type)) {
+ * if (isIntrinsicAnyType(type)) {
  *   // ...
  * }
  * ```
@@ -45,7 +45,7 @@ export interface IntrinsicBooleanType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isBooleanType(type)) {
+ * if (isIntrinsicBooleanType(type)) {
  *   // ...
  * }
  * ```
@@ -73,7 +73,7 @@ export interface IntrinsicBigIntType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isBigIntType(type)) {
+ * if (isIntrinsicBigIntType(type)) {
  *   // ...
  * }
  * ```
@@ -101,7 +101,7 @@ export interface IntrinsicESSymbolType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isESSymbolType(type)) {
+ * if (isIntrinsicESSymbolType(type)) {
  *   // ...
  * }
  * ```
@@ -173,7 +173,7 @@ export interface IntrinsicNeverType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isNeverType(type)) {
+ * if (isIntrinsicNeverType(type)) {
  *   // ...
  * }
  * ```
@@ -203,7 +203,7 @@ export interface IntrinsicNonPrimitiveType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isNeverType(type)) {
+ * if (isIntrinsicNonPrimitiveType(type)) {
  *   // ...
  * }
  * ```
@@ -231,7 +231,7 @@ export interface IntrinsicNullType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isNullType(type)) {
+ * if (isIntrinsicNullType(type)) {
  *   // ...
  * }
  * ```
@@ -257,7 +257,7 @@ export interface IntrinsicNumberType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isNumberType(type)) {
+ * if (isIntrinsicNumberType(type)) {
  *   // ...
  * }
  * ```
@@ -285,7 +285,7 @@ export interface IntrinsicStringType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isStringType(type)) {
+ * if (isIntrinsicStringType(type)) {
  *   // ...
  * }
  * ```
@@ -313,7 +313,7 @@ export interface IntrinsicUndefinedType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isUndefinedType(type)) {
+ * if (isIntrinsicUndefinedType(type)) {
  *   // ...
  * }
  * ```
@@ -341,7 +341,7 @@ export interface IntrinsicUnknownType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isUnknownType(type)) {
+ * if (isIntrinsicUnknownType(type)) {
  *   // ...
  * }
  * ```
@@ -369,7 +369,7 @@ export interface IntrinsicVoidType extends IntrinsicType {
  * ```ts
  * declare const type: ts.Type;
  *
- * if (isVoidType(type)) {
+ * if (isIntrinsicVoidType(type)) {
  *   // ...
  * }
  * ```
