@@ -85,6 +85,40 @@ export function isIntrinsicBigIntType(
 }
 
 /**
+ * An "error" intrinsic type.
+ *
+ * This refers to a type generated when TypeScript encounters an error while
+ * trying to resolve the type.
+ *
+ * @category Type Types
+ */
+export interface IntrinsicErrorType extends IntrinsicType {
+	intrinsicName: "error";
+}
+
+/**
+ * Determines whether the given type is the "error" intrinsic type.
+ *
+ * The intrinsic error type occurs when TypeScript encounters an error while
+ * trying to resolve the type.
+ *
+ * @category Types - Type Guards
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isIntrinsicErrorType(type)) {
+ *   // ...
+ * }
+ * ```
+ */
+export function isIntrinsicErrorType(
+	type: ts.Type
+): type is IntrinsicErrorType {
+	return isIntrinsicType(type) && type.intrinsicName === "error";
+}
+
+/**
  * A "symbol" intrinsic type.
  *
  * @category Type Types
