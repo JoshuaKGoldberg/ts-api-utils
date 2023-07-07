@@ -28,7 +28,7 @@ specifiers:
   markdownlint: ^0.29.0
   markdownlint-cli: ^0.35.0
   npm-package-json-lint: ^7.0.0
-  npm-package-json-lint-config-default: ^5.0.0
+  npm-package-json-lint-config-default: ^6.0.0
   pnpm-deduplicate: ^0.4.1
   prettier: ^2.8.3
   prettier-plugin-packagejson: ^2.4.2
@@ -73,7 +73,7 @@ devDependencies:
   markdownlint: 0.29.0
   markdownlint-cli: 0.35.0
   npm-package-json-lint: 7.0.0
-  npm-package-json-lint-config-default: 5.0.0_z4ffqwc3io2h4umo4ynjcow2xa
+  npm-package-json-lint-config-default: 6.0.0_z4ffqwc3io2h4umo4ynjcow2xa
   pnpm-deduplicate: 0.4.2
   prettier: 2.8.4
   prettier-plugin-packagejson: 2.4.3_prettier@2.8.4
@@ -5540,11 +5540,11 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dev: true
 
-  /npm-package-json-lint-config-default/5.0.0_z4ffqwc3io2h4umo4ynjcow2xa:
-    resolution: {integrity: sha512-guf+bECFtVz6sekPBmkf/m/k8gbX16F5S9wZI6cvhrkSEl+AhM2GoCU6alOhbaGbkn0PgbNRcRrsuu4jWEZFHQ==}
-    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+  /npm-package-json-lint-config-default/6.0.0_z4ffqwc3io2h4umo4ynjcow2xa:
+    resolution: {integrity: sha512-Ek3EcbMEjvGSxEywxNF2tTHuzvtaUH48Z7sljmeSejANMSpE1ssIN0oOG/Tlpc+U/P7ElfsOySIjijjmEnvMGw==}
+    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     peerDependencies:
-      npm-package-json-lint: ^6.0.0
+      npm-package-json-lint: ^7.0.0
     dependencies:
       npm-package-json-lint: 7.0.0
     dev: true
