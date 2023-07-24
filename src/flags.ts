@@ -22,6 +22,22 @@ function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
 }
 
 /**
+ * Test if the given node has the given `FlowFlags` set.
+ *
+ * @category Flow Nodes - Flag Utilities
+ * @example
+ * ```ts
+ * declare const flowNode: ts.FlowNode;
+ *
+ * if (isFlowFlagSet(flowNode, ts.FlowFlags.Referenced)) {
+ *   // ...
+ * }
+ * ```
+ */
+export const isFlowFlagSet: (node: ts.Node, flag: ts.FlowFlags) => boolean =
+	isFlagSetOnObject;
+
+/**
  * Test if the given node has the given `ModifierFlags` set.
  *
  * @category Nodes - Flag Utilities
