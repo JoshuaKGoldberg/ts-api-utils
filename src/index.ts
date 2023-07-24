@@ -1,6 +1,7 @@
 export * from "./comments";
 export * from "./compilerOptions";
 export * from "./flags";
+export * from "./flowNodes";
 export * from "./modifiers";
 export * from "./nodes";
 export * from "./scopes";
