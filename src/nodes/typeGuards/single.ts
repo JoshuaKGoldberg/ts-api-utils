@@ -1187,3 +1187,24 @@ export function isUnparsedSyntheticReference(
 export function isVoidKeyword(node: ts.Node): node is VoidKeyword {
 	return node.kind === ts.SyntaxKind.VoidKeyword;
 }
+
+/**
+ * Test if a node has a `flowNode` property.
+ *
+ * @category Nodes - Type Guards
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (hasFlowNode(node)) {
+ *   // ...
+ * }
+ * ```
+ *
+ * @returns Whether the given node has a `flowNode` property.
+ */
+export function hasFlowNode(
+	node: ts.Node
+): node is ts.Node & { flowNode: ts.FlowNode } {
+	return "flowNode" in node;
+}
