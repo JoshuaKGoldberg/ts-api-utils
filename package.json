@@ -55,7 +55,7 @@
 		"@vitest/coverage-istanbul": "^0.34.0",
 		"cspell": "^6.19.2",
 		"eslint": "^8.32.0",
-		"eslint-config-prettier": "^8.6.0",
+		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-deprecation": "^1.3.3",
 		"eslint-plugin-eslint-comments": "^3.2.0",
 		"eslint-plugin-import": "^2.27.5",
