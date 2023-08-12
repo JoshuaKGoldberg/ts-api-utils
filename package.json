@@ -30,9 +30,11 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "tsup",
-		"docs": "typedoc",
-		"docs:serve": "npx --yes http-server docs/generated",
+		"build": "tsup src/index.ts --clean --format cjs,esm --outDir lib --dts && cp lib/index.d.ts lib/index.d.cts",
+		"docs": "pnpm run docs:build && pnpm run docs:build-post",
+		"docs:build": "typedoc",
+		"docs:build-post": "find -lname \"$PWD/docs/generated/*\" | while read link; do target=$(readlink $link); relative_target=$(realpath $target --relative-to=$link/.. --no-symlinks --canonicalize-missing); ln --force --symbolic --no-target-directory $relative_target $link; done",
+		"docs:serve": "npx --yes http-serve docs/generated",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 		"lint:docs": "typedoc --validation --treatValidationWarningsAsErrors",

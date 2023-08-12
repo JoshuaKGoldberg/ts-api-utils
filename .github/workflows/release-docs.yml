@@ -3,25 +3,6 @@ concurrency:
 
   group: Release Docs
 jobs:
-  get_old_docs:
-    runs-on: ubuntu-latest
-    steps:
-      - continue-on-error: true
-        name: get the gh-pages repo
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-      - name: tar the existing docs
-        run: |
-          mkdir -p ./docs/generated
-          tar -cvf old-docs.tar ./docs/generated
-
-      - name: create a document artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: old-docs
-          path: old-docs.tar
-
   update_and_deploy_docs:
     environment:
       name: github-pages
@@ -29,21 +10,32 @@ jobs:
     needs: get_old_docs
     runs-on: ubuntu-latest
     steps:
+      - name: get the current docs
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+
+      - name: Save old docs
+        run: tar -cvf /tmp/old-docs.tar ./docs/generated
+
       - name: Checkout src
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          clean: false #  doesn't seem to work?? - Hence use of tarballs
+
+      - name: Restore old docs
+        run: |
+          mkdir -p ./docs/generated
+          tar -xf /tmp/old-docs.tar ./docs/generated -C ./docs/generated
 
       - uses: ./.github/actions/prepare
 
-      - run: mkdir -p ./docs/generated
-      - name: Download the existing documents artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: old-docs
-
-      - run: tar -xf old-docs.tar ./docs/generated -C ./docs/generated
-
       - name: Build docs
         run: pnpm run docs
+
+      - name: Save new docs
+        run: tar -cvf /tmp/new-docs.tar ./docs/generated
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -55,6 +47,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - run: 'echo "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: ''{ print $2 }'' | sed ''s/[", ]//g'')" >> $GITHUB_ENV'
+
       - name: Update Coverage Badge
         run: cp ./docs/generated/v$PACKAGE_VERSION/coverage.svg ./docs/coverage.svg
 
@@ -75,19 +68,32 @@ jobs:
       - if: steps.push_coverage.outputs.push_coverage != '0'
         run: |
           git add docs/coverage.svg
-          git commit -m "docs: updated documentation coverage"
+          git commit -m "docs: update documentation coverage"
           git push
 
       - if: ${{ always() && steps.push_coverage.outputs.push_coverage != '0' }}
         uses: ./.github/actions/protect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-name: Release Docs
 
-on:
-  workflow_call: ~
-  workflow_dispatch: ~
-permissions:
-  contents: write
-  id-token: write
-  pages: write
+      - name: get gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          clean: false #  doesn't seem to work?? - Hence use of tarballs
+
+      - name: Restore new docs
+        run: |
+          rm -r ./docs/generated
+          mkdir -p ./docs/generated
+          tar -xf /tmp/new-docs.tar ./docs/generated -C ./docs/generated
+
+      - name: Push new docs
+        run: |
+          git add -f docs/generated
+          git commit -m "docs: update documentation"
+          git push
+        continue-on-error: true
+
+      - name: Checkout src
+        uses: actions/checkout@v3
