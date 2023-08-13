@@ -50,7 +50,7 @@
 	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
-		"@typescript-eslint/parser": "^5.48.2",
+		"@typescript-eslint/parser": "^6.0.0",
 		"@typescript/vfs": "^1.4.0",
 		"@vitest/coverage-istanbul": "^0.34.0",
 		"cspell": "^7.0.0",
