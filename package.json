@@ -49,7 +49,7 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^5.48.2",
+		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^5.48.2",
 		"@typescript/vfs": "^1.4.0",
 		"@vitest/coverage-istanbul": "^0.34.0",
