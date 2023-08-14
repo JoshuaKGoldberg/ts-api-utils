@@ -1,0 +1,71 @@
+name: Release Docs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - gh-pages
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: Release Docs
+  cancel-in-progress: true
+
+jobs:
+  deploy_docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+
+      - uses: ./.github/actions/prepare
+
+      - name: Craete a pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./docs/generated
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+
+      - name: Store Coverage Badge
+        run: cp ./docs/generated/stable/coverage.svg /tmp/coverage.svg
+
+      - name: get gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Update Coverage Badge
+        run: cp /tmp/coverage.svg ./docs/coverage.svg
+
+      - id: coverage_changed
+        run: echo "coverage_changed=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> "$GITHUB_OUTPUT"
+
+      - id: push_coverage
+        env:
+          COVERAGE_CHANGED: ${{ steps.coverage_changed.outputs.coverage_changed }}
+        run: echo "push_coverage=$(if [[ "$COVERAGE_CHANGED" != '0' ]] ; then echo '1' ; else echo '0' ; fi)" >> "$GITHUB_OUTPUT"
+
+      - if: steps.push_coverage.outputs.push_coverage != '0'
+        uses: ./.github/actions/unprotect-main
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - if: steps.push_coverage.outputs.push_coverage != '0'
+        run: |
+          git add docs/coverage.svg
+          git commit -m "docs: update documentation coverage badge"
+          git push
+
+      - if: ${{ always() && steps.push_coverage.outputs.push_coverage != '0' }}
+        uses: ./.github/actions/protect-main
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
