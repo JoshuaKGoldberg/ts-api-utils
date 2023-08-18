@@ -18,10 +18,9 @@ module.exports = {
 		},
 		{
 			extends: [
-				"plugin:@typescript-eslint/recommended",
-				"plugin:@typescript-eslint/recommended-requiring-type-checking",
 				"plugin:typescript-sort-keys/recommended",
-				"plugin:@typescript-eslint/strict",
+				"plugin:@typescript-eslint/recommended-type-checked",
+				"plugin:@typescript-eslint/strict-type-checked",
 			],
 			files: ["**/*.{ts,tsx}"],
 			parserOptions: {
@@ -33,8 +32,10 @@ module.exports = {
 				"@typescript-eslint/explicit-module-boundary-types": "error",
 
 				// TODO?
+				"@typescript-eslint/no-confusing-void-expression": "off",
 				"@typescript-eslint/no-non-null-assertion": "off",
 				"@typescript-eslint/no-unnecessary-condition": "off",
+				"@typescript-eslint/no-unsafe-enum-comparison": "off",
 				"no-constant-condition": "off",
 			},
 		},
