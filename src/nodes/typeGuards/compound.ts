@@ -40,7 +40,6 @@ export type ConstAssertionIdentifier = ts.Identifier & {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link ConstAssertionExpression}.
  */
 export function isConstAssertionExpression(
@@ -65,7 +64,6 @@ export function isConstAssertionExpression(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `IterationStatement`.
  */
 export function isIterationStatement(
@@ -95,7 +93,6 @@ export function isIterationStatement(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JSDocNamespaceDeclaration`.
  */
 export function isJSDocNamespaceDeclaration(
@@ -120,7 +117,6 @@ export function isJSDocNamespaceDeclaration(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JsxTagNamePropertyAccess`.
  */
 export function isJsxTagNamePropertyAccess(
@@ -154,7 +150,6 @@ export interface NamedDeclarationWithName extends ts.NamedDeclaration {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link NamedDeclarationWithName}.
  */
 export function isNamedDeclarationWithName(
@@ -180,7 +175,6 @@ export function isNamedDeclarationWithName(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `NamespaceDeclaration`.
  */
 export function isNamespaceDeclaration(
@@ -215,7 +209,6 @@ export type NumericOrStringLikeLiteral =
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link NumericOrStringLikeLiteral}.
  */
 export function isNumericOrStringLikeLiteral(
@@ -243,7 +236,6 @@ export function isNumericOrStringLikeLiteral(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `PropertyAccessEntityNameExpression`.
  */
 export function isPropertyAccessEntityNameExpression(
@@ -268,7 +260,6 @@ export function isPropertyAccessEntityNameExpression(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `SuperElementAccessExpression`.
  */
 export function isSuperElementAccessExpression(
@@ -291,7 +282,6 @@ export function isSuperElementAccessExpression(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `SuperPropertyAccessExpression`.
  */
 export function isSuperPropertyAccessExpression(

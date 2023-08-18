@@ -131,7 +131,6 @@ export type VoidKeyword = ts.KeywordToken<ts.SyntaxKind.VoidKeyword>;
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AbstractKeyword`.
  */
 export function isAbstractKeyword(node: ts.Node): node is ts.AbstractKeyword {
@@ -150,7 +149,6 @@ export function isAbstractKeyword(node: ts.Node): node is ts.AbstractKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AccessorKeyword`.
  */
 export function isAccessorKeyword(node: ts.Node): node is ts.AccessorKeyword {
@@ -169,7 +167,6 @@ export function isAccessorKeyword(node: ts.Node): node is ts.AccessorKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an {@link AnyKeyword}.
  */
 export function isAnyKeyword(node: ts.Node): node is AnyKeyword {
@@ -188,7 +185,6 @@ export function isAnyKeyword(node: ts.Node): node is AnyKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AssertKeyword`.
  */
 export function isAssertKeyword(node: ts.Node): node is ts.AssertKeyword {
@@ -208,7 +204,6 @@ export function isAssertKeyword(node: ts.Node): node is ts.AssertKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AssertsKeyword`.
  */
 export function isAssertsKeyword(node: ts.Node): node is ts.AssertsKeyword {
@@ -227,7 +222,6 @@ export function isAssertsKeyword(node: ts.Node): node is ts.AssertsKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AsyncKeyword`.
  */
 export function isAsyncKeyword(node: ts.Node): node is ts.AsyncKeyword {
@@ -247,7 +241,6 @@ export function isAsyncKeyword(node: ts.Node): node is ts.AsyncKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AwaitKeyword`.
  */
 export function isAwaitKeyword(node: ts.Node): node is ts.AwaitKeyword {
@@ -267,7 +260,6 @@ export function isAwaitKeyword(node: ts.Node): node is ts.AwaitKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link BigIntKeyword}.
  */
 export function isBigIntKeyword(node: ts.Node): node is BigIntKeyword {
@@ -287,7 +279,6 @@ export function isBigIntKeyword(node: ts.Node): node is BigIntKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link BooleanKeyword}.
  */
 export function isBooleanKeyword(node: ts.Node): node is BooleanKeyword {
@@ -307,7 +298,6 @@ export function isBooleanKeyword(node: ts.Node): node is BooleanKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ColonToken`.
  */
 export function isColonToken(node: ts.Node): node is ts.ColonToken {
@@ -326,7 +316,6 @@ export function isColonToken(node: ts.Node): node is ts.ColonToken {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ConstKeyword`.
  */
 export function isConstKeyword(node: ts.Node): node is ts.ConstKeyword {
@@ -345,7 +334,6 @@ export function isConstKeyword(node: ts.Node): node is ts.ConstKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `DeclareKeyword`.
  */
 export function isDeclareKeyword(node: ts.Node): node is ts.DeclareKeyword {
@@ -364,7 +352,6 @@ export function isDeclareKeyword(node: ts.Node): node is ts.DeclareKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `DefaultKeyword`.
  */
 export function isDefaultKeyword(node: ts.Node): node is ts.DefaultKeyword {
@@ -383,7 +370,6 @@ export function isDefaultKeyword(node: ts.Node): node is ts.DefaultKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `DotToken`.
  */
 export function isDotToken(node: ts.Node): node is ts.DotToken {
@@ -402,7 +388,6 @@ export function isDotToken(node: ts.Node): node is ts.DotToken {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `EndOfFileToken`.
  */
 export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken {
@@ -422,7 +407,6 @@ export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `EqualsGreaterThanToken`.
  */
 export function isEqualsGreaterThanToken(
@@ -443,7 +427,6 @@ export function isEqualsGreaterThanToken(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `EqualsToken`.
  */
 export function isEqualsToken(node: ts.Node): node is ts.EqualsToken {
@@ -463,7 +446,6 @@ export function isEqualsToken(node: ts.Node): node is ts.EqualsToken {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `ExclamationToken`.
  */
 export function isExclamationToken(node: ts.Node): node is ts.ExclamationToken {
@@ -482,7 +464,6 @@ export function isExclamationToken(node: ts.Node): node is ts.ExclamationToken {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `ExportKeyword`.
  */
 export function isExportKeyword(node: ts.Node): node is ts.ExportKeyword {
@@ -501,7 +482,6 @@ export function isExportKeyword(node: ts.Node): node is ts.ExportKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link FalseKeyword}.
  */
 export function isFalseKeyword(node: ts.Node): node is FalseKeyword {
@@ -520,7 +500,6 @@ export function isFalseKeyword(node: ts.Node): node is FalseKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `FalseLiteral`.
  */
 export function isFalseLiteral(node: ts.Node): node is ts.FalseLiteral {
@@ -539,7 +518,6 @@ export function isFalseLiteral(node: ts.Node): node is ts.FalseLiteral {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `ImportExpression`.
  */
 export function isImportExpression(node: ts.Node): node is ts.ImportExpression {
@@ -558,7 +536,6 @@ export function isImportExpression(node: ts.Node): node is ts.ImportExpression {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an {@link ImportKeyword}.
  */
 export function isImportKeyword(node: ts.Node): node is ImportKeyword {
@@ -577,7 +554,6 @@ export function isImportKeyword(node: ts.Node): node is ImportKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `InKeyword`.
  */
 export function isInKeyword(node: ts.Node): node is ts.InKeyword {
@@ -598,7 +574,6 @@ export function isInKeyword(node: ts.Node): node is ts.InKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `InputFiles`.
  */
 export function isInputFiles(node: ts.Node): node is ts.InputFiles {
@@ -618,7 +593,6 @@ export function isInputFiles(node: ts.Node): node is ts.InputFiles {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JSDocText`.
  */
 export function isJSDocText(node: ts.Node): node is ts.JSDocText {
@@ -637,7 +611,6 @@ export function isJSDocText(node: ts.Node): node is ts.JSDocText {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JsonMinusNumericLiteral`.
  */
 export function isJsonMinusNumericLiteral(
@@ -658,7 +631,6 @@ export function isJsonMinusNumericLiteral(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link NeverKeyword}.
  */
 export function isNeverKeyword(node: ts.Node): node is NeverKeyword {
@@ -677,7 +649,6 @@ export function isNeverKeyword(node: ts.Node): node is NeverKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link NullKeyword}.
  */
 export function isNullKeyword(node: ts.Node): node is NullKeyword {
@@ -696,7 +667,6 @@ export function isNullKeyword(node: ts.Node): node is NullKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `NullLiteral`.
  */
 export function isNullLiteral(node: ts.Node): node is ts.NullLiteral {
@@ -715,7 +685,6 @@ export function isNullLiteral(node: ts.Node): node is ts.NullLiteral {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link NumberKeyword}.
  */
 export function isNumberKeyword(node: ts.Node): node is NumberKeyword {
@@ -734,7 +703,6 @@ export function isNumberKeyword(node: ts.Node): node is NumberKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an {@link ObjectKeyword}.
  */
 export function isObjectKeyword(node: ts.Node): node is ObjectKeyword {
@@ -753,7 +721,6 @@ export function isObjectKeyword(node: ts.Node): node is ObjectKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `OutKeyword`.
  */
 export function isOutKeyword(node: ts.Node): node is ts.OutKeyword {
@@ -772,7 +739,6 @@ export function isOutKeyword(node: ts.Node): node is ts.OutKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `OverrideKeyword`.
  */
 export function isOverrideKeyword(node: ts.Node): node is ts.OverrideKeyword {
@@ -791,7 +757,6 @@ export function isOverrideKeyword(node: ts.Node): node is ts.OverrideKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `PrivateKeyword`.
  */
 export function isPrivateKeyword(node: ts.Node): node is ts.PrivateKeyword {
@@ -810,7 +775,6 @@ export function isPrivateKeyword(node: ts.Node): node is ts.PrivateKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ProtectedKeyword`.
  */
 export function isProtectedKeyword(node: ts.Node): node is ts.ProtectedKeyword {
@@ -829,7 +793,6 @@ export function isProtectedKeyword(node: ts.Node): node is ts.ProtectedKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `PublicKeyword`.
  */
 export function isPublicKeyword(node: ts.Node): node is ts.PublicKeyword {
@@ -849,7 +812,6 @@ export function isPublicKeyword(node: ts.Node): node is ts.PublicKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `QuestionDotToken`.
  */
 export function isQuestionDotToken(node: ts.Node): node is ts.QuestionDotToken {
@@ -869,7 +831,6 @@ export function isQuestionDotToken(node: ts.Node): node is ts.QuestionDotToken {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `QuestionToken`.
  */
 export function isQuestionToken(node: ts.Node): node is ts.QuestionToken {
@@ -888,7 +849,6 @@ export function isQuestionToken(node: ts.Node): node is ts.QuestionToken {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ReadonlyKeyword`.
  */
 export function isReadonlyKeyword(node: ts.Node): node is ts.ReadonlyKeyword {
@@ -907,7 +867,6 @@ export function isReadonlyKeyword(node: ts.Node): node is ts.ReadonlyKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `StaticKeyword`.
  */
 export function isStaticKeyword(node: ts.Node): node is ts.StaticKeyword {
@@ -926,7 +885,6 @@ export function isStaticKeyword(node: ts.Node): node is ts.StaticKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link StringKeyword}.
  */
 export function isStringKeyword(node: ts.Node): node is StringKeyword {
@@ -945,7 +903,6 @@ export function isStringKeyword(node: ts.Node): node is StringKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `SuperExpression`.
  */
 export function isSuperExpression(node: ts.Node): node is ts.SuperExpression {
@@ -964,7 +921,6 @@ export function isSuperExpression(node: ts.Node): node is ts.SuperExpression {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link SuperKeyword}.
  */
 export function isSuperKeyword(node: ts.Node): node is SuperKeyword {
@@ -983,7 +939,6 @@ export function isSuperKeyword(node: ts.Node): node is SuperKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link SymbolKeyword}.
  */
 export function isSymbolKeyword(node: ts.Node): node is SymbolKeyword {
@@ -1002,7 +957,6 @@ export function isSymbolKeyword(node: ts.Node): node is SymbolKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `SyntaxList`.
  */
 export function isSyntaxList(node: ts.Node): node is ts.SyntaxList {
@@ -1021,7 +975,6 @@ export function isSyntaxList(node: ts.Node): node is ts.SyntaxList {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ThisExpression`.
  */
 export function isThisExpression(node: ts.Node): node is ts.ThisExpression {
@@ -1040,7 +993,6 @@ export function isThisExpression(node: ts.Node): node is ts.ThisExpression {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link ThisKeyword}.
  */
 export function isThisKeyword(node: ts.Node): node is ThisKeyword {
@@ -1059,7 +1011,6 @@ export function isThisKeyword(node: ts.Node): node is ThisKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link TrueKeyword}.
  */
 export function isTrueKeyword(node: ts.Node): node is TrueKeyword {
@@ -1078,7 +1029,6 @@ export function isTrueKeyword(node: ts.Node): node is TrueKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `TrueLiteral`.
  */
 export function isTrueLiteral(node: ts.Node): node is ts.TrueLiteral {
@@ -1097,7 +1047,6 @@ export function isTrueLiteral(node: ts.Node): node is ts.TrueLiteral {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an {@link UndefinedKeyword}.
  */
 export function isUndefinedKeyword(node: ts.Node): node is UndefinedKeyword {
@@ -1116,7 +1065,6 @@ export function isUndefinedKeyword(node: ts.Node): node is UndefinedKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an {@link UnknownKeyword}.
  */
 export function isUnknownKeyword(node: ts.Node): node is UnknownKeyword {
@@ -1137,7 +1085,6 @@ export function isUnknownKeyword(node: ts.Node): node is UnknownKeyword {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `UnparsedPrologue`.
  */
 export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue {
@@ -1159,7 +1106,6 @@ export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `UnparsedSyntheticReference`.
  */
 export function isUnparsedSyntheticReference(
@@ -1181,7 +1127,6 @@ export function isUnparsedSyntheticReference(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a {@link VoidKeyword}.
  */
 export function isVoidKeyword(node: ts.Node): node is VoidKeyword {

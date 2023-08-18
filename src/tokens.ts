@@ -24,7 +24,6 @@ export type ForEachTokenCallback = (token: ts.Node) => void;
  * 	console.log("Found token:", token.getText());
  * });
  * ```
- *
  * @param node - The node whose tokens should be visited
  * @param callback - Is called for every token contained in `node`
  */
