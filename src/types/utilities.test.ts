@@ -98,6 +98,39 @@ describe("symbolHasReadonlyDeclaration", () => {
 
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(true);
 	});
+
+	it.each([
+		[false, "[]"],
+		[
+			true,
+			`
+				enum Values { a };
+				const value = Values.a;
+				value;
+			`,
+		],
+		[
+			false,
+			`
+					const Values = { a: ['a'] };
+					Values.a = Values.a;
+			`,
+		],
+		[
+			false,
+			`
+					class Box {}
+					new Box();
+			`,
+		],
+	])("returns %j when given %s", (expected, source) => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(source);
+		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
+		const type = typeChecker.getTypeAtLocation(node.expression);
+		const symbol = type.getSymbol()!;
+
+		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(expected);
+	});
 });
 
 describe("isFalsyType", () => {
@@ -135,26 +168,5 @@ describe("isThenableType", () => {
 		const type = typeChecker.getTypeAtLocation(node.expression);
 
 		expect(isThenableType(typeChecker, node, type)).toBe(expected);
-	});
-});
-
-describe("symbolHasReadonlyDeclaration", () => {
-	it.each([
-		[false, "[]"],
-		[
-			true,
-			`
-			enum Values { a };
-			const value = Values.a;
-			value;
-			`,
-		],
-	])("returns %j when given %s", (expected, source) => {
-		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(source);
-		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
-		const type = typeChecker.getTypeAtLocation(node.expression);
-		const symbol = type.getSymbol()!;
-
-		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(expected);
 	});
 });
