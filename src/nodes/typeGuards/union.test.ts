@@ -13,6 +13,7 @@ import {
 	isClassMemberModifier,
 	isEntityNameExpression,
 } from "./union";
+import { isTsVersionAtLeast } from "../../utils";
 
 describe("isAccessExpression", () => {
 	it.each([
@@ -36,33 +37,35 @@ describe("isAccessibilityModifier", () => {
 	});
 });
 
-describe("isAccessorDeclaration", () => {
-	it.each([
-		[false, `abc`],
-		[
-			true,
-			ts.factory.createGetAccessorDeclaration(
-				undefined,
-				"property",
-				[],
-				undefined,
-				undefined,
-			),
-		],
-		[
-			true,
-			ts.factory.createSetAccessorDeclaration(
-				undefined,
-				"property",
-				[],
-				undefined,
-			),
-		],
-	])("returns %j when given %s", (expected, sourceText) => {
-		// eslint-disable-next-line deprecation/deprecation
-		expect(isAccessorDeclaration(createNode(sourceText))).toBe(expected);
+if (isTsVersionAtLeast(4, 9)) {
+	describe("isAccessorDeclaration", () => {
+		it.each([
+			[false, `abc`],
+			[
+				true,
+				ts.factory.createGetAccessorDeclaration(
+					undefined,
+					"property",
+					[],
+					undefined,
+					undefined,
+				),
+			],
+			[
+				true,
+				ts.factory.createSetAccessorDeclaration(
+					undefined,
+					"property",
+					[],
+					undefined,
+				),
+			],
+		])("returns %j when given %s", (expected, sourceText) => {
+			// eslint-disable-next-line deprecation/deprecation
+			expect(isAccessorDeclaration(createNode(sourceText))).toBe(expected);
+		});
 	});
-});
+}
 
 describe("isArrayBindingOrAssignmentPattern", () => {
 	it.each([
