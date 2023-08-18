@@ -70,7 +70,7 @@ describe("getWellKnownSymbolPropertyOfType", () => {
 		const type = typeChecker.getTypeAtLocation(node);
 
 		expect(
-			getWellKnownSymbolPropertyOfType(type, "asyncIterator", typeChecker)
+			getWellKnownSymbolPropertyOfType(type, "asyncIterator", typeChecker),
 		).toMatchObject({
 			name: /^__@asyncIterator/,
 		});
@@ -90,7 +90,7 @@ describe("getWellKnownSymbolPropertyOfType", () => {
 		const type = typeChecker.getTypeAtLocation(node);
 
 		expect(
-			getWellKnownSymbolPropertyOfType(type, "asyncIterator", typeChecker)
+			getWellKnownSymbolPropertyOfType(type, "asyncIterator", typeChecker),
 		).toMatchObject({
 			name: /^__@asyncIterator/,
 		});

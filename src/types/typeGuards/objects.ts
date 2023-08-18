@@ -17,7 +17,7 @@ import { isObjectType } from "./single";
  * ```
  */
 export function isEvolvingArrayType(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.EvolvingArrayType {
 	return (
 		isObjectType(type) && isObjectFlagSet(type, ts.ObjectFlags.EvolvingArray)

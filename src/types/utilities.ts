@@ -41,7 +41,7 @@ export function isFalsyType(type: ts.Type): boolean {
 	if (
 		isTypeFlagSet(
 			type,
-			ts.TypeFlags.Undefined | ts.TypeFlags.Null | ts.TypeFlags.Void
+			ts.TypeFlags.Undefined | ts.TypeFlags.Null | ts.TypeFlags.Void,
 		)
 	)
 		return true;
@@ -71,7 +71,7 @@ export function intersectionTypeParts(type: ts.Type): ts.Type[] {
 function isReadonlyPropertyIntersection(
 	type: ts.Type,
 	name: ts.__String,
-	typeChecker: ts.TypeChecker
+	typeChecker: ts.TypeChecker,
 ) {
 	const typeParts = isIntersectionType(type) ? type.types : [type];
 	return typeParts.some((subType): boolean => {
@@ -106,7 +106,7 @@ function isReadonlyPropertyIntersection(
 function isReadonlyPropertyFromMappedType(
 	type: ts.Type,
 	name: ts.__String,
-	typeChecker: ts.TypeChecker
+	typeChecker: ts.TypeChecker,
 ): boolean | undefined {
 	if (!isObjectType(type) || !isObjectFlagSet(type, ts.ObjectFlags.Mapped))
 		return;
@@ -128,10 +128,10 @@ function isReadonlyPropertyFromMappedType(
 function isCallback(
 	typeChecker: ts.TypeChecker,
 	param: ts.Symbol,
-	node: ts.Node
+	node: ts.Node,
 ): boolean {
 	let type: ts.Type | undefined = typeChecker.getApparentType(
-		typeChecker.getTypeOfSymbolAtLocation(param, node)
+		typeChecker.getTypeOfSymbolAtLocation(param, node),
 	);
 	if ((param.valueDeclaration as ts.ParameterDeclaration).dotDotDotToken) {
 		// unwrap array type of rest parameter
@@ -162,7 +162,7 @@ function isCallback(
 export function isPropertyReadonlyInType(
 	type: ts.Type,
 	name: ts.__String,
-	typeChecker: ts.TypeChecker
+	typeChecker: ts.TypeChecker,
 ): boolean {
 	let seenProperty = false;
 	let seenReadonlySignature = false;
@@ -206,7 +206,7 @@ export function isPropertyReadonlyInType(
  */
 function isReadonlyAssignmentDeclaration(
 	node: ts.CallExpression,
-	typeChecker: ts.TypeChecker
+	typeChecker: ts.TypeChecker,
 ) {
 	if (!isBindableObjectDefinePropertyCall(node)) return false;
 	const descriptorType = typeChecker.getTypeAtLocation(node.arguments[2]);
@@ -240,7 +240,7 @@ function isReadonlyAssignmentDeclaration(
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
 	node: ts.Node,
-	type: ts.Type
+	type: ts.Type,
 ): boolean;
 
 /**
@@ -271,13 +271,13 @@ export function isThenableType(
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
 	node: ts.Expression,
-	type?: ts.Type
+	type?: ts.Type,
 ): boolean;
 
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
 	node: ts.Node,
-	type = typeChecker.getTypeAtLocation(node)!
+	type = typeChecker.getTypeAtLocation(node)!,
 ): boolean {
 	for (const typePart of unionTypeParts(typeChecker.getApparentType(type))) {
 		const then = typePart.getProperty("then");
@@ -310,7 +310,7 @@ export function isThenableType(
  */
 export function symbolHasReadonlyDeclaration(
 	symbol: ts.Symbol,
-	typeChecker: ts.TypeChecker
+	typeChecker: ts.TypeChecker,
 ): boolean {
 	return !!(
 		(symbol.flags & ts.SymbolFlags.Accessor) === ts.SymbolFlags.GetAccessor ||
@@ -324,7 +324,7 @@ export function symbolHasReadonlyDeclaration(
 				ts.isEnumMember(node) ||
 				((ts.isPropertyAssignment(node) ||
 					ts.isShorthandPropertyAssignment(node)) &&
-					isInConstContext(node.parent))
+					isInConstContext(node.parent)),
 		)
 	);
 }

@@ -31,7 +31,7 @@ export type ForEachTokenCallback = (token: ts.Node) => void;
 export function forEachToken(
 	node: ts.Node,
 	callback: ForEachTokenCallback,
-	sourceFile: ts.SourceFile = node.getSourceFile()
+	sourceFile: ts.SourceFile = node.getSourceFile(),
 ): void {
 	const queue = [];
 	while (true) {

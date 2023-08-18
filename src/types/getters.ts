@@ -22,7 +22,7 @@ import {
  * ```
  */
 export function getCallSignaturesOfType(
-	type: ts.Type
+	type: ts.Type,
 ): readonly ts.Signature[] {
 	if (isUnionType(type)) {
 		const signatures = [];
@@ -59,7 +59,7 @@ export function getCallSignaturesOfType(
  */
 export function getPropertyOfType(
 	type: ts.Type,
-	name: ts.__String
+	name: ts.__String,
 ): ts.Symbol | undefined {
 	if (!(name as string).startsWith("__"))
 		return type.getProperty(name as string);
@@ -81,7 +81,7 @@ export function getPropertyOfType(
 export function getWellKnownSymbolPropertyOfType(
 	type: ts.Type,
 	wellKnownSymbolName: string,
-	typeChecker: ts.TypeChecker
+	typeChecker: ts.TypeChecker,
 ): ts.Symbol | undefined {
 	const prefix = "__@" + wellKnownSymbolName;
 
@@ -100,7 +100,7 @@ export function getWellKnownSymbolPropertyOfType(
 		}
 
 		const globalSymbol = typeChecker.getApparentType(
-			typeChecker.getTypeAtLocation(declaration.name.expression)
+			typeChecker.getTypeAtLocation(declaration.name.expression),
 		).symbol;
 
 		if (
@@ -108,7 +108,7 @@ export function getWellKnownSymbolPropertyOfType(
 			getPropertyNameOfWellKnownSymbol(
 				typeChecker,
 				globalSymbol,
-				wellKnownSymbolName
+				wellKnownSymbolName,
 			)
 		) {
 			return prop;
@@ -124,7 +124,7 @@ export function getWellKnownSymbolPropertyOfType(
 function getPropertyNameOfWellKnownSymbol(
 	typeChecker: ts.TypeChecker,
 	symbolConstructor: ts.Symbol | undefined,
-	symbolName: string
+	symbolName: string,
 ) {
 	const knownSymbol =
 		symbolConstructor &&
@@ -132,7 +132,7 @@ function getPropertyNameOfWellKnownSymbol(
 			.getTypeOfSymbolAtLocation(
 				symbolConstructor,
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-				(symbolConstructor as any).valueDeclaration
+				(symbolConstructor as any).valueDeclaration,
 			)
 			.getProperty(symbolName);
 	const knownSymbolType =
@@ -140,7 +140,7 @@ function getPropertyNameOfWellKnownSymbol(
 		typeChecker.getTypeOfSymbolAtLocation(
 			knownSymbol,
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-			(knownSymbol as any).valueDeclaration
+			(knownSymbol as any).valueDeclaration,
 		);
 	if (knownSymbolType && isUniqueESSymbolType(knownSymbolType))
 		return knownSymbolType.escapedName;

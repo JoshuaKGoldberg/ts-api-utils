@@ -29,7 +29,7 @@ describe("forEachComment", () => {
 				sourceFile.getFullText(),
 				expect.objectContaining({
 					kind: ts.SyntaxKind.SingleLineCommentTrivia,
-				})
+				}),
 			);
 		});
 
@@ -45,7 +45,7 @@ describe("forEachComment", () => {
 				sourceFile.getFullText(),
 				expect.objectContaining({
 					kind: ts.SyntaxKind.SingleLineCommentTrivia,
-				})
+				}),
 			);
 		});
 	}

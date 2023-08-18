@@ -13,7 +13,7 @@ describe("isCompilerOptionEnabled", () => {
 	it("checks if option is enabled", () => {
 		expect(isCompilerOptionEnabled({}, "allowJs")).toBe(false);
 		expect(isCompilerOptionEnabled({ allowJs: undefined }, "allowJs")).toBe(
-			false
+			false,
 		);
 		expect(isCompilerOptionEnabled({ allowJs: false }, "allowJs")).toBe(false);
 		expect(isCompilerOptionEnabled({ allowJs: true }, "allowJs")).toBe(true);
@@ -22,100 +22,100 @@ describe("isCompilerOptionEnabled", () => {
 	it("knows composite enables declaration", () => {
 		expect(isCompilerOptionEnabled({}, "declaration")).toBe(false);
 		expect(isCompilerOptionEnabled({ declaration: false }, "declaration")).toBe(
-			false
+			false,
 		);
 		expect(
-			isCompilerOptionEnabled({ declaration: undefined }, "declaration")
+			isCompilerOptionEnabled({ declaration: undefined }, "declaration"),
 		).toBe(false);
 		expect(isCompilerOptionEnabled({ declaration: true }, "declaration")).toBe(
-			true
+			true,
 		);
 
 		expect(isCompilerOptionEnabled({ composite: false }, "declaration")).toBe(
-			false
+			false,
 		);
 		expect(
-			isCompilerOptionEnabled({ composite: undefined }, "declaration")
+			isCompilerOptionEnabled({ composite: undefined }, "declaration"),
 		).toBe(false);
 		expect(isCompilerOptionEnabled({ composite: true }, "declaration")).toBe(
-			true
+			true,
 		);
 		expect(
 			isCompilerOptionEnabled(
 				{ composite: true, declaration: undefined },
-				"declaration"
-			)
+				"declaration",
+			),
 		).toBe(true);
 	});
 
 	it("knows composite implicitly enables incremental", () => {
 		expect(isCompilerOptionEnabled({}, "incremental")).toBe(false);
 		expect(isCompilerOptionEnabled({ incremental: false }, "incremental")).toBe(
-			false
+			false,
 		);
 		expect(
-			isCompilerOptionEnabled({ incremental: undefined }, "incremental")
+			isCompilerOptionEnabled({ incremental: undefined }, "incremental"),
 		).toBe(false);
 		expect(isCompilerOptionEnabled({ incremental: true }, "incremental")).toBe(
-			true
+			true,
 		);
 
 		expect(isCompilerOptionEnabled({ composite: false }, "incremental")).toBe(
-			false
+			false,
 		);
 		expect(
-			isCompilerOptionEnabled({ composite: undefined }, "incremental")
+			isCompilerOptionEnabled({ composite: undefined }, "incremental"),
 		).toBe(false);
 		expect(isCompilerOptionEnabled({ composite: true }, "incremental")).toBe(
-			true
+			true,
 		);
 		expect(
 			isCompilerOptionEnabled(
 				{ composite: true, incremental: undefined },
-				"incremental"
-			)
+				"incremental",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ composite: true, incremental: false },
-				"incremental"
-			)
+				"incremental",
+			),
 		).toBe(false);
 	});
 
 	it("knows stripInternal can only be used with declaration", () => {
 		expect(
-			isCompilerOptionEnabled({ declaration: true }, "stripInternal")
+			isCompilerOptionEnabled({ declaration: true }, "stripInternal"),
 		).toBe(false);
 		expect(
-			isCompilerOptionEnabled({ stripInternal: false }, "stripInternal")
+			isCompilerOptionEnabled({ stripInternal: false }, "stripInternal"),
 		).toBe(false);
 		expect(
-			isCompilerOptionEnabled({ stripInternal: true }, "stripInternal")
+			isCompilerOptionEnabled({ stripInternal: true }, "stripInternal"),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ stripInternal: true, declaration: false },
-				"stripInternal"
-			)
+				"stripInternal",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ stripInternal: true, declaration: true },
-				"stripInternal"
-			)
+				"stripInternal",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ stripInternal: true, composite: true },
-				"stripInternal"
-			)
+				"stripInternal",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ stripInternal: undefined, composite: true },
-				"stripInternal"
-			)
+				"stripInternal",
+			),
 		).toBe(false);
 	});
 
@@ -123,44 +123,44 @@ describe("isCompilerOptionEnabled", () => {
 		expect(
 			isCompilerOptionEnabled(
 				{ noImplicitAny: true },
-				"suppressImplicitAnyIndexErrors"
-			)
+				"suppressImplicitAnyIndexErrors",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ suppressImplicitAnyIndexErrors: false },
-				"suppressImplicitAnyIndexErrors"
-			)
+				"suppressImplicitAnyIndexErrors",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ suppressImplicitAnyIndexErrors: true },
-				"suppressImplicitAnyIndexErrors"
-			)
+				"suppressImplicitAnyIndexErrors",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ suppressImplicitAnyIndexErrors: true, noImplicitAny: false },
-				"suppressImplicitAnyIndexErrors"
-			)
+				"suppressImplicitAnyIndexErrors",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ suppressImplicitAnyIndexErrors: true, noImplicitAny: true },
-				"suppressImplicitAnyIndexErrors"
-			)
+				"suppressImplicitAnyIndexErrors",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ suppressImplicitAnyIndexErrors: true, strict: true },
-				"suppressImplicitAnyIndexErrors"
-			)
+				"suppressImplicitAnyIndexErrors",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ suppressImplicitAnyIndexErrors: undefined, strict: true },
-				"suppressImplicitAnyIndexErrors"
-			)
+				"suppressImplicitAnyIndexErrors",
+			),
 		).toBe(false);
 	});
 
@@ -169,146 +169,146 @@ describe("isCompilerOptionEnabled", () => {
 		expect(
 			isCompilerOptionEnabled(
 				{ skipDefaultLibCheck: false },
-				"skipDefaultLibCheck"
-			)
+				"skipDefaultLibCheck",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ skipDefaultLibCheck: undefined },
-				"skipDefaultLibCheck"
-			)
+				"skipDefaultLibCheck",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ skipDefaultLibCheck: true },
-				"skipDefaultLibCheck"
-			)
+				"skipDefaultLibCheck",
+			),
 		).toBe(true);
 
 		expect(
-			isCompilerOptionEnabled({ skipLibCheck: false }, "skipDefaultLibCheck")
+			isCompilerOptionEnabled({ skipLibCheck: false }, "skipDefaultLibCheck"),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ skipLibCheck: undefined },
-				"skipDefaultLibCheck"
-			)
+				"skipDefaultLibCheck",
+			),
 		).toBe(false);
 		expect(
-			isCompilerOptionEnabled({ skipLibCheck: true }, "skipDefaultLibCheck")
+			isCompilerOptionEnabled({ skipLibCheck: true }, "skipDefaultLibCheck"),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ skipLibCheck: true, skipDefaultLibCheck: undefined },
-				"skipDefaultLibCheck"
-			)
+				"skipDefaultLibCheck",
+			),
 		).toBe(true);
 	});
 
 	it("delegates strict flags to isStrictCompilerOptionEnabled", () => {
 		expect(isCompilerOptionEnabled({ strict: true }, "strictNullChecks")).toBe(
-			true
+			true,
 		);
 		expect(
-			isCompilerOptionEnabled({ strictNullChecks: true }, "strictNullChecks")
+			isCompilerOptionEnabled({ strictNullChecks: true }, "strictNullChecks"),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ strict: false, strictNullChecks: true },
-				"strictNullChecks"
-			)
+				"strictNullChecks",
+			),
 		).toBe(true);
 		expect(isCompilerOptionEnabled({ strict: false }, "strictNullChecks")).toBe(
-			false
+			false,
 		);
 		expect(
 			isCompilerOptionEnabled(
 				{ strict: true, strictNullChecks: false },
-				"strictNullChecks"
-			)
+				"strictNullChecks",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ strict: false, strictNullChecks: false },
-				"strictNullChecks"
-			)
+				"strictNullChecks",
+			),
 		).toBe(false);
 
 		expect(
 			isCompilerOptionEnabled(
 				{ strict: false, strictNullChecks: false, alwaysStrict: true },
-				"alwaysStrict"
-			)
+				"alwaysStrict",
+			),
 		).toBe(true);
 
 		expect(
-			isCompilerOptionEnabled({ strict: true }, "strictBindCallApply")
+			isCompilerOptionEnabled({ strict: true }, "strictBindCallApply"),
 		).toBe(true);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: false, strictBindCallApply: true },
-				"strictBindCallApply"
-			)
+				"strictBindCallApply",
+			),
 		).toBe(true);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: true, strictBindCallApply: false },
-				"strictBindCallApply"
-			)
+				"strictBindCallApply",
+			),
 		).toBe(false);
 	});
 
 	it("correctly determines allowSyntheticDefaultImports", () => {
 		expect(isCompilerOptionEnabled({}, "allowSyntheticDefaultImports")).toBe(
-			false
+			false,
 		);
 		expect(
 			isCompilerOptionEnabled(
 				{ allowSyntheticDefaultImports: false, esModuleInterop: true },
-				"allowSyntheticDefaultImports"
-			)
+				"allowSyntheticDefaultImports",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ allowSyntheticDefaultImports: true, esModuleInterop: false },
-				"allowSyntheticDefaultImports"
-			)
+				"allowSyntheticDefaultImports",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ allowSyntheticDefaultImports: true },
-				"allowSyntheticDefaultImports"
-			)
+				"allowSyntheticDefaultImports",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ esModuleInterop: true },
-				"allowSyntheticDefaultImports"
-			)
+				"allowSyntheticDefaultImports",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ esModuleInterop: false },
-				"allowSyntheticDefaultImports"
-			)
+				"allowSyntheticDefaultImports",
+			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
 				{ esModuleInterop: false, module: ts.ModuleKind.System },
-				"allowSyntheticDefaultImports"
-			)
+				"allowSyntheticDefaultImports",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ module: ts.ModuleKind.System },
-				"allowSyntheticDefaultImports"
-			)
+				"allowSyntheticDefaultImports",
+			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
 				{ esModuleInterop: false, module: ts.ModuleKind.ES2015 },
-				"allowSyntheticDefaultImports"
-			)
+				"allowSyntheticDefaultImports",
+			),
 		).toBe(false);
 	});
 });
@@ -316,41 +316,41 @@ describe("isCompilerOptionEnabled", () => {
 describe("isStrictCompilerOptionEnabled", () => {
 	it("correctly detects strict flags", () => {
 		expect(
-			isStrictCompilerOptionEnabled({ strict: true }, "strictNullChecks")
+			isStrictCompilerOptionEnabled({ strict: true }, "strictNullChecks"),
 		).toBe(true);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strictNullChecks: true },
-				"strictNullChecks"
-			)
+				"strictNullChecks",
+			),
 		).toBe(true);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: false, strictNullChecks: true },
-				"strictNullChecks"
-			)
+				"strictNullChecks",
+			),
 		).toBe(true);
 		expect(
-			isStrictCompilerOptionEnabled({ strict: false }, "strictNullChecks")
+			isStrictCompilerOptionEnabled({ strict: false }, "strictNullChecks"),
 		).toBe(false);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: true, strictNullChecks: false },
-				"strictNullChecks"
-			)
+				"strictNullChecks",
+			),
 		).toBe(false);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: false, strictNullChecks: false },
-				"strictNullChecks"
-			)
+				"strictNullChecks",
+			),
 		).toBe(false);
 
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: false, strictNullChecks: false, alwaysStrict: true },
-				"alwaysStrict"
-			)
+				"alwaysStrict",
+			),
 		).toBe(true);
 	});
 
@@ -358,8 +358,8 @@ describe("isStrictCompilerOptionEnabled", () => {
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: true },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(true);
 		expect(
 			isStrictCompilerOptionEnabled(
@@ -368,62 +368,62 @@ describe("isStrictCompilerOptionEnabled", () => {
 					strictNullChecks: true,
 					strictPropertyInitialization: true,
 				},
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(true);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: true, strictPropertyInitialization: true },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(true);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strictPropertyInitialization: true },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(false);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strictNullChecks: true },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(false);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: false, strictPropertyInitialization: true },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(false);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: false, strictNullChecks: true },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(false);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: false },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(false);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: true, strictPropertyInitialization: false },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(false);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: false, strictPropertyInitialization: false },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(false);
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: true, strictNullChecks: false },
-				"strictPropertyInitialization"
-			)
+				"strictPropertyInitialization",
+			),
 		).toBe(false);
 	});
 });

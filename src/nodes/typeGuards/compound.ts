@@ -44,7 +44,7 @@ export type ConstAssertionIdentifier = ts.Identifier & {
  * @returns Whether the given node appears to be a {@link ConstAssertionExpression}.
  */
 export function isConstAssertionExpression(
-	node: ts.AssertionExpression
+	node: ts.AssertionExpression,
 ): node is ConstAssertionExpression {
 	return (
 		ts.isTypeReferenceNode(node.type) &&
@@ -69,7 +69,7 @@ export function isConstAssertionExpression(
  * @returns Whether the given node appears to be an `IterationStatement`.
  */
 export function isIterationStatement(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.IterationStatement {
 	switch (node.kind) {
 		case ts.SyntaxKind.DoStatement:
@@ -99,7 +99,7 @@ export function isIterationStatement(
  * @returns Whether the given node appears to be a `JSDocNamespaceDeclaration`.
  */
 export function isJSDocNamespaceDeclaration(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.JSDocNamespaceDeclaration {
 	return (
 		ts.isModuleDeclaration(node) &&
@@ -124,7 +124,7 @@ export function isJSDocNamespaceDeclaration(
  * @returns Whether the given node appears to be a `JsxTagNamePropertyAccess`.
  */
 export function isJsxTagNamePropertyAccess(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.JsxTagNamePropertyAccess {
 	return (
 		ts.isPropertyAccessExpression(node) &&
@@ -158,7 +158,7 @@ export interface NamedDeclarationWithName extends ts.NamedDeclaration {
  * @returns Whether the given node appears to be a {@link NamedDeclarationWithName}.
  */
 export function isNamedDeclarationWithName(
-	node: ts.Declaration
+	node: ts.Declaration,
 ): node is NamedDeclarationWithName {
 	return (
 		"name" in node &&
@@ -184,7 +184,7 @@ export function isNamedDeclarationWithName(
  * @returns Whether the given node appears to be a `NamespaceDeclaration`.
  */
 export function isNamespaceDeclaration(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.NamespaceDeclaration {
 	return (
 		ts.isModuleDeclaration(node) &&
@@ -219,7 +219,7 @@ export type NumericOrStringLikeLiteral =
  * @returns Whether the given node appears to be a {@link NumericOrStringLikeLiteral}.
  */
 export function isNumericOrStringLikeLiteral(
-	node: ts.Node
+	node: ts.Node,
 ): node is NumericOrStringLikeLiteral {
 	switch (node.kind) {
 		case ts.SyntaxKind.StringLiteral:
@@ -247,7 +247,7 @@ export function isNumericOrStringLikeLiteral(
  * @returns Whether the given node appears to be a `PropertyAccessEntityNameExpression`.
  */
 export function isPropertyAccessEntityNameExpression(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.PropertyAccessEntityNameExpression {
 	return (
 		ts.isPropertyAccessExpression(node) &&
@@ -272,7 +272,7 @@ export function isPropertyAccessEntityNameExpression(
  * @returns Whether the given node appears to be a `SuperElementAccessExpression`.
  */
 export function isSuperElementAccessExpression(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.SuperElementAccessExpression {
 	return (
 		ts.isElementAccessExpression(node) && isSuperExpression(node.expression)
@@ -295,7 +295,7 @@ export function isSuperElementAccessExpression(
  * @returns Whether the given node appears to be a `SuperPropertyAccessExpression`.
  */
 export function isSuperPropertyAccessExpression(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.SuperPropertyAccessExpression {
 	return (
 		ts.isPropertyAccessExpression(node) && isSuperExpression(node.expression)

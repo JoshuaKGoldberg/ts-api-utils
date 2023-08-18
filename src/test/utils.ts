@@ -2,12 +2,12 @@ import tsvfs from "@typescript/vfs";
 import ts from "typescript";
 
 export function createNodeAndSourceFile<Node extends ts.Node>(
-	sourceText: string
+	sourceText: string,
 ): { node: Node; sourceFile: ts.SourceFile } {
 	const sourceFile = ts.createSourceFile(
 		"file.tsx",
 		sourceText,
-		ts.ScriptTarget.ESNext
+		ts.ScriptTarget.ESNext,
 	);
 	const statement = sourceFile.statements.at(-1)!;
 
@@ -19,7 +19,7 @@ export function createNodeAndSourceFile<Node extends ts.Node>(
 }
 
 export function createNode<Node extends ts.Node>(
-	nodeOrSourceText: Node | string
+	nodeOrSourceText: Node | string,
 ): Node {
 	if (typeof nodeOrSourceText !== "string") {
 		return nodeOrSourceText;
@@ -35,7 +35,7 @@ interface SourceFileAndTypeChecker {
 
 export function createSourceFileAndTypeChecker(
 	sourceText: string,
-	fileName = "file.tsx"
+	fileName = "file.tsx",
 ): SourceFileAndTypeChecker {
 	const compilerOptions: ts.CompilerOptions = {
 		lib: ["ES2018"],
@@ -50,7 +50,7 @@ export function createSourceFileAndTypeChecker(
 		system,
 		[fileName],
 		ts,
-		compilerOptions
+		compilerOptions,
 	);
 
 	const program = env.languageService.getProgram();
