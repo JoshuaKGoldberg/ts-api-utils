@@ -10,13 +10,49 @@ import {
 } from "./utilities";
 
 describe("isPropertyReadonlyInType", () => {
+	it("returns false when the property is not readonly", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			interface Box {
+				 value: string;
+			};
+		`);
+		const node = sourceFile.statements[0] as ts.InterfaceDeclaration;
+		const type = typeChecker.getTypeAtLocation(node);
+
+		expect(
+			isPropertyReadonlyInType(
+				type,
+				ts.escapeLeadingUnderscores("value"),
+				typeChecker,
+			),
+		).toBe(false);
+	});
+
+	it("returns true when the property is readonly", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			interface Box {
+				readonly value: string;
+			};
+		`);
+		const node = sourceFile.statements[0] as ts.InterfaceDeclaration;
+		const type = typeChecker.getTypeAtLocation(node);
+
+		expect(
+			isPropertyReadonlyInType(
+				type,
+				ts.escapeLeadingUnderscores("value"),
+				typeChecker,
+			),
+		).toBe(true);
+	});
+
 	it("does not crash when the type is a mapped type parameter extending any", () => {
 		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
-            type MyType<T> = {
-                [K in keyof T]: 'cat' | 'dog' | T[K];
-            };
-            type Test<A extends any[]> = MyType<A>;
-        `);
+			type MyType<T> = {
+				[K in keyof T]: 'cat' | 'dog' | T[K];
+			};
+			type Test<A extends any[]> = MyType<A>;
+		`);
 		const node = sourceFile.statements.at(-1) as ts.TypeAliasDeclaration;
 		const type = typeChecker.getTypeAtLocation(node);
 
@@ -27,6 +63,40 @@ describe("isPropertyReadonlyInType", () => {
 				typeChecker,
 			),
 		).toBe(false);
+	});
+});
+
+describe("symbolHasReadonlyDeclaration", () => {
+	it("returns false when the symbol is not readonly", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			interface Box {
+				 value: string;
+			};
+
+			let box = { value: "" };
+
+			box;
+		`);
+		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
+		const symbol = typeChecker.getSymbolAtLocation(node.expression)!;
+
+		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(false);
+	});
+
+	it("returns false when the symbol is not readonly", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			interface Box {
+				 value: string;
+			};
+
+			const box = { value: "" };
+
+			box;
+		`);
+		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
+		const symbol = typeChecker.getSymbolAtLocation(node.expression)!;
+
+		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(true);
 	});
 });
 

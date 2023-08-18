@@ -5,6 +5,8 @@ import { createNode } from "../../test/utils";
 import {
 	isAccessExpression,
 	isAccessibilityModifier,
+	isAccessorDeclaration,
+	isArrayBindingElement,
 	isArrayBindingOrAssignmentPattern,
 	isAssignmentPattern,
 	isBooleanLiteral,
@@ -34,6 +36,33 @@ describe("isAccessibilityModifier", () => {
 	});
 });
 
+describe("isAccessorDeclaration", () => {
+	it.each([
+		[false, `abc`],
+		[
+			true,
+			ts.factory.createGetAccessorDeclaration(
+				undefined,
+				"property",
+				[],
+				undefined,
+				undefined,
+			),
+		],
+		[
+			true,
+			ts.factory.createSetAccessorDeclaration(
+				undefined,
+				"property",
+				[],
+				undefined,
+			),
+		],
+	])("returns %j when given %s", (expected, sourceText) => {
+		expect(isAccessorDeclaration(createNode(sourceText))).toBe(expected);
+	});
+});
+
 describe("isArrayBindingOrAssignmentPattern", () => {
 	it.each([
 		[false, `"[a]"`],
@@ -44,6 +73,16 @@ describe("isArrayBindingOrAssignmentPattern", () => {
 		expect(isArrayBindingOrAssignmentPattern(createNode(sourceText))).toBe(
 			expected,
 		);
+	});
+});
+
+describe("isArrayBindingElement", () => {
+	it.each([
+		[false, `abc`],
+		[true, ts.factory.createBindingElement(undefined, "property", "name")],
+		[true, ts.factory.createOmittedExpression()],
+	])("returns %j when given %s", (expected, sourceText) => {
+		expect(isArrayBindingElement(createNode(sourceText))).toBe(expected);
 	});
 });
 
