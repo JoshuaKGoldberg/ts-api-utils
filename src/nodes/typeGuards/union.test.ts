@@ -2,6 +2,7 @@ import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
 import { createNode } from "../../test/utils";
+import { isTsVersionAtLeast } from "../../utils";
 import {
 	isAccessExpression,
 	isAccessibilityModifier,
@@ -13,7 +14,6 @@ import {
 	isClassMemberModifier,
 	isEntityNameExpression,
 } from "./union";
-import { isTsVersionAtLeast } from "../../utils";
 
 describe("isAccessExpression", () => {
 	it.each([
