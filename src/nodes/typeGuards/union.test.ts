@@ -42,7 +42,7 @@ describe("isArrayBindingOrAssignmentPattern", () => {
 		[true, ts.factory.createArrayLiteralExpression()],
 	])("returns %j when given %s", (expected, sourceText) => {
 		expect(isArrayBindingOrAssignmentPattern(createNode(sourceText))).toBe(
-			expected
+			expected,
 		);
 	});
 });

@@ -51,7 +51,7 @@ function charSize(ch: number) {
  */
 export function isValidPropertyAccess(
 	text: string,
-	languageVersion = ts.ScriptTarget.Latest
+	languageVersion = ts.ScriptTarget.Latest,
 ): boolean {
 	if (text.length === 0) return false;
 	let ch = text.codePointAt(0)!;

@@ -26,7 +26,7 @@ export interface FreshableIntrinsicType
  * }
  */
 export function isFreshableIntrinsicType(
-	type: ts.Type
+	type: ts.Type,
 ): type is FreshableIntrinsicType {
 	return isIntrinsicType(type) && isFreshableType(type);
 }
@@ -44,7 +44,7 @@ export function isFreshableIntrinsicType(
  * }
  */
 export function isTupleTypeReference(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.TupleTypeReference {
 	return isTypeReference(type) && isTupleType(type.target);
 }

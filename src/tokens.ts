@@ -24,14 +24,13 @@ export type ForEachTokenCallback = (token: ts.Node) => void;
  * 	console.log("Found token:", token.getText());
  * });
  * ```
- *
  * @param node - The node whose tokens should be visited
  * @param callback - Is called for every token contained in `node`
  */
 export function forEachToken(
 	node: ts.Node,
 	callback: ForEachTokenCallback,
-	sourceFile: ts.SourceFile = node.getSourceFile()
+	sourceFile: ts.SourceFile = node.getSourceFile(),
 ): void {
 	const queue = [];
 	while (true) {

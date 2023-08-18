@@ -45,7 +45,7 @@ function canHaveTrailingTrivia(token: ts.Node): boolean {
  * @internal
  */
 function isJsxElementOrFragment(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.JsxElement | ts.JsxFragment {
 	return (
 		node.kind === ts.SyntaxKind.JsxElement ||
@@ -60,7 +60,7 @@ function isJsxElementOrFragment(
  */
 export type ForEachCommentCallback = (
 	fullText: string,
-	comment: ts.CommentRange
+	comment: ts.CommentRange,
 ) => void;
 
 /**
@@ -79,7 +79,7 @@ export type ForEachCommentCallback = (
 export function forEachComment(
 	node: ts.Node,
 	callback: ForEachCommentCallback,
-	sourceFile: ts.SourceFile = node.getSourceFile()
+	sourceFile: ts.SourceFile = node.getSourceFile(),
 ): void {
 	/* Visit all tokens and skip trivia.
        Comment ranges between tokens are parsed without the need of a scanner.
@@ -97,16 +97,16 @@ export function forEachComment(
 					fullText,
 					// skip shebang at position 0
 					token.pos === 0 ? (ts.getShebang(fullText) ?? "").length : token.pos,
-					commentCallback
+					commentCallback,
 				);
 			if (notJsx || canHaveTrailingTrivia(token))
 				return ts.forEachTrailingCommentRange(
 					fullText,
 					token.end,
-					commentCallback
+					commentCallback,
 				);
 		},
-		sourceFile
+		sourceFile,
 	);
 	function commentCallback(pos: number, end: number, kind: ts.CommentKind) {
 		callback(fullText, { pos, end, kind });
