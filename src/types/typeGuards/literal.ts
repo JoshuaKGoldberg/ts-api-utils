@@ -28,7 +28,7 @@ export interface BooleanLiteralType extends UnknownLiteralType {
  * ```
  */
 export function isBooleanLiteralType(
-	type: ts.Type
+	type: ts.Type,
 ): type is BooleanLiteralType {
 	return isTypeFlagSet(type, ts.TypeFlags.BooleanLiteral);
 }
@@ -47,7 +47,7 @@ export function isBooleanLiteralType(
  * ```
  */
 export function isBigIntLiteralType(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.BigIntLiteralType {
 	return isTypeFlagSet(type, ts.TypeFlags.BigIntLiteral);
 }
@@ -110,7 +110,7 @@ export function isLiteralType(type: ts.Type): type is ts.LiteralType {
  * ```
  */
 export function isNumberLiteralType(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.NumberLiteralType {
 	return isTypeFlagSet(type, ts.TypeFlags.NumberLiteral);
 }
@@ -129,7 +129,7 @@ export function isNumberLiteralType(
  * ```
  */
 export function isStringLiteralType(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.StringLiteralType {
 	return isTypeFlagSet(type, ts.TypeFlags.StringLiteral);
 }
@@ -148,7 +148,7 @@ export function isStringLiteralType(
  * ```
  */
 export function isTemplateLiteralType(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.TemplateLiteralType {
 	return isTypeFlagSet(type, ts.TypeFlags.TemplateLiteral);
 }
@@ -203,7 +203,7 @@ export interface UnknownLiteralType extends FreshableIntrinsicType {
  * ```
  */
 export function isUnknownLiteralType(
-	type: ts.Type
+	type: ts.Type,
 ): type is UnknownLiteralType {
 	return isTypeFlagSet(type, ts.TypeFlags.Literal);
 }

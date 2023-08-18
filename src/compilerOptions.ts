@@ -35,7 +35,7 @@ export type BooleanCompilerOptions = keyof {
  */
 export function isCompilerOptionEnabled(
 	options: ts.CompilerOptions,
-	option: BooleanCompilerOptions
+	option: BooleanCompilerOptions,
 ): boolean {
 	switch (option) {
 		case "stripInternal":
@@ -89,7 +89,7 @@ export function isCompilerOptionEnabled(
 			type AssertEqual<T, U extends T> = U; // make sure all strict options are handled here
 			return isStrictCompilerOptionEnabled(
 				options,
-				option as AssertEqual<typeof option, StrictCompilerOption>
+				option as AssertEqual<typeof option, StrictCompilerOption>,
 			);
 	}
 	return options[option] === true;
@@ -137,7 +137,7 @@ export type StrictCompilerOption =
  */
 export function isStrictCompilerOptionEnabled(
 	options: ts.CompilerOptions,
-	option: StrictCompilerOption
+	option: StrictCompilerOption,
 ): boolean {
 	return (
 		(options.strict ? options[option] !== false : options[option] === true) &&

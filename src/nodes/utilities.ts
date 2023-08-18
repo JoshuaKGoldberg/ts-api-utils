@@ -15,7 +15,7 @@ import {
  * @internal
  */
 export function isBindableObjectDefinePropertyCall(
-	node: ts.CallExpression
+	node: ts.CallExpression,
 ): boolean {
 	return (
 		node.arguments.length === 3 &&

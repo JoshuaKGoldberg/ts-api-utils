@@ -426,7 +426,7 @@ export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken {
  * @returns Whether the given node appears to be an `EqualsGreaterThanToken`.
  */
 export function isEqualsGreaterThanToken(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.EqualsGreaterThanToken {
 	return node.kind === ts.SyntaxKind.EqualsGreaterThanToken;
 }
@@ -641,7 +641,7 @@ export function isJSDocText(node: ts.Node): node is ts.JSDocText {
  * @returns Whether the given node appears to be a `JsonMinusNumericLiteral`.
  */
 export function isJsonMinusNumericLiteral(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.JsonMinusNumericLiteral {
 	return node.kind === ts.SyntaxKind.PrefixUnaryExpression;
 }
@@ -1163,7 +1163,7 @@ export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue {
  * @returns Whether the given node appears to be an `UnparsedSyntheticReference`.
  */
 export function isUnparsedSyntheticReference(
-	node: ts.Node
+	node: ts.Node,
 ): node is ts.UnparsedSyntheticReference {
 	return node.kind === ts.SyntaxKind.UnparsedSyntheticReference;
 }

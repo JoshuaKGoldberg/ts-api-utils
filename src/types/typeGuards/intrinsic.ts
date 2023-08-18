@@ -51,7 +51,7 @@ export interface IntrinsicBooleanType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicBooleanType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicBooleanType {
 	return isTypeFlagSet(type, ts.TypeFlags.Boolean);
 }
@@ -79,7 +79,7 @@ export interface IntrinsicBigIntType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicBigIntType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicBigIntType {
 	return isTypeFlagSet(type, ts.TypeFlags.BigInt);
 }
@@ -113,7 +113,7 @@ export interface IntrinsicErrorType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicErrorType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicErrorType {
 	return isIntrinsicType(type) && type.intrinsicName === "error";
 }
@@ -141,7 +141,7 @@ export interface IntrinsicESSymbolType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicESSymbolType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicESSymbolType {
 	return isTypeFlagSet(type, ts.TypeFlags.ESSymbol);
 }
@@ -213,7 +213,7 @@ export interface IntrinsicNeverType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicNeverType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicNeverType {
 	return isTypeFlagSet(type, ts.TypeFlags.Never);
 }
@@ -243,7 +243,7 @@ export interface IntrinsicNonPrimitiveType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicNonPrimitiveType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicNonPrimitiveType {
 	return isTypeFlagSet(type, ts.TypeFlags.NonPrimitive);
 }
@@ -297,7 +297,7 @@ export interface IntrinsicNumberType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicNumberType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicNumberType {
 	return isTypeFlagSet(type, ts.TypeFlags.Number);
 }
@@ -325,7 +325,7 @@ export interface IntrinsicStringType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicStringType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicStringType {
 	return isTypeFlagSet(type, ts.TypeFlags.String);
 }
@@ -353,7 +353,7 @@ export interface IntrinsicUndefinedType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicUndefinedType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicUndefinedType {
 	return isTypeFlagSet(type, ts.TypeFlags.Undefined);
 }
@@ -381,7 +381,7 @@ export interface IntrinsicUnknownType extends IntrinsicType {
  * ```
  */
 export function isIntrinsicUnknownType(
-	type: ts.Type
+	type: ts.Type,
 ): type is IntrinsicUnknownType {
 	return isTypeFlagSet(type, ts.TypeFlags.Unknown);
 }
