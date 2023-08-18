@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import { createSourceFileAndTypeChecker } from "../../test/utils";
 import {
 	isConditionalType,
+	isEnumType,
 	isIntersectionType,
 	isObjectType,
 	isUnionOrIntersectionType,
@@ -37,6 +38,17 @@ describe("isConditionalType", () => {
 		const type = getTypeForTypeNode(sourceText);
 
 		expect(isConditionalType(type)).toBe(expected);
+	});
+});
+
+describe("isEnumType", () => {
+	it.each([
+		[false, "class Box {} type _ = Box;"],
+		[true, "enum Values {} type _ = Values;"],
+	])("returns %j when given %s", (expected, sourceText) => {
+		const type = getTypeForTypeNode(sourceText);
+
+		expect(isEnumType(type)).toBe(expected);
 	});
 });
 

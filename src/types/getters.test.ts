@@ -54,6 +54,54 @@ describe("getCallSignaturesOfType", () => {
 
 		expect(getCallSignaturesOfType(type)).toHaveLength(2);
 	});
+
+	it("returns the call signature when one exists across two objects in an intersection", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			declare const x: 
+				& { (): void; }
+				& {  }
+			;
+		`);
+
+		const node = (sourceFile.statements[0] as ts.VariableStatement)
+			.declarationList.declarations[0].name;
+
+		const type = typeChecker.getTypeAtLocation(node);
+
+		expect(getCallSignaturesOfType(type)).toHaveLength(1);
+	});
+
+	it("returns the call signatures when two exist in one object across two objects in an intersection", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			declare const x: 
+				& { (): void; (value: string): void; }
+				& {  }
+			;
+		`);
+
+		const node = (sourceFile.statements[0] as ts.VariableStatement)
+			.declarationList.declarations[0].name;
+
+		const type = typeChecker.getTypeAtLocation(node);
+
+		expect(getCallSignaturesOfType(type)).toHaveLength(2);
+	});
+
+	it("returns zero call signatures when two exist across two objects in an intersection", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			declare const x: 
+				& { (): void; }
+				& { (value: string): void; }
+			;
+		`);
+
+		const node = (sourceFile.statements[0] as ts.VariableStatement)
+			.declarationList.declarations[0].name;
+
+		const type = typeChecker.getTypeAtLocation(node);
+
+		expect(getCallSignaturesOfType(type)).toHaveLength(0);
+	});
 });
 
 describe("getWellKnownSymbolPropertyOfType", () => {

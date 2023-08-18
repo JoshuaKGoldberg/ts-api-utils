@@ -18,9 +18,9 @@ describe("forEachComment", () => {
 	if (isTsVersionAtLeast(4, 3)) {
 		it("calls the callback when the source has a leading comment", () => {
 			const { node, sourceFile } = createNodeAndSourceFile(`
-            // hello world
-            let value;
-        `);
+				// hello world
+				let value;
+			`);
 			const callback = vitest.fn();
 
 			forEachComment(node, callback, sourceFile);
@@ -35,8 +35,8 @@ describe("forEachComment", () => {
 
 		it("calls the callback when the source has a trailing comment", () => {
 			const { node, sourceFile } = createNodeAndSourceFile(`
-            let value; // hello world
-        `);
+				let value; // hello world
+			`);
 			const callback = vitest.fn();
 
 			forEachComment(node, callback, sourceFile);
