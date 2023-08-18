@@ -4,12 +4,12 @@ import { describe, expect, it } from "vitest";
 import { createSourceFileAndTypeChecker } from "../../test/utils";
 import {
 	isBigIntLiteralType,
+	isFalseLiteralType,
 	isLiteralType,
 	isNumberLiteralType,
 	isStringLiteralType,
 	isTemplateLiteralType,
 	isTrueLiteralType,
-	isFalseLiteralType,
 } from "./literal";
 
 describe.each([
