@@ -36,7 +36,7 @@ function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
  */
 export function isModifierFlagSet(
 	node: ts.Declaration,
-	flag: ts.ModifierFlags
+	flag: ts.ModifierFlags,
 ): boolean {
 	return isFlagSet(ts.getCombinedModifierFlags(node), flag);
 }
@@ -72,7 +72,7 @@ export const isNodeFlagSet: (node: ts.Node, flag: ts.NodeFlags) => boolean =
  */
 export function isObjectFlagSet(
 	objectType: ts.ObjectType,
-	flag: ts.ObjectFlags
+	flag: ts.ObjectFlags,
 ): boolean {
 	return isFlagSet(objectType.objectFlags, flag);
 }
@@ -92,7 +92,7 @@ export function isObjectFlagSet(
  */
 export const isSymbolFlagSet: (
 	symbol: ts.Symbol,
-	flag: ts.SymbolFlags
+	flag: ts.SymbolFlags,
 ) => boolean = isFlagSetOnObject;
 
 /**

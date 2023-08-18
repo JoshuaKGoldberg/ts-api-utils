@@ -25,7 +25,7 @@ function getTypeForVariable(sourceText: string) {
 	const node = sourceFile.statements.at(-1) as ts.VariableStatement;
 
 	return typeChecker.getTypeAtLocation(
-		node.declarationList.declarations[0].name
+		node.declarationList.declarations[0].name,
 	);
 }
 

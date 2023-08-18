@@ -84,7 +84,7 @@ export function isIndexType(type: ts.Type): type is ts.IndexType {
  * ```
  */
 export function isIndexedAccessType(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.IndexedAccessType {
 	return isTypeFlagSet(type, ts.TypeFlags.IndexedAccess);
 }
@@ -154,7 +154,7 @@ export function isObjectType(type: ts.Type): type is ts.ObjectType {
  * ```
  */
 export function isStringMappingType(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.StringMappingType {
 	return isTypeFlagSet(type, ts.TypeFlags.StringMapping);
 }
@@ -241,7 +241,7 @@ export function isUnionType(type: ts.Type): type is ts.UnionType {
  * ```
  */
 export function isUnionOrIntersectionType(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.UnionOrIntersectionType {
 	return isTypeFlagSet(type, ts.TypeFlags.UnionOrIntersection);
 }
@@ -260,7 +260,7 @@ export function isUnionOrIntersectionType(
  * ```
  */
 export function isUniqueESSymbolType(
-	type: ts.Type
+	type: ts.Type,
 ): type is ts.UniqueESSymbolType {
 	return isTypeFlagSet(type, ts.TypeFlags.UniqueESSymbol);
 }

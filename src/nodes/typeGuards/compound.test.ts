@@ -19,7 +19,7 @@ describe("isConstAssertionExpression", () => {
 			"an assertion expression with a literal type reference node",
 			ts.factory.createTypeAssertion(
 				ts.factory.createLiteralTypeNode(ts.factory.createNull()),
-				ts.factory.createIdentifier("def")
+				ts.factory.createIdentifier("def"),
 			),
 		],
 		[
@@ -29,10 +29,10 @@ describe("isConstAssertionExpression", () => {
 				ts.factory.createTypeReferenceNode(
 					ts.factory.createQualifiedName(
 						ts.factory.createIdentifier("abc"),
-						"def"
-					)
+						"def",
+					),
 				),
-				ts.factory.createIdentifier("ghi")
+				ts.factory.createIdentifier("ghi"),
 			),
 		],
 		[
@@ -40,7 +40,7 @@ describe("isConstAssertionExpression", () => {
 			"an assertion expression with a type reference node with a non-const identifier typeName",
 			ts.factory.createTypeAssertion(
 				ts.factory.createTypeReferenceNode("abc"),
-				ts.factory.createIdentifier("def")
+				ts.factory.createIdentifier("def"),
 			),
 		],
 		[
@@ -48,7 +48,7 @@ describe("isConstAssertionExpression", () => {
 			"an assertion expression with a type reference node with a const identifier typeName",
 			ts.factory.createTypeAssertion(
 				ts.factory.createTypeReferenceNode("const"),
-				ts.factory.createIdentifier("abc")
+				ts.factory.createIdentifier("abc"),
 			),
 		],
 	])("returns %j when given %s", (expected, _, node) => {
@@ -76,7 +76,7 @@ describe("isNamedDeclarationWithName", () => {
 		[false, "let _"],
 	])("returns %j when given %s", (expected, code) => {
 		expect(isNamedDeclarationWithName(createNode<ts.Declaration>(code))).toBe(
-			expected
+			expected,
 		);
 	});
 });

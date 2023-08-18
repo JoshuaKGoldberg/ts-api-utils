@@ -24,8 +24,8 @@ describe("isPropertyReadonlyInType", () => {
 			isPropertyReadonlyInType(
 				type,
 				ts.escapeLeadingUnderscores("length"),
-				typeChecker
-			)
+				typeChecker,
+			),
 		).toBe(false);
 	});
 });
