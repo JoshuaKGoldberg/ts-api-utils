@@ -123,7 +123,6 @@ export type StrictCompilerOption =
  * isStrictCompilerOptionEnabled(optionsLenient, "noImplicitAny"); // true
  * isStrictCompilerOptionEnabled(optionsLenient, "noImplicitThis"); // false
  * ```
- *
  * @example
  * ```ts
  * const optionsStrict = {

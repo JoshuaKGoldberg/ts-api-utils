@@ -256,7 +256,6 @@ export function isThenableType(
  *   // ...
  * }
  * ```
- *
  * @example
  * ```ts
  * declare const expression: ts.Expression;

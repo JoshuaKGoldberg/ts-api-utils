@@ -115,9 +115,10 @@ module.exports = {
 			"error",
 			"never",
 			{
-				noEndLines: true,
+				endLines: 0,
+				startLines: 1,
 				tags: {
-					example: { lines: "always" },
+					example: { lines: "never" },
 				},
 			},
 		],

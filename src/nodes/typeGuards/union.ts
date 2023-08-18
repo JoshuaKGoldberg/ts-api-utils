@@ -37,7 +37,6 @@ import {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AccessExpression`.
  */
 export function isAccessExpression(node: ts.Node): node is ts.AccessExpression {
@@ -58,7 +57,6 @@ export function isAccessExpression(node: ts.Node): node is ts.AccessExpression {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AccessibilityModifier`.
  */
 export function isAccessibilityModifier(
@@ -82,7 +80,6 @@ export function isAccessibilityModifier(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AccessorDeclaration`.
  */
 export function isAccessorDeclaration(
@@ -104,7 +101,6 @@ export function isAccessorDeclaration(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `ArrayBindingElement`.
  */
 export function isArrayBindingElement(
@@ -125,7 +121,6 @@ export function isArrayBindingElement(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `ArrayBindingOrAssignmentPattern`.
  */
 export function isArrayBindingOrAssignmentPattern(
@@ -146,7 +141,6 @@ export function isArrayBindingOrAssignmentPattern(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `AssignmentPattern`.
  */
 export function isAssignmentPattern(
@@ -169,7 +163,6 @@ export function isAssignmentPattern(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `BindingOrAssignmentElementRestIndicator`.
  */
 export function isBindingOrAssignmentElementRestIndicator(
@@ -198,7 +191,6 @@ export function isBindingOrAssignmentElementRestIndicator(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `BindingOrAssignmentElementTarget`.
  */
 export function isBindingOrAssignmentElementTarget(
@@ -225,7 +217,6 @@ export function isBindingOrAssignmentElementTarget(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `BindingOrAssignmentPattern`.
  */
 export function isBindingOrAssignmentPattern(
@@ -249,7 +240,6 @@ export function isBindingOrAssignmentPattern(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `BindingPattern`.
  */
 export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
@@ -268,7 +258,6 @@ export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `BlockLike`.
  */
 export function isBlockLike(node: ts.Node): node is ts.BlockLike {
@@ -292,7 +281,6 @@ export function isBlockLike(node: ts.Node): node is ts.BlockLike {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `BooleanLiteral`.
  */
 export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
@@ -312,7 +300,6 @@ export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ClassLikeDeclaration`.
  */
 export function isClassLikeDeclaration(
@@ -333,7 +320,6 @@ export function isClassLikeDeclaration(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ClassMemberModifier`.
  */
 export function isClassMemberModifier(
@@ -359,7 +345,6 @@ export function isClassMemberModifier(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `DeclarationName`.
  */
 export function isDeclarationName(node: ts.Node): node is ts.DeclarationName {
@@ -387,7 +372,6 @@ export function isDeclarationName(node: ts.Node): node is ts.DeclarationName {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `DeclarationWithTypeParameterChildren`.
  */
 export function isDeclarationWithTypeParameterChildren(
@@ -415,7 +399,6 @@ export function isDeclarationWithTypeParameterChildren(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `DeclarationWithTypeParameters`.
  */
 export function isDeclarationWithTypeParameters(
@@ -441,7 +424,6 @@ export function isDeclarationWithTypeParameters(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `DestructuringPattern`.
  */
 export function isDestructuringPattern(
@@ -466,7 +448,6 @@ export function isDestructuringPattern(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `EntityNameExpression`.
  */
 export function isEntityNameExpression(
@@ -487,7 +468,6 @@ export function isEntityNameExpression(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `EntityNameOrEntityNameExpression`.
  */
 export function isEntityNameOrEntityNameExpression(
@@ -508,7 +488,6 @@ export function isEntityNameOrEntityNameExpression(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ForInOrOfStatement`.
  */
 export function isForInOrOfStatement(
@@ -530,7 +509,6 @@ export function isForInOrOfStatement(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `FunctionLikeDeclaration`.
  */
 export function isFunctionLikeDeclaration(
@@ -559,7 +537,6 @@ export function isFunctionLikeDeclaration(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `HasDecorators`.
  */
 export function hasDecorators(node: ts.Node): node is ts.HasDecorators {
@@ -586,7 +563,6 @@ export function hasDecorators(node: ts.Node): node is ts.HasDecorators {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `HasExpressionInitializer`.
  */
 export function hasExpressionInitializer(
@@ -614,7 +590,6 @@ export function hasExpressionInitializer(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `HasInitializer`.
  */
 export function hasInitializer(node: ts.Node): node is ts.HasInitializer {
@@ -639,7 +614,6 @@ export function hasInitializer(node: ts.Node): node is ts.HasInitializer {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `HasJSDoc`.
  */
 export function hasJSDoc(node: ts.Node): node is ts.HasJSDoc {
@@ -737,7 +711,6 @@ export function hasJSDoc(node: ts.Node): node is ts.HasJSDoc {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `HasModifiers`.
  */
 export function hasModifiers(node: ts.Node): node is ts.HasModifiers {
@@ -782,7 +755,6 @@ export function hasModifiers(node: ts.Node): node is ts.HasModifiers {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `HasType`.
  */
 export function hasType(node: ts.Node): node is ts.HasType {
@@ -818,7 +790,6 @@ export function hasType(node: ts.Node): node is ts.HasType {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `HasTypeArguments`.
  */
 export function hasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
@@ -843,7 +814,6 @@ export function hasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JSDocComment`.
  */
 export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
@@ -874,7 +844,6 @@ export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JSDocNamespaceBody`.
  */
 export function isJSDocNamespaceBody(
@@ -895,7 +864,6 @@ export function isJSDocNamespaceBody(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JSDocTypeReferencingNode`.
  */
 export function isJSDocTypeReferencingNode(
@@ -921,7 +889,6 @@ export function isJSDocTypeReferencingNode(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JsonObjectExpression`.
  */
 export function isJsonObjectExpression(
@@ -951,7 +918,6 @@ export function isJsonObjectExpression(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JsxAttributeLike`.
  */
 export function isJsxAttributeLike(node: ts.Node): node is ts.JsxAttributeLike {
@@ -970,7 +936,6 @@ export function isJsxAttributeLike(node: ts.Node): node is ts.JsxAttributeLike {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JsxAttributeValue`.
  */
 export function isJsxAttributeValue(
@@ -998,7 +963,6 @@ export function isJsxAttributeValue(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JsxChild`.
  */
 export function isJsxChild(node: ts.Node): node is ts.JsxChild {
@@ -1024,7 +988,6 @@ export function isJsxChild(node: ts.Node): node is ts.JsxChild {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `JsxTagNameExpression`.
  */
 export function isJsxTagNameExpression(
@@ -1049,7 +1012,6 @@ export function isJsxTagNameExpression(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `LiteralToken`.
  */
 export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
@@ -1076,7 +1038,6 @@ export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ModuleBody`.
  */
 export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
@@ -1096,7 +1057,6 @@ export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ModuleName`.
  */
 export function isModuleName(node: ts.Node): node is ts.ModuleName {
@@ -1116,7 +1076,6 @@ export function isModuleName(node: ts.Node): node is ts.ModuleName {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ModuleReference`.
  */
 export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
@@ -1136,7 +1095,6 @@ export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `NamedImportBindings`.
  */
 export function isNamedImportBindings(
@@ -1157,7 +1115,6 @@ export function isNamedImportBindings(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `NamedImportsOrExports`.
  */
 export function isNamedImportsOrExports(
@@ -1178,7 +1135,6 @@ export function isNamedImportsOrExports(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `NamespaceBody`.
  */
 export function isNamespaceBody(node: ts.Node): node is ts.NamespaceBody {
@@ -1197,7 +1153,6 @@ export function isNamespaceBody(node: ts.Node): node is ts.NamespaceBody {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `ObjectBindingOrAssignmentElement`.
  */
 export function isObjectBindingOrAssignmentElement(
@@ -1223,7 +1178,6 @@ export function isObjectBindingOrAssignmentElement(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `ObjectBindingOrAssignmentPattern`.
  */
 export function isObjectBindingOrAssignmentPattern(
@@ -1244,7 +1198,6 @@ export function isObjectBindingOrAssignmentPattern(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `ObjectTypeDeclaration`.
  */
 export function isObjectTypeDeclaration(
@@ -1270,7 +1223,6 @@ export function isObjectTypeDeclaration(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `ParameterPropertyModifier`.
  */
 export function isParameterPropertyModifier(
@@ -1291,7 +1243,6 @@ export function isParameterPropertyModifier(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `PropertyNameLiteral`.
  */
 export function isPropertyNameLiteral(
@@ -1316,7 +1267,6 @@ export function isPropertyNameLiteral(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `PseudoLiteralToken`.
  */
 export function isPseudoLiteralToken(
@@ -1341,7 +1291,6 @@ export function isPseudoLiteralToken(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `SignatureDeclaration`.
  */
 export function isSignatureDeclaration(
@@ -1377,7 +1326,6 @@ export function isSignatureDeclaration(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `SuperProperty`.
  */
 export function isSuperProperty(node: ts.Node): node is ts.SuperProperty {
@@ -1399,7 +1347,6 @@ export function isSuperProperty(node: ts.Node): node is ts.SuperProperty {
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `TypeOnlyCompatibleAliasDeclaration`.
  */
 export function isTypeOnlyCompatibleAliasDeclaration(
@@ -1435,7 +1382,6 @@ export function isTypeOnlyCompatibleAliasDeclaration(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `TypeReferenceType`.
  */
 export function isTypeReferenceType(
@@ -1456,7 +1402,6 @@ export function isTypeReferenceType(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `UnionOrIntersectionTypeNode`.
  */
 export function isUnionOrIntersectionTypeNode(
@@ -1479,7 +1424,6 @@ export function isUnionOrIntersectionTypeNode(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be an `UnparsedSourceText`.
  */
 export function isUnparsedSourceText(
@@ -1501,7 +1445,6 @@ export function isUnparsedSourceText(
  *   // ...
  * }
  * ```
- *
  * @returns Whether the given node appears to be a `VariableLikeDeclaration`.
  */
 export function isVariableLikeDeclaration(
