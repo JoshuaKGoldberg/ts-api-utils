@@ -15,11 +15,11 @@ import ts from "typescript";
  * ```
  */
 export function includesModifier(
-	modifiers: Iterable<ts.Modifier> | undefined,
+	modifiers: Iterable<ts.ModifierLike> | undefined,
 	...kinds: ts.ModifierSyntaxKind[]
 ): boolean {
 	if (modifiers === undefined) return false;
 	for (const modifier of modifiers)
-		if (kinds.includes(modifier.kind)) return true;
+		if (kinds.includes(modifier.kind as ts.ModifierSyntaxKind)) return true;
 	return false;
 }
