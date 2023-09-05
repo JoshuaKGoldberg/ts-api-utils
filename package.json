@@ -67,7 +67,7 @@
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-plugin-typescript-sort-keys": "^3.0.0",
 		"eslint-plugin-unicorn": "^48.0.0",
-		"eslint-plugin-vitest": "^0.2.0",
+		"eslint-plugin-vitest": "^0.3.0",
 		"http-serve": "^1.0.1",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
