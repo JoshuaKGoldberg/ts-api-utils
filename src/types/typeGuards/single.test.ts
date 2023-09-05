@@ -1,7 +1,7 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../../test/utils";
+import { createSourceFileAndTypeChecker } from "../../test/utils.js";
 import {
 	isConditionalType,
 	isEnumType,
@@ -10,7 +10,7 @@ import {
 	isUnionOrIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
-} from "./single";
+} from "./single.js";
 
 function getTypeForTypeNode(sourceText: string) {
 	const { sourceFile, typeChecker } =

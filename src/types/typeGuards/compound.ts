@@ -1,12 +1,11 @@
 import ts from "typescript";
 
-import { type IntrinsicType, isIntrinsicType } from "./intrinsic";
-import { isTupleType, isTypeReference } from "./objects";
-import { isFreshableType } from "./single";
+import { type IntrinsicType, isIntrinsicType } from "./intrinsic.js";
+import { isTupleType, isTypeReference } from "./objects.js";
+import { isFreshableType } from "./single.js";
 
 /**
  * A type that is both an {@link IntrinsicType} and a `FreshableType`
- *
  * @category Type Types
  */
 export interface FreshableIntrinsicType
@@ -15,7 +14,6 @@ export interface FreshableIntrinsicType
 
 /**
  * Test if a type is a `FreshableIntrinsicType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -33,7 +31,6 @@ export function isFreshableIntrinsicType(
 
 /**
  * Test if a type is a `TupleTypeReference`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts

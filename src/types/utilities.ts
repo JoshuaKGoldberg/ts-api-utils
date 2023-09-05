@@ -9,24 +9,23 @@ import {
 	isObjectFlagSet,
 	isSymbolFlagSet,
 	isTypeFlagSet,
-} from "../flags";
+} from "../flags.js";
 import {
 	isBindableObjectDefinePropertyCall,
 	isInConstContext,
-} from "../nodes/utilities";
-import { isNumericPropertyName } from "../syntax";
-import { getPropertyOfType } from "./getters";
+} from "../nodes/utilities.js";
+import { isNumericPropertyName } from "../syntax.js";
+import { getPropertyOfType } from "./getters.js";
 import {
 	isFalseLiteralType,
 	isIntersectionType,
 	isObjectType,
 	isTupleTypeReference,
 	isUnionType,
-} from "./typeGuards";
+} from "./typeGuards/index.js";
 
 /**
  * Determines whether a type is definitely falsy. This function doesn't unwrap union types.
- *
  * @category Types - Utilities
  * @example
  * ```ts
@@ -43,9 +42,14 @@ export function isFalsyType(type: ts.Type): boolean {
 			type,
 			ts.TypeFlags.Undefined | ts.TypeFlags.Null | ts.TypeFlags.Void,
 		)
-	)
+	) {
 		return true;
-	if (type.isLiteral()) return !type.value;
+	}
+
+	if (type.isLiteral()) {
+		return !type.value;
+	}
+
 	return isFalseLiteralType(type);
 }
 
@@ -53,7 +57,6 @@ export function isFalsyType(type: ts.Type): boolean {
  * Get the union type parts of the given type.
  *
  * If the given type is not a union type, an array contain only that type will be returned.
- *
  * @category Types - Utilities
  * @example
  * ```ts
@@ -76,13 +79,18 @@ function isReadonlyPropertyIntersection(
 	const typeParts = isIntersectionType(type) ? type.types : [type];
 	return typeParts.some((subType): boolean => {
 		const prop = getPropertyOfType(subType, name);
-		if (prop === undefined) return false;
+		if (prop === undefined) {
+			return false;
+		}
+
 		if (prop.flags & ts.SymbolFlags.Transient) {
 			if (
 				/^(?:[1-9]\d*|0)$/.test(name as string) &&
 				isTupleTypeReference(subType)
-			)
+			) {
 				return subType.target.readonly;
+			}
+
 			switch (isReadonlyPropertyFromMappedType(subType, name, typeChecker)) {
 				case true:
 					return true;
@@ -92,6 +100,7 @@ function isReadonlyPropertyIntersection(
 				// `undefined` falls through
 			}
 		}
+
 		return !!(
 			// members of namespace import
 			(
@@ -108,15 +117,18 @@ function isReadonlyPropertyFromMappedType(
 	name: ts.__String,
 	typeChecker: ts.TypeChecker,
 ): boolean | undefined {
-	if (!isObjectType(type) || !isObjectFlagSet(type, ts.ObjectFlags.Mapped))
+	if (!isObjectType(type) || !isObjectFlagSet(type, ts.ObjectFlags.Mapped)) {
 		return;
+	}
+
 	const declaration = type.symbol.declarations![0] as ts.MappedTypeNode;
 	// well-known symbols are not affected by mapped types
 	if (
 		declaration.readonlyToken !== undefined &&
 		!/^__@[^@]+$/.test(name as string)
-	)
+	) {
 		return declaration.readonlyToken.kind !== ts.SyntaxKind.MinusToken;
+	}
 
 	const { modifiersType } = type as { modifiersType?: ts.Type };
 
@@ -136,17 +148,22 @@ function isCallback(
 	if ((param.valueDeclaration as ts.ParameterDeclaration).dotDotDotToken) {
 		// unwrap array type of rest parameter
 		type = type.getNumberIndexType();
-		if (type === undefined) return false;
+		if (type === undefined) {
+			return false;
+		}
 	}
+
 	for (const subType of unionTypeParts(type)) {
-		if (subType.getCallSignatures().length !== 0) return true;
+		if (subType.getCallSignatures().length !== 0) {
+			return true;
+		}
 	}
+
 	return false;
 }
 
 /**
  * Determines whether writing to a certain property of a given type is allowed.
- *
  * @category Types - Utilities
  * @example
  * ```ts
@@ -175,7 +192,10 @@ export function isPropertyReadonlyInType(
 					: undefined) ??
 				typeChecker.getIndexInfoOfType(subType, ts.IndexKind.String);
 			if (index?.isReadonly) {
-				if (seenProperty) return true;
+				if (seenProperty) {
+					return true;
+				}
+
 				seenReadonlySignature = true;
 			}
 		} else if (
@@ -187,12 +207,12 @@ export function isPropertyReadonlyInType(
 			seenProperty = true;
 		}
 	}
+
 	return false;
 }
 
 /**
  * Returns true for `Object.defineProperty(o, 'prop', {value, writable: false})` and `Object.defineProperty(o, 'prop', {get: () => 1})`
- *
  * @category Types - Utilities
  * @example
  * ```ts
@@ -208,12 +228,20 @@ function isReadonlyAssignmentDeclaration(
 	node: ts.CallExpression,
 	typeChecker: ts.TypeChecker,
 ) {
-	if (!isBindableObjectDefinePropertyCall(node)) return false;
+	if (!isBindableObjectDefinePropertyCall(node)) {
+		return false;
+	}
+
 	const descriptorType = typeChecker.getTypeAtLocation(node.arguments[2]);
-	if (descriptorType.getProperty("value") === undefined)
+	if (descriptorType.getProperty("value") === undefined) {
 		return descriptorType.getProperty("set") === undefined;
+	}
+
 	const writableProp = descriptorType.getProperty("writable");
-	if (writableProp === undefined) return false;
+	if (writableProp === undefined) {
+		return false;
+	}
+
 	const writableType =
 		writableProp.valueDeclaration !== undefined &&
 		ts.isPropertyAssignment(writableProp.valueDeclaration)
@@ -224,7 +252,6 @@ function isReadonlyAssignmentDeclaration(
 
 /**
  * Determines whether a type is thenable and thus can be used with `await`.
- *
  * @category Types - Utilities
  * @example
  * ```ts
@@ -245,7 +272,6 @@ export function isThenableType(
 
 /**
  * Determines whether a type is thenable and thus can be used with `await`.
- *
  * @category Types - Utilities
  * @example
  * ```ts
@@ -280,22 +306,51 @@ export function isThenableType(
 ): boolean {
 	for (const typePart of unionTypeParts(typeChecker.getApparentType(type))) {
 		const then = typePart.getProperty("then");
-		if (then === undefined) continue;
+		if (then === undefined) {
+			continue;
+		}
+
 		const thenType = typeChecker.getTypeOfSymbolAtLocation(then, node);
-		for (const subTypePart of unionTypeParts(thenType))
-			for (const signature of subTypePart.getCallSignatures())
+		for (const subTypePart of unionTypeParts(thenType)) {
+			for (const signature of subTypePart.getCallSignatures()) {
 				if (
 					signature.parameters.length !== 0 &&
 					isCallback(typeChecker, signature.parameters[0], node)
-				)
+				) {
 					return true;
+				}
+
+				if (
+					signature.parameters.length !== 0 &&
+					isCallback(typeChecker, signature.parameters[0], node)
+				) {
+					return true;
+				}
+			}
+
+			for (const signature of subTypePart.getCallSignatures()) {
+				if (
+					signature.parameters.length !== 0 &&
+					isCallback(typeChecker, signature.parameters[0], node)
+				) {
+					return true;
+				}
+
+				if (
+					signature.parameters.length !== 0 &&
+					isCallback(typeChecker, signature.parameters[0], node)
+				) {
+					return true;
+				}
+			}
+		}
 	}
+
 	return false;
 }
 
 /**
  * Test if the given symbol has a readonly declaration.
- *
  * @category Symbols - Utilities
  * @example
  * ```ts
@@ -332,7 +387,6 @@ export function symbolHasReadonlyDeclaration(
  * Get the union type parts of the given type.
  *
  * If the given type is not a union type, an array contain only that type will be returned.
- *
  * @category Types - Utilities
  * @example
  * ```ts

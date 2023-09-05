@@ -5,7 +5,6 @@ import ts from "typescript";
 
 /**
  * Test if the given flag is set on the combined flags.
- *
  * @internal
  */
 function isFlagSet(allFlags: number, flag: number): boolean {
@@ -14,7 +13,6 @@ function isFlagSet(allFlags: number, flag: number): boolean {
 
 /**
  * Test if the given flag is set on the given object.
- *
  * @internal
  */
 function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
@@ -23,7 +21,6 @@ function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
 
 /**
  * Test if the given node has the given `ModifierFlags` set.
- *
  * @category Nodes - Flag Utilities
  * @example
  * ```ts
@@ -43,7 +40,6 @@ export function isModifierFlagSet(
 
 /**
  * Test if the given node has the given `NodeFlags` set.
- *
  * @category Nodes - Flag Utilities
  * @example
  * ```ts
@@ -59,7 +55,6 @@ export const isNodeFlagSet: (node: ts.Node, flag: ts.NodeFlags) => boolean =
 
 /**
  * Test if the given node has the given `ObjectFlags` set.
- *
  * @category Nodes - Flag Utilities
  * @example
  * ```ts
@@ -79,7 +74,6 @@ export function isObjectFlagSet(
 
 /**
  * Test if the given node has the given `SymbolFlags` set.
- *
  * @category Nodes - Flag Utilities
  * @example
  * ```ts
@@ -97,7 +91,6 @@ export const isSymbolFlagSet: (
 
 /**
  * Test if the given node has the given `TypeFlags` set.
- *
  * @category Nodes - Flag Utilities
  * @example
  * ```ts

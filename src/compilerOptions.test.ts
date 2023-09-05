@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
 import {
 	isCompilerOptionEnabled,
 	isStrictCompilerOptionEnabled,
-} from "./compilerOptions";
+} from "./compilerOptions.js";
 
 describe("isCompilerOptionEnabled", () => {
 	it("checks if option is enabled", () => {
@@ -95,25 +95,25 @@ describe("isCompilerOptionEnabled", () => {
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
-				{ stripInternal: true, declaration: false },
+				{ declaration: false, stripInternal: true },
 				"stripInternal",
 			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
-				{ stripInternal: true, declaration: true },
+				{ declaration: true, stripInternal: true },
 				"stripInternal",
 			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
-				{ stripInternal: true, composite: true },
+				{ composite: true, stripInternal: true },
 				"stripInternal",
 			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
-				{ stripInternal: undefined, composite: true },
+				{ composite: true, stripInternal: undefined },
 				"stripInternal",
 			),
 		).toBe(false);
@@ -140,25 +140,25 @@ describe("isCompilerOptionEnabled", () => {
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
-				{ suppressImplicitAnyIndexErrors: true, noImplicitAny: false },
+				{ noImplicitAny: false, suppressImplicitAnyIndexErrors: true },
 				"suppressImplicitAnyIndexErrors",
 			),
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
-				{ suppressImplicitAnyIndexErrors: true, noImplicitAny: true },
+				{ noImplicitAny: true, suppressImplicitAnyIndexErrors: true },
 				"suppressImplicitAnyIndexErrors",
 			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
-				{ suppressImplicitAnyIndexErrors: true, strict: true },
+				{ strict: true, suppressImplicitAnyIndexErrors: true },
 				"suppressImplicitAnyIndexErrors",
 			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
-				{ suppressImplicitAnyIndexErrors: undefined, strict: true },
+				{ strict: true, suppressImplicitAnyIndexErrors: undefined },
 				"suppressImplicitAnyIndexErrors",
 			),
 		).toBe(false);
@@ -199,7 +199,7 @@ describe("isCompilerOptionEnabled", () => {
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
-				{ skipLibCheck: true, skipDefaultLibCheck: undefined },
+				{ skipDefaultLibCheck: undefined, skipLibCheck: true },
 				"skipDefaultLibCheck",
 			),
 		).toBe(true);
@@ -236,7 +236,7 @@ describe("isCompilerOptionEnabled", () => {
 
 		expect(
 			isCompilerOptionEnabled(
-				{ strict: false, strictNullChecks: false, alwaysStrict: true },
+				{ alwaysStrict: true, strict: false, strictNullChecks: false },
 				"alwaysStrict",
 			),
 		).toBe(true);
@@ -348,7 +348,7 @@ describe("isStrictCompilerOptionEnabled", () => {
 
 		expect(
 			isStrictCompilerOptionEnabled(
-				{ strict: false, strictNullChecks: false, alwaysStrict: true },
+				{ alwaysStrict: true, strict: false, strictNullChecks: false },
 				"alwaysStrict",
 			),
 		).toBe(true);

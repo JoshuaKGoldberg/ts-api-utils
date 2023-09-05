@@ -11,7 +11,8 @@
         "doc",
         "projectManagement",
         "test",
-        "tool"
+        "tool",
+        "maintenance"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
@@ -28,7 +29,9 @@
         "doc",
         "projectManagement",
         "test",
-        "tool"
+        "tool",
+        "infra",
+        "maintenance"
       ]
     },
     {
@@ -47,11 +50,22 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/110151013?v=4",
       "profile": "https://blog.jmchor.dev",
       "contributions": [
-        "doc"
+        "doc",
+        "code"
+      ]
+    },
+    {
+      "login": "kirjs",
+      "name": "Kirill Cherkashin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2545357?v=4",
+      "profile": "https://twitter.com/kirjs",
+      "contributions": [
+        "code"
       ]
     }
   ],
   "contributorsPerLine": 7,
+  "contributorsSortAlphabetically": true,
   "files": [
     "README.md"
   ],

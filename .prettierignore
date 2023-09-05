@@ -1,5 +1,6 @@
 docs/generated/
 docs/coverage.svg
+coverage/
 lib/
 pnpm-lock.yaml
 

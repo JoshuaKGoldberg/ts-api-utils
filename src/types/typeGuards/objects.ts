@@ -1,11 +1,10 @@
 import ts from "typescript";
 
-import { isObjectFlagSet } from "../../flags";
-import { isObjectType } from "./single";
+import { isObjectFlagSet } from "../../flags.js";
+import { isObjectType } from "./single.js";
 
 /**
  * Test if a type is a `EvolvingArrayType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -26,7 +25,6 @@ export function isEvolvingArrayType(
 
 /**
  * Test if a type is a `TupleType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -43,7 +41,6 @@ export function isTupleType(type: ts.Type): type is ts.TupleType {
 
 /**
  * Test if a type is a `TypeReference`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts

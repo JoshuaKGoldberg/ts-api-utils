@@ -1,3 +1,3 @@
-export * from "./compound";
-export * from "./single";
-export * from "./union";
+export * from "./compound.js";
+export * from "./single.js";
+export * from "./union.js";

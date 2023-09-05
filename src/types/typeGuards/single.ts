@@ -1,10 +1,9 @@
 import ts from "typescript";
 
-import { isTypeFlagSet } from "../../flags";
+import { isTypeFlagSet } from "../../flags.js";
 
 /**
  * Test if a type is a `ConditionalType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -21,7 +20,6 @@ export function isConditionalType(type: ts.Type): type is ts.ConditionalType {
 
 /**
  * Test if a type is a `EnumType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -38,7 +36,6 @@ export function isEnumType(type: ts.Type): type is ts.EnumType {
 
 /**
  * Test if a type is a `FreshableType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -55,7 +52,6 @@ export function isFreshableType(type: ts.Type): type is ts.FreshableType {
 
 /**
  * Test if a type is a `IndexType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -72,7 +68,6 @@ export function isIndexType(type: ts.Type): type is ts.IndexType {
 
 /**
  * Test if a type is a `IndexedAccessType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -91,7 +86,6 @@ export function isIndexedAccessType(
 
 /**
  * Test if a type is a `InstantiableType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -108,7 +102,6 @@ export function isInstantiableType(type: ts.Type): type is ts.InstantiableType {
 
 /**
  * Test if a type is a `IntersectionType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -125,7 +118,6 @@ export function isIntersectionType(type: ts.Type): type is ts.IntersectionType {
 
 /**
  * Test if a type is a `ObjectType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -142,7 +134,6 @@ export function isObjectType(type: ts.Type): type is ts.ObjectType {
 
 /**
  * Test if a type is a `StringMappingType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -161,7 +152,6 @@ export function isStringMappingType(
 
 /**
  * Test if a type is a `SubstitutionType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -178,7 +168,6 @@ export function isSubstitutionType(type: ts.Type): type is ts.SubstitutionType {
 
 /**
  * Test if a type is a `TypeParameter`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -195,7 +184,6 @@ export function isTypeParameter(type: ts.Type): type is ts.TypeParameter {
 
 /**
  * Test if a type is a `TypeVariable`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -212,7 +200,6 @@ export function isTypeVariable(type: ts.Type): type is ts.TypeVariable {
 
 /**
  * Test if a type is a `UnionType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -229,7 +216,6 @@ export function isUnionType(type: ts.Type): type is ts.UnionType {
 
 /**
  * Test if a type is a `UnionOrIntersectionType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -248,7 +234,6 @@ export function isUnionOrIntersectionType(
 
 /**
  * Test if a type is a `UniqueESSymbolType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts

@@ -1,7 +1,7 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../../test/utils";
+import { createSourceFileAndTypeChecker } from "../../test/utils.js";
 import {
 	isIntrinsicAnyType,
 	isIntrinsicBigIntType,
@@ -15,7 +15,7 @@ import {
 	isIntrinsicUndefinedType,
 	isIntrinsicUnknownType,
 	isIntrinsicVoidType,
-} from "./intrinsic";
+} from "./intrinsic.js";
 
 describe.each([
 	["isIntrinsicAnyType", isIntrinsicAnyType, "unknown", "any"],

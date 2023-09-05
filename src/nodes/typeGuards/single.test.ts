@@ -1,8 +1,8 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createNode } from "../../test/utils";
-import { isTsVersionAtLeast } from "../../utils";
+import { createNode } from "../../test/utils.js";
+import { isTsVersionAtLeast } from "../../utils.js";
 import {
 	isAbstractKeyword,
 	isAccessorKeyword,
@@ -43,7 +43,7 @@ import {
 	isUndefinedKeyword,
 	isUnknownKeyword,
 	isVoidKeyword,
-} from "./single";
+} from "./single.js";
 
 describe("isAbstractKeyword", () => {
 	it.each([

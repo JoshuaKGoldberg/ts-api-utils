@@ -1,17 +1,16 @@
 import ts from "typescript";
 
-import { isSuperExpression } from "./single";
+import { isSuperExpression } from "./single.js";
 import {
 	isDeclarationName,
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
 	isJsxTagNameExpression,
 	isNamespaceBody,
-} from "./union";
+} from "./union.js";
 
 /**
  * An `AssertionExpression` that is declared as const.
- *
  * @category Node Types
  */
 export type ConstAssertionExpression = ts.AssertionExpression & {
@@ -21,7 +20,6 @@ export type ConstAssertionExpression = ts.AssertionExpression & {
 
 /**
  * An `Identifier` with an `escapedText` value of `"const"`.
- *
  * @category Node Types
  */
 export type ConstAssertionIdentifier = ts.Identifier & {
@@ -30,7 +28,6 @@ export type ConstAssertionIdentifier = ts.Identifier & {
 
 /**
  * Test if a node is a {@link ConstAssertionExpression}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -54,7 +51,6 @@ export function isConstAssertionExpression(
 
 /**
  * Test if a node is an `IterationStatement`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -83,7 +79,6 @@ export function isIterationStatement(
 
 /**
  * Test if a node is a `JSDocNamespaceDeclaration`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -107,7 +102,6 @@ export function isJSDocNamespaceDeclaration(
 
 /**
  * Test if a node is a `JsxTagNamePropertyAccess`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -131,7 +125,6 @@ export function isJsxTagNamePropertyAccess(
 
 /**
  * a `NamedDeclaration` that definitely has a name.
- *
  * @category Node Types
  */
 export interface NamedDeclarationWithName extends ts.NamedDeclaration {
@@ -140,7 +133,6 @@ export interface NamedDeclarationWithName extends ts.NamedDeclaration {
 
 /**
  * Test if a node is a {@link NamedDeclarationWithName}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -165,7 +157,6 @@ export function isNamedDeclarationWithName(
 
 /**
  * Test if a node is a `NamespaceDeclaration`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -190,7 +181,6 @@ export function isNamespaceDeclaration(
 
 /**
  * A number or string-like literal.
- *
  * @category Node Types
  */
 export type NumericOrStringLikeLiteral =
@@ -199,7 +189,6 @@ export type NumericOrStringLikeLiteral =
 
 /**
  * Test if a node is a {@link NumericOrStringLikeLiteral}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -226,7 +215,6 @@ export function isNumericOrStringLikeLiteral(
 
 /**
  * Test if a node is a `PropertyAccessEntityNameExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -250,7 +238,6 @@ export function isPropertyAccessEntityNameExpression(
 
 /**
  * Test if a node is a `SuperElementAccessExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -272,7 +259,6 @@ export function isSuperElementAccessExpression(
 
 /**
  * Test if a node is a `SuperPropertyAccessExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts

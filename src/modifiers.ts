@@ -5,7 +5,6 @@ import ts from "typescript";
 
 /**
  * Test if the given iterable includes a modifier of any of the given kinds.
- *
  * @category Modifier Utilities
  * @example
  * ```ts
@@ -18,8 +17,15 @@ export function includesModifier(
 	modifiers: Iterable<ts.Modifier> | undefined,
 	...kinds: ts.ModifierSyntaxKind[]
 ): boolean {
-	if (modifiers === undefined) return false;
-	for (const modifier of modifiers)
-		if (kinds.includes(modifier.kind)) return true;
+	if (modifiers === undefined) {
+		return false;
+	}
+
+	for (const modifier of modifiers) {
+		if (kinds.includes(modifier.kind)) {
+			return true;
+		}
+	}
+
 	return false;
 }

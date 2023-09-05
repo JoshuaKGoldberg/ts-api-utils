@@ -1,15 +1,15 @@
-name: Lint Package
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
 jobs:
-  package:
+  lint_docs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
-      - run: pnpm lint:package
+      - run: pnpm lint:docs
+
+name: Lint Docs
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main

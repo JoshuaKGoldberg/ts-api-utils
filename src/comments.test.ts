@@ -1,9 +1,9 @@
 import ts from "typescript";
 import { describe, expect, it, vitest } from "vitest";
 
-import { forEachComment } from "./comments";
-import { createNodeAndSourceFile } from "./test/utils";
-import { isTsVersionAtLeast } from "./utils";
+import { forEachComment } from "./comments.js";
+import { createNodeAndSourceFile } from "./test/utils.js";
+import { isTsVersionAtLeast } from "./utils.js";
 
 describe("forEachComment", () => {
 	it("does not call the callback when the source has no comments", () => {

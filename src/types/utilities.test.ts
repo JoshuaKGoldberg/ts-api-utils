@@ -1,13 +1,13 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../test/utils";
+import { createSourceFileAndTypeChecker } from "../test/utils.js";
 import {
 	isFalsyType,
 	isPropertyReadonlyInType,
 	isThenableType,
 	symbolHasReadonlyDeclaration,
-} from "./utilities";
+} from "./utilities.js";
 
 describe("isPropertyReadonlyInType", () => {
 	it("returns false when the property is not readonly", () => {

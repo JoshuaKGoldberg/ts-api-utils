@@ -1,15 +1,15 @@
-name: Docs
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
 jobs:
-  docs:
+  type_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
-      - run: pnpm run lint:docs
+      - run: pnpm tsc
+
+name: Type Check
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main
