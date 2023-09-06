@@ -16,7 +16,7 @@ import {
 	VariableUse,
 } from "./variables";
 
-export abstract class AbstractScope implements Scope {
+abstract class AbstractScope implements Scope {
 	protected variables = new Map<string, InternalVariableInfo>();
 	protected uses: VariableUse[] = [];
 	protected namespaceScopes: Map<string, NamespaceScope> | undefined =
@@ -357,7 +357,7 @@ export class FunctionScope extends NonRootScope {
 	}
 }
 
-export abstract class AbstractNamedExpressionScope<
+abstract class AbstractNamedExpressionScope<
 	InnerScope extends NonRootScope,
 > extends NonRootScope {
 	protected abstract get innerScope(): InnerScope;
