@@ -5,8 +5,7 @@ import ts from "typescript";
 
 import { isFunctionScopeBoundary } from "../scopes";
 import { DeclarationDomain } from "./declarations";
-import { EnumScope } from "./EnumScope";
-import { NamespaceScope } from "./NamespaceScope";
+import type { EnumScope, NamespaceScope } from "./scopes";
 import {
 	InternalVariableInfo,
 	VariableCallback,

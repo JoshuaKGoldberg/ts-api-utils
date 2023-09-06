@@ -4,25 +4,25 @@
 import ts from "typescript";
 
 import { includesModifier } from "../modifiers";
-import { BlockScope } from "./BlockScope";
-import { ClassExpressionScope } from "./ClassExpressionScope";
-import {
-	ConditionalTypeScope,
-	ConditionalTypeScopeState,
-} from "./ConditionalTypeScope";
 import { DeclarationDomain } from "./declarations";
-import { FunctionExpressionScope } from "./FunctionExpressionScope";
-import { FunctionScope } from "./FunctionScope";
 import { getPropertyName } from "./getPropertyName";
 import { getUsageDomain } from "./getUsageDomain";
-import { NonRootScope } from "./NonRootScope";
-import { RootScope } from "./RootScope";
 import {
 	isBlockScopeBoundary,
 	Scope,
 	ScopeBoundary,
 	ScopeBoundarySelector,
 } from "./Scope";
+import {
+	BlockScope,
+	ClassExpressionScope,
+	ConditionalTypeScope,
+	ConditionalTypeScopeState,
+	FunctionExpressionScope,
+	FunctionScope,
+	NonRootScope,
+	RootScope,
+} from "./scopes";
 import { VariableCallback, VariableInfo } from "./variables";
 
 // TODO class decorators resolve outside of class, element and parameter decorator resolve inside/at the class
