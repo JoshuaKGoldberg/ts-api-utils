@@ -9,7 +9,7 @@ export class EnumScope extends NonRootScope {
 		super(parent, ScopeBoundary.Function);
 	}
 
-	end() {
+	end(): void {
 		this.applyUses();
 	}
 }

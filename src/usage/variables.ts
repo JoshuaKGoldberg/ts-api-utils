@@ -4,8 +4,8 @@
 import ts from "typescript";
 
 import { DeclarationDomain, DeclarationInfo } from "./declarations";
+import { UsageDomain } from "./getUsageDomain";
 import { Scope } from "./Scope";
-import { UsageDomain } from "./usage";
 
 export type VariableCallback = (
 	variable: VariableInfo,

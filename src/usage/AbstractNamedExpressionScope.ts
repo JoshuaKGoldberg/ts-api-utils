@@ -9,9 +9,9 @@ import { Scope, ScopeBoundary } from "./Scope";
 import { VariableCallback, VariableUse } from "./variables";
 
 export abstract class AbstractNamedExpressionScope<
-	T extends NonRootScope,
+	InnerScope extends NonRootScope,
 > extends NonRootScope {
-	protected abstract get innerScope(): T;
+	protected abstract get innerScope(): InnerScope;
 
 	#name: ts.Identifier;
 	#domain: DeclarationDomain;
@@ -22,7 +22,7 @@ export abstract class AbstractNamedExpressionScope<
 		this.#domain = domain;
 	}
 
-	end(cb: VariableCallback) {
+	end(cb: VariableCallback): void {
 		this.innerScope.end(cb);
 		return cb(
 			{
@@ -37,7 +37,7 @@ export abstract class AbstractNamedExpressionScope<
 		);
 	}
 
-	addUse(use: VariableUse, source?: Scope) {
+	addUse(use: VariableUse, source?: Scope): void {
 		if (source !== this.innerScope) return this.innerScope.addUse(use);
 		if (use.domain & this.#domain && use.location.text === this.#name.text) {
 			this.uses.push(use);
@@ -46,11 +46,11 @@ export abstract class AbstractNamedExpressionScope<
 		}
 	}
 
-	getFunctionScope() {
+	getFunctionScope(): InnerScope {
 		return this.innerScope;
 	}
 
-	getDestinationScope() {
+	getDestinationScope(): InnerScope {
 		return this.innerScope;
 	}
 }

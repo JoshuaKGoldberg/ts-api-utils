@@ -12,7 +12,7 @@ export class BlockScope extends NonRootScope {
 		this.#functionScope = functionScope;
 	}
 
-	getFunctionScope() {
+	getFunctionScope(): Scope {
 		return this.#functionScope;
 	}
 }

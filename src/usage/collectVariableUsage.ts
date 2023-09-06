@@ -4,7 +4,10 @@
 import ts from "typescript";
 
 import { UsageWalker } from "./UsageWalker";
+import { VariableInfo } from "./variables";
 
-export function collectVariableUsage(sourceFile: ts.SourceFile) {
+export function collectVariableUsage(
+	sourceFile: ts.SourceFile,
+): Map<ts.Identifier, VariableInfo> {
 	return new UsageWalker().getUsage(sourceFile);
 }

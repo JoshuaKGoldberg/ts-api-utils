@@ -9,7 +9,7 @@ export class FunctionScope extends NonRootScope {
 		super(parent, ScopeBoundary.Function);
 	}
 
-	beginBody() {
+	beginBody(): void {
 		this.applyUses();
 	}
 }

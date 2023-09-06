@@ -19,7 +19,7 @@ export class NonRootScope extends AbstractScope {
 			: this.parent.getDestinationScope(selector);
 	}
 
-	protected addUseToParent(use: VariableUse) {
+	protected addUseToParent(use: VariableUse): void {
 		return this.parent.addUse(use, this);
 	}
 }

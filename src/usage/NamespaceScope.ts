@@ -21,11 +21,11 @@ export class NamespaceScope extends NonRootScope {
 		this.#hasExport = hasExport;
 	}
 
-	finish(cb: VariableCallback) {
+	finish(cb: VariableCallback): void {
 		return super.end(cb);
 	}
 
-	end(cb: VariableCallback) {
+	end(cb: VariableCallback): void {
 		this.#innerScope.end((variable, key, scope) => {
 			if (
 				scope !== this.#innerScope ||
@@ -85,17 +85,17 @@ export class NamespaceScope extends NonRootScope {
 		return super.createOrReuseEnumScope(name, exported);
 	}
 
-	addUse(use: VariableUse, source?: Scope) {
+	addUse(use: VariableUse, source?: Scope): void {
 		if (source !== this.#innerScope) return this.#innerScope.addUse(use);
 		this.uses.push(use);
 	}
 
-	refresh(ambient: boolean, hasExport: boolean) {
+	refresh(ambient: boolean, hasExport: boolean): void {
 		this.#ambient = ambient;
 		this.#hasExport = hasExport;
 	}
 
-	markExported(name: ts.Identifier) {
+	markExported(name: ts.Identifier): void {
 		if (this.#exports === undefined) this.#exports = new Set();
 		this.#exports.add(name.text);
 	}

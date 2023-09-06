@@ -14,6 +14,7 @@ import { DeclarationDomain } from "./declarations";
 import { FunctionExpressionScope } from "./FunctionExpressionScope";
 import { FunctionScope } from "./FunctionScope";
 import { getPropertyName } from "./getPropertyName";
+import { getUsageDomain } from "./getUsageDomain";
 import { NonRootScope } from "./NonRootScope";
 import { RootScope } from "./RootScope";
 import {
@@ -22,17 +23,16 @@ import {
 	ScopeBoundary,
 	ScopeBoundarySelector,
 } from "./Scope";
-import { getUsageDomain } from "./usage";
 import { VariableCallback, VariableInfo } from "./variables";
 
 // TODO class decorators resolve outside of class, element and parameter decorator resolve inside/at the class
-// TODO computed property name resolves inside/at the cass
+// TODO computed property name resolves inside/at the class
 // TODO this and super in all of them are resolved outside of the class
 export class UsageWalker {
 	#result = new Map<ts.Identifier, VariableInfo>();
 	#scope!: Scope;
 
-	getUsage(sourceFile: ts.SourceFile) {
+	getUsage(sourceFile: ts.SourceFile): Map<ts.Identifier, VariableInfo> {
 		const variableCallback = (variable: VariableInfo, key: ts.Identifier) => {
 			this.#result.set(key, variable);
 		};
@@ -140,8 +140,9 @@ export class UsageWalker {
 						node.parent.kind !== ts.SyntaxKind.IndexSignature &&
 						((<ts.ParameterDeclaration>node).name.kind !==
 							ts.SyntaxKind.Identifier ||
-							(<ts.Identifier>(<ts.NamedDeclaration>node).name)
-								.originalKeywordKind !== ts.SyntaxKind.ThisKeyword)
+							ts.identifierToKeywordKind(
+								<ts.Identifier>(<ts.NamedDeclaration>node).name,
+							) !== ts.SyntaxKind.ThisKeyword)
 					)
 						this.#handleBindingName(
 							<ts.Identifier>(<ts.NamedDeclaration>node).name,

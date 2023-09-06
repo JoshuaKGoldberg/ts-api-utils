@@ -15,7 +15,7 @@ export class FunctionExpressionScope extends AbstractNamedExpressionScope<Functi
 		super(name, DeclarationDomain.Value, parent);
 	}
 
-	beginBody() {
+	beginBody(): void {
 		return this.innerScope.beginBody();
 	}
 }

@@ -25,7 +25,7 @@ export class RootScope extends AbstractScope {
 		selector: ScopeBoundarySelector,
 		exported: boolean,
 		domain: DeclarationDomain,
-	) {
+	): void {
 		if (domain & DeclarationDomain.Import)
 			return super.addVariable(identifier, name, selector, exported, domain);
 		return this.#innerScope.addVariable(
@@ -37,12 +37,12 @@ export class RootScope extends AbstractScope {
 		);
 	}
 
-	addUse(use: VariableUse, origin?: Scope) {
+	addUse(use: VariableUse, origin?: Scope): void {
 		if (origin === this.#innerScope) return super.addUse(use);
 		return this.#innerScope.addUse(use);
 	}
 
-	markExported(id: ts.Identifier) {
+	markExported(id: ts.Identifier): void {
 		if (this.#exports === undefined) {
 			this.#exports = [id.text];
 		} else {
@@ -50,7 +50,7 @@ export class RootScope extends AbstractScope {
 		}
 	}
 
-	end(cb: VariableCallback) {
+	end(cb: VariableCallback): void {
 		this.#innerScope.end((value, key) => {
 			value.exported =
 				value.exported ||
@@ -69,7 +69,7 @@ export class RootScope extends AbstractScope {
 		});
 	}
 
-	getDestinationScope() {
+	getDestinationScope(): this {
 		return this;
 	}
 }

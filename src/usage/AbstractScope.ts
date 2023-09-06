@@ -29,7 +29,7 @@ export abstract class AbstractScope implements Scope {
 		selector: ScopeBoundarySelector,
 		exported: boolean,
 		domain: DeclarationDomain,
-	) {
+	): void {
 		const variables = this.getDestinationScope(selector).getVariables();
 		const declaration: DeclarationInfo = {
 			domain,
@@ -49,11 +49,11 @@ export abstract class AbstractScope implements Scope {
 		}
 	}
 
-	addUse(use: VariableUse) {
+	addUse(use: VariableUse): void {
 		this.uses.push(use);
 	}
 
-	getVariables() {
+	getVariables(): Map<string, InternalVariableInfo> {
 		return this.variables;
 	}
 
@@ -61,9 +61,11 @@ export abstract class AbstractScope implements Scope {
 		return this;
 	}
 
-	end(cb: VariableCallback) {
-		if (this.namespaceScopes !== undefined)
+	end(cb: VariableCallback): void {
+		if (this.namespaceScopes !== undefined) {
 			this.namespaceScopes.forEach((value) => value.finish(cb));
+		}
+
 		this.namespaceScopes = this.#enumScopes = undefined;
 		this.applyUses();
 		this.variables.forEach((variable) => {
@@ -86,7 +88,7 @@ export abstract class AbstractScope implements Scope {
 	}
 
 	// tslint:disable-next-line:prefer-function-over-method
-	markExported(_name: ts.Identifier) {} // only relevant for the root scope
+	markExported(_name: ts.Identifier): void {} // only relevant for the root scope
 
 	createOrReuseNamespaceScope(
 		name: string,
@@ -123,9 +125,12 @@ export abstract class AbstractScope implements Scope {
 		return scope;
 	}
 
-	protected applyUses() {
-		for (const use of this.uses)
-			if (!this.applyUse(use)) this.addUseToParent(use);
+	protected applyUses(): void {
+		for (const use of this.uses) {
+			if (!this.applyUse(use)) {
+				this.addUseToParent(use);
+			}
+		}
 		this.uses = [];
 	}
 
@@ -139,5 +144,5 @@ export abstract class AbstractScope implements Scope {
 
 	abstract getDestinationScope(selector: ScopeBoundarySelector): Scope;
 
-	protected addUseToParent(_use: VariableUse) {}
+	protected addUseToParent(_use: VariableUse): void {}
 }

@@ -19,11 +19,11 @@ export class ConditionalTypeScope extends NonRootScope {
 		super(parent, ScopeBoundary.ConditionalType);
 	}
 
-	updateState(newState: ConditionalTypeScopeState) {
+	updateState(newState: ConditionalTypeScopeState): void {
 		this.#state = newState;
 	}
 
-	addUse(use: VariableUse) {
+	addUse(use: VariableUse): void {
 		if (this.#state === ConditionalTypeScopeState.TrueType)
 			return void this.uses.push(use);
 		return this.parent.addUse(use, this);

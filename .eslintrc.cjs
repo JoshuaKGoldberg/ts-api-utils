@@ -32,6 +32,7 @@ module.exports = {
 				"@typescript-eslint/explicit-module-boundary-types": "error",
 
 				// TODO?
+				"@typescript-eslint/prefer-literal-enum-member": "off",
 				"@typescript-eslint/no-confusing-void-expression": "off",
 				"@typescript-eslint/no-non-null-assertion": "off",
 				"@typescript-eslint/no-unnecessary-condition": "off",
@@ -72,6 +73,10 @@ module.exports = {
 	root: true,
 	rules: {
 		// These off-by-default rules work well for this repo and we like them on.
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{ argsIgnorePattern: "^_", caughtErrors: "all" },
+		],
 		"import/extensions": ["error"],
 		"import/no-useless-path-segments": [
 			"error",

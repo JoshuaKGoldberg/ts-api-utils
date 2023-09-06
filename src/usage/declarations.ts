@@ -44,7 +44,7 @@ export function getDeclarationDomain(
 		case ts.SyntaxKind.Parameter:
 			if (
 				node.parent.parent.kind === ts.SyntaxKind.IndexSignature ||
-				node.originalKeywordKind === ts.SyntaxKind.ThisKeyword
+				ts.identifierToKeywordKind(node) === ts.SyntaxKind.ThisKeyword
 			)
 				return;
 		// falls through
