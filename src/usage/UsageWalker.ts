@@ -23,17 +23,18 @@ import {
 	NonRootScope,
 	RootScope,
 } from "./scopes";
-import { VariableCallback, VariableInfo } from "./variables";
+import { UsageInfo, UsageInfoCallback } from "./usage";
+import { identifierToKeywordKind } from "./utils";
 
 // TODO class decorators resolve outside of class, element and parameter decorator resolve inside/at the class
 // TODO computed property name resolves inside/at the class
 // TODO this and super in all of them are resolved outside of the class
 export class UsageWalker {
-	#result = new Map<ts.Identifier, VariableInfo>();
+	#result = new Map<ts.Identifier, UsageInfo>();
 	#scope!: Scope;
 
-	getUsage(sourceFile: ts.SourceFile): Map<ts.Identifier, VariableInfo> {
-		const variableCallback = (variable: VariableInfo, key: ts.Identifier) => {
+	getUsage(sourceFile: ts.SourceFile): Map<ts.Identifier, UsageInfo> {
+		const variableCallback = (variable: UsageInfo, key: ts.Identifier) => {
 			this.#result.set(key, variable);
 		};
 		const isModule = ts.isExternalModule(sourceFile);
@@ -140,7 +141,7 @@ export class UsageWalker {
 						node.parent.kind !== ts.SyntaxKind.IndexSignature &&
 						((<ts.ParameterDeclaration>node).name.kind !==
 							ts.SyntaxKind.Identifier ||
-							ts.identifierToKeywordKind(
+							identifierToKeywordKind(
 								<ts.Identifier>(<ts.NamedDeclaration>node).name,
 							) !== ts.SyntaxKind.ThisKeyword)
 					)
@@ -242,7 +243,7 @@ export class UsageWalker {
 	#handleConditionalType(
 		node: ts.ConditionalTypeNode,
 		cb: (node: ts.Node) => void,
-		varCb: VariableCallback,
+		varCb: UsageInfoCallback,
 	) {
 		const savedScope = this.#scope;
 		const scope = (this.#scope = new ConditionalTypeScope(savedScope));
@@ -260,7 +261,7 @@ export class UsageWalker {
 	#handleFunctionLikeDeclaration(
 		node: ts.FunctionLikeDeclaration,
 		cb: (node: ts.Node) => void,
-		varCb: VariableCallback,
+		varCb: UsageInfoCallback,
 	) {
 		if (ts.canHaveDecorators(node)) {
 			ts.getDecorators(node)?.forEach(cb);

@@ -3,11 +3,26 @@
 
 import ts from "typescript";
 
+import { UsageInfo } from "./usage";
 import { UsageWalker } from "./UsageWalker";
-import { VariableInfo } from "./variables";
 
+/**
+ * Creates a mapping of each declared type and value to its type information.
+ *
+ * @category Nodes - Other Utilities
+ * @example
+ * ```ts
+ * declare const sourceFile: ts.SourceFile;
+ *
+ * const usage = collectVariableUsage(sourceFile);
+ *
+ * for (const [identifier, information] of usage) {
+ * 	console.log(`${identifier.getText()} is used ${information.uses.length} time(s).`);
+ * }
+ * ```
+ */
 export function collectVariableUsage(
 	sourceFile: ts.SourceFile,
-): Map<ts.Identifier, VariableInfo> {
+): Map<ts.Identifier, UsageInfo> {
 	return new UsageWalker().getUsage(sourceFile);
 }

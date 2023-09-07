@@ -10,15 +10,15 @@ import {
 } from "./declarations";
 import { Scope, ScopeBoundary, ScopeBoundarySelector } from "./Scope";
 import {
-	InternalVariableInfo,
-	VariableCallback,
-	VariableInfo,
-	VariableUse,
-} from "./variables";
+	InternalUsageInfo,
+	Usage,
+	UsageInfo,
+	UsageInfoCallback,
+} from "./usage";
 
 abstract class AbstractScope implements Scope {
-	protected variables = new Map<string, InternalVariableInfo>();
-	protected uses: VariableUse[] = [];
+	protected variables = new Map<string, InternalUsageInfo>();
+	protected uses: Usage[] = [];
 	protected namespaceScopes: Map<string, NamespaceScope> | undefined =
 		undefined;
 	#enumScopes: Map<string, EnumScope> | undefined = undefined;
@@ -51,11 +51,11 @@ abstract class AbstractScope implements Scope {
 		}
 	}
 
-	addUse(use: VariableUse): void {
+	addUse(use: Usage): void {
 		this.uses.push(use);
 	}
 
-	getVariables(): Map<string, InternalVariableInfo> {
+	getVariables(): Map<string, InternalUsageInfo> {
 		return this.variables;
 	}
 
@@ -63,7 +63,7 @@ abstract class AbstractScope implements Scope {
 		return this;
 	}
 
-	end(cb: VariableCallback): void {
+	end(cb: UsageInfoCallback): void {
 		if (this.namespaceScopes !== undefined) {
 			this.namespaceScopes.forEach((value) => value.finish(cb));
 		}
@@ -72,7 +72,7 @@ abstract class AbstractScope implements Scope {
 		this.applyUses();
 		this.variables.forEach((variable) => {
 			for (const declaration of variable.declarations) {
-				const result: VariableInfo = {
+				const result: UsageInfo = {
 					declarations: [],
 					domain: declaration.domain,
 					exported: declaration.exported,
@@ -136,7 +136,7 @@ abstract class AbstractScope implements Scope {
 		this.uses = [];
 	}
 
-	protected applyUse(use: VariableUse, variables = this.variables): boolean {
+	protected applyUse(use: Usage, variables = this.variables): boolean {
 		const variable = variables.get(use.location.text);
 		if (variable === undefined || (variable.domain & use.domain) === 0)
 			return false;
@@ -146,7 +146,7 @@ abstract class AbstractScope implements Scope {
 
 	abstract getDestinationScope(selector: ScopeBoundarySelector): Scope;
 
-	protected addUseToParent(_use: VariableUse): void {}
+	protected addUseToParent(_use: Usage): void {}
 }
 
 export class NonRootScope extends AbstractScope {
@@ -163,7 +163,7 @@ export class NonRootScope extends AbstractScope {
 			: this.parent.getDestinationScope(selector);
 	}
 
-	protected addUseToParent(use: VariableUse): void {
+	protected addUseToParent(use: Usage): void {
 		return this.parent.addUse(use, this);
 	}
 }
@@ -206,7 +206,7 @@ export class RootScope extends AbstractScope {
 		);
 	}
 
-	addUse(use: VariableUse, origin?: Scope): void {
+	addUse(use: Usage, origin?: Scope): void {
 		if (origin === this.#innerScope) return super.addUse(use);
 		return this.#innerScope.addUse(use);
 	}
@@ -219,7 +219,7 @@ export class RootScope extends AbstractScope {
 		}
 	}
 
-	end(cb: VariableCallback): void {
+	end(cb: UsageInfoCallback): void {
 		this.#innerScope.end((value, key) => {
 			value.exported =
 				value.exported ||
@@ -255,11 +255,11 @@ export class NamespaceScope extends NonRootScope {
 		this.#hasExport = hasExport;
 	}
 
-	finish(cb: VariableCallback): void {
+	finish(cb: UsageInfoCallback): void {
 		return super.end(cb);
 	}
 
-	end(cb: VariableCallback): void {
+	end(cb: UsageInfoCallback): void {
 		this.#innerScope.end((variable, key, scope) => {
 			if (
 				scope !== this.#innerScope ||
@@ -319,7 +319,7 @@ export class NamespaceScope extends NonRootScope {
 		return super.createOrReuseEnumScope(name, exported);
 	}
 
-	addUse(use: VariableUse, source?: Scope): void {
+	addUse(use: Usage, source?: Scope): void {
 		if (source !== this.#innerScope) return this.#innerScope.addUse(use);
 		this.uses.push(use);
 	}
@@ -371,7 +371,7 @@ abstract class AbstractNamedExpressionScope<
 		this.#domain = domain;
 	}
 
-	end(cb: VariableCallback): void {
+	end(cb: UsageInfoCallback): void {
 		this.innerScope.end(cb);
 		return cb(
 			{
@@ -386,7 +386,7 @@ abstract class AbstractNamedExpressionScope<
 		);
 	}
 
-	addUse(use: VariableUse, source?: Scope): void {
+	addUse(use: Usage, source?: Scope): void {
 		if (source !== this.innerScope) return this.innerScope.addUse(use);
 		if (use.domain & this.#domain && use.location.text === this.#name.text) {
 			this.uses.push(use);
@@ -437,7 +437,7 @@ export class ClassExpressionScope extends AbstractNamedExpressionScope<NonRootSc
 	}
 }
 
-export const enum ConditionalTypeScopeState {
+export enum ConditionalTypeScopeState {
 	Initial,
 	Extends,
 	TrueType,
@@ -455,7 +455,7 @@ export class ConditionalTypeScope extends NonRootScope {
 		this.#state = newState;
 	}
 
-	addUse(use: VariableUse): void {
+	addUse(use: Usage): void {
 		if (this.#state === ConditionalTypeScopeState.TrueType)
 			return void this.uses.push(use);
 		return this.parent.addUse(use, this);

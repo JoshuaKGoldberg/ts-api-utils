@@ -1,9 +1,12 @@
 // Code largely based on https://github.com/ajafff/tsutils
 // Original license: https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
 
-import ts from "typescript";
+import ts, { identifierToKeywordKind } from "typescript";
 
-export const enum UsageDomain {
+/**
+ * Which "domain"(s) (most commonly, type or value space) a usage is within.
+ */
+export enum UsageDomain {
 	Namespace = 1,
 	Type = 2,
 	Value = 4,
@@ -17,7 +20,7 @@ export function getUsageDomain(node: ts.Identifier): UsageDomain | undefined {
 	const parent = node.parent;
 	switch (parent.kind) {
 		case ts.SyntaxKind.TypeReference:
-			return ts.identifierToKeywordKind(node) !== ts.SyntaxKind.ConstKeyword
+			return identifierToKeywordKind(node) !== ts.SyntaxKind.ConstKeyword
 				? UsageDomain.Type
 				: undefined;
 		case ts.SyntaxKind.ExpressionWithTypeArguments:

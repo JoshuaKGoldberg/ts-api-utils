@@ -6,13 +6,9 @@ import ts from "typescript";
 import { isFunctionScopeBoundary } from "../scopes";
 import { DeclarationDomain } from "./declarations";
 import type { EnumScope, NamespaceScope } from "./scopes";
-import {
-	InternalVariableInfo,
-	VariableCallback,
-	VariableUse,
-} from "./variables";
+import { InternalUsageInfo, Usage, UsageInfoCallback } from "./usage";
 
-export const enum ScopeBoundary {
+export enum ScopeBoundary {
 	None = 0,
 	Function = 1,
 	Block = 2,
@@ -20,7 +16,7 @@ export const enum ScopeBoundary {
 	ConditionalType = 8,
 }
 
-export const enum ScopeBoundarySelector {
+export enum ScopeBoundarySelector {
 	Function = ScopeBoundary.Function,
 	Block = ScopeBoundarySelector.Function | ScopeBoundary.Block,
 	Type = ScopeBoundarySelector.Block | ScopeBoundary.Type,
@@ -28,7 +24,7 @@ export const enum ScopeBoundarySelector {
 }
 
 export interface Scope {
-	addUse(use: VariableUse, scope?: Scope): void;
+	addUse(use: Usage, scope?: Scope): void;
 	addVariable(
 		identifier: string,
 		name: ts.PropertyName,
@@ -43,10 +39,10 @@ export interface Scope {
 		ambient: boolean,
 		hasExportStatement: boolean,
 	): NamespaceScope;
-	end(cb: VariableCallback): void;
+	end(cb: UsageInfoCallback): void;
 	getDestinationScope(selector: ScopeBoundarySelector): Scope;
 	getFunctionScope(): Scope;
-	getVariables(): Map<string, InternalVariableInfo>;
+	getVariables(): Map<string, InternalUsageInfo>;
 	markExported(name: ts.Identifier, as?: ts.Identifier): void;
 }
 

@@ -3,13 +3,18 @@
 
 import ts from "typescript";
 
+import { identifierToKeywordKind } from "./utils";
+
+/**
+ * Metadata for how a declaration was declared and/or referenced.
+ */
 export interface DeclarationInfo {
 	declaration: ts.PropertyName;
 	domain: DeclarationDomain;
 	exported: boolean;
 }
 
-export const enum DeclarationDomain {
+export enum DeclarationDomain {
 	Namespace = 1,
 	Type = 2,
 	Value = 4,
@@ -44,7 +49,7 @@ export function getDeclarationDomain(
 		case ts.SyntaxKind.Parameter:
 			if (
 				node.parent.parent.kind === ts.SyntaxKind.IndexSignature ||
-				ts.identifierToKeywordKind(node) === ts.SyntaxKind.ThisKeyword
+				identifierToKeywordKind(node) === ts.SyntaxKind.ThisKeyword
 			)
 				return;
 		// falls through
