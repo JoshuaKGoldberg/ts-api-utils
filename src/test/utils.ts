@@ -4,11 +4,7 @@ import ts from "typescript";
 export function createNodeAndSourceFile<Node extends ts.Node>(
 	sourceText: string,
 ): { node: Node; sourceFile: ts.SourceFile } {
-	const sourceFile = ts.createSourceFile(
-		"file.tsx",
-		sourceText,
-		ts.ScriptTarget.ESNext,
-	);
+	const sourceFile = createSourceFile(sourceText);
 	const statement = sourceFile.statements.at(-1)!;
 
 	const node = (ts.isExpressionStatement(statement)
@@ -16,6 +12,15 @@ export function createNodeAndSourceFile<Node extends ts.Node>(
 		: statement) as unknown as Node;
 
 	return { node, sourceFile };
+}
+
+export function createSourceFile(sourceText: string): ts.SourceFile {
+	return ts.createSourceFile(
+		"file.tsx",
+		sourceText,
+		ts.ScriptTarget.ESNext,
+		true,
+	);
 }
 
 export function createNode<Node extends ts.Node>(

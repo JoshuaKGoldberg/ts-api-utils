@@ -7,3 +7,4 @@ export * from "./scopes";
 export * from "./syntax";
 export * from "./tokens";
 export * from "./types";
+export * from "./usage";
