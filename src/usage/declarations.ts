@@ -14,6 +14,9 @@ export interface DeclarationInfo {
 	exported: boolean;
 }
 
+/**
+ * Which "domain"(s) (most commonly, type or value space) a declaration is within.
+ */
 export enum DeclarationDomain {
 	Namespace = 1,
 	Type = 2,
