@@ -24,7 +24,7 @@ import {
 	RootScope,
 } from "./scopes";
 import { UsageInfo, UsageInfoCallback } from "./usage";
-import { identifierToKeywordKind } from "./utils";
+import { canHaveDecorators, identifierToKeywordKind } from "./utils";
 
 // TODO class decorators resolve outside of class, element and parameter decorator resolve inside/at the class
 // TODO computed property name resolves inside/at the class
@@ -263,7 +263,7 @@ export class UsageWalker {
 		cb: (node: ts.Node) => void,
 		varCb: UsageInfoCallback,
 	) {
-		if (ts.canHaveDecorators(node)) {
+		if (canHaveDecorators(node)) {
 			ts.getDecorators(node)?.forEach(cb);
 		}
 
