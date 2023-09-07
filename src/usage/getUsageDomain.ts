@@ -1,7 +1,9 @@
 // Code largely based on https://github.com/ajafff/tsutils
 // Original license: https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
 
-import ts, { identifierToKeywordKind } from "typescript";
+import ts from "typescript";
+
+import { identifierToKeywordKind } from "./utils";
 
 /**
  * Which "domain"(s) (most commonly, type or value space) a usage is within.
