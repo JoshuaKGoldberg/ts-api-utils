@@ -7,9 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - continue-on-error: true
-
         name: get the gh-pages repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
       - name: tar the existing docs
@@ -31,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout src
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: ./.github/actions/prepare
 
@@ -83,13 +82,11 @@ jobs:
         uses: ./.github/actions/protect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-
-          name: Release Docs
+name: Release Docs
 
 on:
   workflow_call: ~
   workflow_dispatch: ~
-
 permissions:
   contents: write
   id-token: write

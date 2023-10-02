@@ -10,7 +10,6 @@ module.exports = {
 		"plugin:n/recommended",
 		"plugin:perfectionist/recommended-natural",
 		"plugin:regexp/recommended",
-		"prettier",
 	],
 	overrides: [
 		{
@@ -72,6 +71,7 @@ module.exports = {
 				"@typescript-eslint/no-non-null-assertion": "off",
 				"@typescript-eslint/no-unnecessary-condition": "off",
 				"@typescript-eslint/no-unsafe-enum-comparison": "off",
+				"@typescript-eslint/prefer-literal-enum-member": "off",
 				"@typescript-eslint/prefer-nullish-coalescing": "off",
 				"no-constant-condition": "off",
 			},
@@ -127,7 +127,6 @@ module.exports = {
 	plugins: [
 		"@typescript-eslint",
 		"deprecation",
-		"import",
 		"jsdoc",
 		"no-only-tests",
 		"perfectionist",
@@ -138,8 +137,10 @@ module.exports = {
 	root: true,
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
-		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-		"import/extensions": ["error", "ignorePackages"],
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{ argsIgnorePattern: "^_", caughtErrors: "all" },
+		],
 		"no-only-tests/no-only-tests": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
@@ -147,6 +148,7 @@ module.exports = {
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
+		"no-mixed-spaces-and-tabs": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
 		"@typescript-eslint/padding-line-between-statements": [

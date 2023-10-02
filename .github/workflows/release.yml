@@ -1,82 +1,42 @@
 concurrency:
-  cancel-in-progress: true
-  group: ${{ github.workflow }}
+  cancel-in-progress: false
 
+  group: Release
 jobs:
   release:
+    outputs:
+      did_release: ${{ steps.should_release.outputs.should_release }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: ./.github/actions/prepare
       - run: pnpm build
-      - run: git config user.name "${GITHUB_ACTOR}"
-      - run: git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - name: Delete branch protection on main
-        uses: actions/github-script@v6.4.1
-        with:
-          github-token: ${{ secrets.ACCESS_TOKEN }}
-          script: |
-            try {
-              await github.request(
-                `DELETE /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
-              );
-            } catch (error) {
-              if (!error.message?.includes?.("Branch not protected")) {
-                throw error;
-              }
-            }
-      - env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          if pnpm run should-semantic-release ; then
-            pnpm release-it --verbose
-            gh workflow run post-release.yml
-          fi
-      - if: always()
-        name: Recreate branch protection on main
-        uses: actions/github-script@v6.4.1
-        with:
-          github-token: ${{ secrets.ACCESS_TOKEN }}
-          script: |
-            github.request(
-              `PUT /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
-              {
-                allow_deletions: false,
-                allow_force_pushes: true,
-                allow_fork_pushes: false,
-                allow_fork_syncing: true,
-                block_creations: false,
-                branch: "main",
-                enforce_admins: false,
-                owner: "JoshuaKGoldberg",
-                repo: "ts-api-utils",
-                required_conversation_resolution: true,
-                required_linear_history: false,
-                required_pull_request_reviews: null,
-                required_status_checks: {
-                checks: [
-                  { context: "build" },
-                  { context: "compliance" },
-                  { context: "lint" },
-                  { context: "lint_knip" },
-                  { context: "lint_markdown" },
-                  { context: "lint_package_json" },
-                  { context: "lint_packages" },
-                  { context: "lint_spelling" },
-                  { context: "prettier" },
-                  { context: "test" },
-                ],
-                strict: false,
-                },
-                restrictions: null,
-              }
-            );
 
+      - id: should_release
+        run: echo "should_release=$(pnpm run should-semantic-release &> /dev/null && echo '1' || echo '0')" >> "$GITHUB_OUTPUT"
+
+      - if: steps.should_release.outputs.should_release != '0'
+        uses: ./.github/actions/unprotect-main
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - env:
+          GITHUB_TOKEN: ${{ github.token }}
+        if: steps.should_release.outputs.should_release != '0'
+        run: pnpm release-it --verbose
+      - if: always() && steps.should_release.outputs.should_release != '0'
+        uses: ./.github/actions/protect-main
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+  release_docs:
+    if: needs.release.outputs.did_release != '0'
+    needs: release
+    uses: ./.github/workflows/release-docs.yml
 name: Release
 
 on:
@@ -87,3 +47,5 @@ on:
 permissions:
   contents: write
   id-token: write
+
+  pages: write
