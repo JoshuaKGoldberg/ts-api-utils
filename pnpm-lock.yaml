@@ -117,23 +117,23 @@ devDependencies:
     specifier: ^7.2.0
     version: 7.2.0(typescript@5.2.2)
   typedoc:
-    specifier: ^0.24.0
-    version: 0.24.1(typescript@5.2.2)
+    specifier: ^0.25.0
+    version: 0.25.1(typescript@5.2.2)
   typedoc-plugin-coverage:
     specifier: ^2.0.0
-    version: 2.0.0(typedoc@0.24.1)
+    version: 2.0.0(typedoc@0.25.1)
   typedoc-plugin-custom-validation:
     specifier: ^1.1.0
-    version: 1.1.0(typedoc@0.24.1)
+    version: 1.1.0(typedoc@0.25.1)
   typedoc-plugin-konamimojisplosion:
     specifier: ^0.0.2
     version: 0.0.2
   typedoc-plugin-mdn-links:
     specifier: ^3.0.0
-    version: 3.0.3(typedoc@0.24.1)
+    version: 3.0.3(typedoc@0.25.1)
   typedoc-plugin-versions:
     specifier: ^0.2.3
-    version: 0.2.3(typedoc@0.24.1)
+    version: 0.2.3(typedoc@0.25.1)
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
@@ -4934,8 +4934,8 @@ packages:
       markdownlint-micromark: 0.1.7
     dev: true
 
-  /marked@4.2.12:
-    resolution: {integrity: sha512-yr8hSKa3Fv4D3jdZmtMMPghgVt6TWbk86WQaWhDloQjRSQhMMYCAro7jP7VDJrjjdV8pxVxMssXS8B8Y5DZ5aw==}
+  /marked@4.3.0:
+    resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
@@ -5056,13 +5056,6 @@ packages:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
       brace-expansion: 1.1.11
-    dev: true
-
-  /minimatch@7.4.2:
-    resolution: {integrity: sha512-xy4q7wou3vUoC9k1xGTXc+awNdGaGVHtFUaey8tiX4H1QRc04DZ/rmDFwNm2EBsuYEhAZ6SgMmYf3InGY6OauA==}
-    engines: {node: '>=10'}
-    dependencies:
-      brace-expansion: 2.0.1
     dev: true
 
   /minimatch@9.0.3:
@@ -6829,21 +6822,21 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-coverage@2.0.0(typedoc@0.24.1):
+  /typedoc-plugin-coverage@2.0.0(typedoc@0.25.1):
     resolution: {integrity: sha512-IJsYW0SvV2RUWfUBWuCG2cXTv+FiPDlls9+JlUlct3N41c1hV01ZOLKmZpEVelrvNSU3SnxxA8mkct3BQm2v0g==}
     engines: {node: '>= 14'}
     peerDependencies:
       typedoc: ^0.22.12 || 0.23.x
     dependencies:
-      typedoc: 0.24.1(typescript@5.2.2)
+      typedoc: 0.25.1(typescript@5.2.2)
     dev: true
 
-  /typedoc-plugin-custom-validation@1.1.0(typedoc@0.24.1):
+  /typedoc-plugin-custom-validation@1.1.0(typedoc@0.25.1):
     resolution: {integrity: sha512-W3zEPgAuXXqXWoZtDEYdPQHXWVp9NfqPzQLi7uUSkrEL7LNODYaCLM2EyITzWK6JZqbr4B+nj8g0Yaofp/AvHw==}
     peerDependencies:
       typedoc: ^0.23.26
     dependencies:
-      typedoc: 0.24.1(typescript@5.2.2)
+      typedoc: 0.25.1(typescript@5.2.2)
     dev: true
 
   /typedoc-plugin-konamimojisplosion@0.0.2:
@@ -6851,15 +6844,15 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /typedoc-plugin-mdn-links@3.0.3(typedoc@0.24.1):
+  /typedoc-plugin-mdn-links@3.0.3(typedoc@0.25.1):
     resolution: {integrity: sha512-NXhIpwQnsg7BcyMCHVqj3tUK+DL4g3Bt96JbFl4APzTGFkA+iM6GfZ/fn3TAqJ8O0CXG5R9BfWxolw1m1omNuQ==}
     peerDependencies:
       typedoc: '>= 0.23.14 || 0.24.x'
     dependencies:
-      typedoc: 0.24.1(typescript@5.2.2)
+      typedoc: 0.25.1(typescript@5.2.2)
     dev: true
 
-  /typedoc-plugin-versions@0.2.3(typedoc@0.24.1):
+  /typedoc-plugin-versions@0.2.3(typedoc@0.25.1):
     resolution: {integrity: sha512-SDbd+Q1ieHlSa5y3rCxuZH5Eg87Flgotx5qcpO3x2h/LaQ8i25oyiArXALm5wFXYr7CgSit4ODrVVlbA7SH2jA==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     peerDependencies:
@@ -6867,19 +6860,19 @@ packages:
     dependencies:
       fs-extra: 10.1.0
       semver: 7.5.4
-      typedoc: 0.24.1(typescript@5.2.2)
+      typedoc: 0.25.1(typescript@5.2.2)
     dev: true
 
-  /typedoc@0.24.1(typescript@5.2.2):
-    resolution: {integrity: sha512-u4HwjZcSQhQSkkhLjgcs0ooAf6HrFVLDHHrwU2xZW8WxH0KnGZlNkaWxiOcK5Gagj7mxJSgwWx0dv8ACDAOXAQ==}
-    engines: {node: '>= 14.14'}
+  /typedoc@0.25.1(typescript@5.2.2):
+    resolution: {integrity: sha512-c2ye3YUtGIadxN2O6YwPEXgrZcvhlZ6HlhWZ8jQRNzwLPn2ylhdGqdR8HbyDRyALP8J6lmSANILCkkIdNPFxqA==}
+    engines: {node: '>= 16'}
     hasBin: true
     peerDependencies:
-      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x
     dependencies:
       lunr: 2.3.9
-      marked: 4.2.12
-      minimatch: 7.4.2
+      marked: 4.3.0
+      minimatch: 9.0.3
       shiki: 0.14.1
       typescript: 5.2.2
     dev: true
