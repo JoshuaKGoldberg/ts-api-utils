@@ -42,6 +42,7 @@ export function getUsageDomain(node: ts.Identifier): UsageDomain | undefined {
 				) {
 					return UsageDomain.Namespace | UsageDomain.TypeQuery;
 				}
+
 				return UsageDomain.Namespace;
 			}
 
@@ -54,6 +55,7 @@ export function getUsageDomain(node: ts.Identifier): UsageDomain | undefined {
 			) {
 				return UsageDomain.Any;
 			} // TODO handle type-only exports
+
 			break;
 		case ts.SyntaxKind.ExportAssignment:
 			return UsageDomain.Any;
@@ -62,6 +64,7 @@ export function getUsageDomain(node: ts.Identifier): UsageDomain | undefined {
 			if ((parent as ts.BindingElement).initializer === node) {
 				return UsageDomain.ValueOrNamespace;
 			}
+
 			break;
 		case ts.SyntaxKind.Parameter:
 		case ts.SyntaxKind.EnumMember:
@@ -73,6 +76,7 @@ export function getUsageDomain(node: ts.Identifier): UsageDomain | undefined {
 			if ((parent as ts.NamedDeclaration).name !== node) {
 				return UsageDomain.ValueOrNamespace;
 			} // TODO handle type-only imports
+
 			break;
 		case ts.SyntaxKind.JsxAttribute:
 		case ts.SyntaxKind.FunctionDeclaration:
@@ -110,5 +114,6 @@ function getEntityNameParent(name: ts.EntityName) {
 	while (parent.kind === ts.SyntaxKind.QualifiedName) {
 		parent = parent.parent!;
 	}
+
 	return parent;
 }

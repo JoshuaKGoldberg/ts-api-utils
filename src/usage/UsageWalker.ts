@@ -53,6 +53,7 @@ export class UsageWalker {
 				DeclarationDomain.Value,
 			);
 		}
+
 		forEachDestructuringIdentifier(name, (declaration) => {
 			this.#scope.addVariable(
 				declaration.name.text,
@@ -118,6 +119,7 @@ export class UsageWalker {
 		if (node.kind === ts.SyntaxKind.FunctionDeclaration) {
 			this.#handleDeclaration(node, false, DeclarationDomain.Value);
 		}
+
 		const scope = (this.#scope =
 			node.kind === ts.SyntaxKind.FunctionExpression && node.name !== undefined
 				? new FunctionExpressionScope(node.name, savedScope)
@@ -125,13 +127,16 @@ export class UsageWalker {
 		if (node.name !== undefined) {
 			cb(node.name);
 		}
+
 		if (node.typeParameters !== undefined) {
 			node.typeParameters.forEach(cb);
 		}
+
 		node.parameters.forEach(cb);
 		if (node.type !== undefined) {
 			cb(node.type);
 		}
+
 		if (node.body !== undefined) {
 			scope.beginBody();
 			cb(node.body);
@@ -146,11 +151,13 @@ export class UsageWalker {
 		next: (node: ts.Node, scope: Scope) => void,
 	) {
 		if (node.flags & ts.NodeFlags.GlobalAugmentation) {
-			return next(
+			next(
 				node,
 				this.#scope.createOrReuseNamespaceScope("-global", false, true, false),
 			);
+			return;
 		}
+
 		if (node.name.kind === ts.SyntaxKind.Identifier) {
 			const exported = isNamespaceExported(node as ts.NamespaceDeclaration);
 			this.#scope.addVariable(
@@ -164,7 +171,7 @@ export class UsageWalker {
 				node.modifiers,
 				ts.SyntaxKind.DeclareKeyword,
 			);
-			return next(
+			next(
 				node,
 				this.#scope.createOrReuseNamespaceScope(
 					node.name.text,
@@ -173,9 +180,10 @@ export class UsageWalker {
 					ambient && namespaceHasExportStatement(node),
 				),
 			);
+			return;
 		}
 
-		return next(
+		next(
 			node,
 			this.#scope.createOrReuseNamespaceScope(
 				`"${node.name.text}"`,
@@ -213,15 +221,17 @@ export class UsageWalker {
 		);
 		const cb = (node: ts.Node): void => {
 			if (isBlockScopeBoundary(node)) {
-				return continueWithScope(
+				continueWithScope(
 					node,
 					new BlockScope(this.#scope.getFunctionScope(), this.#scope),
 					handleBlockScope,
 				);
+				return;
 			}
+
 			switch (node.kind) {
-				case ts.SyntaxKind.ClassExpression:
-					return continueWithScope(
+				case ts.SyntaxKind.ClassExpression: {
+					continueWithScope(
 						node,
 						(node as ts.ClassExpression).name !== undefined
 							? new ClassExpressionScope(
@@ -230,16 +240,23 @@ export class UsageWalker {
 							  )
 							: new NonRootScope(this.#scope, ScopeBoundary.Function),
 					);
+					return;
+				}
+
 				case ts.SyntaxKind.ClassDeclaration:
 					this.#handleDeclaration(
 						node as ts.ClassDeclaration,
 						true,
 						DeclarationDomain.Value | DeclarationDomain.Type,
 					);
-					return continueWithScope(
-						node,
-						new NonRootScope(this.#scope, ScopeBoundary.Function),
-					);
+					{
+						continueWithScope(
+							node,
+							new NonRootScope(this.#scope, ScopeBoundary.Function),
+						);
+						return;
+					}
+
 				case ts.SyntaxKind.InterfaceDeclaration:
 				case ts.SyntaxKind.TypeAliasDeclaration:
 					this.#handleDeclaration(
@@ -247,36 +264,47 @@ export class UsageWalker {
 						true,
 						DeclarationDomain.Type,
 					);
-					return continueWithScope(
-						node,
-						new NonRootScope(this.#scope, ScopeBoundary.Type),
-					);
+					{
+						continueWithScope(
+							node,
+							new NonRootScope(this.#scope, ScopeBoundary.Type),
+						);
+						return;
+					}
+
 				case ts.SyntaxKind.EnumDeclaration:
 					this.#handleDeclaration(
 						node as ts.EnumDeclaration,
 						true,
 						DeclarationDomain.Any,
 					);
-					return continueWithScope(
-						node,
-						this.#scope.createOrReuseEnumScope(
-							(node as ts.EnumDeclaration).name.text,
-							includesModifier(
-								(node as ts.HasModifiers).modifiers,
-								ts.SyntaxKind.ExportKeyword,
+					{
+						continueWithScope(
+							node,
+							this.#scope.createOrReuseEnumScope(
+								(node as ts.EnumDeclaration).name.text,
+								includesModifier(
+									(node as ts.HasModifiers).modifiers,
+									ts.SyntaxKind.ExportKeyword,
+								),
 							),
-						),
-					);
-				case ts.SyntaxKind.ModuleDeclaration:
-					return this.#handleModule(
-						node as ts.ModuleDeclaration,
-						continueWithScope,
-					);
-				case ts.SyntaxKind.MappedType:
-					return continueWithScope(
+						);
+						return;
+					}
+
+				case ts.SyntaxKind.ModuleDeclaration: {
+					this.#handleModule(node as ts.ModuleDeclaration, continueWithScope);
+					return;
+				}
+
+				case ts.SyntaxKind.MappedType: {
+					continueWithScope(
 						node,
 						new NonRootScope(this.#scope, ScopeBoundary.Type),
 					);
+					return;
+				}
+
 				case ts.SyntaxKind.FunctionExpression:
 				case ts.SyntaxKind.ArrowFunction:
 				case ts.SyntaxKind.Constructor:
@@ -288,18 +316,24 @@ export class UsageWalker {
 				case ts.SyntaxKind.CallSignature:
 				case ts.SyntaxKind.ConstructSignature:
 				case ts.SyntaxKind.ConstructorType:
-				case ts.SyntaxKind.FunctionType:
-					return this.#handleFunctionLikeDeclaration(
+				case ts.SyntaxKind.FunctionType: {
+					this.#handleFunctionLikeDeclaration(
 						node as ts.FunctionLikeDeclaration,
 						cb,
 						variableCallback,
 					);
-				case ts.SyntaxKind.ConditionalType:
-					return this.#handleConditionalType(
+					return;
+				}
+
+				case ts.SyntaxKind.ConditionalType: {
+					this.#handleConditionalType(
 						node as ts.ConditionalTypeNode,
 						cb,
 						variableCallback,
 					);
+					return;
+				}
+
 				// End of Scope specific handling
 				case ts.SyntaxKind.VariableDeclarationList:
 					this.#handleVariableDeclaration(node as ts.VariableDeclarationList);
@@ -319,6 +353,7 @@ export class UsageWalker {
 							false,
 						);
 					}
+
 					break;
 				case ts.SyntaxKind.EnumMember:
 					this.#scope.addVariable(
@@ -357,6 +392,7 @@ export class UsageWalker {
 							(node as ts.ExportSpecifier).name,
 						);
 					}
+
 					return this.#scope.markExported((node as ts.ExportSpecifier).name);
 				case ts.SyntaxKind.ExportAssignment:
 					if (
@@ -367,12 +403,14 @@ export class UsageWalker {
 							(node as ts.ExportAssignment).expression as ts.Identifier,
 						);
 					}
+
 					break;
 				case ts.SyntaxKind.Identifier: {
 					const domain = getUsageDomain(node as ts.Identifier);
 					if (domain !== undefined) {
 						this.#scope.addUse({ domain, location: node as ts.Identifier });
 					}
+
 					return;
 				}
 			}
@@ -403,6 +441,7 @@ export class UsageWalker {
 					false,
 				);
 			}
+
 			return ts.forEachChild(node, cb);
 		};
 
@@ -427,6 +466,7 @@ function namespaceHasExportStatement(ns: ts.ModuleDeclaration): boolean {
 	if (ns.body === undefined || ns.body.kind !== ts.SyntaxKind.ModuleBlock) {
 		return false;
 	}
+
 	return containsExportStatement(ns.body);
 }
 
@@ -435,15 +475,11 @@ function containsExportStatement(block: ts.BlockLike): boolean {
 		if (
 			statement.kind === ts.SyntaxKind.ExportDeclaration ||
 			statement.kind === ts.SyntaxKind.ExportAssignment
-		)
+		) {
 			return true;
+		}
 	}
-	if (
-		statement.kind === ts.SyntaxKind.ExportDeclaration ||
-		statement.kind === ts.SyntaxKind.ExportAssignment
-	) {
-		return true;
-	}
+
 	return false;
 }
 
@@ -461,6 +497,7 @@ function forEachDestructuringIdentifier<T>(
 		if (element.kind !== ts.SyntaxKind.BindingElement) {
 			continue;
 		}
+
 		let result: T | undefined;
 		if (element.name.kind === ts.SyntaxKind.Identifier) {
 			result = fn(element as ts.BindingElement & { name: ts.Identifier });

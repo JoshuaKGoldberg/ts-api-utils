@@ -1,4 +1,4 @@
-<h1 align="center">ts-api-utils</h1>
+<h1 align="center">TypeScript API Utils</h1>
 
 <p align="center">
 	Utility functions for working with TypeScript's API.
@@ -9,7 +9,7 @@
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 5" src="https://img.shields.io/badge/all_contributors-5-21bb42.svg" />
+<img alt="All Contributors: 5 👪" src="https://img.shields.io/badge/all_contributors-5_👪-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 	</a>
@@ -27,6 +27,7 @@
 	</a>
 	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
 	<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
+	<img alt="npm package version" src="https://img.shields.io/npm/v/ts-api-utils?color=21bb42" />
 </p>
 
 ## Usage
@@ -83,6 +84,6 @@ Many thanks to [@ajafff](https://github.com/ajafff) for creating the original [`
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
-> 💙 This package is templated from [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 
 > _"My tools! I have to have my tools!" - Dennis Reynolds_

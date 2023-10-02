@@ -10,6 +10,7 @@ module.exports = {
 		"plugin:n/recommended",
 		"plugin:perfectionist/recommended-natural",
 		"plugin:regexp/recommended",
+		"plugin:vitest/recommended",
 	],
 	overrides: [
 		{
@@ -48,6 +49,12 @@ module.exports = {
 				"jsdoc/require-param": "off",
 				"jsdoc/require-property": "off",
 				"jsdoc/require-returns": "off",
+			},
+		},
+		{
+			files: "**/*.md/*.ts",
+			rules: {
+				"n/no-missing-import": ["error", { allowModules: ["ts-api-utils"] }],
 			},
 		},
 		{
@@ -99,7 +106,6 @@ module.exports = {
 				"@typescript-eslint/no-unsafe-call": "off",
 			},
 		},
-
 		{
 			extends: ["plugin:yml/standard", "plugin:yml/prettier"],
 			files: ["**/*.{yml,yaml}"],
@@ -144,7 +150,6 @@ module.exports = {
 		"no-only-tests/no-only-tests": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
-		"n/no-missing-import": "off",
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",

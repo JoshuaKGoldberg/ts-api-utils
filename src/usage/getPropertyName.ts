@@ -9,6 +9,7 @@ function unwrapParentheses(node: ts.Expression) {
 	while (node.kind === ts.SyntaxKind.ParenthesizedExpression) {
 		node = (node as ts.ParenthesizedExpression).expression;
 	}
+
 	return node;
 }
 
@@ -37,9 +38,11 @@ export function getPropertyName(
 		if (ts.isBigIntLiteral(expression)) {
 			return expression.text.slice(0, -1);
 		}
+
 		if (isNumericOrStringLikeLiteral(expression)) {
 			return expression.text;
 		}
+
 		return;
 	}
 

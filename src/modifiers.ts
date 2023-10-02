@@ -20,11 +20,12 @@ export function includesModifier(
 	if (modifiers === undefined) {
 		return false;
 	}
+
 	for (const modifier of modifiers) {
-		if (kinds.includes(modifier.kind as ts.ModifierSyntaxKind)) return true;
+		if (kinds.includes(modifier.kind as ts.ModifierSyntaxKind)) {
+			return true;
+		}
 	}
-	if (kinds.includes(modifier.kind as ts.ModifierSyntaxKind)) {
-		return true;
-	}
+
 	return false;
 }

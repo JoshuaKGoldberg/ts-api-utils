@@ -63,6 +63,7 @@ abstract class AbstractScope implements Scope {
 		if (variable === undefined || (variable.domain & use.domain) === 0) {
 			return false;
 		}
+
 		variable.uses.push(use);
 		return true;
 	}
@@ -118,7 +119,9 @@ abstract class AbstractScope implements Scope {
 
 	end(cb: UsageInfoCallback): void {
 		if (this.namespaceScopes !== undefined) {
-			this.namespaceScopes.forEach((value) => value.finish(cb));
+			this.namespaceScopes.forEach((value) => {
+				value.finish(cb);
+			});
 		}
 
 		this.namespaceScopes = this.#enumScopes = undefined;
@@ -133,18 +136,17 @@ abstract class AbstractScope implements Scope {
 					uses: [],
 				};
 				for (const other of variable.declarations) {
-					if (other.domain & declaration.domain)
+					if (other.domain & declaration.domain) {
 						result.declarations.push(other.declaration as ts.Identifier);
+					}
 				}
-				if (other.domain & declaration.domain) {
-					result.declarations.push(other.declaration as ts.Identifier);
-				}
+
 				for (const use of variable.uses) {
-					if (use.domain & declaration.domain) result.uses.push(use);
+					if (use.domain & declaration.domain) {
+						result.uses.push(use);
+					}
 				}
-				if (use.domain & declaration.domain) {
-					result.uses.push(use);
-				}
+
 				cb(result, declaration.declaration as ts.Identifier, this);
 			}
 		});
@@ -205,9 +207,11 @@ export class RootScope extends AbstractScope {
 
 	addUse(use: Usage, origin?: Scope): void {
 		if (origin === this.#innerScope) {
-			return super.addUse(use);
+			super.addUse(use);
+			return;
 		}
-		return this.#innerScope.addUse(use);
+
+		this.#innerScope.addUse(use);
 	}
 
 	addVariable(
@@ -218,15 +222,11 @@ export class RootScope extends AbstractScope {
 		domain: DeclarationDomain,
 	): void {
 		if (domain & DeclarationDomain.Import) {
-			return super.addVariable(identifier, name, selector, exported, domain);
+			super.addVariable(identifier, name, selector, exported, domain);
+			return;
 		}
-		return this.#innerScope.addVariable(
-			identifier,
-			name,
-			selector,
-			exported,
-			domain,
-		);
+
+		this.#innerScope.addVariable(identifier, name, selector, exported, domain);
 	}
 
 	end(cb: UsageInfoCallback): void {
@@ -238,7 +238,7 @@ export class RootScope extends AbstractScope {
 			value.inGlobalScope = this.global;
 			return cb(value, key, this);
 		});
-		return super.end((value, key, scope) => {
+		super.end((value, key, scope) => {
 			value.exported ||=
 				scope === this &&
 				this.#exports !== undefined &&
@@ -274,8 +274,10 @@ export class NamespaceScope extends NonRootScope {
 
 	addUse(use: Usage, source?: Scope): void {
 		if (source !== this.#innerScope) {
-			return this.#innerScope.addUse(use);
+			this.#innerScope.addUse(use);
+			return;
 		}
+
 		this.uses.push(use);
 	}
 
@@ -283,6 +285,7 @@ export class NamespaceScope extends NonRootScope {
 		if (!exported && (!this.#ambient || this.#hasExport)) {
 			return this.#innerScope.createOrReuseEnumScope(name, exported);
 		}
+
 		return super.createOrReuseEnumScope(name, exported);
 	}
 
@@ -300,6 +303,7 @@ export class NamespaceScope extends NonRootScope {
 				hasExportStatement,
 			);
 		}
+
 		return super.createOrReuseNamespaceScope(
 			name,
 			exported,
@@ -318,6 +322,7 @@ export class NamespaceScope extends NonRootScope {
 			) {
 				return cb(variable, key, scope);
 			}
+
 			const namespaceVar = this.variables.get(key.text);
 			if (namespaceVar === undefined) {
 				this.variables.set(key.text, {
@@ -328,11 +333,11 @@ export class NamespaceScope extends NonRootScope {
 			} else {
 				outer: for (const declaration of variable.declarations) {
 					for (const existing of namespaceVar.declarations) {
-						if (existing.declaration === declaration) continue outer;
+						if (existing.declaration === declaration) {
+							continue outer;
+						}
 					}
-					if (existing.declaration === declaration) {
-						continue outer;
-					}
+
 					namespaceVar.declarations.push(mapDeclaration(declaration));
 				}
 
@@ -341,6 +346,7 @@ export class NamespaceScope extends NonRootScope {
 					if (namespaceVar.uses.includes(use)) {
 						continue;
 					}
+
 					namespaceVar.uses.push(use);
 				}
 			}
@@ -350,7 +356,7 @@ export class NamespaceScope extends NonRootScope {
 	}
 
 	finish(cb: UsageInfoCallback): void {
-		return super.end(cb);
+		super.end(cb);
 	}
 
 	getDestinationScope(): Scope {
@@ -361,6 +367,7 @@ export class NamespaceScope extends NonRootScope {
 		if (this.#exports === undefined) {
 			this.#exports = new Set();
 		}
+
 		this.#exports.add(name.text);
 	}
 
@@ -402,8 +409,10 @@ abstract class AbstractNamedExpressionScope<
 
 	addUse(use: Usage, source?: Scope): void {
 		if (source !== this.innerScope) {
-			return this.innerScope.addUse(use);
+			this.innerScope.addUse(use);
+			return;
 		}
+
 		if (use.domain & this.#domain && use.location.text === this.#name.text) {
 			this.uses.push(use);
 		} else {
@@ -445,7 +454,7 @@ export class FunctionExpressionScope extends AbstractNamedExpressionScope<Functi
 	}
 
 	beginBody(): void {
-		return this.innerScope.beginBody();
+		this.innerScope.beginBody();
 	}
 }
 
@@ -488,6 +497,7 @@ export class ConditionalTypeScope extends NonRootScope {
 		if (this.#state === ConditionalTypeScopeState.TrueType) {
 			return void this.uses.push(use);
 		}
+
 		return this.parent.addUse(use, this);
 	}
 

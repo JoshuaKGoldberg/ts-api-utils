@@ -57,6 +57,7 @@ export function getDeclarationDomain(
 			) {
 				return;
 			}
+
 		// falls through
 		case ts.SyntaxKind.BindingElement:
 		case ts.SyntaxKind.VariableDeclaration:

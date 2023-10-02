@@ -33,7 +33,7 @@ It should be applied automatically when you save files in VS Code or make a Git 
 To manually reformat all files, you can run:
 
 ```shell
-pnpm format:write
+pnpm format --write
 ```
 
 ## Linting
@@ -56,6 +56,8 @@ For example, ESLint can be run with `--fix` to auto-fix some lint rule complaint
 ```shell
 pnpm run lint --fix
 ```
+
+Note that you'll likely need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
 
 ## Testing
 
