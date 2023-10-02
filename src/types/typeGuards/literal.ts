@@ -1,7 +1,7 @@
 import ts from "typescript";
 
-import { isTypeFlagSet } from "../../flags.js";
-import { type FreshableIntrinsicType } from "./compound.js";
+import { isTypeFlagSet } from "../../flags";
+import { type FreshableIntrinsicType } from "./compound";
 
 /**
  * A boolean literal.

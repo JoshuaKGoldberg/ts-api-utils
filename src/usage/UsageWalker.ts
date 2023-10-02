@@ -151,11 +151,10 @@ export class UsageWalker {
 		next: (node: ts.Node, scope: Scope) => void,
 	) {
 		if (node.flags & ts.NodeFlags.GlobalAugmentation) {
-			next(
+			return next(
 				node,
 				this.#scope.createOrReuseNamespaceScope("-global", false, true, false),
 			);
-			return;
 		}
 
 		if (node.name.kind === ts.SyntaxKind.Identifier) {
@@ -171,7 +170,7 @@ export class UsageWalker {
 				node.modifiers,
 				ts.SyntaxKind.DeclareKeyword,
 			);
-			next(
+			return next(
 				node,
 				this.#scope.createOrReuseNamespaceScope(
 					node.name.text,
@@ -180,10 +179,9 @@ export class UsageWalker {
 					ambient && namespaceHasExportStatement(node),
 				),
 			);
-			return;
 		}
 
-		next(
+		return next(
 			node,
 			this.#scope.createOrReuseNamespaceScope(
 				`"${node.name.text}"`,
@@ -221,17 +219,16 @@ export class UsageWalker {
 		);
 		const cb = (node: ts.Node): void => {
 			if (isBlockScopeBoundary(node)) {
-				continueWithScope(
+				return continueWithScope(
 					node,
 					new BlockScope(this.#scope.getFunctionScope(), this.#scope),
 					handleBlockScope,
 				);
-				return;
 			}
 
 			switch (node.kind) {
-				case ts.SyntaxKind.ClassExpression: {
-					continueWithScope(
+				case ts.SyntaxKind.ClassExpression:
+					return continueWithScope(
 						node,
 						(node as ts.ClassExpression).name !== undefined
 							? new ClassExpressionScope(
@@ -240,23 +237,16 @@ export class UsageWalker {
 							  )
 							: new NonRootScope(this.#scope, ScopeBoundary.Function),
 					);
-					return;
-				}
-
 				case ts.SyntaxKind.ClassDeclaration:
 					this.#handleDeclaration(
 						node as ts.ClassDeclaration,
 						true,
 						DeclarationDomain.Value | DeclarationDomain.Type,
 					);
-					{
-						continueWithScope(
-							node,
-							new NonRootScope(this.#scope, ScopeBoundary.Function),
-						);
-						return;
-					}
-
+					return continueWithScope(
+						node,
+						new NonRootScope(this.#scope, ScopeBoundary.Function),
+					);
 				case ts.SyntaxKind.InterfaceDeclaration:
 				case ts.SyntaxKind.TypeAliasDeclaration:
 					this.#handleDeclaration(
@@ -264,47 +254,36 @@ export class UsageWalker {
 						true,
 						DeclarationDomain.Type,
 					);
-					{
-						continueWithScope(
-							node,
-							new NonRootScope(this.#scope, ScopeBoundary.Type),
-						);
-						return;
-					}
-
+					return continueWithScope(
+						node,
+						new NonRootScope(this.#scope, ScopeBoundary.Type),
+					);
 				case ts.SyntaxKind.EnumDeclaration:
 					this.#handleDeclaration(
 						node as ts.EnumDeclaration,
 						true,
 						DeclarationDomain.Any,
 					);
-					{
-						continueWithScope(
-							node,
-							this.#scope.createOrReuseEnumScope(
-								(node as ts.EnumDeclaration).name.text,
-								includesModifier(
-									(node as ts.HasModifiers).modifiers,
-									ts.SyntaxKind.ExportKeyword,
-								),
+					return continueWithScope(
+						node,
+						this.#scope.createOrReuseEnumScope(
+							(node as ts.EnumDeclaration).name.text,
+							includesModifier(
+								(node as ts.HasModifiers).modifiers,
+								ts.SyntaxKind.ExportKeyword,
 							),
-						);
-						return;
-					}
-
-				case ts.SyntaxKind.ModuleDeclaration: {
-					this.#handleModule(node as ts.ModuleDeclaration, continueWithScope);
-					return;
-				}
-
-				case ts.SyntaxKind.MappedType: {
-					continueWithScope(
+						),
+					);
+				case ts.SyntaxKind.ModuleDeclaration:
+					return this.#handleModule(
+						node as ts.ModuleDeclaration,
+						continueWithScope,
+					);
+				case ts.SyntaxKind.MappedType:
+					return continueWithScope(
 						node,
 						new NonRootScope(this.#scope, ScopeBoundary.Type),
 					);
-					return;
-				}
-
 				case ts.SyntaxKind.FunctionExpression:
 				case ts.SyntaxKind.ArrowFunction:
 				case ts.SyntaxKind.Constructor:
@@ -316,24 +295,18 @@ export class UsageWalker {
 				case ts.SyntaxKind.CallSignature:
 				case ts.SyntaxKind.ConstructSignature:
 				case ts.SyntaxKind.ConstructorType:
-				case ts.SyntaxKind.FunctionType: {
-					this.#handleFunctionLikeDeclaration(
+				case ts.SyntaxKind.FunctionType:
+					return this.#handleFunctionLikeDeclaration(
 						node as ts.FunctionLikeDeclaration,
 						cb,
 						variableCallback,
 					);
-					return;
-				}
-
-				case ts.SyntaxKind.ConditionalType: {
-					this.#handleConditionalType(
+				case ts.SyntaxKind.ConditionalType:
+					return this.#handleConditionalType(
 						node as ts.ConditionalTypeNode,
 						cb,
 						variableCallback,
 					);
-					return;
-				}
-
 				// End of Scope specific handling
 				case ts.SyntaxKind.VariableDeclarationList:
 					this.#handleVariableDeclaration(node as ts.VariableDeclarationList);

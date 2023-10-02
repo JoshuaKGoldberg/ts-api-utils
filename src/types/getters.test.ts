@@ -1,11 +1,11 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../test/utils.js";
+import { createSourceFileAndTypeChecker } from "../test/utils";
 import {
 	getCallSignaturesOfType,
 	getWellKnownSymbolPropertyOfType,
-} from "./getters.js";
+} from "./getters";
 
 describe("getCallSignaturesOfType", () => {
 	it("returns one call signature when one exists", () => {

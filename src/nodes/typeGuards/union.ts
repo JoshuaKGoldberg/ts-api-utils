@@ -1,6 +1,6 @@
 import ts from "typescript";
 
-import { isTsVersionAtLeast } from "../../utils.js";
+import { isTsVersionAtLeast } from "../../utils";
 import {
 	isJSDocNamespaceDeclaration,
 	isJsxTagNamePropertyAccess,
@@ -8,7 +8,7 @@ import {
 	isPropertyAccessEntityNameExpression,
 	isSuperElementAccessExpression,
 	isSuperPropertyAccessExpression,
-} from "./compound.js";
+} from "./compound";
 import {
 	isAccessorKeyword,
 	isEndOfFileToken,
@@ -23,7 +23,7 @@ import {
 	isStaticKeyword,
 	isThisExpression,
 	isTrueLiteral,
-} from "./single.js";
+} from "./single";
 
 /**
  * Test if a node is an `AccessExpression`.

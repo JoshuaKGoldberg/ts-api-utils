@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../../test/utils.js";
-import { isIntrinsicType } from "./intrinsic.js";
-import { isTupleType, isTypeReference } from "./objects.js";
+import { createSourceFileAndTypeChecker } from "../../test/utils";
+import { isIntrinsicType } from "./intrinsic";
+import { isTupleType, isTypeReference } from "./objects";
 
 function getTypeForTypeNode(sourceText: string) {
 	const { sourceFile, typeChecker } =

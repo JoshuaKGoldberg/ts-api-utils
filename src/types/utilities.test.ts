@@ -1,13 +1,13 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../test/utils.js";
+import { createSourceFileAndTypeChecker } from "../test/utils";
 import {
 	isFalsyType,
 	isPropertyReadonlyInType,
 	isThenableType,
 	symbolHasReadonlyDeclaration,
-} from "./utilities.js";
+} from "./utilities";
 
 describe("isPropertyReadonlyInType", () => {
 	it("returns false when the property is not readonly", () => {
@@ -83,7 +83,7 @@ describe("symbolHasReadonlyDeclaration", () => {
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(false);
 	});
 
-	it("returns true when the symbol is a const", () => {
+	it("returns true when the symbol is a const variable", () => {
 		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
 			interface Box {
 				 value: string;

@@ -1,7 +1,7 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createSourceFileAndTypeChecker } from "../../test/utils.js";
+import { createSourceFileAndTypeChecker } from "../../test/utils";
 import {
 	isBigIntLiteralType,
 	isFalseLiteralType,
@@ -10,7 +10,7 @@ import {
 	isStringLiteralType,
 	isTemplateLiteralType,
 	isTrueLiteralType,
-} from "./literal.js";
+} from "./literal";
 
 describe.each([
 	["isBigIntLiteralType", isBigIntLiteralType, "0", "0n"],

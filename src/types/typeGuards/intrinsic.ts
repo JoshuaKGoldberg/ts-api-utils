@@ -1,6 +1,6 @@
 import ts from "typescript";
 
-import { isTypeFlagSet } from "../../flags.js";
+import { isTypeFlagSet } from "../../flags";
 
 /**
  * A "any" intrinsic type.

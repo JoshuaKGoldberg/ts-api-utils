@@ -44,9 +44,10 @@ export function forEachToken(
 				continue;
 			}
 
+			// add children in reverse order, when we pop the next element from the queue, it's the first child
 			for (let i = children.length - 1; i >= 0; --i) {
 				queue.push(children[i]);
-			} // add children in reverse order, when we pop the next element from the queue, it's the first child
+			}
 		}
 
 		if (queue.length === 0) {

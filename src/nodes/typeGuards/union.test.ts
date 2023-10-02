@@ -1,8 +1,8 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createNode } from "../../test/utils.js";
-import { isTsVersionAtLeast } from "../../utils.js";
+import { createNode } from "../../test/utils";
+import { isTsVersionAtLeast } from "../../utils";
 import {
 	isAccessExpression,
 	isAccessibilityModifier,
@@ -13,7 +13,7 @@ import {
 	isBooleanLiteral,
 	isClassMemberModifier,
 	isEntityNameExpression,
-} from "./union.js";
+} from "./union";
 
 describe("isAccessExpression", () => {
 	it.each([

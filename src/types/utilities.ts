@@ -9,20 +9,20 @@ import {
 	isObjectFlagSet,
 	isSymbolFlagSet,
 	isTypeFlagSet,
-} from "../flags.js";
+} from "../flags";
 import {
 	isBindableObjectDefinePropertyCall,
 	isInConstContext,
-} from "../nodes/utilities.js";
-import { isNumericPropertyName } from "../syntax.js";
-import { getPropertyOfType } from "./getters.js";
+} from "../nodes/utilities";
+import { isNumericPropertyName } from "../syntax";
+import { getPropertyOfType } from "./getters";
 import {
 	isFalseLiteralType,
 	isIntersectionType,
 	isObjectType,
 	isTupleTypeReference,
 	isUnionType,
-} from "./typeGuards/index.js";
+} from "./typeGuards";
 
 /**
  * Determines whether a type is definitely falsy. This function doesn't unwrap union types.
@@ -313,29 +313,6 @@ export function isThenableType(
 		const thenType = typeChecker.getTypeOfSymbolAtLocation(then, node);
 		for (const subTypePart of unionTypeParts(thenType)) {
 			for (const signature of subTypePart.getCallSignatures()) {
-				if (
-					signature.parameters.length !== 0 &&
-					isCallback(typeChecker, signature.parameters[0], node)
-				) {
-					return true;
-				}
-
-				if (
-					signature.parameters.length !== 0 &&
-					isCallback(typeChecker, signature.parameters[0], node)
-				) {
-					return true;
-				}
-			}
-
-			for (const signature of subTypePart.getCallSignatures()) {
-				if (
-					signature.parameters.length !== 0 &&
-					isCallback(typeChecker, signature.parameters[0], node)
-				) {
-					return true;
-				}
-
 				if (
 					signature.parameters.length !== 0 &&
 					isCallback(typeChecker, signature.parameters[0], node)

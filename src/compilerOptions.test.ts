@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
 import {
 	isCompilerOptionEnabled,
 	isStrictCompilerOptionEnabled,
-} from "./compilerOptions.js";
+} from "./compilerOptions";
 
 describe("isCompilerOptionEnabled", () => {
 	it("checks if option is enabled", () => {

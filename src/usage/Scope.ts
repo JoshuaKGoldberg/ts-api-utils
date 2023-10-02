@@ -19,9 +19,9 @@ export enum ScopeBoundary {
 
 export enum ScopeBoundarySelector {
 	Function = ScopeBoundary.Function,
-	InferType = ScopeBoundary.ConditionalType,
 	// eslint-disable-next-line perfectionist/sort-enums
 	Block = ScopeBoundarySelector.Function | ScopeBoundary.Block,
+	InferType = ScopeBoundary.ConditionalType,
 	Type = ScopeBoundarySelector.Block | ScopeBoundary.Type,
 }
 

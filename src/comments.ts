@@ -3,7 +3,7 @@
 
 import ts from "typescript";
 
-import { forEachToken } from "./tokens.js";
+import { forEachToken } from "./tokens";
 
 /**
  * Exclude trailing positions that would lead to scanning for trivia inside `JsxText`.
@@ -85,7 +85,7 @@ export function forEachComment(
        Comment ownership is done right in this function*/
 	const fullText = sourceFile.text;
 	const notJsx = sourceFile.languageVariant !== ts.LanguageVariant.JSX;
-	forEachToken(
+	return forEachToken(
 		node,
 		(token) => {
 			if (token.pos === token.end) {
@@ -111,7 +111,6 @@ export function forEachComment(
 		},
 		sourceFile,
 	);
-	return;
 	function commentCallback(pos: number, end: number, kind: ts.CommentKind) {
 		callback(fullText, { end, kind, pos });
 	}

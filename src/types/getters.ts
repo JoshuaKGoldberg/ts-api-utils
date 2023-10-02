@@ -3,12 +3,12 @@
 
 import ts from "typescript";
 
-import { isNamedDeclarationWithName } from "../nodes/typeGuards/index.js";
+import { isNamedDeclarationWithName } from "../nodes/typeGuards";
 import {
 	isIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
-} from "./typeGuards/index.js";
+} from "./typeGuards";
 
 /**
  * Get the `CallSignatures` of the given type.
@@ -37,9 +37,10 @@ export function getCallSignaturesOfType(
 		for (const subType of type.types) {
 			const sig = getCallSignaturesOfType(subType);
 			if (sig.length !== 0) {
+				// if more than one type of the intersection has call signatures, none of them is useful for inference
 				if (signatures !== undefined) {
 					return [];
-				} // if more than one type of the intersection has call signatures, none of them is useful for inference
+				}
 
 				signatures = sig;
 			}

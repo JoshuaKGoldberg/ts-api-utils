@@ -1,7 +1,7 @@
 import ts from "typescript";
 
-import { isObjectFlagSet } from "../../flags.js";
-import { isObjectType } from "./single.js";
+import { isObjectFlagSet } from "../../flags";
+import { isObjectType } from "./single";
 
 /**
  * Test if a type is a `EvolvingArrayType`.
