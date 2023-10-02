@@ -12,7 +12,8 @@
         "projectManagement",
         "test",
         "tool",
-        "maintenance"
+        "maintenance",
+        "infra"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
@@ -73,5 +74,6 @@
   "projectName": "ts-api-utils",
   "projectOwner": "JoshuaKGoldberg",
   "repoHost": "https://github.com",
-  "repoType": "github"
+  "repoType": "github",
+  "commitType": "docs"
 }
