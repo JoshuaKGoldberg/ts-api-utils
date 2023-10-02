@@ -52,12 +52,6 @@ module.exports = {
 			},
 		},
 		{
-			files: "**/*.md/*.ts",
-			rules: {
-				"n/no-missing-import": ["error", { allowModules: ["ts-api-utils"] }],
-			},
-		},
-		{
 			excludedFiles: ["**/*.md/*.ts"],
 			extends: [
 				"plugin:@typescript-eslint/strict-type-checked",
@@ -150,6 +144,7 @@ module.exports = {
 		"no-only-tests/no-only-tests": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
+		"n/no-missing-import": "off",
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",

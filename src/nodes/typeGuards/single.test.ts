@@ -379,15 +379,6 @@ describe("isTrueKeyword", () => {
 	});
 });
 
-// describe("isTrueLiteral", () => {
-// 	it.each([
-// 		[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
-// 		[true, ts.factory.createToken(ts.SyntaxKind.TrueLiteral)],
-// 	])("returns %j when given %s", (expected, code) => {
-// 		expect(isTrueLiteral(createNode(code))).toBe(expected);
-// 	});
-// });
-
 describe("isUndefinedKeyword", () => {
 	it.each([
 		[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
