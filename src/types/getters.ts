@@ -12,7 +12,6 @@ import {
 
 /**
  * Get the `CallSignatures` of the given type.
- *
  * @category Types - Getters
  * @example
  * ```ts
@@ -29,25 +28,32 @@ export function getCallSignaturesOfType(
 		for (const subType of type.types) {
 			signatures.push(...getCallSignaturesOfType(subType));
 		}
+
 		return signatures;
 	}
+
 	if (isIntersectionType(type)) {
 		let signatures: readonly ts.Signature[] | undefined;
 		for (const subType of type.types) {
 			const sig = getCallSignaturesOfType(subType);
 			if (sig.length !== 0) {
-				if (signatures !== undefined) return []; // if more than one type of the intersection has call signatures, none of them is useful for inference
+				// if more than one type of the intersection has call signatures, none of them is useful for inference
+				if (signatures !== undefined) {
+					return [];
+				}
+
 				signatures = sig;
 			}
 		}
+
 		return signatures === undefined ? [] : signatures;
 	}
+
 	return type.getCallSignatures();
 }
 
 /**
  * Get the property with the given name on the given type (if it exists).
- *
  * @category Types - Getters
  * @example
  * ```ts
@@ -61,14 +67,15 @@ export function getPropertyOfType(
 	type: ts.Type,
 	name: ts.__String,
 ): ts.Symbol | undefined {
-	if (!(name as string).startsWith("__"))
+	if (!(name as string).startsWith("__")) {
 		return type.getProperty(name as string);
+	}
+
 	return type.getProperties().find((s) => s.escapedName === name);
 }
 
 /**
  * Retrieves a type symbol corresponding to a well-known string name.
- *
  * @category Types - Getters
  * @example
  * ```ts
@@ -142,7 +149,9 @@ function getPropertyNameOfWellKnownSymbol(
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 			(knownSymbol as any).valueDeclaration,
 		);
-	if (knownSymbolType && isUniqueESSymbolType(knownSymbolType))
+	if (knownSymbolType && isUniqueESSymbolType(knownSymbolType)) {
 		return knownSymbolType.escapedName;
+	}
+
 	return ("__@" + symbolName) as ts.__String;
 }

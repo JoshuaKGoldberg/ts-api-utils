@@ -1,12 +1,11 @@
-name: Unprotect main
 description: Delete branch protection on main
 
 inputs:
   ACCESS_TOKEN:
     required: true
 
+name: Unprotect main
 runs:
-  using: "composite"
   steps:
     - name: Delete branch protection on main
       uses: actions/github-script@v6.4.1
@@ -22,3 +21,4 @@ runs:
               throw error;
             }
           }
+  using: composite

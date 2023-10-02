@@ -6,17 +6,15 @@ import { type FreshableIntrinsicType } from "./compound";
 /**
  * A boolean literal.
  * i.e. Either a "true" or "false" literal.
- *
  * @category Type Types
  */
 export interface BooleanLiteralType extends UnknownLiteralType {
-	intrinsicName: "true" | "false";
+	intrinsicName: "false" | "true";
 	value: boolean;
 }
 
 /**
  * Determines whether the given type is a boolean literal type.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -35,7 +33,6 @@ export function isBooleanLiteralType(
 
 /**
  * Test if a type is a `BigIntLiteralType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -54,7 +51,6 @@ export function isBigIntLiteralType(
 
 /**
  * A "false" literal.
- *
  * @category Type Types
  */
 export interface FalseLiteralType extends BooleanLiteralType {
@@ -64,7 +60,6 @@ export interface FalseLiteralType extends BooleanLiteralType {
 
 /**
  * Determines whether the given type is a boolean literal type for "false".
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -81,7 +76,6 @@ export function isFalseLiteralType(type: ts.Type): type is FalseLiteralType {
 
 /**
  * Test if a type is a `LiteralType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -98,7 +92,6 @@ export function isLiteralType(type: ts.Type): type is ts.LiteralType {
 
 /**
  * Test if a type is a `NumberLiteralType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -117,7 +110,6 @@ export function isNumberLiteralType(
 
 /**
  * Test if a type is a `StringLiteralType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -136,7 +128,6 @@ export function isStringLiteralType(
 
 /**
  * Test if a type is a `TemplateLiteralType`.
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -155,7 +146,6 @@ export function isTemplateLiteralType(
 
 /**
  * A "true" literal.
- *
  * @category Type Types
  */
 export interface TrueLiteralType extends BooleanLiteralType {
@@ -165,7 +155,6 @@ export interface TrueLiteralType extends BooleanLiteralType {
 
 /**
  * Determines whether the given type is a boolean literal type for "true".
- *
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -182,7 +171,6 @@ export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
 
 /**
  * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
- *
  * @category Type Types
  */
 export interface UnknownLiteralType extends FreshableIntrinsicType {
@@ -191,7 +179,6 @@ export interface UnknownLiteralType extends FreshableIntrinsicType {
 
 /**
  * Test if a type is a {@link UnknownLiteralType}.
- *
  * @category Types - Type Guards
  * @example
  * ```ts

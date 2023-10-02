@@ -13,6 +13,7 @@ function getTypeForTypeNode(sourceText: string) {
 	if (isIntrinsicType(type) && type.intrinsicName === "error") {
 		throw new Error("test case error");
 	}
+
 	return type;
 }
 

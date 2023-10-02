@@ -1,24 +1,12 @@
-name: Release
-
-on:
-  push:
-    branches:
-      - main
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 concurrency:
-  group: Release
   cancel-in-progress: false
 
+  group: Release
 jobs:
   release:
-    runs-on: ubuntu-latest
     outputs:
       did_release: ${{ steps.should_release.outputs.should_release }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,9 +24,9 @@ jobs:
         uses: ./.github/actions/unprotect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      - if: steps.should_release.outputs.should_release != '0'
-        env:
+      - env:
           GITHUB_TOKEN: ${{ github.token }}
+        if: steps.should_release.outputs.should_release != '0'
         run: pnpm release-it --verbose
       - if: always() && steps.should_release.outputs.should_release != '0'
         uses: ./.github/actions/protect-main
@@ -46,6 +34,18 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
   release_docs:
-    needs: release
     if: needs.release.outputs.did_release != '0'
+    needs: release
     uses: ./.github/workflows/release-docs.yml
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  id-token: write
+
+  pages: write

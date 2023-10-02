@@ -11,7 +11,6 @@ import {
 
 /**
  * Determines whether a call to {@link Object.defineProperty} is statically analyzable.
- *
  * @internal
  */
 export function isBindableObjectDefinePropertyCall(
@@ -30,7 +29,6 @@ export function isBindableObjectDefinePropertyCall(
 
 /**
  * Detects whether an expression is affected by an enclosing `as const` assertion and therefore treated literally.
- *
  * @internal
  */
 export function isInConstContext(node: ts.Expression): boolean {
@@ -42,7 +40,10 @@ export function isInConstContext(node: ts.Expression): boolean {
 			case ts.SyntaxKind.AsExpression:
 				return isConstAssertionExpression(parent as ts.AssertionExpression);
 			case ts.SyntaxKind.PrefixUnaryExpression:
-				if (current.kind !== ts.SyntaxKind.NumericLiteral) return false;
+				if (current.kind !== ts.SyntaxKind.NumericLiteral) {
+					return false;
+				}
+
 				switch ((parent as ts.PrefixUnaryExpression).operator) {
 					case ts.SyntaxKind.PlusToken:
 					case ts.SyntaxKind.MinusToken:
@@ -51,9 +52,12 @@ export function isInConstContext(node: ts.Expression): boolean {
 					default:
 						return false;
 				}
+
 			case ts.SyntaxKind.PropertyAssignment:
-				if ((parent as ts.PropertyAssignment).initializer !== current)
+				if ((parent as ts.PropertyAssignment).initializer !== current) {
 					return false;
+				}
+
 				current = parent.parent!;
 				break;
 			case ts.SyntaxKind.ShorthandPropertyAssignment:

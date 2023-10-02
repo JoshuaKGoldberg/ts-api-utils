@@ -36,6 +36,7 @@ describe.each([
 	["isIntrinsicUnknownType", isIntrinsicUnknownType, "any", "unknown"],
 	["isIntrinsicVoidType", isIntrinsicVoidType, "unknown", "void"],
 ])(`%s`, (name, typeGuard, falseCase, trueCase) => {
+	// eslint-disable-next-line vitest/valid-title -- https://github.com/veritem/eslint-plugin-vitest/issues/251
 	describe(name, () => {
 		it.each([
 			[false, falseCase],

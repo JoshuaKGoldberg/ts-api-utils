@@ -1,3 +1,4 @@
+/** @type {import("@types/eslint").Linter.Config} */
 module.exports = {
 	env: {
 		es2022: true,
@@ -6,54 +7,119 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
-		"plugin:jsdoc/recommended-error",
+		"plugin:n/recommended",
+		"plugin:perfectionist/recommended-natural",
 		"plugin:regexp/recommended",
-		"prettier",
+		"plugin:vitest/recommended",
 	],
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],
-			files: ["**/*.{md}"],
+			files: ["**/*.md"],
 			processor: "markdown/markdown",
 		},
 		{
 			extends: [
-				"plugin:typescript-sort-keys/recommended",
-				"plugin:@typescript-eslint/recommended-type-checked",
-				"plugin:@typescript-eslint/strict-type-checked",
+				"plugin:jsdoc/recommended-typescript-error",
+				"plugin:@typescript-eslint/strict",
+				"plugin:@typescript-eslint/stylistic",
 			],
-			files: ["**/*.{ts,tsx}"],
+			files: ["**/*.ts"],
+			parser: "@typescript-eslint/parser",
+			rules: {
+				// These rules have configurations specific to this repo and we like them on.
+				"jsdoc/check-tag-names": [
+					"error",
+					{
+						definedTags: ["category"],
+					},
+				],
+
+				// These off-by-default rules work well for this repo and we like them on.
+				"jsdoc/informative-docs": "error",
+				"logical-assignment-operators": [
+					"error",
+					"always",
+					{ enforceForIfStatements: true },
+				],
+				"operator-assignment": "error",
+
+				// These on-by-default rules don't work well for this repo and we like them off.
+				"jsdoc/require-jsdoc": "off",
+				"jsdoc/require-param": "off",
+				"jsdoc/require-property": "off",
+				"jsdoc/require-returns": "off",
+			},
+		},
+		{
+			excludedFiles: ["**/*.md/*.ts"],
+			extends: [
+				"plugin:@typescript-eslint/strict-type-checked",
+				"plugin:@typescript-eslint/stylistic-type-checked",
+			],
+			files: ["**/*.ts"],
+			parser: "@typescript-eslint/parser",
 			parserOptions: {
 				project: "./tsconfig.eslint.json",
 			},
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
-				"deprecation/deprecation": "error",
 				"@typescript-eslint/explicit-module-boundary-types": "error",
+				"deprecation/deprecation": "error",
 
 				// TODO?
-				"@typescript-eslint/prefer-literal-enum-member": "off",
 				"@typescript-eslint/no-confusing-void-expression": "off",
 				"@typescript-eslint/no-non-null-assertion": "off",
 				"@typescript-eslint/no-unnecessary-condition": "off",
 				"@typescript-eslint/no-unsafe-enum-comparison": "off",
+				"@typescript-eslint/prefer-literal-enum-member": "off",
+				"@typescript-eslint/prefer-nullish-coalescing": "off",
 				"no-constant-condition": "off",
 			},
 		},
 		{
-			files: "*.json",
 			excludedFiles: ["package.json"],
+			extends: ["plugin:jsonc/recommended-with-json"],
+			files: ["*.json", "*.jsonc"],
 			parser: "jsonc-eslint-parser",
 			rules: {
 				"jsonc/sort-keys": "error",
 			},
-			extends: ["plugin:jsonc/recommended-with-json"],
+		},
+		{
+			files: ["*.jsonc"],
+			rules: {
+				"jsonc/no-comments": "off",
+			},
 		},
 		{
 			files: "**/*.test.ts",
 			rules: {
+				// These on-by-default rules aren't useful in test files.
 				"@typescript-eslint/no-unsafe-assignment": "off",
 				"@typescript-eslint/no-unsafe-call": "off",
+			},
+		},
+		{
+			extends: ["plugin:yml/standard", "plugin:yml/prettier"],
+			files: ["**/*.{yml,yaml}"],
+			parser: "yaml-eslint-parser",
+			rules: {
+				"yml/file-extension": ["error", { extension: "yml" }],
+				"yml/sort-keys": [
+					"error",
+					{
+						order: { type: "asc" },
+						pathPattern: "^.*$",
+					},
+				],
+				"yml/sort-sequence-values": [
+					"error",
+					{
+						order: { type: "asc" },
+						pathPattern: "^.*$",
+					},
+				],
 			},
 		},
 	],
@@ -61,87 +127,41 @@ module.exports = {
 	plugins: [
 		"@typescript-eslint",
 		"deprecation",
-		"import",
 		"jsdoc",
 		"no-only-tests",
+		"perfectionist",
 		"regexp",
-		"simple-import-sort",
-		"typescript-sort-keys",
-		"unicorn",
 		"vitest",
 	],
+	reportUnusedDisableDirectives: true,
 	root: true,
 	rules: {
-		// These off-by-default rules work well for this repo and we like them on.
+		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": [
 			"error",
 			{ argsIgnorePattern: "^_", caughtErrors: "all" },
 		],
-		"import/extensions": ["error"],
-		"import/no-useless-path-segments": [
-			"error",
-			{
-				noUselessIndex: true,
-			},
-		],
 		"no-only-tests/no-only-tests": "error",
-		"simple-import-sort/exports": "error",
-		"simple-import-sort/imports": "error",
-		"unicorn/import-style": [
-			"error",
-			{
-				extendDefaultStyles: false,
-				styles: {
-					typescript: {
-						default: true,
-					},
-				},
-			},
-		],
 
 		// These on-by-default rules don't work well for this repo and we like them off.
+		"n/no-missing-import": "off",
+		"no-case-declarations": "off",
+		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
+		"no-mixed-spaces-and-tabs": "off",
 
-		// JSDoc rules
-		"jsdoc/check-indentation": "error",
-		"jsdoc/check-line-alignment": "error",
-		"jsdoc/check-tag-names": [
+		// Stylistic concerns that don't interfere with Prettier
+		"@typescript-eslint/padding-line-between-statements": [
+			"error",
+			{ blankLine: "always", next: "*", prev: "block-like" },
+		],
+		"perfectionist/sort-objects": [
 			"error",
 			{
-				definedTags: ["category"],
+				order: "asc",
+				"partition-by-comment": true,
+				type: "natural",
 			},
 		],
-		"jsdoc/no-bad-blocks": "error",
-		"jsdoc/no-defaults": "error",
-		"jsdoc/require-asterisk-prefix": "error",
-		"jsdoc/require-description": "error",
-		"jsdoc/require-hyphen-before-param-description": "error",
-		"jsdoc/require-throws": "error",
-		"jsdoc/tag-lines": [
-			"error",
-			"never",
-			{
-				endLines: 0,
-				startLines: 1,
-				tags: {
-					example: { lines: "never" },
-				},
-			},
-		],
-		"jsdoc/require-jsdoc": "off",
-		"jsdoc/require-param": "off",
-		"jsdoc/require-property": "off",
-		"jsdoc/require-returns": "off",
-		// Todo: pending a "recommended-typescript" config in eslint-plugin-jsdoc
-		// https://github.com/gajus/eslint-plugin-jsdoc/issues/615#issuecomment-1338669655
-		"jsdoc/no-types": "error",
-		"jsdoc/require-param-type": "off",
-		"jsdoc/require-property-type": "off",
-		"jsdoc/require-returns-type": "off",
-	},
-	settings: {
-		jsdoc: {
-			ignoreInternal: true,
-		},
 	},
 };

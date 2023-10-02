@@ -67,7 +67,7 @@ describe("isPropertyReadonlyInType", () => {
 });
 
 describe("symbolHasReadonlyDeclaration", () => {
-	it("returns false when the symbol is not readonly", () => {
+	it("returns false when the symbol is a let variable", () => {
 		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
 			interface Box {
 				 value: string;
@@ -83,7 +83,7 @@ describe("symbolHasReadonlyDeclaration", () => {
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(false);
 	});
 
-	it("returns false when the symbol is not readonly", () => {
+	it("returns true when the symbol is a const variable", () => {
 		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
 			interface Box {
 				 value: string;

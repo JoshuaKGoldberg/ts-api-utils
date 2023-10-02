@@ -1,13 +1,12 @@
 jobs:
-  lint:
+  lint_markdown:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
-      - run: pnpm build || true
-      - run: pnpm lint
+      - run: pnpm lint:md
 
-name: Lint
+name: Lint Markdown
 
 on:
   pull_request: ~

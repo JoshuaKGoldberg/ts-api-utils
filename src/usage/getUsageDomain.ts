@@ -11,10 +11,11 @@ import { identifierToKeywordKind } from "./utils";
 export enum UsageDomain {
 	Namespace = 1,
 	Type = 2,
+	TypeQuery = 8,
 	Value = 4,
 	ValueOrNamespace = Value | Namespace,
+	// eslint-disable-next-line perfectionist/sort-enums
 	Any = Namespace | Type | Value,
-	TypeQuery = 8,
 }
 
 // TODO handle cases where values are used only for their types, e.g. `declare [propSymbol]: number`
@@ -26,7 +27,7 @@ export function getUsageDomain(node: ts.Identifier): UsageDomain | undefined {
 				? UsageDomain.Type
 				: undefined;
 		case ts.SyntaxKind.ExpressionWithTypeArguments:
-			return (<ts.HeritageClause>parent.parent).token ===
+			return (parent.parent as ts.HeritageClause).token ===
 				ts.SyntaxKind.ImplementsKeyword ||
 				parent.parent.parent.kind === ts.SyntaxKind.InterfaceDeclaration
 				? UsageDomain.Type
@@ -34,29 +35,36 @@ export function getUsageDomain(node: ts.Identifier): UsageDomain | undefined {
 		case ts.SyntaxKind.TypeQuery:
 			return UsageDomain.ValueOrNamespace | UsageDomain.TypeQuery;
 		case ts.SyntaxKind.QualifiedName:
-			if ((<ts.QualifiedName>parent).left === node) {
+			if ((parent as ts.QualifiedName).left === node) {
 				if (
-					getEntityNameParent(<ts.QualifiedName>parent).kind ===
+					getEntityNameParent(parent as ts.QualifiedName).kind ===
 					ts.SyntaxKind.TypeQuery
-				)
+				) {
 					return UsageDomain.Namespace | UsageDomain.TypeQuery;
+				}
+
 				return UsageDomain.Namespace;
 			}
+
 			break;
 		case ts.SyntaxKind.ExportSpecifier:
 			// either {name} or {propertyName as name}
 			if (
-				(<ts.ExportSpecifier>parent).propertyName === undefined ||
-				(<ts.ExportSpecifier>parent).propertyName === node
-			)
-				return UsageDomain.Any; // TODO handle type-only exports
+				(parent as ts.ExportSpecifier).propertyName === undefined ||
+				(parent as ts.ExportSpecifier).propertyName === node
+			) {
+				return UsageDomain.Any;
+			} // TODO handle type-only exports
+
 			break;
 		case ts.SyntaxKind.ExportAssignment:
 			return UsageDomain.Any;
 		// Value
 		case ts.SyntaxKind.BindingElement:
-			if ((<ts.BindingElement>parent).initializer === node)
+			if ((parent as ts.BindingElement).initializer === node) {
 				return UsageDomain.ValueOrNamespace;
+			}
+
 			break;
 		case ts.SyntaxKind.Parameter:
 		case ts.SyntaxKind.EnumMember:
@@ -65,8 +73,10 @@ export function getUsageDomain(node: ts.Identifier): UsageDomain | undefined {
 		case ts.SyntaxKind.PropertyAssignment:
 		case ts.SyntaxKind.PropertyAccessExpression:
 		case ts.SyntaxKind.ImportEqualsDeclaration:
-			if ((<ts.NamedDeclaration>parent).name !== node)
-				return UsageDomain.ValueOrNamespace; // TODO handle type-only imports
+			if ((parent as ts.NamedDeclaration).name !== node) {
+				return UsageDomain.ValueOrNamespace;
+			} // TODO handle type-only imports
+
 			break;
 		case ts.SyntaxKind.JsxAttribute:
 		case ts.SyntaxKind.FunctionDeclaration:
@@ -101,6 +111,9 @@ export function getUsageDomain(node: ts.Identifier): UsageDomain | undefined {
 
 function getEntityNameParent(name: ts.EntityName) {
 	let parent = name.parent;
-	while (parent.kind === ts.SyntaxKind.QualifiedName) parent = parent.parent!;
+	while (parent.kind === ts.SyntaxKind.QualifiedName) {
+		parent = parent.parent!;
+	}
+
 	return parent;
 }

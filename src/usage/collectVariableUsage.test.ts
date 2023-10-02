@@ -29,6 +29,16 @@ describe("collectVariableUsage", () => {
 		expect(actual).toEqual(
 			new Map([
 				[
+					nameIdentifier,
+					{
+						declarations: [nameIdentifier],
+						domain: DeclarationDomain.Type,
+						exported: true,
+						inGlobalScope: false,
+						uses: [],
+					},
+				],
+				[
 					typeParameterIdentifier,
 					{
 						declarations: [typeParameterIdentifier],
@@ -41,16 +51,6 @@ describe("collectVariableUsage", () => {
 								location: conditionalTypeReferenceIdentifier,
 							},
 						],
-					},
-				],
-				[
-					nameIdentifier,
-					{
-						declarations: [nameIdentifier],
-						domain: DeclarationDomain.Type,
-						exported: true,
-						inGlobalScope: false,
-						uses: [],
 					},
 				],
 			]),
@@ -346,6 +346,16 @@ describe("collectVariableUsage", () => {
 		expect(actual).toEqual(
 			new Map([
 				[
+					namespaceIdentifierInner,
+					{
+						declarations: [namespaceIdentifierInner],
+						domain: DeclarationDomain.Namespace,
+						exported: true,
+						inGlobalScope: false,
+						uses: [],
+					},
+				],
+				[
 					namespaceIdentifierOuter,
 					{
 						declarations: [namespaceIdentifierOuter],
@@ -365,16 +375,6 @@ describe("collectVariableUsage", () => {
 					{
 						declarations: [variableIdentifier],
 						domain: DeclarationDomain.Value,
-						exported: true,
-						inGlobalScope: false,
-						uses: [],
-					},
-				],
-				[
-					namespaceIdentifierInner,
-					{
-						declarations: [namespaceIdentifierInner],
-						domain: DeclarationDomain.Namespace,
 						exported: true,
 						inGlobalScope: false,
 						uses: [],
@@ -494,6 +494,16 @@ describe("collectVariableUsage", () => {
 		expect(actual).toEqual(
 			new Map([
 				[
+					classDeclaration.name,
+					{
+						declarations: [classDeclaration.name],
+						domain: DeclarationDomain.Type | DeclarationDomain.Value,
+						exported: false,
+						inGlobalScope: true,
+						uses: [],
+					},
+				],
+				[
 					variableIdentifier,
 					{
 						declarations: [variableIdentifier],
@@ -506,16 +516,6 @@ describe("collectVariableUsage", () => {
 								location: variableReference,
 							},
 						],
-					},
-				],
-				[
-					classDeclaration.name,
-					{
-						declarations: [classDeclaration.name],
-						domain: DeclarationDomain.Type | DeclarationDomain.Value,
-						exported: false,
-						inGlobalScope: true,
-						uses: [],
 					},
 				],
 			]),

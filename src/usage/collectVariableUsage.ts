@@ -3,12 +3,11 @@
 
 import ts from "typescript";
 
-import { UsageInfo } from "./usage";
 import { UsageWalker } from "./UsageWalker";
+import { UsageInfo } from "./usage";
 
 /**
  * Creates a mapping of each declared type and value to its type information.
- *
  * @category Nodes - Other Utilities
  * @example
  * ```ts

@@ -2,126 +2,108 @@ import ts from "typescript";
 
 /**
  * A node that represents the any keyword.
- *
  * @category Node Types
  */
 export type AnyKeyword = ts.KeywordToken<ts.SyntaxKind.AnyKeyword>;
 
 /**
  * A node that represents the bigint keyword.
- *
  * @category Node Types
  */
 export type BigIntKeyword = ts.KeywordToken<ts.SyntaxKind.BigIntKeyword>;
 
 /**
  * A node that represents the boolean keyword.
- *
  * @category Node Types
  */
 export type BooleanKeyword = ts.KeywordToken<ts.SyntaxKind.BooleanKeyword>;
 
 /**
  * A node that represents the false keyword.
- *
  * @category Node Types
  */
 export type FalseKeyword = ts.KeywordToken<ts.SyntaxKind.FalseKeyword>;
 
 /**
  * A node that represents the import keyword.
- *
  * @category Node Types
  */
 export type ImportKeyword = ts.KeywordToken<ts.SyntaxKind.ImportKeyword>;
 
 /**
  * A node that represents the never keyword.
- *
  * @category Node Types
  */
 export type NeverKeyword = ts.KeywordToken<ts.SyntaxKind.NeverKeyword>;
 
 /**
  * A node that represents the null keyword.
- *
  * @category Node Types
  */
 export type NullKeyword = ts.KeywordToken<ts.SyntaxKind.NullKeyword>;
 
 /**
  * A node that represents the number keyword.
- *
  * @category Node Types
  */
 export type NumberKeyword = ts.KeywordToken<ts.SyntaxKind.NumberKeyword>;
 
 /**
  * A node that represents the object keyword.
- *
  * @category Node Types
  */
 export type ObjectKeyword = ts.KeywordToken<ts.SyntaxKind.ObjectKeyword>;
 
 /**
  * A node that represents the string keyword.
- *
  * @category Node Types
  */
 export type StringKeyword = ts.KeywordToken<ts.SyntaxKind.StringKeyword>;
 
 /**
  * A node that represents the super keyword.
- *
  * @category Node Types
  */
 export type SuperKeyword = ts.KeywordToken<ts.SyntaxKind.SuperKeyword>;
 
 /**
  * A node that represents the symbol keyword.
- *
  * @category Node Types
  */
 export type SymbolKeyword = ts.KeywordToken<ts.SyntaxKind.SymbolKeyword>;
 
 /**
  * A node that represents the this keyword.
- *
  * @category Node Types
  */
 export type ThisKeyword = ts.KeywordToken<ts.SyntaxKind.ThisKeyword>;
 
 /**
  * A node that represents the true keyword.
- *
  * @category Node Types
  */
 export type TrueKeyword = ts.KeywordToken<ts.SyntaxKind.TrueKeyword>;
 
 /**
  * A node that represents the undefined keyword.
- *
  * @category Node Types
  */
 export type UndefinedKeyword = ts.KeywordToken<ts.SyntaxKind.UndefinedKeyword>;
 
 /**
  * A node that represents the unknown keyword.
- *
  * @category Node Types
  */
 export type UnknownKeyword = ts.KeywordToken<ts.SyntaxKind.UnknownKeyword>;
 
 /**
  * A node that represents the void keyword.
- *
  * @category Node Types
  */
 export type VoidKeyword = ts.KeywordToken<ts.SyntaxKind.VoidKeyword>;
 
 /**
  * Test if a node is an `AbstractKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -139,7 +121,6 @@ export function isAbstractKeyword(node: ts.Node): node is ts.AbstractKeyword {
 
 /**
  * Test if a node is an `AccessorKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -157,7 +138,6 @@ export function isAccessorKeyword(node: ts.Node): node is ts.AccessorKeyword {
 
 /**
  * Test if a node is an {@link AnyKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -175,7 +155,6 @@ export function isAnyKeyword(node: ts.Node): node is AnyKeyword {
 
 /**
  * Test if a node is an `AssertKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -193,7 +172,6 @@ export function isAssertKeyword(node: ts.Node): node is ts.AssertKeyword {
 
 /**
  * Test if a node is an `AssertsKeyword`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isAssertsKeyword`.
  * @category Nodes - Type Guards
  * @example
@@ -212,7 +190,6 @@ export function isAssertsKeyword(node: ts.Node): node is ts.AssertsKeyword {
 
 /**
  * Test if a node is an `AsyncKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -230,7 +207,6 @@ export function isAsyncKeyword(node: ts.Node): node is ts.AsyncKeyword {
 
 /**
  * Test if a node is an `AwaitKeyword`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isAwaitKeyword`.
  * @category Nodes - Type Guards
  * @example
@@ -249,7 +225,6 @@ export function isAwaitKeyword(node: ts.Node): node is ts.AwaitKeyword {
 
 /**
  * Test if a node is a {@link BigIntKeyword}.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isBigIntKeyword`.
  * @category Nodes - Type Guards
  * @example
@@ -268,7 +243,6 @@ export function isBigIntKeyword(node: ts.Node): node is BigIntKeyword {
 
 /**
  * Test if a node is a {@link BooleanKeyword}.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isBooleanKeyword`.
  * @category Nodes - Type Guards
  * @example
@@ -287,7 +261,6 @@ export function isBooleanKeyword(node: ts.Node): node is BooleanKeyword {
 
 /**
  * Test if a node is a `ColonToken`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isColonToken`.
  * @category Nodes - Type Guards
  * @example
@@ -306,7 +279,6 @@ export function isColonToken(node: ts.Node): node is ts.ColonToken {
 
 /**
  * Test if a node is a `ConstKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -324,7 +296,6 @@ export function isConstKeyword(node: ts.Node): node is ts.ConstKeyword {
 
 /**
  * Test if a node is a `DeclareKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -342,7 +313,6 @@ export function isDeclareKeyword(node: ts.Node): node is ts.DeclareKeyword {
 
 /**
  * Test if a node is a `DefaultKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -360,7 +330,6 @@ export function isDefaultKeyword(node: ts.Node): node is ts.DefaultKeyword {
 
 /**
  * Test if a node is a `DotToken`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -378,7 +347,6 @@ export function isDotToken(node: ts.Node): node is ts.DotToken {
 
 /**
  * Test if a node is an `EndOfFileToken`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -396,7 +364,6 @@ export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken {
 
 /**
  * Test if a node is an `EqualsGreaterThanToken`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isEqualsGreaterThanToken`.
  * @category Nodes - Type Guards
  * @example
@@ -417,7 +384,6 @@ export function isEqualsGreaterThanToken(
 
 /**
  * Test if a node is an `EqualsToken`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -435,7 +401,6 @@ export function isEqualsToken(node: ts.Node): node is ts.EqualsToken {
 
 /**
  * Test if a node is an `ExclamationToken`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isExclamationToken`.
  * @category Nodes - Type Guards
  * @example
@@ -454,7 +419,6 @@ export function isExclamationToken(node: ts.Node): node is ts.ExclamationToken {
 
 /**
  * Test if a node is an `ExportKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -472,7 +436,6 @@ export function isExportKeyword(node: ts.Node): node is ts.ExportKeyword {
 
 /**
  * Test if a node is a {@link FalseKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -490,7 +453,6 @@ export function isFalseKeyword(node: ts.Node): node is FalseKeyword {
 
 /**
  * Test if a node is a `FalseLiteral`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -508,7 +470,6 @@ export function isFalseLiteral(node: ts.Node): node is ts.FalseLiteral {
 
 /**
  * Test if a node is an `ImportExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -526,7 +487,6 @@ export function isImportExpression(node: ts.Node): node is ts.ImportExpression {
 
 /**
  * Test if a node is an {@link ImportKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -544,7 +504,6 @@ export function isImportKeyword(node: ts.Node): node is ImportKeyword {
 
 /**
  * Test if a node is an `InKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -563,7 +522,6 @@ export function isInKeyword(node: ts.Node): node is ts.InKeyword {
 /* eslint-disable deprecation/deprecation */
 /**
  * Test if a node is an `InputFiles`.
- *
  * @deprecated With TypeScript v5
  * @category Nodes - Type Guards
  * @example
@@ -583,7 +541,6 @@ export function isInputFiles(node: ts.Node): node is ts.InputFiles {
 
 /**
  * Test if a node is a `JSDocText`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -601,7 +558,6 @@ export function isJSDocText(node: ts.Node): node is ts.JSDocText {
 
 /**
  * Test if a node is a `JsonMinusNumericLiteral`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -621,7 +577,6 @@ export function isJsonMinusNumericLiteral(
 
 /**
  * Test if a node is a {@link NeverKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -639,7 +594,6 @@ export function isNeverKeyword(node: ts.Node): node is NeverKeyword {
 
 /**
  * Test if a node is a {@link NullKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -657,7 +611,6 @@ export function isNullKeyword(node: ts.Node): node is NullKeyword {
 
 /**
  * Test if a node is a `NullLiteral`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -675,7 +628,6 @@ export function isNullLiteral(node: ts.Node): node is ts.NullLiteral {
 
 /**
  * Test if a node is a {@link NumberKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -693,7 +645,6 @@ export function isNumberKeyword(node: ts.Node): node is NumberKeyword {
 
 /**
  * Test if a node is an {@link ObjectKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -711,7 +662,6 @@ export function isObjectKeyword(node: ts.Node): node is ObjectKeyword {
 
 /**
  * Test if a node is an `OutKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -729,7 +679,6 @@ export function isOutKeyword(node: ts.Node): node is ts.OutKeyword {
 
 /**
  * Test if a node is an `OverrideKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -747,7 +696,6 @@ export function isOverrideKeyword(node: ts.Node): node is ts.OverrideKeyword {
 
 /**
  * Test if a node is a `PrivateKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -765,7 +713,6 @@ export function isPrivateKeyword(node: ts.Node): node is ts.PrivateKeyword {
 
 /**
  * Test if a node is a `ProtectedKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -783,7 +730,6 @@ export function isProtectedKeyword(node: ts.Node): node is ts.ProtectedKeyword {
 
 /**
  * Test if a node is a `PublicKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -801,7 +747,6 @@ export function isPublicKeyword(node: ts.Node): node is ts.PublicKeyword {
 
 /**
  * Test if a node is a `QuestionDotToken`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isQuestionDotToken`.
  * @category Nodes - Type Guards
  * @example
@@ -820,7 +765,6 @@ export function isQuestionDotToken(node: ts.Node): node is ts.QuestionDotToken {
 
 /**
  * Test if a node is a `QuestionToken`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isQuestionToken`.
  * @category Nodes - Type Guards
  * @example
@@ -839,7 +783,6 @@ export function isQuestionToken(node: ts.Node): node is ts.QuestionToken {
 
 /**
  * Test if a node is a `ReadonlyKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -857,7 +800,6 @@ export function isReadonlyKeyword(node: ts.Node): node is ts.ReadonlyKeyword {
 
 /**
  * Test if a node is a `StaticKeyword`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -875,7 +817,6 @@ export function isStaticKeyword(node: ts.Node): node is ts.StaticKeyword {
 
 /**
  * Test if a node is a {@link StringKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -893,7 +834,6 @@ export function isStringKeyword(node: ts.Node): node is StringKeyword {
 
 /**
  * Test if a node is a `SuperExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -911,7 +851,6 @@ export function isSuperExpression(node: ts.Node): node is ts.SuperExpression {
 
 /**
  * Test if a node is a {@link SuperKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -929,7 +868,6 @@ export function isSuperKeyword(node: ts.Node): node is SuperKeyword {
 
 /**
  * Test if a node is a {@link SymbolKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -947,7 +885,6 @@ export function isSymbolKeyword(node: ts.Node): node is SymbolKeyword {
 
 /**
  * Test if a node is a `SyntaxList`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -965,7 +902,6 @@ export function isSyntaxList(node: ts.Node): node is ts.SyntaxList {
 
 /**
  * Test if a node is a `ThisExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -983,7 +919,6 @@ export function isThisExpression(node: ts.Node): node is ts.ThisExpression {
 
 /**
  * Test if a node is a {@link ThisKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1001,7 +936,6 @@ export function isThisKeyword(node: ts.Node): node is ThisKeyword {
 
 /**
  * Test if a node is a {@link TrueKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1019,7 +953,6 @@ export function isTrueKeyword(node: ts.Node): node is TrueKeyword {
 
 /**
  * Test if a node is a `TrueLiteral`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1037,7 +970,6 @@ export function isTrueLiteral(node: ts.Node): node is ts.TrueLiteral {
 
 /**
  * Test if a node is an {@link UndefinedKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1055,7 +987,6 @@ export function isUndefinedKeyword(node: ts.Node): node is UndefinedKeyword {
 
 /**
  * Test if a node is an {@link UnknownKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1074,7 +1005,6 @@ export function isUnknownKeyword(node: ts.Node): node is UnknownKeyword {
 /* eslint-disable deprecation/deprecation */
 /**
  * Test if a node is an `UnparsedPrologue`.
- *
  * @deprecated With TypeScript v5
  * @category Nodes - Type Guards
  * @example
@@ -1095,7 +1025,6 @@ export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue {
 /* eslint-disable deprecation/deprecation */
 /**
  * Test if a node is an `UnparsedSyntheticReference`.
- *
  * @deprecated With TypeScript v5
  * @category Nodes - Type Guards
  * @example
@@ -1117,7 +1046,6 @@ export function isUnparsedSyntheticReference(
 
 /**
  * Test if a node is a {@link VoidKeyword}.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts

@@ -5,7 +5,6 @@ import ts from "typescript";
 
 /**
  * An option that can be tested with {@link isCompilerOptionEnabled}.
- *
  * @category Compiler Options
  */
 export type BooleanCompilerOptions = keyof {
@@ -21,7 +20,6 @@ export type BooleanCompilerOptions = keyof {
  * It handles dependencies of options, e.g. `declaration` is implicitly enabled by `composite` or `strictNullChecks` is enabled by `strict`.
  * However, it does not check dependencies that are already checked and reported as errors, e.g. `checkJs` without `allowJs`.
  * This function only handles boolean flags.
- *
  * @category Compiler Options
  * @example
  * ```ts
@@ -90,12 +88,12 @@ export function isCompilerOptionEnabled(
 				option as AssertEqual<typeof option, StrictCompilerOption>,
 			);
 	}
+
 	return options[option] === true;
 }
 
 /**
  * An option that can be tested with {@link isStrictCompilerOptionEnabled}.
- *
  * @category Compiler Options
  */
 export type StrictCompilerOption =
@@ -110,7 +108,6 @@ export type StrictCompilerOption =
 /**
  * Checks if a given compiler option is enabled, accounting for whether all flags
  * (except `strictPropertyInitialization`) have been enabled by `strict: true`.
- *
  * @category Compiler Options
  * @example
  * ```ts

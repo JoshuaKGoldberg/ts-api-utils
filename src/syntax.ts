@@ -5,7 +5,6 @@ import ts from "typescript";
 
 /**
  * Test of the kind given is for assignment.
- *
  * @category Syntax Utilities
  * @example
  * ```ts
@@ -23,7 +22,6 @@ export function isAssignmentKind(kind: ts.SyntaxKind): boolean {
 
 /**
  * Test if a string is numeric.
- *
  * @category Syntax Utilities
  * @example
  * ```ts
@@ -41,7 +39,6 @@ function charSize(ch: number) {
 
 /**
  * Determines whether the given text can be used to access a property with a `PropertyAccessExpression` while preserving the property's name.
- *
  * @category Syntax Utilities
  * @example
  * ```ts
@@ -53,12 +50,21 @@ export function isValidPropertyAccess(
 	text: string,
 	languageVersion = ts.ScriptTarget.Latest,
 ): boolean {
-	if (text.length === 0) return false;
+	if (text.length === 0) {
+		return false;
+	}
+
 	let ch = text.codePointAt(0)!;
-	if (!ts.isIdentifierStart(ch, languageVersion)) return false;
+	if (!ts.isIdentifierStart(ch, languageVersion)) {
+		return false;
+	}
+
 	for (let i = charSize(ch); i < text.length; i += charSize(ch)) {
 		ch = text.codePointAt(i)!;
-		if (!ts.isIdentifierPart(ch, languageVersion)) return false;
+		if (!ts.isIdentifierPart(ch, languageVersion)) {
+			return false;
+		}
 	}
+
 	return true;
 }

@@ -1,15 +1,15 @@
-name: Lint Knip (Production)
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
 jobs:
-  knip:
+  lint_knip_production:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
       - run: pnpm lint:knip:production
+
+name: Lint Knip Production
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main

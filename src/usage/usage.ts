@@ -3,9 +3,9 @@
 
 import ts from "typescript";
 
+import { Scope } from "./Scope";
 import { DeclarationDomain, DeclarationInfo } from "./declarations";
 import { UsageDomain } from "./getUsageDomain";
-import { Scope } from "./Scope";
 
 /**
  * Registers usage information for an identifier in a scope.

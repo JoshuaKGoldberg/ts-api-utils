@@ -7,7 +7,6 @@ import { forEachToken } from "./tokens";
 
 /**
  * Exclude trailing positions that would lead to scanning for trivia inside `JsxText`.
- *
  * @internal
  */
 function canHaveTrailingTrivia(token: ts.Node): boolean {
@@ -36,12 +35,12 @@ function canHaveTrailingTrivia(token: ts.Node): boolean {
 					return !isJsxElementOrFragment(token.parent.parent.parent);
 			}
 	}
+
 	return true;
 }
 
 /**
  * Test if a node is a `JsxElement` or `JsxFragment`.
- *
  * @internal
  */
 function isJsxElementOrFragment(
@@ -55,7 +54,6 @@ function isJsxElementOrFragment(
 
 /**
  * Callback type used for {@link forEachComment}.
- *
  * @category Callbacks
  */
 export type ForEachCommentCallback = (
@@ -65,7 +63,6 @@ export type ForEachCommentCallback = (
 
 /**
  * Iterates over all comments owned by `node` or its children.
- *
  * @category Nodes - Other Utilities
  * @example
  * ```ts
@@ -91,24 +88,30 @@ export function forEachComment(
 	return forEachToken(
 		node,
 		(token) => {
-			if (token.pos === token.end) return;
-			if (token.kind !== ts.SyntaxKind.JsxText)
+			if (token.pos === token.end) {
+				return;
+			}
+
+			if (token.kind !== ts.SyntaxKind.JsxText) {
 				ts.forEachLeadingCommentRange(
 					fullText,
 					// skip shebang at position 0
 					token.pos === 0 ? (ts.getShebang(fullText) ?? "").length : token.pos,
 					commentCallback,
 				);
-			if (notJsx || canHaveTrailingTrivia(token))
+			}
+
+			if (notJsx || canHaveTrailingTrivia(token)) {
 				return ts.forEachTrailingCommentRange(
 					fullText,
 					token.end,
 					commentCallback,
 				);
+			}
 		},
 		sourceFile,
 	);
 	function commentCallback(pos: number, end: number, kind: ts.CommentKind) {
-		callback(fullText, { pos, end, kind });
+		callback(fullText, { end, kind, pos });
 	}
 }

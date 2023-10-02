@@ -6,8 +6,10 @@ import ts from "typescript";
 import { isNumericOrStringLikeLiteral } from "../nodes/typeGuards/compound";
 
 function unwrapParentheses(node: ts.Expression) {
-	while (node.kind === ts.SyntaxKind.ParenthesizedExpression)
-		node = (<ts.ParenthesizedExpression>node).expression;
+	while (node.kind === ts.SyntaxKind.ParenthesizedExpression) {
+		node = (node as ts.ParenthesizedExpression).expression;
+	}
+
 	return node;
 }
 
@@ -32,12 +34,18 @@ export function getPropertyName(
 					return;
 			}
 		}
-		if (ts.isBigIntLiteral(expression))
-			// handle BigInt, even though TypeScript doesn't allow BigInt as computed property name
+
+		if (ts.isBigIntLiteral(expression)) {
 			return expression.text.slice(0, -1);
-		if (isNumericOrStringLikeLiteral(expression)) return expression.text;
+		}
+
+		if (isNumericOrStringLikeLiteral(expression)) {
+			return expression.text;
+		}
+
 		return;
 	}
+
 	return propertyName.kind === ts.SyntaxKind.PrivateIdentifier
 		? undefined
 		: propertyName.text;

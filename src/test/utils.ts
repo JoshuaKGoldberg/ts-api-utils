@@ -1,4 +1,4 @@
-import tsvfs from "@typescript/vfs";
+import * as tsvfs from "@typescript/vfs";
 import ts from "typescript";
 
 export function createNodeAndSourceFile<Node extends ts.Node>(

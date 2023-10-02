@@ -7,14 +7,12 @@ import ts from "typescript";
 
 /**
  * Callback type used for {@link forEachToken}.
- *
  * @category Callbacks
  */
 export type ForEachTokenCallback = (token: ts.Node) => void;
 
 /**
  * Iterates over all tokens of `node`
- *
  * @category Nodes - Other Utilities
  * @example
  * ```ts
@@ -45,9 +43,17 @@ export function forEachToken(
 				node = children[0];
 				continue;
 			}
-			for (let i = children.length - 1; i >= 0; --i) queue.push(children[i]); // add children in reverse order, when we pop the next element from the queue, it's the first child
+
+			// add children in reverse order, when we pop the next element from the queue, it's the first child
+			for (let i = children.length - 1; i >= 0; --i) {
+				queue.push(children[i]);
+			}
 		}
-		if (queue.length === 0) break;
+
+		if (queue.length === 0) {
+			break;
+		}
+
 		node = queue.pop()!;
 	}
 }

@@ -18,10 +18,11 @@ export interface DeclarationInfo {
  * Which "domain"(s) (most commonly, type or value space) a declaration is within.
  */
 export enum DeclarationDomain {
+	Import = 8,
 	Namespace = 1,
 	Type = 2,
 	Value = 4,
-	Import = 8,
+	// eslint-disable-next-line perfectionist/sort-enums
 	Any = Namespace | Type | Value,
 }
 
@@ -43,7 +44,7 @@ export function getDeclarationDomain(
 			return DeclarationDomain.Any | DeclarationDomain.Import; // TODO handle type-only imports
 		case ts.SyntaxKind.ImportEqualsDeclaration:
 		case ts.SyntaxKind.ImportSpecifier:
-			return (<ts.ImportEqualsDeclaration | ts.ImportSpecifier>node.parent)
+			return (node.parent as ts.ImportEqualsDeclaration | ts.ImportSpecifier)
 				.name === node
 				? DeclarationDomain.Any | DeclarationDomain.Import // TODO handle type-only imports
 				: undefined;
@@ -53,12 +54,14 @@ export function getDeclarationDomain(
 			if (
 				node.parent.parent.kind === ts.SyntaxKind.IndexSignature ||
 				identifierToKeywordKind(node) === ts.SyntaxKind.ThisKeyword
-			)
+			) {
 				return;
+			}
+
 		// falls through
 		case ts.SyntaxKind.BindingElement:
 		case ts.SyntaxKind.VariableDeclaration:
-			return (<ts.VariableLikeDeclaration>node.parent).name === node
+			return (node.parent as ts.VariableLikeDeclaration).name === node
 				? DeclarationDomain.Value
 				: undefined;
 		case ts.SyntaxKind.FunctionDeclaration:

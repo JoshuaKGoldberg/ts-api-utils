@@ -1,15 +1,15 @@
-name: Type Check
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
 jobs:
-  type-check:
+  lint_knip:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
-      - run: pnpm type-check
+      - run: pnpm lint:knip
+
+name: Lint Knip
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main

@@ -1,12 +1,11 @@
-name: Protect main
 description: Delete branch protection on main
 
 inputs:
   ACCESS_TOKEN:
     required: true
 
+name: Protect main
 runs:
-  using: "composite"
   steps:
     - name: Recreate branch protection on main
       uses: actions/github-script@v6.4.1
@@ -59,3 +58,4 @@ runs:
               restrictions: null,
             }
           );
+  using: composite

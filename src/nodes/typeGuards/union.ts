@@ -27,7 +27,6 @@ import {
 
 /**
  * Test if a node is an `AccessExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -47,7 +46,6 @@ export function isAccessExpression(node: ts.Node): node is ts.AccessExpression {
 
 /**
  * Test if a node is an `AccessibilityModifier`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -69,7 +67,6 @@ export function isAccessibilityModifier(
 
 /**
  * Test if a node is an `AccessorDeclaration`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isAccessor`.
  * @category Nodes - Type Guards
  * @example
@@ -90,7 +87,6 @@ export function isAccessorDeclaration(
 
 /**
  * Test if a node is an `ArrayBindingElement`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isArrayBindingElement`.
  * @category Nodes - Type Guards
  * @example
@@ -111,7 +107,6 @@ export function isArrayBindingElement(
 
 /**
  * Test if a node is an `ArrayBindingOrAssignmentPattern`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -131,7 +126,6 @@ export function isArrayBindingOrAssignmentPattern(
 
 /**
  * Test if a node is an `AssignmentPattern`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -153,7 +147,6 @@ export function isAssignmentPattern(
 
 /**
  * Test if a node is a `BindingOrAssignmentElementRestIndicator`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -181,7 +174,6 @@ export function isBindingOrAssignmentElementRestIndicator(
 
 /**
  * Test if a node is a `BindingOrAssignmentElementTarget`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -207,7 +199,6 @@ export function isBindingOrAssignmentElementTarget(
 
 /**
  * Test if a node is a `BindingOrAssignmentPattern`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -230,7 +221,6 @@ export function isBindingOrAssignmentPattern(
 
 /**
  * Test if a node is a `BindingPattern`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -248,7 +238,6 @@ export function isBindingPattern(node: ts.Node): node is ts.BindingPattern {
 
 /**
  * Test if a node is a `BlockLike`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -271,7 +260,6 @@ export function isBlockLike(node: ts.Node): node is ts.BlockLike {
 
 /**
  * Test if a node is a `BooleanLiteral`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -289,7 +277,6 @@ export function isBooleanLiteral(node: ts.Node): node is ts.BooleanLiteral {
 
 /**
  * Test if a node is a `ClassLikeDeclaration`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isClassLike`.
  * @category Nodes - Type Guards
  * @example
@@ -310,7 +297,6 @@ export function isClassLikeDeclaration(
 
 /**
  * Test if a node is a `ClassMemberModifier`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -335,7 +321,6 @@ export function isClassMemberModifier(
 
 /**
  * Test if a node is a `DeclarationName`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -362,7 +347,6 @@ export function isDeclarationName(node: ts.Node): node is ts.DeclarationName {
 
 /**
  * Test if a node is a `DeclarationWithTypeParameterChildren`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -389,7 +373,6 @@ export function isDeclarationWithTypeParameterChildren(
 
 /**
  * Test if a node is a `DeclarationWithTypeParameters`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -414,7 +397,6 @@ export function isDeclarationWithTypeParameters(
 
 /**
  * Test if a node is a `DestructuringPattern`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -438,7 +420,6 @@ export function isDestructuringPattern(
 
 /**
  * Test if a node is an `EntityNameExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -458,7 +439,6 @@ export function isEntityNameExpression(
 
 /**
  * Test if a node is an `EntityNameOrEntityNameExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -478,7 +458,6 @@ export function isEntityNameOrEntityNameExpression(
 
 /**
  * Test if a node is a `ForInOrOfStatement`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -498,7 +477,6 @@ export function isForInOrOfStatement(
 
 /**
  * Test if a node is a `FunctionLikeDeclaration`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isFunctionLike`.
  * @category Nodes - Type Guards
  * @example
@@ -527,7 +505,6 @@ export function isFunctionLikeDeclaration(
 
 /**
  * Test if a node is a `HasDecorators`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -553,7 +530,6 @@ export function hasDecorators(node: ts.Node): node is ts.HasDecorators {
 
 /**
  * Test if a node is a `HasExpressionInitializer`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -580,7 +556,6 @@ export function hasExpressionInitializer(
 
 /**
  * Test if a node is a `HasInitializer`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -604,7 +579,6 @@ export function hasInitializer(node: ts.Node): node is ts.HasInitializer {
 
 /**
  * Test if a node is a `HasJSDoc`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -701,7 +675,6 @@ export function hasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 
 /**
  * Test if a node is a `HasModifiers`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -745,7 +718,6 @@ export function hasModifiers(node: ts.Node): node is ts.HasModifiers {
 
 /**
  * Test if a node is a `HasType`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -780,7 +752,6 @@ export function hasType(node: ts.Node): node is ts.HasType {
 
 /**
  * Test if a node is a `HasTypeArguments`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -804,7 +775,6 @@ export function hasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
 
 /**
  * Test if a node is a `JSDocComment`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -834,7 +804,6 @@ export function isJSDocComment(node: ts.Node): node is ts.JSDocComment {
 
 /**
  * Test if a node is a `JSDocNamespaceBody`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -854,7 +823,6 @@ export function isJSDocNamespaceBody(
 
 /**
  * Test if a node is a `JSDocTypeReferencingNode`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -879,7 +847,6 @@ export function isJSDocTypeReferencingNode(
 
 /**
  * Test if a node is a `JsonObjectExpression`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -907,7 +874,6 @@ export function isJsonObjectExpression(
 
 /**
  * Test if a node is a `JsxAttributeLike`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isJsxAttributeLike`.
  * @category Nodes - Type Guards
  * @example
@@ -926,7 +892,6 @@ export function isJsxAttributeLike(node: ts.Node): node is ts.JsxAttributeLike {
 
 /**
  * Test if a node is a `JsxAttributeValue`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -952,7 +917,6 @@ export function isJsxAttributeValue(
 
 /**
  * Test if a node is a `JsxChild`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isJsxChild`.
  * @category Nodes - Type Guards
  * @example
@@ -977,7 +941,6 @@ export function isJsxChild(node: ts.Node): node is ts.JsxChild {
 
 /**
  * Test if a node is a `JsxTagNameExpression`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isJsxTagNameExpression`.
  * @category Nodes - Type Guards
  * @example
@@ -1002,7 +965,6 @@ export function isJsxTagNameExpression(
 
 /**
  * Test if a node is a `LiteralToken`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1027,7 +989,6 @@ export function isLiteralToken(node: ts.Node): node is ts.LiteralToken {
 
 /**
  * Test if a node is a `ModuleBody`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isModuleBody`.
  * @category Nodes - Type Guards
  * @example
@@ -1046,7 +1007,6 @@ export function isModuleBody(node: ts.Node): node is ts.ModuleBody {
 
 /**
  * Test if a node is a `ModuleName`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isModuleName`.
  * @category Nodes - Type Guards
  * @example
@@ -1065,7 +1025,6 @@ export function isModuleName(node: ts.Node): node is ts.ModuleName {
 
 /**
  * Test if a node is a `ModuleReference`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isModuleReference`.
  * @category Nodes - Type Guards
  * @example
@@ -1084,7 +1043,6 @@ export function isModuleReference(node: ts.Node): node is ts.ModuleReference {
 
 /**
  * Test if a node is a `NamedImportBindings`.
- *
  * @deprecated With TypeScript v5, in favor of typescript's `isNamedImportBindings`.
  * @category Nodes - Type Guards
  * @example
@@ -1105,7 +1063,6 @@ export function isNamedImportBindings(
 
 /**
  * Test if a node is a `NamedImportsOrExports`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1125,7 +1082,6 @@ export function isNamedImportsOrExports(
 
 /**
  * Test if a node is a `NamespaceBody`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1143,7 +1099,6 @@ export function isNamespaceBody(node: ts.Node): node is ts.NamespaceBody {
 
 /**
  * Test if a node is an `ObjectBindingOrAssignmentElement`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1168,7 +1123,6 @@ export function isObjectBindingOrAssignmentElement(
 
 /**
  * Test if a node is an `ObjectBindingOrAssignmentPattern`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1188,7 +1142,6 @@ export function isObjectBindingOrAssignmentPattern(
 
 /**
  * Test if a node is an `ObjectTypeDeclaration`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1213,7 +1166,6 @@ export function isObjectTypeDeclaration(
 
 /**
  * Test if a node is a `ParameterPropertyModifier`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1233,7 +1185,6 @@ export function isParameterPropertyModifier(
 
 /**
  * Test if a node is a `PropertyNameLiteral`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1257,7 +1208,6 @@ export function isPropertyNameLiteral(
 
 /**
  * Test if a node is a `PseudoLiteralToken`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1281,7 +1231,6 @@ export function isPseudoLiteralToken(
 
 /**
  * Test if a node is a `SignatureDeclaration`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1316,7 +1265,6 @@ export function isSignatureDeclaration(
 
 /**
  * Test if a node is a `SuperProperty`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1337,7 +1285,6 @@ export function isSuperProperty(node: ts.Node): node is ts.SuperProperty {
 
 /**
  * Test if a node is a `TypeOnlyCompatibleAliasDeclaration`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1367,12 +1314,12 @@ export function isTypeOnlyCompatibleAliasDeclaration(
 	) {
 		return true;
 	}
+
 	return false;
 }
 
 /**
  * Test if a node is a `TypeReferenceType`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1392,7 +1339,6 @@ export function isTypeReferenceType(
 
 /**
  * Test if a node is an `UnionOrIntersectionTypeNode`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts
@@ -1413,7 +1359,6 @@ export function isUnionOrIntersectionTypeNode(
 /* eslint-disable deprecation/deprecation */
 /**
  * Test if a node is an `UnparsedSourceText`.
- *
  * @deprecated With TypeScript v5
  * @category Nodes - Type Guards
  * @example
@@ -1435,7 +1380,6 @@ export function isUnparsedSourceText(
 
 /**
  * Test if a node is a `VariableLikeDeclaration`.
- *
  * @category Nodes - Type Guards
  * @example
  * ```ts

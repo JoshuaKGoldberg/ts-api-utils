@@ -3,24 +3,26 @@
 
 import ts from "typescript";
 
+import type { EnumScope, NamespaceScope } from "./scopes";
+
 import { isFunctionScopeBoundary } from "../scopes";
 import { DeclarationDomain } from "./declarations";
-import type { EnumScope, NamespaceScope } from "./scopes";
 import { InternalUsageInfo, Usage, UsageInfoCallback } from "./usage";
 
 export enum ScopeBoundary {
-	None = 0,
-	Function = 1,
 	Block = 2,
-	Type = 4,
 	ConditionalType = 8,
+	Function = 1,
+	None = 0,
+	Type = 4,
 }
 
 export enum ScopeBoundarySelector {
 	Function = ScopeBoundary.Function,
+	// eslint-disable-next-line perfectionist/sort-enums
 	Block = ScopeBoundarySelector.Function | ScopeBoundary.Block,
-	Type = ScopeBoundarySelector.Block | ScopeBoundary.Type,
 	InferType = ScopeBoundary.ConditionalType,
+	Type = ScopeBoundarySelector.Block | ScopeBoundary.Type,
 }
 
 export interface Scope {
@@ -59,6 +61,7 @@ export function isBlockScopeBoundary(node: ts.Node): ScopeBoundary {
 				? ScopeBoundary.Block
 				: ScopeBoundary.None;
 		}
+
 		case ts.SyntaxKind.ForStatement:
 		case ts.SyntaxKind.ForInStatement:
 		case ts.SyntaxKind.ForOfStatement:

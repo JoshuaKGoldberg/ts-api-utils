@@ -8,8 +8,7 @@
 		"docs/generated",
 		"lib",
 		"node_modules",
-		"pnpm-lock.yaml",
-		"script/*.json"
+		"pnpm-lock.yaml"
 	],
 	"words": [
 		"ajafff",
@@ -23,6 +22,9 @@
 		"knip",
 		"konamimojisplosion",
 		"lcov",
+		"markdownlintignore",
+		"npmpackagejsonlintrc",
+		"outro",
 		"packagejson",
 		"phenomnomnominal",
 		"quickstart",
