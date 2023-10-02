@@ -4,14 +4,13 @@
 		"declarationMap": true,
 		"esModuleInterop": true,
 		"module": "ESNext",
-		"moduleResolution": "Bundler",
+		"moduleResolution": "bundler",
 		"noEmit": true,
 		"outDir": "lib",
-		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"target": "ES2022"
+		"target": "ES2021"
 	},
 	"include": ["src"]
 }

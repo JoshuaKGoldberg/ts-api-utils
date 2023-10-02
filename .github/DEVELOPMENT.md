@@ -13,13 +13,13 @@ pnpm install
 
 ## Building
 
-Run [**tsup**](https://tsup.egoist.dev) locally to build source files from `src/` into output files in `lib/`:
+Run [tsup](https://tsup.egoist.dev) locally to type check and build source files from `src/` into output files in `lib/`:
 
 ```shell
 pnpm build
 ```
 
-Add `--watch` to run the builder in a watch mode that continuously cleans and recreates `lib/` as you save files:
+Add `--watch` to run it continuously in a terminal:
 
 ```shell
 pnpm build --watch
@@ -42,11 +42,12 @@ This package includes several forms of linting to enforce consistent code qualit
 Each should be shown in VS Code, and can be run manually on the command-line:
 
 - `pnpm lint` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
-- `pnpm lint:docs` ([typedoc](https://github.com/TypeStrong/typedoc)): Ensures that generated API docs are well-structured
+- `pnpm lint:docs` ([typedoc](https://typedoc.org)): Checks that all the code is documented
 - `pnpm lint:knip` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
+- `pnpm lint:knip:production` ([knip](https://github.com/webpro/knip)): The same as `lint:knip` but looks purely at production code/dependencies
 - `pnpm lint:md` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
-- `pnpm lint:package-json` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the `package.json` file
-- `pnpm lint:packages` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the `pnpm-lock.yml` file
+- `pnpm lint:package` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the `package.json` file
+- `pnpm lint:packages` ([pnpm-deduplicate](https://github.com/ocavue/pnpm-deduplicate)): Deduplicates packages in the `pnpm-lock.yml` file
 - `pnpm lint:spelling` ([cspell](https://cspell.org)): Spell checks across all source files
 
 Read the individual documentation for each linter to understand how it can be configured and used best.
@@ -56,8 +57,6 @@ For example, ESLint can be run with `--fix` to auto-fix some lint rule complaint
 ```shell
 pnpm run lint --fix
 ```
-
-Note that you'll likely need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
 
 ## Testing
 
@@ -97,3 +96,15 @@ Add `--watch` to keep the type checker running in a watch mode that updates the 
 ```shell
 pnpm tsc --watch
 ```
+
+## Documentation
+
+You can generate a [TypeDoc](https://typedoc.org) documentation site with `pnpm run docs`.
+Once you've generated the docs, you can view them by first running `pnpm docs:serve`, then browsing to <http://127.0.0.1:8080> (or similar - check the console output of the last command).
+
+> Tip: Run `pnpm run docs --watch` to keep the generated docs up-to-date as you save files.
+
+## Publishing
+
+Publishing will automatically happen when commits are pushed to the main branch.
+The documentation site will also be automatically updated immediately after each new release.
