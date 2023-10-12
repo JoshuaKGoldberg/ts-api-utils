@@ -101,7 +101,7 @@
 	"peerDependencies": {
 		"typescript": ">=4.2.0"
 	},
-	"packageManager": "pnpm@8.8.0",
+	"packageManager": "pnpm@8.9.0",
 	"engines": {
 		"node": ">=18"
 	},
