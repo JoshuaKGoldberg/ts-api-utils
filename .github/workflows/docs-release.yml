@@ -1,19 +1,6 @@
-name: Release Docs
-
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - gh-pages
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 concurrency:
-  group: Release Docs
   cancel-in-progress: true
+  group: Release Docs
 
 jobs:
   deploy_docs:
@@ -26,13 +13,13 @@ jobs:
 
       - uses: ./.github/actions/prepare
 
-      - name: Craete a pages artifact
+      - name: Create a pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./docs/generated
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
+        name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
 
       - name: Store Coverage Badge
@@ -49,9 +36,9 @@ jobs:
       - id: coverage_changed
         run: echo "coverage_changed=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> "$GITHUB_OUTPUT"
 
-      - id: push_coverage
-        env:
+      - env:
           COVERAGE_CHANGED: ${{ steps.coverage_changed.outputs.coverage_changed }}
+        id: push_coverage
         run: echo "push_coverage=$(if [[ "$COVERAGE_CHANGED" != '0' ]] ; then echo '1' ; else echo '0' ; fi)" >> "$GITHUB_OUTPUT"
 
       - if: steps.push_coverage.outputs.push_coverage != '0'
@@ -69,3 +56,17 @@ jobs:
         uses: ./.github/actions/protect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+name: Release Docs
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  pages: write

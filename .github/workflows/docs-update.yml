@@ -1,19 +1,6 @@
-name: Update Docs
-
-on:
-  push:
-    tags:
-      # https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string -- github doesn't like this regex??
-      - v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)
-      - v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-|\+)([a-zA-Z0-9]|-|+|\.)*
-
-permissions:
-  contents: write
-  id-token: write
-
 concurrency:
-  group: Update Docs
   cancel-in-progress: false
+  group: Update Docs
 
 jobs:
   update_docs:
@@ -33,8 +20,8 @@ jobs:
       - name: Checkout tag
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref_name }}
           clean: false #  doesn't seem to work?? Hense use of tar.
+          ref: ${{ github.ref_name }}
 
       - uses: ./.github/actions/prepare
 
@@ -52,8 +39,8 @@ jobs:
       - name: checkout the docs
         uses: actions/checkout@v3
         with:
-          ref: gh-pages
           clean: false #  doesn't seem to work?? Hense use of tar.
+          ref: gh-pages
 
       - uses: ./.github/actions/prepare
 
@@ -62,9 +49,22 @@ jobs:
           mkdir -p ./docs/generated
           tar -xf /tmp/new-docs.tar ./docs/generated -C ./docs/generated
 
-      - name: Commit
+      - continue-on-error: true
+        name: Commit
         run: |
           git add -f docs/generated
           git commit -m "docs: update documentation"
           git push
-        continue-on-error: true
+
+name: Update Docs
+
+on:
+  push:
+    tags:
+      # https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string -- github doesn't like this regex??
+      - v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)
+      - v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-|\+)([a-zA-Z0-9]|-|+|\.)*
+
+permissions:
+  contents: write
+  id-token: write
