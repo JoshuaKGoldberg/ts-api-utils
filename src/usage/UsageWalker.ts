@@ -234,7 +234,7 @@ export class UsageWalker {
 							? new ClassExpressionScope(
 									(node as ts.ClassExpression).name!,
 									this.#scope,
-							  )
+								)
 							: new NonRootScope(this.#scope, ScopeBoundary.Function),
 					);
 				case ts.SyntaxKind.ClassDeclaration:

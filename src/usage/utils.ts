@@ -9,7 +9,7 @@ export function identifierToKeywordKind(
 	return "identifierToKeywordKind" in ts
 		? ts.identifierToKeywordKind(node)
 		: // eslint-disable-next-line deprecation/deprecation
-		  node.originalKeywordKind;
+			node.originalKeywordKind;
 }
 
 /**
