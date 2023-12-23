@@ -117,23 +117,23 @@ devDependencies:
     specifier: ^8.0.1
     version: 8.0.1(typescript@5.3.3)
   typedoc:
-    specifier: ^0.25.4
-    version: 0.25.4(typescript@5.3.3)
+    specifier: ^0.24.8
+    version: 0.24.8(typescript@5.3.3)
   typedoc-plugin-coverage:
     specifier: ^2.2.0
-    version: 2.2.0(typedoc@0.25.4)
+    version: 2.2.0(typedoc@0.24.8)
   typedoc-plugin-custom-validation:
     specifier: ^1.1.1
-    version: 1.1.1(typedoc@0.25.4)
+    version: 1.1.1(typedoc@0.24.8)
   typedoc-plugin-konamimojisplosion:
     specifier: ^0.0.2
     version: 0.0.2
   typedoc-plugin-mdn-links:
     specifier: ^3.1.8
-    version: 3.1.8(typedoc@0.25.4)
+    version: 3.1.8(typedoc@0.24.8)
   typedoc-plugin-versions:
     specifier: ^0.2.4
-    version: 0.2.4(typedoc@0.25.4)
+    version: 0.2.4(typedoc@0.24.8)
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
@@ -2287,7 +2287,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /ci-info@3.8.0:
@@ -3700,14 +3700,6 @@ packages:
   /fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
-
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
 
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -6481,7 +6473,7 @@ packages:
       '@rollup/rollup-win32-arm64-msvc': 4.5.1
       '@rollup/rollup-win32-ia32-msvc': 4.5.1
       '@rollup/rollup-win32-x64-msvc': 4.5.1
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /run-applescript@5.0.0:
@@ -7296,21 +7288,21 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-coverage@2.2.0(typedoc@0.25.4):
+  /typedoc-plugin-coverage@2.2.0(typedoc@0.24.8):
     resolution: {integrity: sha512-/hq9nwSNBz2p7+VYfljT/zFSmaxN8tlfcIp6CCAaQN6VIxXCciYFIqR+pcckRhjmfHIeSJ5uy2OpCt5F683npA==}
     engines: {node: '>= 16'}
     peerDependencies:
       typedoc: ^0.22.12 || 0.23.x || 0.24.x || 0.25.x
     dependencies:
-      typedoc: 0.25.4(typescript@5.3.3)
+      typedoc: 0.24.8(typescript@5.3.3)
     dev: true
 
-  /typedoc-plugin-custom-validation@1.1.1(typedoc@0.25.4):
+  /typedoc-plugin-custom-validation@1.1.1(typedoc@0.24.8):
     resolution: {integrity: sha512-B8SPAi85Iyb3JY4fv8vxXyrql0MZspmTXhCGRkjDk6tRf+okwmEZVRwiZfBSS8L9BI8Ef0nQq/7a4AK1KDvBeg==}
     peerDependencies:
       typedoc: ^0.23.26
     dependencies:
-      typedoc: 0.25.4(typescript@5.3.3)
+      typedoc: 0.24.8(typescript@5.3.3)
     dev: true
 
   /typedoc-plugin-konamimojisplosion@0.0.2:
@@ -7318,15 +7310,15 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /typedoc-plugin-mdn-links@3.1.8(typedoc@0.25.4):
+  /typedoc-plugin-mdn-links@3.1.8(typedoc@0.24.8):
     resolution: {integrity: sha512-m2bcjsMghULmf0GBG+P6QwkWYF/7CTvlCefpYGTsIne5eL6wehVzE/RRlw+6qRjTR03FxBwgf/+UsasMRKEbPw==}
     peerDependencies:
       typedoc: '>= 0.23.14 || 0.24.x || 0.25.x'
     dependencies:
-      typedoc: 0.25.4(typescript@5.3.3)
+      typedoc: 0.24.8(typescript@5.3.3)
     dev: true
 
-  /typedoc-plugin-versions@0.2.4(typedoc@0.25.4):
+  /typedoc-plugin-versions@0.2.4(typedoc@0.24.8):
     resolution: {integrity: sha512-mWJHl4oXyWMxrcxVWDvZvLSm+wr3SIEYH+pAiEcyQPJXiq59gLWdmiulqVz2OUG35plOpC5x7sOF5JsIa+plsw==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     peerDependencies:
@@ -7334,15 +7326,15 @@ packages:
     dependencies:
       fs-extra: 10.1.0
       semver: 7.5.4
-      typedoc: 0.25.4(typescript@5.3.3)
+      typedoc: 0.24.8(typescript@5.3.3)
     dev: true
 
-  /typedoc@0.25.4(typescript@5.3.3):
-    resolution: {integrity: sha512-Du9ImmpBCw54bX275yJrxPVnjdIyJO/84co0/L9mwe0R3G4FSR6rQ09AlXVRvZEGMUg09+z/usc8mgygQ1aidA==}
-    engines: {node: '>= 16'}
+  /typedoc@0.24.8(typescript@5.3.3):
+    resolution: {integrity: sha512-ahJ6Cpcvxwaxfu4KtjA8qZNqS43wYt6JL27wYiIgl1vd38WW/KWX11YuAeZhuz9v+ttrutSsgK+XO1CjL1kA3w==}
+    engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
-      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x || 5.3.x
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x
     dependencies:
       lunr: 2.3.9
       marked: 4.3.0

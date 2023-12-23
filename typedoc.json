@@ -43,7 +43,6 @@
 		"Function",
 		"Accessor",
 		"Method",
-		"ObjectLiteral",
 		"Parameter",
 		"Enum",
 		"EnumMember",
