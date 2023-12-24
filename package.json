@@ -30,7 +30,7 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "tsup src/index.ts --clean --format cjs,esm --outDir lib --dts && cp lib/index.d.ts lib/index.d.cts",
+		"build": "tsup src/index.ts && cp lib/index.d.ts lib/index.d.cts",
 		"docs": "typedoc",
 		"docs:serve": "npx --yes http-server docs/generated",
 		"format": "prettier \"**/*\" --ignore-unknown",
