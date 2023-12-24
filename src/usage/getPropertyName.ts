@@ -28,8 +28,8 @@ export function getPropertyName(
 					return ts.isNumericLiteral(expression.operand)
 						? `${negate ? "-" : ""}${expression.operand.text}`
 						: ts.isBigIntLiteral(expression.operand)
-						? `${negate ? "-" : ""}${expression.operand.text.slice(0, -1)}`
-						: undefined;
+							? `${negate ? "-" : ""}${expression.operand.text.slice(0, -1)}`
+							: undefined;
 				default:
 					return;
 			}
