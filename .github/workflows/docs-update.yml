@@ -9,7 +9,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: checkout the docs
+      - name: Checkout the docs
         uses: actions/checkout@v3
         with:
           ref: gh-pages
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout tag
         uses: actions/checkout@v3
         with:
-          clean: false #  doesn't seem to work?? Hense use of tar.
+          clean: false # doesn't seem to work?? Hense use of tar.
           ref: ${{ github.ref_name }}
 
       - uses: ./.github/actions/prepare
@@ -36,10 +36,10 @@ jobs:
       - name: Save new docs
         run: tar -cvf /tmp/new-docs.tar ./docs/generated
 
-      - name: checkout the docs
+      - name: Checkout the docs
         uses: actions/checkout@v3
         with:
-          clean: false #  doesn't seem to work?? Hense use of tar.
+          clean: false # doesn't seem to work?? Hense use of tar.
           ref: gh-pages
 
       - uses: ./.github/actions/prepare
