@@ -106,6 +106,7 @@ module.exports = {
 			parser: "yaml-eslint-parser",
 			rules: {
 				"yml/file-extension": ["error", { extension: "yml" }],
+				"yml/no-empty-mapping-value": "off",
 				"yml/sort-keys": [
 					"error",
 					{

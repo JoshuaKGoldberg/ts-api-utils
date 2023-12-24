@@ -32,20 +32,3 @@ jobs:
         uses: ./.github/actions/protect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-
-  release_docs:
-    if: needs.release.outputs.did_release != '0'
-    needs: release
-    uses: ./.github/workflows/release-docs.yml
-name: Release
-
-on:
-  push:
-    branches:
-      - main
-
-permissions:
-  contents: write
-  id-token: write
-
-  pages: write

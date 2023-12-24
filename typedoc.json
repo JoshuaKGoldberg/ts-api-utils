@@ -75,5 +75,8 @@
 		"Interface",
 		"Method",
 		"TypeAlias"
-	]
+	],
+	"versions": {
+		"makeRelativeLinks": true
+	}
 }

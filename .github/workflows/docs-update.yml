@@ -1,0 +1,70 @@
+concurrency:
+  cancel-in-progress: false
+  group: Update Docs
+
+jobs:
+  update_docs:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the docs
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+
+      - name: Save old docs
+        run: tar -cvf /tmp/old-docs.tar ./docs/generated
+
+      - name: Checkout tag
+        uses: actions/checkout@v3
+        with:
+          clean: false # doesn't seem to work?? Hense use of tar.
+          ref: ${{ github.ref_name }}
+
+      - uses: ./.github/actions/prepare
+
+      - name: Restore old docs
+        run: |
+          mkdir -p ./docs/generated
+          tar -xf /tmp/old-docs.tar ./docs/generated -C ./docs/generated
+
+      - name: Build docs
+        run: pnpm run docs
+
+      - name: Save new docs
+        run: tar -cvf /tmp/new-docs.tar ./docs/generated
+
+      - name: Checkout the docs
+        uses: actions/checkout@v3
+        with:
+          clean: false # doesn't seem to work?? Hense use of tar.
+          ref: gh-pages
+
+      - uses: ./.github/actions/prepare
+
+      - name: Restore new docs
+        run: |
+          mkdir -p ./docs/generated
+          tar -xf /tmp/new-docs.tar ./docs/generated -C ./docs/generated
+
+      - continue-on-error: true
+        name: Commit
+        run: |
+          git add -f docs/generated
+          git commit -m "docs: update documentation"
+          git push
+
+name: Update Docs
+
+on:
+  push:
+    tags:
+      # https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string -- github doesn't like this regex??
+      - v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)
+      - v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-|\+)([a-zA-Z0-9]|-|+|\.)*
+
+permissions:
+  contents: write
+  id-token: write
