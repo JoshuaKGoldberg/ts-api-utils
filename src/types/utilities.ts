@@ -54,9 +54,9 @@ export function isFalsyType(type: ts.Type): boolean {
 }
 
 /**
- * Get the union type parts of the given type.
+ * Get the intersection type parts of the given type.
  *
- * If the given type is not a union type, an array contain only that type will be returned.
+ * If the given type is not a intersection type, an array contain only that type will be returned.
  * @category Types - Utilities
  * @example
  * ```ts
@@ -69,6 +69,26 @@ export function isFalsyType(type: ts.Type): boolean {
  */
 export function intersectionTypeParts(type: ts.Type): ts.Type[] {
 	return isIntersectionType(type) ? type.types : [type];
+}
+
+/**
+ * Get the intersection or union type parts of the given type.
+ *
+ * Note that this is a shallow collection: it only returns `type.types` or `[type]`.
+ *
+ * If the given type is not an intersection or union type, an array contain only that type will be returned.
+ * @category Types - Utilities
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * for (const typePart of intersectionTypeParts(type)) {
+ *   // ...
+ * }
+ * ```
+ */
+export function typeParts(type: ts.Type): ts.Type[] {
+	return isIntersectionType(type) || isUnionType(type) ? type.types : [type];
 }
 
 function isReadonlyPropertyIntersection(
