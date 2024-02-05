@@ -9,7 +9,7 @@
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 5 👪" src="https://img.shields.io/badge/all_contributors-5_👪-21bb42.svg" />
+<img alt="All Contributors: 6 👪" src="https://img.shields.io/badge/all_contributors-6_👪-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 	</a>
@@ -67,6 +67,7 @@ Many thanks to [@ajafff](https://github.com/ajafff) for creating the original [`
 <table>
   <tbody>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://effectivetypescript.com"><img src="https://avatars.githubusercontent.com/u/98301?v=4?s=100" width="100px;" alt="Dan Vanderkam"/><br /><sub><b>Dan Vanderkam</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-utils/issues?q=author%3Adanvk" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://blog.jmchor.dev"><img src="https://avatars.githubusercontent.com/u/110151013?v=4?s=100" width="100px;" alt="Johannes Chorzempa"/><br /><sub><b>Johannes Chorzempa</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=jmchor" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=jmchor" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-utils/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="#projectManagement-JoshuaKGoldberg" title="Project Management">📆</a> <a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="#maintenance-JoshuaKGoldberg" title="Maintenance">🚧</a> <a href="#infra-JoshuaKGoldberg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-JoshuaKGoldberg" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://twitter.com/kirjs"><img src="https://avatars.githubusercontent.com/u/2545357?v=4?s=100" width="100px;" alt="Kirill Cherkashin"/><br /><sub><b>Kirill Cherkashin</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/ts-api-utils/commits?author=kirjs" title="Code">💻</a></td>
