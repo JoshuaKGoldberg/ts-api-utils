@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v1.2.0...v1.2.1) (2024-2-6)
+
+### Bug Fixes
+
+- downgrade engines.node to >=16 ([#390](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/390)) ([2857ee9](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/2857ee968ab401f6662303fedae3acc59aadc24a)), closes [#389](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/389)
+
 # [1.2.0](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v1.0.2...v1.2.0) (2024-2-5)
 
 ### Bug Fixes
