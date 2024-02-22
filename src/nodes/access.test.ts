@@ -4,14 +4,6 @@ import { describe, expect, it } from "vitest";
 import { createNode, createNode } from "../test/utils";
 import { AccessKind, getAccessKind } from "./access";
 
-function createNodeAndToString<Node extends ts.Node>(sourceText: string) {
-	const node = createNode<Node>(sourceText);
-	return {
-		node,
-		toString: () => node.getText(),
-	};
-}
-
 describe("getAccessKind", () => {
 	it("returns AccessKind.None when the node is not an access", () => {
 		const node = createNode<ts.Expression>("let value;");
@@ -61,6 +53,40 @@ describe("getAccessKind", () => {
 		>("[...[...abc]]");
 
 		const actual = getAccessKind(node.elements[0].expression.elements[0]);
+
+		expect(actual).toBe(AccessKind.Read);
+	});
+
+	it("returns AccessKind.Read when the node is an array spread inside a for-of", () => {
+		const node = createNode<
+			ts.ForOfStatement & { expression: ts.ArrayLiteralExpression }
+		>("for (const _ of [...abc]) {}");
+
+		const actual = getAccessKind(node.expression.elements[0]);
+
+		expect(actual).toBe(AccessKind.Read);
+	});
+
+	it("returns AccessKind.Read when the node is an array spread inside a binary expression", () => {
+		const node = createNode<
+			ts.BinaryExpression & { right: ts.ArrayLiteralExpression }
+		>("abc = [...def]");
+
+		const actual = getAccessKind(node.right.elements[0]);
+
+		expect(actual).toBe(AccessKind.Read);
+	});
+
+	it("returns AccessKind.Read when the node is an array spread inside an array expression", () => {
+		const node = createNode<
+			ts.BinaryExpression & {
+				right: ts.ArrayLiteralExpression & {
+					elements: [ts.ArrayLiteralExpression];
+				};
+			}
+		>("abc = [[...def]]");
+
+		const actual = getAccessKind(node.right.elements[0].elements[0]);
 
 		expect(actual).toBe(AccessKind.Read);
 	});
