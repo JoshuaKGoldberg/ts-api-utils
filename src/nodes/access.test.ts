@@ -1,7 +1,7 @@
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { createNode, createNode } from "../test/utils";
+import { createNode } from "../test/utils";
 import { AccessKind, getAccessKind } from "./access";
 
 describe("getAccessKind", () => {
