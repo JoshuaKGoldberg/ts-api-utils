@@ -2,7 +2,7 @@
 
 <p align="center">
 	Utility functions for working with TypeScript's API.
-	Successor to the wonderful Successor to the wonderful <a href="https://github.com/ajafff/tsutils">tsutils</a>. 🛠️️
+	Successor to the wonderful <a href="https://github.com/ajafff/tsutils">tsutils</a>. 🛠️️
 </p>
 
 <p align="center">
