@@ -137,7 +137,6 @@ export function isIntrinsicESSymbolType(
 }
 
 /**
- * An intrinsic type.
  * @category Type Types
  */
 export interface IntrinsicType extends ts.Type {
@@ -309,7 +308,6 @@ export function isIntrinsicStringType(
 }
 
 /**
- * An "undefined" intrinsic type.
  * @category Type Types
  */
 export interface IntrinsicUndefinedType extends IntrinsicType {
@@ -335,7 +333,6 @@ export function isIntrinsicUndefinedType(
 }
 
 /**
- * An "unknown" intrinsic type.
  * @category Type Types
  */
 export interface IntrinsicUnknownType extends IntrinsicType {

@@ -322,7 +322,7 @@ export function isThenableType(
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
 	node: ts.Node,
-	type = typeChecker.getTypeAtLocation(node)!,
+	type = typeChecker.getTypeAtLocation(node),
 ): boolean {
 	for (const typePart of unionTypeParts(typeChecker.getApparentType(type))) {
 		const then = typePart.getProperty("then");

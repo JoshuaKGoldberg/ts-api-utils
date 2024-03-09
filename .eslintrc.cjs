@@ -12,9 +12,17 @@ module.exports = {
 		"plugin:regexp/recommended",
 		"plugin:vitest/recommended",
 	],
+	ignorePatterns: [
+		"!.*",
+		"coverage",
+		"docs",
+		"lib",
+		"node_modules",
+		"pnpm-lock.yaml",
+	],
 	overrides: [
 		{
-			extends: ["plugin:markdown/recommended"],
+			extends: ["plugin:markdown/recommended-legacy"],
 			files: ["**/*.md"],
 			processor: "markdown/markdown",
 		},
@@ -83,6 +91,7 @@ module.exports = {
 			files: ["*.json", "*.jsonc"],
 			parser: "jsonc-eslint-parser",
 			rules: {
+				"jsonc/comma-dangle": "off",
 				"jsonc/sort-keys": "error",
 			},
 		},
@@ -91,6 +100,12 @@ module.exports = {
 			rules: {
 				"jsonc/no-comments": "off",
 			},
+		},
+		{
+			extends: ["plugin:package-json/recommended"],
+			files: ["package.json"],
+			parser: "jsonc-eslint-parser",
+			plugins: ["package-json"],
 		},
 		{
 			files: "**/*.test.ts",
@@ -129,7 +144,6 @@ module.exports = {
 		"@typescript-eslint",
 		"deprecation",
 		"jsdoc",
-		"no-only-tests",
 		"perfectionist",
 		"regexp",
 		"vitest",
@@ -142,7 +156,6 @@ module.exports = {
 			"error",
 			{ argsIgnorePattern: "^_", caughtErrors: "all" },
 		],
-		"no-only-tests/no-only-tests": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"n/no-missing-import": "off",
@@ -156,6 +169,8 @@ module.exports = {
 			"error",
 			{ blankLine: "always", next: "*", prev: "block-like" },
 		],
+		"no-useless-rename": "error",
+		"object-shorthand": "error",
 		"perfectionist/sort-objects": [
 			"error",
 			{
