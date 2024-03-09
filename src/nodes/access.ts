@@ -11,9 +11,9 @@ import { isAssignmentKind } from "../syntax";
  */
 export enum AccessKind {
 	None = 0,
-	Read = 1,
-	Write = 2,
-	Delete = 4,
+	Read = 1 << 0,
+	Write = 1 << 1,
+	Delete = 1 << 2,
 	ReadWrite = Read | Write,
 	/* eslint-enable perfectionist/sort-enums */
 }
