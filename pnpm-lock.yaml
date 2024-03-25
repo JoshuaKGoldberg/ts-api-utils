@@ -70,7 +70,7 @@ devDependencies:
     version: 1.11.0(eslint@8.56.0)
   husky:
     specifier: ^9.0.0
-    version: 9.0.10
+    version: 9.0.11
   jsonc-eslint-parser:
     specifier: ^2.4.0
     version: 2.4.0
@@ -2370,7 +2370,7 @@ packages:
     engines: {node: '>=18'}
     dependencies:
       slice-ansi: 5.0.0
-      string-width: 7.0.0
+      string-width: 7.1.0
     dev: true
 
   /cli-width@4.1.0:
@@ -4129,8 +4129,8 @@ packages:
     engines: {node: '>=16.17.0'}
     dev: true
 
-  /husky@9.0.10:
-    resolution: {integrity: sha512-TQGNknoiy6bURzIO77pPRu+XHi6zI7T93rX+QnJsoYFf3xdjKOur+IlfqzJGMHIK/wXrLg+GsvMs8Op7vI2jVA==}
+  /husky@9.0.11:
+    resolution: {integrity: sha512-AB6lFlbwwyIqMdHYhwPe+kjOC3Oc5P3nThEoW/AaO2BX3vJDjWPFxYLxokUZOo6RNX20He3AaT8sESs9NJcmEw==}
     engines: {node: '>=18'}
     hasBin: true
     dev: true
@@ -6754,8 +6754,8 @@ packages:
       strip-ansi: 7.1.0
     dev: true
 
-  /string-width@7.0.0:
-    resolution: {integrity: sha512-GPQHj7row82Hjo9hKZieKcHIhaAIKOJvFSIZXuCU9OASVZrMNUaZuz++SPVrBjnLsnk4k+z9f2EIypgxf2vNFw==}
+  /string-width@7.1.0:
+    resolution: {integrity: sha512-SEIJCWiX7Kg4c129n48aDRwLbFb2LJmXXFrWBG4NGaRtMQ3myKPKbwrD1BKqQn74oCoNMBVrfDEr5M9YxCsrkw==}
     engines: {node: '>=18'}
     dependencies:
       emoji-regex: 10.3.0
@@ -7657,7 +7657,7 @@ packages:
     engines: {node: '>=18'}
     dependencies:
       ansi-styles: 6.2.1
-      string-width: 7.0.0
+      string-width: 7.1.0
       strip-ansi: 7.1.0
     dev: true
 
