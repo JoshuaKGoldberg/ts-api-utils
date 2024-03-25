@@ -40,7 +40,7 @@
 		"lint:knip:production": "knip --config knip.production.jsonc --production",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:packages": "pnpm dedupe --check",
-		"lint:spelling": "cspell \"**\" \".github/**/*\"",
+		"lint:spelling": "cspell lint --no-progress --show-suggestions --show-context --dot \"**\" \".github/**/*\"",
 		"prepare": "husky install",
 		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest",
