@@ -114,23 +114,23 @@ devDependencies:
     specifier: ^8.0.1
     version: 8.0.1(typescript@5.3.3)
   typedoc:
-    specifier: ^0.24.8
-    version: 0.24.8(typescript@5.3.3)
+    specifier: ^0.25.0
+    version: 0.25.12(typescript@5.3.3)
   typedoc-plugin-coverage:
     specifier: ^3.0.0
-    version: 3.1.0(typedoc@0.24.8)
+    version: 3.1.0(typedoc@0.25.12)
   typedoc-plugin-custom-validation:
     specifier: ^1.1.1
-    version: 1.1.1(typedoc@0.24.8)
+    version: 1.1.1(typedoc@0.25.12)
   typedoc-plugin-konamimojisplosion:
     specifier: ^0.0.2
     version: 0.0.2
   typedoc-plugin-mdn-links:
     specifier: ^3.1.8
-    version: 3.1.8(typedoc@0.24.8)
+    version: 3.1.8(typedoc@0.25.12)
   typedoc-plugin-versions:
     specifier: ^0.2.4
-    version: 0.2.4(typedoc@0.24.8)
+    version: 0.2.4(typedoc@0.25.12)
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
@@ -6516,8 +6516,8 @@ packages:
       rechoir: 0.6.2
     dev: true
 
-  /shiki@0.14.1:
-    resolution: {integrity: sha512-+Jz4nBkCBe0mEDqo1eKRcCdjRtrCjozmcbTUjbPTX7OOJfEbTZzlUWlZtGe3Gb5oV1/jnojhG//YZc3rs9zSEw==}
+  /shiki@0.14.7:
+    resolution: {integrity: sha512-dNPAPrxSc87ua2sKJ3H5dQ/6ZaY8RNnaAqK+t0eG7p0Soi2ydiqbGOTaZCqaYvA/uZYfS1LJnemt3Q+mSfcPCg==}
     dependencies:
       ansi-sequence-parser: 1.1.0
       jsonc-parser: 3.2.1
@@ -7186,21 +7186,21 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-coverage@3.1.0(typedoc@0.24.8):
+  /typedoc-plugin-coverage@3.1.0(typedoc@0.25.12):
     resolution: {integrity: sha512-fxeJRrxQR3yM/aFZU7mOuatgRCztiMCbeNiCRVZKY6VNgOcVMC1HS+ZfZnlbLLteUOdeWleSQ6yntuipz5zi6A==}
     engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.25.x
     dependencies:
-      typedoc: 0.24.8(typescript@5.3.3)
+      typedoc: 0.25.12(typescript@5.3.3)
     dev: true
 
-  /typedoc-plugin-custom-validation@1.1.1(typedoc@0.24.8):
+  /typedoc-plugin-custom-validation@1.1.1(typedoc@0.25.12):
     resolution: {integrity: sha512-B8SPAi85Iyb3JY4fv8vxXyrql0MZspmTXhCGRkjDk6tRf+okwmEZVRwiZfBSS8L9BI8Ef0nQq/7a4AK1KDvBeg==}
     peerDependencies:
       typedoc: ^0.23.26
     dependencies:
-      typedoc: 0.24.8(typescript@5.3.3)
+      typedoc: 0.25.12(typescript@5.3.3)
     dev: true
 
   /typedoc-plugin-konamimojisplosion@0.0.2:
@@ -7208,15 +7208,15 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /typedoc-plugin-mdn-links@3.1.8(typedoc@0.24.8):
+  /typedoc-plugin-mdn-links@3.1.8(typedoc@0.25.12):
     resolution: {integrity: sha512-m2bcjsMghULmf0GBG+P6QwkWYF/7CTvlCefpYGTsIne5eL6wehVzE/RRlw+6qRjTR03FxBwgf/+UsasMRKEbPw==}
     peerDependencies:
       typedoc: '>= 0.23.14 || 0.24.x || 0.25.x'
     dependencies:
-      typedoc: 0.24.8(typescript@5.3.3)
+      typedoc: 0.25.12(typescript@5.3.3)
     dev: true
 
-  /typedoc-plugin-versions@0.2.4(typedoc@0.24.8):
+  /typedoc-plugin-versions@0.2.4(typedoc@0.25.12):
     resolution: {integrity: sha512-mWJHl4oXyWMxrcxVWDvZvLSm+wr3SIEYH+pAiEcyQPJXiq59gLWdmiulqVz2OUG35plOpC5x7sOF5JsIa+plsw==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     peerDependencies:
@@ -7224,20 +7224,20 @@ packages:
     dependencies:
       fs-extra: 10.1.0
       semver: 7.6.0
-      typedoc: 0.24.8(typescript@5.3.3)
+      typedoc: 0.25.12(typescript@5.3.3)
     dev: true
 
-  /typedoc@0.24.8(typescript@5.3.3):
-    resolution: {integrity: sha512-ahJ6Cpcvxwaxfu4KtjA8qZNqS43wYt6JL27wYiIgl1vd38WW/KWX11YuAeZhuz9v+ttrutSsgK+XO1CjL1kA3w==}
-    engines: {node: '>= 14.14'}
+  /typedoc@0.25.12(typescript@5.3.3):
+    resolution: {integrity: sha512-F+qhkK2VoTweDXd1c42GS/By2DvI2uDF4/EpG424dTexSHdtCH52C6IcAvMA6jR3DzAWZjHpUOW+E02kyPNUNw==}
+    engines: {node: '>= 16'}
     hasBin: true
     peerDependencies:
-      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x
     dependencies:
       lunr: 2.3.9
       marked: 4.3.0
       minimatch: 9.0.3
-      shiki: 0.14.1
+      shiki: 0.14.7
       typescript: 5.3.3
     dev: true
 
