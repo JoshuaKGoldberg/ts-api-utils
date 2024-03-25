@@ -99,7 +99,7 @@
 	},
 	"packageManager": "pnpm@8.15.1",
 	"engines": {
-		"node": ">=18"
+		"node": ">=16"
 	},
 	"publishConfig": {
 		"provenance": true
