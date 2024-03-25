@@ -1,4 +1,4 @@
-<h1 align="center">Ts Api Utils</h1>
+<h1 align="center">TypeScript API Utils</h1>
 
 <p align="center">
   Utility functions for working with TypeScript's API.
@@ -74,6 +74,6 @@ Many thanks to [@ajafff](https://github.com/ajafff) for creating the original [`
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
-> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [ts-api-utils](https://github.com/JoshuaKGoldberg/ts-api-utils).
+> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 
 > _"My tools! I have to have my tools!" - Dennis Reynolds_

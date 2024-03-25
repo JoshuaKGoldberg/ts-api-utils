@@ -54,8 +54,8 @@ devDependencies:
     specifier: ^16.6.2
     version: 16.6.2(eslint@8.57.0)
   eslint-plugin-package-json:
-    specifier: ^0.10.4
-    version: 0.10.4(eslint@8.57.0)(jsonc-eslint-parser@2.4.0)
+    specifier: ^0.12.0
+    version: 0.12.0(eslint@8.57.0)(jsonc-eslint-parser@2.4.0)
   eslint-plugin-perfectionist:
     specifier: ^2.6.0
     version: 2.6.0(eslint@8.57.0)(typescript@5.3.3)
@@ -3180,8 +3180,8 @@ packages:
       semver: 7.6.0
     dev: true
 
-  /eslint-plugin-package-json@0.10.4(eslint@8.57.0)(jsonc-eslint-parser@2.4.0):
-    resolution: {integrity: sha512-dape6w9G7hCXDkoVWoPwrQjUK0V6636qAgUPewduXLH9RdEw/y4XGqCyvD5KujlMBQuagadMkxuGNluW0GC4vQ==}
+  /eslint-plugin-package-json@0.12.0(eslint@8.57.0)(jsonc-eslint-parser@2.4.0):
+    resolution: {integrity: sha512-BtzhiA/7x7hqY+0fLXcgiN8wXGFyABJS93q/gns6MsAAPrbGFH3N7MYuCrNUEP60NPHQ4kAW04sPQarQBvJqHg==}
     engines: {node: '>=18'}
     peerDependencies:
       eslint: '>=8.0.0'
