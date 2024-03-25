@@ -85,7 +85,7 @@
 		"should-semantic-release": "^0.2.1",
 		"tsup": "^8.0.2",
 		"typedoc": "^0.24.8",
-		"typedoc-plugin-coverage": "^2.2.0",
+		"typedoc-plugin-coverage": "^3.0.0",
 		"typedoc-plugin-custom-validation": "^1.1.1",
 		"typedoc-plugin-konamimojisplosion": "^0.0.2",
 		"typedoc-plugin-mdn-links": "^3.1.8",
