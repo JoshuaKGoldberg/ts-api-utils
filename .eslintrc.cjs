@@ -36,15 +36,10 @@ module.exports = {
 			parser: "@typescript-eslint/parser",
 			rules: {
 				// These rules have configurations specific to this repo and we like them on.
-				"jsdoc/check-tag-names": [
-					"error",
-					{
-						definedTags: ["category"],
-					},
-				],
+				"jsdoc/check-tag-names": ["error", { definedTags: ["category"] }],
 
 				// These off-by-default rules work well for this repo and we like them on.
-				"jsdoc/informative-docs": "error",
+				"jsdoc/informative-docs": ["error", { excludedTags: ["category"] }],
 				"logical-assignment-operators": [
 					"error",
 					"always",

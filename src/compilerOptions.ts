@@ -3,7 +3,6 @@
 
 import ts from "typescript";
 
-/* eslint-disable jsdoc/informative-docs -- https://github.com/gajus/eslint-plugin-jsdoc/issues/1214 */
 /**
  * An option that can be tested with {@link isCompilerOptionEnabled}.
  * @category Compiler Options
@@ -15,7 +14,6 @@ export type BooleanCompilerOptions = keyof {
 		? K
 		: never]: unknown;
 };
-/* eslint-enable jsdoc/informative-docs */
 
 /**
  * Checks if a given compiler option is enabled.
