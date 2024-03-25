@@ -137,7 +137,7 @@ export function isIntrinsicESSymbolType(
 }
 
 /**
- * An intrinsic type.
+ * An "intrinsic" (built-in to TypeScript) type.
  * @category Type Types
  */
 export interface IntrinsicType extends ts.Type {
@@ -309,7 +309,7 @@ export function isIntrinsicStringType(
 }
 
 /**
- * An "undefined" intrinsic type.
+ * The built-in `undefined` type.
  * @category Type Types
  */
 export interface IntrinsicUndefinedType extends IntrinsicType {
@@ -335,7 +335,7 @@ export function isIntrinsicUndefinedType(
 }
 
 /**
- * An "unknown" intrinsic type.
+ * The built-in `unknown` type.
  * @category Type Types
  */
 export interface IntrinsicUnknownType extends IntrinsicType {
