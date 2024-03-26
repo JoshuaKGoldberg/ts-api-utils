@@ -82,7 +82,7 @@
 		"prettier-plugin-packagejson": "^2.4.7",
 		"release-it": "^17.0.1",
 		"sentences-per-line": "^0.2.1",
-		"should-semantic-release": "^0.2.1",
+		"should-semantic-release": "^0.3.0",
 		"tsup": "^8.0.2",
 		"typedoc": "^0.24.8",
 		"typedoc-plugin-coverage": "^3.0.0",
