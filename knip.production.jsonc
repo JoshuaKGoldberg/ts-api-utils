@@ -1,9 +1,0 @@
-{
-	"$schema": "https://unpkg.com/knip@latest/schema.json",
-	"entry": ["src/**/index.ts!"],
-	"ignore": [
-		// https://github.com/JoshuaKGoldberg/ts-api-utils/issues/343
-		"src/usage/scopes.ts"
-	],
-	"project": ["src/**/*.ts!", "!src/test/**/*.ts!", "!src/**/*.test.ts!"]
-}
