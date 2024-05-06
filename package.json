@@ -64,19 +64,19 @@
 		"eslint-plugin-eslint-comments": "^3.2.0",
 		"eslint-plugin-jsdoc": "^48.2.1",
 		"eslint-plugin-jsonc": "^2.13.0",
-		"eslint-plugin-markdown": "^4.0.1",
-		"eslint-plugin-n": "^16.6.2",
-		"eslint-plugin-package-json": "^0.12.0",
+		"eslint-plugin-markdown": "^5.0.0",
+		"eslint-plugin-n": "^17.0.0",
+		"eslint-plugin-package-json": "^0.13.0",
 		"eslint-plugin-perfectionist": "^2.6.0",
 		"eslint-plugin-regexp": "^2.3.0",
 		"eslint-plugin-vitest": "^0.4.0",
 		"eslint-plugin-yml": "^1.12.2",
 		"husky": "^9.0.11",
 		"jsonc-eslint-parser": "^2.4.0",
-		"knip": "^5.8.0",
+		"knip": "^5.12.3",
 		"lint-staged": "^15.2.2",
 		"markdownlint": "^0.34.0",
-		"markdownlint-cli": "^0.39.0",
+		"markdownlint-cli": "^0.40.0",
 		"prettier": "^3.1.1",
 		"prettier-plugin-curly": "^0.2.1",
 		"prettier-plugin-packagejson": "^2.4.7",
@@ -97,7 +97,7 @@
 	"peerDependencies": {
 		"typescript": ">=4.2.0"
 	},
-	"packageManager": "pnpm@8.15.6",
+	"packageManager": "pnpm@8.15.8",
 	"engines": {
 		"node": ">=16"
 	},
