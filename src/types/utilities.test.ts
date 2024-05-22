@@ -1,3 +1,4 @@
+import semver from "semver";
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
@@ -131,6 +132,36 @@ describe("symbolHasReadonlyDeclaration", () => {
 
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(expected);
 	});
+
+	if (semver.gte(ts.version, "5.0.0")) {
+		it("returns true when the symbol belongs to a property of a nested object literal directly passed into a function that declares the parameter with a const type parameter", () => {
+			const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			declare const fn: <const A>(param: A) => unknown;
+			
+			const bar = { baz: 1 };
+			fn({ foo: { bar } });
+		`);
+
+			const statement = sourceFile.statements.at(-1) as ts.ExpressionStatement;
+			const callExpression = statement.expression as ts.CallExpression;
+			const objectLiteral1 = callExpression
+				.arguments[0] as ts.ObjectLiteralExpression;
+			const foo = objectLiteral1.properties[0] as ts.PropertyAssignment;
+			const fooSymbol = (foo as { symbol?: ts.Symbol }).symbol!;
+			const objectLiteral2 = foo.initializer as ts.ObjectLiteralExpression;
+			const bar = objectLiteral2.properties[0] as ts.PropertyAssignment;
+			const barSymbol = (bar as { symbol?: ts.Symbol }).symbol!;
+			const barType = typeChecker.getTypeAtLocation(bar);
+			const bazSymbol = barType.getProperty("baz")!;
+
+			expect(fooSymbol).toBeDefined();
+			expect(barSymbol).toBeDefined();
+			expect(bazSymbol).toBeDefined();
+			expect(symbolHasReadonlyDeclaration(fooSymbol, typeChecker)).toBe(true);
+			expect(symbolHasReadonlyDeclaration(barSymbol, typeChecker)).toBe(true);
+			expect(symbolHasReadonlyDeclaration(bazSymbol, typeChecker)).toBe(false);
+		});
+	}
 });
 
 describe("isFalsyType", () => {
