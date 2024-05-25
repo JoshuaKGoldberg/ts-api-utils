@@ -90,6 +90,17 @@ export const isSymbolFlagSet: (
 ) => boolean = isFlagSetOnObject;
 
 /**
+ * Test if the given symbol's links has the given `CheckFlags` set.
+ * @internal
+ */
+export function isTransientSymbolLinksFlagSet(
+	links: ts.TransientSymbolLinks,
+	flag: ts.CheckFlags,
+): boolean {
+	return isFlagSet(links.checkFlags, flag);
+}
+
+/**
  * Test if the given node has the given `TypeFlags` set.
  * @category Nodes - Flag Utilities
  * @example

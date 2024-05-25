@@ -3,6 +3,7 @@
 
 import ts from "typescript";
 
+import { isTransientSymbolLinksFlagSet } from "../flags";
 import {
 	isConstAssertionExpression,
 	isEntityNameExpression,
@@ -28,10 +29,13 @@ export function isBindableObjectDefinePropertyCall(
 }
 
 /**
- * Detects whether an expression is affected by an enclosing `as const` assertion and therefore treated literally.
+ * Detects whether the property assignment is affected by an enclosing `as const` assertion or const type parameter and therefore treated literally.
  * @internal
  */
-export function isInConstContext(node: ts.Expression): boolean {
+export function isInConstContext(
+	node: ts.PropertyAssignment | ts.ShorthandPropertyAssignment,
+	typeChecker: ts.TypeChecker,
+): boolean {
 	let current: ts.Node = node;
 	while (true) {
 		const parent = current.parent;
@@ -69,6 +73,45 @@ export function isInConstContext(node: ts.Expression): boolean {
 			case ts.SyntaxKind.TemplateExpression:
 				current = parent;
 				break;
+			case ts.SyntaxKind.CallExpression:
+				if (!ts.isExpression(current)) {
+					return false;
+				}
+
+				const functionSignature = typeChecker.getResolvedSignature(
+					parent as ts.CallExpression,
+				);
+				if (functionSignature === undefined) {
+					return false;
+				}
+
+				const argumentIndex = (parent as ts.CallExpression).arguments.indexOf(
+					current,
+				);
+				if (argumentIndex < 0) {
+					return false;
+				}
+
+				const parameterSymbol =
+					functionSignature.getParameters()[argumentIndex];
+				if (parameterSymbol === undefined || !("links" in parameterSymbol)) {
+					return false;
+				}
+
+				const parameterSymbolLinks = (parameterSymbol as ts.TransientSymbol)
+					.links;
+
+				const propertySymbol =
+					parameterSymbolLinks.type?.getProperties()?.[argumentIndex];
+				if (propertySymbol === undefined || !("links" in propertySymbol)) {
+					return false;
+				}
+
+				// I believe we only need to check one level deep, regardless of how deep `node` is.
+				return isTransientSymbolLinksFlagSet(
+					(propertySymbol as ts.TransientSymbol).links,
+					ts.CheckFlags.Readonly,
+				);
 			default:
 				return false;
 		}
