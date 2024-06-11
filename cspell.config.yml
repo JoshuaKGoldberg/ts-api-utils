@@ -1,0 +1,50 @@
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+
+dictionaries:
+  - bash
+  - en_US
+  - filetypes
+  - misc
+  - node
+  - npm
+  - project-dictionary
+  - softwareTerms
+  - typescript
+
+dictionaryDefinitions:
+  - addWords: true
+    name: project-dictionary
+    path: ./project-dictionary.txt
+
+ignorePaths:
+  - .all-contributorsrc
+  - .git
+  - .gitattributes
+  - .github
+  - .gitignore
+  - .husky
+  - .lintstagedrc.yml
+  - .markdownlint.json
+  - .npmrc
+  - .prettierignore
+  - .prettierrc.yml
+  - .vscode
+  - CHANGELOG.md
+  - coverage
+  - cspell.config.yml
+  - docs/coverage.svg
+  - docs/generated
+  - lib
+  - node_modules
+  - pnpm-lock.yaml
+  - project-dictionary.txt
+
+ignoreRegExpList:
+  - /\b[A-Fa-f0-9]{6}\b/ # ignore hex color codes
+  - /\b[A-Za-z0-9]{32,}\b/ # ignore long string of hex characters
+  - /`[^`]*`/ # ignore things in `...`
+  - /```[\w\W]*?```/ # ignore things in ```...```
+
+language: en-US
+
+version: "0.2"
