@@ -1,19 +1,7 @@
 import ts from "typescript";
 
 /**
- * Supports TypeScript<5 versions that don't have identifierToKeywordKind.
- */
-export function identifierToKeywordKind(
-	node: ts.Identifier,
-): ts.SyntaxKind | undefined {
-	return "identifierToKeywordKind" in ts
-		? ts.identifierToKeywordKind(node)
-		: // eslint-disable-next-line deprecation/deprecation
-			node.originalKeywordKind;
-}
-
-/**
- * Supports TypeScript<4.8 versions that don't have canHaveDecorators.
+ * Supports TypeScript&lt;4.8 versions that don't have canHaveDecorators.
  */
 export function canHaveDecorators(node: ts.Node): node is ts.HasDecorators {
 	return "canHaveDecorators" in ts
@@ -21,12 +9,12 @@ export function canHaveDecorators(node: ts.Node): node is ts.HasDecorators {
 		: "decorators" in node;
 }
 
-type NodeWithDecorators = ts.HasDecorators & {
+type NodeWithDecorators = {
 	decorators: readonly ts.Decorator[] | undefined;
-};
+} & ts.HasDecorators;
 
 /**
- * Supports TypeScript<4.8 versions that don't have getDecorators.
+ * Supports TypeScript&lt;4.8 versions that don't have getDecorators.
  */
 export function getDecorators(
 	node: ts.HasDecorators,

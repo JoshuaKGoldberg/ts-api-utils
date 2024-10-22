@@ -24,11 +24,7 @@ import {
 	RootScope,
 } from "./scopes";
 import { UsageInfo, UsageInfoCallback } from "./usage";
-import {
-	canHaveDecorators,
-	getDecorators,
-	identifierToKeywordKind,
-} from "./utils";
+import { canHaveDecorators, getDecorators } from "./utils";
 
 // TODO class decorators resolve outside of class, element and parameter decorator resolve inside/at the class
 // TODO computed property name resolves inside/at the class
@@ -359,7 +355,7 @@ export class UsageWalker {
 						node.parent.kind !== ts.SyntaxKind.IndexSignature &&
 						((node as ts.ParameterDeclaration).name.kind !==
 							ts.SyntaxKind.Identifier ||
-							identifierToKeywordKind(
+							ts.identifierToKeywordKind(
 								(node as ts.NamedDeclaration).name as ts.Identifier,
 							) !== ts.SyntaxKind.ThisKeyword)
 					) {

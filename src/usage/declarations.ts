@@ -3,8 +3,6 @@
 
 import ts from "typescript";
 
-import { identifierToKeywordKind } from "./utils";
-
 /**
  * Metadata for how a declaration was declared and/or referenced.
  */
@@ -18,10 +16,11 @@ export interface DeclarationInfo {
  * Which "domain"(s) (most commonly, type or value space) a declaration is within.
  */
 export enum DeclarationDomain {
-	Import = 8,
 	Namespace = 1,
 	Type = 2,
 	Value = 4,
+	Import = 8,
+
 	// eslint-disable-next-line perfectionist/sort-enums
 	Any = Namespace | Type | Value,
 }
@@ -53,7 +52,7 @@ export function getDeclarationDomain(
 		case ts.SyntaxKind.Parameter:
 			if (
 				node.parent.parent.kind === ts.SyntaxKind.IndexSignature ||
-				identifierToKeywordKind(node) === ts.SyntaxKind.ThisKeyword
+				ts.identifierToKeywordKind(node) === ts.SyntaxKind.ThisKeyword
 			) {
 				return;
 			}
