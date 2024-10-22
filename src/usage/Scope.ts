@@ -19,7 +19,7 @@ export enum ScopeBoundary {
 
 export enum ScopeBoundarySelector {
 	Function = ScopeBoundary.Function,
-	// eslint-disable-next-line perfectionist/sort-enums
+
 	Block = ScopeBoundarySelector.Function | ScopeBoundary.Block,
 	InferType = ScopeBoundary.ConditionalType,
 	Type = ScopeBoundarySelector.Block | ScopeBoundary.Type,
@@ -45,7 +45,7 @@ export interface Scope {
 	getDestinationScope(selector: ScopeBoundarySelector): Scope;
 	getFunctionScope(): Scope;
 	getVariables(): Map<string, InternalUsageInfo>;
-	markExported(name: ts.Identifier, as?: ts.Identifier): void;
+	markExported(name: ts.ModuleExportName, as?: ts.ModuleExportName): void;
 }
 
 export function isBlockScopeBoundary(node: ts.Node): ScopeBoundary {
@@ -62,11 +62,11 @@ export function isBlockScopeBoundary(node: ts.Node): ScopeBoundary {
 				: ScopeBoundary.None;
 		}
 
-		case ts.SyntaxKind.ForStatement:
-		case ts.SyntaxKind.ForInStatement:
-		case ts.SyntaxKind.ForOfStatement:
 		case ts.SyntaxKind.CaseBlock:
 		case ts.SyntaxKind.CatchClause:
+		case ts.SyntaxKind.ForInStatement:
+		case ts.SyntaxKind.ForOfStatement:
+		case ts.SyntaxKind.ForStatement:
 		case ts.SyntaxKind.WithStatement:
 			return ScopeBoundary.Block;
 		default:
