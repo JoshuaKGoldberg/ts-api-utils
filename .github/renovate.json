@@ -4,15 +4,5 @@
 	"internalChecksFilter": "strict",
 	"labels": ["dependencies"],
 	"minimumReleaseAge": "3 days",
-	"packageRules": [
-		{
-			"allowedVersions": "<0.25",
-			"matchPackageNames": ["typedoc"]
-		},
-		{
-			"allowedVersions": "<5.5",
-			"matchPackageNames": ["typescript"]
-		}
-	],
 	"postUpdateOptions": ["pnpmDedupe"]
 }
