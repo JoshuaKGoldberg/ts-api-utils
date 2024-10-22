@@ -11,9 +11,8 @@ runs:
       uses: actions/github-script@v7.0.1
       with:
         github-token: ${{ inputs.ACCESS_TOKEN }}
-        # Note: keep this inline script in sync with script/setup.js!
         # Todo: it would be nice to not have two sources of truth...
-        # https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
+        # https://github.com/JoshuaKGoldberg/create-typescript-app/issues/145
         script: |
           github.request(
             `PUT /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
@@ -48,6 +47,8 @@ runs:
                   { context: "test (18.x, latest)" },
                   { context: "test (22.x, 4.8.4)" },
                   { context: "test (22.x, latest)" },
+                  { context: "test (latest, 4.8.4)" },
+                  { context: "test (latest, latest)" },
                   { context: "type_check" },
                 ],
                 strict: false,
