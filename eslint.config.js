@@ -64,6 +64,7 @@ export default tseslint.config(
 
 			// These on-by-default rules don't work well for this repo and we like them off.
 			"jsdoc/lines-before-block": "off",
+			"jsdoc/text-escaping": "off",
 			"n/no-missing-import": "off",
 			"no-constant-condition": "off",
 
