@@ -57,6 +57,12 @@ function isJsxElementOrFragment(
  * @category Callbacks
  * @param fullText Full parsed text of the comment.
  * @param comment Text range of the comment in its file.
+ * @example
+ * ```ts
+ * let onComment: ForEachCommentCallback = (fullText, comment) => {
+ *    console.log(`Found comment at position ${comment.pos}: '${fullText}'.`);
+ * };
+ * ```
  */
 export type ForEachCommentCallback = (
 	fullText: string,
