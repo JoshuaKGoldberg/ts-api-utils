@@ -13,18 +13,18 @@ import {
  * An `AssertionExpression` that is declared as const.
  * @category Node Types
  */
-export type ConstAssertionExpression = ts.AssertionExpression & {
+export type ConstAssertionExpression = {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
-};
+} & ts.AssertionExpression;
 
 /**
  * An `Identifier` with an `escapedText` value of `"const"`.
  * @category Node Types
  */
-export type ConstAssertionIdentifier = ts.Identifier & {
-	escapedText: ts.__String & "const";
-};
+export type ConstAssertionIdentifier = {
+	escapedText: "const" & ts.__String;
+} & ts.Identifier;
 
 /**
  * Test if a node is a {@link ConstAssertionExpression}.
@@ -118,7 +118,7 @@ export function isJsxTagNamePropertyAccess(
 ): node is ts.JsxTagNamePropertyAccess {
 	return (
 		ts.isPropertyAccessExpression(node) &&
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts < 5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts < 5
 		isJsxTagNameExpression(node.expression)
 	);
 }
@@ -204,9 +204,9 @@ export function isNumericOrStringLikeLiteral(
 	node: ts.Node,
 ): node is NumericOrStringLikeLiteral {
 	switch (node.kind) {
-		case ts.SyntaxKind.StringLiteral:
-		case ts.SyntaxKind.NumericLiteral:
 		case ts.SyntaxKind.NoSubstitutionTemplateLiteral:
+		case ts.SyntaxKind.NumericLiteral:
+		case ts.SyntaxKind.StringLiteral:
 			return true;
 		default:
 			return false;

@@ -18,10 +18,11 @@ export interface DeclarationInfo {
  * Which "domain"(s) (most commonly, type or value space) a declaration is within.
  */
 export enum DeclarationDomain {
-	Import = 8,
 	Namespace = 1,
 	Type = 2,
 	Value = 4,
+	Import = 8,
+
 	// eslint-disable-next-line perfectionist/sort-enums
 	Any = Namespace | Type | Value,
 }

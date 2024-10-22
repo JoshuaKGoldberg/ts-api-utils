@@ -519,26 +519,6 @@ export function isInKeyword(node: ts.Node): node is ts.InKeyword {
 	return node.kind === ts.SyntaxKind.InKeyword;
 }
 
-/* eslint-disable deprecation/deprecation */
-/**
- * Test if a node is an `InputFiles`.
- * @deprecated With TypeScript v5
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isInputFiles(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be an `InputFiles`.
- */
-export function isInputFiles(node: ts.Node): node is ts.InputFiles {
-	return node.kind === ts.SyntaxKind.InputFiles;
-}
-/* eslint-enable deprecation/deprecation */
-
 /**
  * Test if a node is a `JSDocText`.
  * @category Nodes - Type Guards
@@ -1001,48 +981,6 @@ export function isUndefinedKeyword(node: ts.Node): node is UndefinedKeyword {
 export function isUnknownKeyword(node: ts.Node): node is UnknownKeyword {
 	return node.kind === ts.SyntaxKind.UnknownKeyword;
 }
-
-/* eslint-disable deprecation/deprecation */
-/**
- * Test if a node is an `UnparsedPrologue`.
- * @deprecated With TypeScript v5
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isUnparsedPrologue(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be an `UnparsedPrologue`.
- */
-export function isUnparsedPrologue(node: ts.Node): node is ts.UnparsedPrologue {
-	return node.kind === ts.SyntaxKind.UnparsedPrologue;
-}
-/* eslint-enable deprecation/deprecation */
-
-/* eslint-disable deprecation/deprecation */
-/**
- * Test if a node is an `UnparsedSyntheticReference`.
- * @deprecated With TypeScript v5
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isUnparsedSyntheticReference(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be an `UnparsedSyntheticReference`.
- */
-export function isUnparsedSyntheticReference(
-	node: ts.Node,
-): node is ts.UnparsedSyntheticReference {
-	return node.kind === ts.SyntaxKind.UnparsedSyntheticReference;
-}
-/* eslint-enable deprecation/deprecation */
 
 /**
  * Test if a node is a {@link VoidKeyword}.

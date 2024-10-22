@@ -3,9 +3,9 @@ description: Prepares the repo for a typical CI job
 inputs:
   node-version:
     default: latest
-
     description: The node version to use
     required: false
+
 name: Prepare
 
 runs:

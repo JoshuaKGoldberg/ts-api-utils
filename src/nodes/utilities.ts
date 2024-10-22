@@ -45,8 +45,8 @@ export function isInConstContext(node: ts.Expression): boolean {
 				}
 
 				switch ((parent as ts.PrefixUnaryExpression).operator) {
-					case ts.SyntaxKind.PlusToken:
 					case ts.SyntaxKind.MinusToken:
+					case ts.SyntaxKind.PlusToken:
 						current = parent;
 						break outer;
 					default:

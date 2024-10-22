@@ -28,6 +28,7 @@
 		"packagejson",
 		"phenomnomnominal",
 		"quickstart",
+		"tseslint",
 		"tsquery",
 		"tsup",
 		"tsutils",
