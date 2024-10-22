@@ -52,8 +52,7 @@
 	"plugin": [
 		"typedoc-plugin-coverage",
 		"typedoc-plugin-konamimojisplosion",
-		"typedoc-plugin-mdn-links",
-		"typedoc-plugin-versions"
+		"typedoc-plugin-mdn-links"
 	],
 	"readme": "./docs/index.md",
 	"requiredToBeDocumented": [
