@@ -363,7 +363,7 @@ export function isDeclarationWithTypeParameterChildren(
 ): node is ts.DeclarationWithTypeParameterChildren {
 	return (
 		isSignatureDeclaration(node) ||
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
 		isClassLikeDeclaration(node) ||
 		ts.isInterfaceDeclaration(node) ||
 		ts.isTypeAliasDeclaration(node) ||
@@ -592,14 +592,14 @@ export function hasInitializer(node: ts.Node): node is ts.HasInitializer {
  */
 export function hasJSDoc(node: ts.Node): node is ts.HasJSDoc {
 	if (
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
 		isAccessorDeclaration(node) ||
 		ts.isArrowFunction(node) ||
 		ts.isBlock(node) ||
 		ts.isBreakStatement(node) ||
 		ts.isCallSignatureDeclaration(node) ||
 		ts.isCaseClause(node) ||
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
 		isClassLikeDeclaration(node) ||
 		ts.isConstructorDeclaration(node) ||
 		ts.isConstructorTypeNode(node) ||
@@ -1157,7 +1157,7 @@ export function isObjectTypeDeclaration(
 	node: ts.Node,
 ): node is ts.ObjectTypeDeclaration {
 	return (
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
 		isClassLikeDeclaration(node) ||
 		ts.isInterfaceDeclaration(node) ||
 		ts.isTypeLiteralNode(node)
@@ -1256,7 +1256,7 @@ export function isSignatureDeclaration(
 		ts.isFunctionDeclaration(node) ||
 		ts.isMethodDeclaration(node) ||
 		ts.isConstructorDeclaration(node) ||
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
 		isAccessorDeclaration(node) ||
 		ts.isFunctionExpression(node) ||
 		ts.isArrowFunction(node)
@@ -1355,28 +1355,6 @@ export function isUnionOrIntersectionTypeNode(
 ): node is ts.UnionOrIntersectionTypeNode {
 	return ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node);
 }
-
-/* eslint-disable deprecation/deprecation */
-/**
- * Test if a node is an `UnparsedSourceText`.
- * @deprecated With TypeScript v5
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isUnparsedSourceText(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be an `UnparsedSourceText`.
- */
-export function isUnparsedSourceText(
-	node: ts.Node,
-): node is ts.UnparsedSourceText {
-	return ts.isUnparsedPrepend(node) || ts.isUnparsedTextLike(node);
-}
-/* eslint-enable deprecation/deprecation */
 
 /**
  * Test if a node is a `VariableLikeDeclaration`.
