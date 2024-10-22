@@ -69,6 +69,7 @@ export default tseslint.config(
 
 			// These on-by-default rules work well for this repo if configured
 			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+			"jsdoc/check-tag-names": ["error", { definedTags: ["category"] }],
 			"perfectionist/sort-objects": [
 				"error",
 				{
