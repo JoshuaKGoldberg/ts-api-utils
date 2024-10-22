@@ -113,9 +113,6 @@ importers:
       typedoc-plugin-coverage:
         specifier: ^3.3.0
         version: 3.3.0(typedoc@0.26.10(typescript@5.6.3))
-      typedoc-plugin-custom-validation:
-        specifier: ^1.1.1
-        version: 1.1.1(typedoc@0.26.10(typescript@5.6.3))
       typedoc-plugin-konamimojisplosion:
         specifier: ^0.0.2
         version: 0.0.2
@@ -3411,11 +3408,6 @@ packages:
     engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.25.x || 0.26.x
-
-  typedoc-plugin-custom-validation@1.1.1:
-    resolution: {integrity: sha512-B8SPAi85Iyb3JY4fv8vxXyrql0MZspmTXhCGRkjDk6tRf+okwmEZVRwiZfBSS8L9BI8Ef0nQq/7a4AK1KDvBeg==}
-    peerDependencies:
-      typedoc: ^0.23.26
 
   typedoc-plugin-konamimojisplosion@0.0.2:
     resolution: {integrity: sha512-2/HyiifXMFt46NcztGOoji4HfKwja//q/o1DCNNp6ASIdpL5SRg1Qxu70S37zDbW2ezudX96Yk+lmHFwglE/zg==}
@@ -7049,10 +7041,6 @@ snapshots:
   typedarray@0.0.6: {}
 
   typedoc-plugin-coverage@3.3.0(typedoc@0.26.10(typescript@5.6.3)):
-    dependencies:
-      typedoc: 0.26.10(typescript@5.6.3)
-
-  typedoc-plugin-custom-validation@1.1.1(typedoc@0.26.10(typescript@5.6.3)):
     dependencies:
       typedoc: 0.26.10(typescript@5.6.3)
 
