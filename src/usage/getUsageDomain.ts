@@ -3,6 +3,8 @@
 
 import ts from "typescript";
 
+import { identifierToKeywordKind } from "./utils";
+
 /**
  * Which "domain"(s) (most commonly, type or value space) a usage is within.
  */
@@ -99,7 +101,7 @@ export function getUsageDomain(node: ts.Identifier): undefined | UsageDomain {
 		case ts.SyntaxKind.TypeQuery:
 			return UsageDomain.ValueOrNamespace | UsageDomain.TypeQuery;
 		case ts.SyntaxKind.TypeReference:
-			return ts.identifierToKeywordKind(node) !== ts.SyntaxKind.ConstKeyword
+			return identifierToKeywordKind(node) !== ts.SyntaxKind.ConstKeyword
 				? UsageDomain.Type
 				: undefined;
 		default:
