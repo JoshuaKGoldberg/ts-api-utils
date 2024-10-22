@@ -118,7 +118,7 @@ export function isJsxTagNamePropertyAccess(
 ): node is ts.JsxTagNamePropertyAccess {
 	return (
 		ts.isPropertyAccessExpression(node) &&
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts < 5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts < 5
 		isJsxTagNameExpression(node.expression)
 	);
 }
@@ -204,9 +204,9 @@ export function isNumericOrStringLikeLiteral(
 	node: ts.Node,
 ): node is NumericOrStringLikeLiteral {
 	switch (node.kind) {
-		case ts.SyntaxKind.StringLiteral:
-		case ts.SyntaxKind.NumericLiteral:
 		case ts.SyntaxKind.NoSubstitutionTemplateLiteral:
+		case ts.SyntaxKind.NumericLiteral:
+		case ts.SyntaxKind.StringLiteral:
 			return true;
 		default:
 			return false;

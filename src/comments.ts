@@ -19,6 +19,10 @@ function canHaveTrailingTrivia(token: ts.Node): boolean {
 			);
 		case ts.SyntaxKind.GreaterThanToken:
 			switch (token.parent.kind) {
+				case ts.SyntaxKind.JsxClosingElement:
+				case ts.SyntaxKind.JsxClosingFragment:
+					// there's only trailing trivia if it's the end of the top element
+					return !isJsxElementOrFragment(token.parent.parent.parent);
 				case ts.SyntaxKind.JsxOpeningElement:
 					// if end is not equal, this is part of the type arguments list. in all other cases it would be inside the element body
 					return token.end !== token.parent.end;
@@ -29,10 +33,6 @@ function canHaveTrailingTrivia(token: ts.Node): boolean {
 						token.end !== token.parent.end || // if end is not equal, this is part of the type arguments list
 						!isJsxElementOrFragment(token.parent.parent)
 					); // there's only trailing trivia if it's the end of the top element
-				case ts.SyntaxKind.JsxClosingElement:
-				case ts.SyntaxKind.JsxClosingFragment:
-					// there's only trailing trivia if it's the end of the top element
-					return !isJsxElementOrFragment(token.parent.parent.parent);
 			}
 	}
 

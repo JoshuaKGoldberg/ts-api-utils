@@ -3,12 +3,12 @@
 
 import ts from "typescript";
 
-import { Scope, ScopeBoundary, ScopeBoundarySelector } from "./Scope";
 import {
 	DeclarationDomain,
 	DeclarationInfo,
 	getDeclarationDomain,
 } from "./declarations";
+import { Scope, ScopeBoundary, ScopeBoundarySelector } from "./Scope";
 import {
 	InternalUsageInfo,
 	Usage,
@@ -17,20 +17,40 @@ import {
 } from "./usage";
 
 abstract class AbstractScope implements Scope {
-	#enumScopes: Map<string, EnumScope> | undefined = undefined;
 	protected namespaceScopes: Map<string, NamespaceScope> | undefined =
 		undefined;
 	protected uses: Usage[] = [];
 	protected variables = new Map<string, InternalUsageInfo>();
+	#enumScopes: Map<string, EnumScope> | undefined = undefined;
 
 	constructor(protected global: boolean) {}
+
+	// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+	protected addUseToParent(_use: Usage): void {}
+
+	protected applyUse(use: Usage, variables = this.variables): boolean {
+		const variable = variables.get(use.location.text);
+		if (variable === undefined || (variable.domain & use.domain) === 0) {
+			return false;
+		}
+
+		variable.uses.push(use);
+		return true;
+	}
+
+	protected applyUses(): void {
+		for (const use of this.uses) {
+			if (!this.applyUse(use)) {
+				this.addUseToParent(use);
+			}
+		}
+
+		this.uses = [];
+	}
 
 	addUse(use: Usage): void {
 		this.uses.push(use);
 	}
-
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	protected addUseToParent(_use: Usage): void {}
 
 	addVariable(
 		identifier: string,
@@ -58,26 +78,7 @@ abstract class AbstractScope implements Scope {
 		}
 	}
 
-	protected applyUse(use: Usage, variables = this.variables): boolean {
-		const variable = variables.get(use.location.text);
-		if (variable === undefined || (variable.domain & use.domain) === 0) {
-			return false;
-		}
-
-		variable.uses.push(use);
-		return true;
-	}
-
-	protected applyUses(): void {
-		for (const use of this.uses) {
-			if (!this.applyUse(use)) {
-				this.addUseToParent(use);
-			}
-		}
-
-		this.uses = [];
-	}
-
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	createOrReuseEnumScope(name: string, _exported: boolean): EnumScope {
 		let scope: EnumScope | undefined;
 		if (this.#enumScopes === undefined) {
@@ -150,6 +151,8 @@ abstract class AbstractScope implements Scope {
 		});
 	}
 
+	abstract getDestinationScope(selector: ScopeBoundarySelector): Scope;
+
 	getFunctionScope(): Scope {
 		return this;
 	}
@@ -158,10 +161,8 @@ abstract class AbstractScope implements Scope {
 		return this.variables;
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
 	markExported(_name: ts.Identifier): void {}
-
-	abstract getDestinationScope(selector: ScopeBoundarySelector): Scope;
 }
 
 export class NonRootScope extends AbstractScope {

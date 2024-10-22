@@ -117,10 +117,10 @@ function isReadonlyPropertyIntersection(
 			}
 
 			switch (isReadonlyPropertyFromMappedType(subType, name, typeChecker)) {
-				case true:
-					return true;
 				case false:
 					return false;
+				case true:
+					return true;
 				default:
 				// `undefined` falls through
 			}
