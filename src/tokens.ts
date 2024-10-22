@@ -8,6 +8,12 @@ import ts from "typescript";
 /**
  * Callback type used for {@link forEachToken}.
  * @category Callbacks
+ * @example
+ * ```ts
+ * let onToken: ForEachTokenCallback = (token) => {
+ *    console.log(`Found token at position: ${token.pos}.`);
+ * };
+ * ```
  */
 export type ForEachTokenCallback = (token: ts.Node) => void;
 
