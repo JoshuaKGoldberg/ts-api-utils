@@ -83,6 +83,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "kirkwaiblinger",
+      "name": "Kirk Waiblinger",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53019676?v=4",
+      "profile": "https://github.com/kirkwaiblinger",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
