@@ -13,8 +13,9 @@ jobs:
       fail-fast: false
       matrix:
         node_version:
-          - 16.14.0
           - 18.x
+          - 22.x
+          - latest
 name: Build
 
 on:
