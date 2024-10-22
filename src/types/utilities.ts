@@ -375,7 +375,7 @@ export function symbolHasReadonlyDeclaration(
 				ts.isEnumMember(node) ||
 				((ts.isPropertyAssignment(node) ||
 					ts.isShorthandPropertyAssignment(node)) &&
-					isInConstContext(node.parent)),
+					isInConstContext(node, typeChecker)),
 		)
 	);
 }
