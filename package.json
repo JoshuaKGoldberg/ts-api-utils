@@ -41,7 +41,7 @@
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:packages": "pnpm dedupe --check",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
-		"prepare": "husky install",
+		"prepare": "husky",
 		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest",
 		"tsc": "tsc"
