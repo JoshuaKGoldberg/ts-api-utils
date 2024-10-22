@@ -10,7 +10,6 @@ import { type FreshableIntrinsicType } from "./compound";
  */
 export interface BooleanLiteralType extends UnknownLiteralType {
 	intrinsicName: "false" | "true";
-	value: boolean;
 }
 
 /**
@@ -55,7 +54,6 @@ export function isBigIntLiteralType(
  */
 export interface FalseLiteralType extends BooleanLiteralType {
 	intrinsicName: "false";
-	value: false;
 }
 
 /**
@@ -150,7 +148,6 @@ export function isTemplateLiteralType(
  */
 export interface TrueLiteralType extends BooleanLiteralType {
 	intrinsicName: "true";
-	value: true;
 }
 
 /**
@@ -173,9 +170,7 @@ export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
  * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
  * @category Type Types
  */
-export interface UnknownLiteralType extends FreshableIntrinsicType {
-	value: unknown;
-}
+export interface UnknownLiteralType extends FreshableIntrinsicType {}
 
 /**
  * Test if a type is a {@link UnknownLiteralType}.
