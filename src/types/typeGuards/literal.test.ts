@@ -47,8 +47,8 @@ describe("booleans don't have .value", () => {
 	for (const trueOrFalse of ["true", "false"]) {
 		it(`should show that ${trueOrFalse} is a boolean literal type but doesn't have a .value field`, () => {
 			const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
-			declare const x: ${trueOrFalse};
-		`);
+				declare const x: ${trueOrFalse};
+			`);
 
 			const node = (sourceFile.statements[0] as ts.VariableStatement)
 				.declarationList.declarations[0].name;
