@@ -44,10 +44,10 @@ describe.each([
 });
 
 describe("booleans don't have .value", () => {
-	for (const tf of ["true", "false"]) {
-		it("is a boolean literal type", () => {
+	for (const trueOrFalse of ["true", "false"]) {
+		it(`should show that ${trueOrFalse} is a boolean literal type but doesn't have a .value field`, () => {
 			const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
-			declare const x: ${tf};
+			declare const x: ${trueOrFalse};
 		`);
 
 			const node = (sourceFile.statements[0] as ts.VariableStatement)
@@ -57,7 +57,7 @@ describe("booleans don't have .value", () => {
 
 			expect(isBooleanLiteralType(type)).toBe(true);
 			const booleanLiteralType = type as BooleanLiteralType;
-			expect(booleanLiteralType.intrinsicName).toEqual(tf);
+			expect(booleanLiteralType.intrinsicName).toEqual(trueOrFalse);
 
 			// @ts-expect-error: boolean literals don't have a value
 			expect(booleanLiteralType.value).toBeUndefined();
