@@ -68,7 +68,6 @@ export default tseslint.config(
 			"no-constant-condition": "off",
 
 			// These on-by-default rules work well for this repo if configured
-			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 			"jsdoc/check-tag-names": ["error", { definedTags: ["category"] }],
 			"perfectionist/sort-objects": [
 				"error",
@@ -104,6 +103,7 @@ export default tseslint.config(
 		extends: [tseslint.configs.disableTypeChecked],
 		files: ["**/*.md/*.ts"],
 		rules: {
+			"@typescript-eslint/no-unused-vars": "off",
 			"n/no-missing-import": [
 				"error",
 				{ allowModules: ["notion-rich-text-to-markdown"] },

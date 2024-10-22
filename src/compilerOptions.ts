@@ -3,6 +3,7 @@
 
 import ts from "typescript";
 
+/* eslint-disable jsdoc/informative-docs */
 /**
  * An option that can be tested with {@link isCompilerOptionEnabled}.
  * @category Compiler Options
@@ -14,6 +15,7 @@ export type BooleanCompilerOptions = keyof {
 		? K
 		: never]: unknown;
 };
+/* eslint-enable jsdoc/informative-docs */
 
 /**
  * Checks if a given compiler option is enabled.
@@ -36,21 +38,47 @@ export function isCompilerOptionEnabled(
 	option: BooleanCompilerOptions,
 ): boolean {
 	switch (option) {
-		case "stripInternal":
-		case "declarationMap":
-		case "emitDeclarationOnly":
-			return (
-				options[option] === true &&
-				isCompilerOptionEnabled(options, "declaration")
+		case "allowJs":
+			return options.allowJs === undefined
+				? isCompilerOptionEnabled(options, "checkJs")
+				: options.allowJs;
+		case "allowSyntheticDefaultImports":
+			return options.allowSyntheticDefaultImports !== undefined
+				? options.allowSyntheticDefaultImports
+				: isCompilerOptionEnabled(options, "esModuleInterop") ||
+						options.module === ts.ModuleKind.System;
+		case "alwaysStrict":
+		case "noImplicitAny":
+		case "noImplicitThis":
+		case "strictBindCallApply":
+		case "strictFunctionTypes":
+		case "strictNullChecks":
+		case "strictPropertyInitialization":
+			type AssertEqual<T, U extends T> = U; // make sure all strict options are handled here
+			return isStrictCompilerOptionEnabled(
+				options,
+				option as AssertEqual<typeof option, StrictCompilerOption>,
 			);
 		case "declaration":
 			return (
 				options.declaration || isCompilerOptionEnabled(options, "composite")
 			);
+		case "declarationMap":
+		case "emitDeclarationOnly":
+		case "stripInternal":
+			return (
+				options[option] === true &&
+				isCompilerOptionEnabled(options, "declaration")
+			);
 		case "incremental":
 			return options.incremental === undefined
 				? isCompilerOptionEnabled(options, "composite")
 				: options.incremental;
+		case "noUncheckedIndexedAccess":
+			return (
+				options.noUncheckedIndexedAccess === true &&
+				isCompilerOptionEnabled(options, "strictNullChecks")
+			);
 		case "skipDefaultLibCheck":
 			return (
 				options.skipDefaultLibCheck ||
@@ -58,34 +86,9 @@ export function isCompilerOptionEnabled(
 			);
 		case "suppressImplicitAnyIndexErrors":
 			return (
+				// eslint-disable-next-line @typescript-eslint/no-deprecated
 				options.suppressImplicitAnyIndexErrors === true &&
 				isCompilerOptionEnabled(options, "noImplicitAny")
-			);
-		case "allowSyntheticDefaultImports":
-			return options.allowSyntheticDefaultImports !== undefined
-				? options.allowSyntheticDefaultImports
-				: isCompilerOptionEnabled(options, "esModuleInterop") ||
-						options.module === ts.ModuleKind.System;
-		case "noUncheckedIndexedAccess":
-			return (
-				options.noUncheckedIndexedAccess === true &&
-				isCompilerOptionEnabled(options, "strictNullChecks")
-			);
-		case "allowJs":
-			return options.allowJs === undefined
-				? isCompilerOptionEnabled(options, "checkJs")
-				: options.allowJs;
-		case "noImplicitAny":
-		case "noImplicitThis":
-		case "strictNullChecks":
-		case "strictFunctionTypes":
-		case "strictPropertyInitialization":
-		case "alwaysStrict":
-		case "strictBindCallApply":
-			type AssertEqual<T, U extends T> = U; // make sure all strict options are handled here
-			return isStrictCompilerOptionEnabled(
-				options,
-				option as AssertEqual<typeof option, StrictCompilerOption>,
 			);
 	}
 

@@ -41,15 +41,15 @@ describe("getAccessKind", () => {
 
 	it("returns AccessKind.Read when the node is a nested array spread element", () => {
 		const node = createNode<
-			ts.ArrayLiteralExpression & {
+			{
 				elements: [
-					ts.SpreadElement & {
-						expression: ts.ArrayLiteralExpression & {
+					{
+						expression: {
 							elements: ts.SpreadElement;
-						};
-					},
+						} & ts.ArrayLiteralExpression;
+					} & ts.SpreadElement,
 				];
-			}
+			} & ts.ArrayLiteralExpression
 		>("[...[...abc]]");
 
 		const actual = getAccessKind(node.elements[0].expression.elements[0]);
@@ -59,7 +59,7 @@ describe("getAccessKind", () => {
 
 	it("returns AccessKind.Read when the node is an array spread inside a for-of", () => {
 		const node = createNode<
-			ts.ForOfStatement & { expression: ts.ArrayLiteralExpression }
+			{ expression: ts.ArrayLiteralExpression } & ts.ForOfStatement
 		>("for (const _ of [...abc]) {}");
 
 		const actual = getAccessKind(node.expression.elements[0]);
@@ -69,7 +69,7 @@ describe("getAccessKind", () => {
 
 	it("returns AccessKind.Read when the node is an array spread inside a binary expression", () => {
 		const node = createNode<
-			ts.BinaryExpression & { right: ts.ArrayLiteralExpression }
+			{ right: ts.ArrayLiteralExpression } & ts.BinaryExpression
 		>("abc = [...def]");
 
 		const actual = getAccessKind(node.right.elements[0]);
@@ -79,11 +79,11 @@ describe("getAccessKind", () => {
 
 	it("returns AccessKind.Read when the node is an array spread inside an array expression", () => {
 		const node = createNode<
-			ts.BinaryExpression & {
-				right: ts.ArrayLiteralExpression & {
+			{
+				right: {
 					elements: [ts.ArrayLiteralExpression];
-				};
-			}
+				} & ts.ArrayLiteralExpression;
+			} & ts.BinaryExpression
 		>("abc = [[...def]]");
 
 		const actual = getAccessKind(node.right.elements[0].elements[0]);
