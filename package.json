@@ -1,6 +1,6 @@
 {
 	"name": "ts-api-utils",
-	"version": "1.4.2",
+	"version": "2.0.0-beta0",
 	"description": "Utility functions for working with TypeScript's API. Successor to the wonderful tsutils. 🛠️️",
 	"repository": {
 		"type": "git",
@@ -99,7 +99,7 @@
 	},
 	"packageManager": "pnpm@8.15.9",
 	"engines": {
-		"node": ">=16"
+		"node": ">=18.12"
 	},
 	"publishConfig": {
 		"provenance": true
