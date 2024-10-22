@@ -75,8 +75,5 @@
 		"Method",
 		"TypeAlias"
 	],
-	"skipErrorChecking": true,
-	"versions": {
-		"makeRelativeLinks": true
-	}
+	"skipErrorChecking": true
 }
