@@ -3,7 +3,9 @@ import { describe, expect, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../../test/utils";
 import {
+	BooleanLiteralType,
 	isBigIntLiteralType,
+	isBooleanLiteralType,
 	isFalseLiteralType,
 	isLiteralType,
 	isNumberLiteralType,
@@ -39,4 +41,26 @@ describe.each([
 			expect(typeGuard(type)).toEqual(expected);
 		});
 	});
+});
+
+describe("booleans don't have .value", () => {
+	for (const tf of ["true", "false"]) {
+		it("is a boolean literal type", () => {
+			const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			declare const x: ${tf};
+		`);
+
+			const node = (sourceFile.statements[0] as ts.VariableStatement)
+				.declarationList.declarations[0].name;
+
+			const type = typeChecker.getTypeAtLocation(node);
+
+			expect(isBooleanLiteralType(type)).toBe(true);
+			const booleanLiteralType = type as BooleanLiteralType;
+			expect(booleanLiteralType.intrinsicName).toEqual(tf);
+
+			// @ts-expect-error: boolean literals don't have a value
+			expect(booleanLiteralType.value).toBeUndefined();
+		});
+	}
 });
