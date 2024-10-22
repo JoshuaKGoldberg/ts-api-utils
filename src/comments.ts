@@ -55,6 +55,8 @@ function isJsxElementOrFragment(
 /**
  * Callback type used for {@link forEachComment}.
  * @category Callbacks
+ * @param fullText Full parsed text of the comment.
+ * @param comment Text range of the comment in its file.
  */
 export type ForEachCommentCallback = (
 	fullText: string,
