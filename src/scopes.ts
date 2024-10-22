@@ -17,22 +17,22 @@ import ts from "typescript";
  */
 export function isFunctionScopeBoundary(node: ts.Node): boolean {
 	switch (node.kind) {
-		case ts.SyntaxKind.FunctionExpression:
 		case ts.SyntaxKind.ArrowFunction:
-		case ts.SyntaxKind.Constructor:
-		case ts.SyntaxKind.ModuleDeclaration:
+		case ts.SyntaxKind.CallSignature:
 		case ts.SyntaxKind.ClassDeclaration:
 		case ts.SyntaxKind.ClassExpression:
-		case ts.SyntaxKind.EnumDeclaration:
-		case ts.SyntaxKind.MethodDeclaration:
-		case ts.SyntaxKind.FunctionDeclaration:
-		case ts.SyntaxKind.GetAccessor:
-		case ts.SyntaxKind.SetAccessor:
-		case ts.SyntaxKind.MethodSignature:
-		case ts.SyntaxKind.CallSignature:
-		case ts.SyntaxKind.ConstructSignature:
+		case ts.SyntaxKind.Constructor:
 		case ts.SyntaxKind.ConstructorType:
+		case ts.SyntaxKind.ConstructSignature:
+		case ts.SyntaxKind.EnumDeclaration:
+		case ts.SyntaxKind.FunctionDeclaration:
+		case ts.SyntaxKind.FunctionExpression:
 		case ts.SyntaxKind.FunctionType:
+		case ts.SyntaxKind.GetAccessor:
+		case ts.SyntaxKind.MethodDeclaration:
+		case ts.SyntaxKind.MethodSignature:
+		case ts.SyntaxKind.ModuleDeclaration:
+		case ts.SyntaxKind.SetAccessor:
 			return true;
 		case ts.SyntaxKind.SourceFile:
 			// if SourceFile is no module, it contributes to the global scope and is therefore no scope boundary

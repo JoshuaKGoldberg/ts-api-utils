@@ -1,6 +1,8 @@
 import * as tsvfs from "@typescript/vfs";
 import ts from "typescript";
 
+// Test-only code, this unsafe assertion is fine.
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export function createNodeAndSourceFile<Node extends ts.Node>(
 	sourceText: string,
 ): { node: Node; sourceFile: ts.SourceFile } {

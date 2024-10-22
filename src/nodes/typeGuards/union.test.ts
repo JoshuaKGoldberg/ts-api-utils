@@ -61,7 +61,7 @@ if (isTsVersionAtLeast(4, 9)) {
 				),
 			],
 		])("returns %j when given %s", (expected, sourceText) => {
-			// eslint-disable-next-line deprecation/deprecation
+			// eslint-disable-next-line @typescript-eslint/no-deprecated
 			expect(isAccessorDeclaration(createNode(sourceText))).toBe(expected);
 		});
 	});
@@ -86,7 +86,7 @@ describe("isArrayBindingElement", () => {
 		[true, ts.factory.createBindingElement(undefined, "property", "name")],
 		[true, ts.factory.createOmittedExpression()],
 	])("returns %j when given %s", (expected, sourceText) => {
-		// eslint-disable-next-line deprecation/deprecation
+		// eslint-disable-next-line @typescript-eslint/no-deprecated
 		expect(isArrayBindingElement(createNode(sourceText))).toBe(expected);
 	});
 });
