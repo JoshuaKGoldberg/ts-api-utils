@@ -173,6 +173,9 @@ describe("isFalsyType", () => {
 		[true, "false"],
 		[true, "0"],
 		[true, "null"],
+		[true, "0n"],
+		[true, "-0n"],
+		[false, "24n"],
 	])("returns %j when given %s", (expected, source) => {
 		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
 			${source};

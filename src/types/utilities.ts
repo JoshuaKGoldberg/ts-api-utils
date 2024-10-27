@@ -47,7 +47,11 @@ export function isFalsyType(type: ts.Type): boolean {
 	}
 
 	if (type.isLiteral()) {
-		return !type.value;
+		if (typeof type.value === "object") {
+			return type.value.base10Value === "0";
+		} else {
+			return !type.value;
+		}
 	}
 
 	return isFalseLiteralType(type);
