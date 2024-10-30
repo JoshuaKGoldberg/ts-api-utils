@@ -1,6 +1,7 @@
 // Code largely based on https://github.com/ajafff/tsutils
 // Original license: https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
 
+import semver from "semver";
 import ts from "typescript";
 
 import {
@@ -46,8 +47,12 @@ export function isFalsyType(type: ts.Type): boolean {
 		return true;
 	}
 
-	if (type.isLiteral()) {
-		return !type.value;
+	if (typeIsLiteral(type)) {
+		if (typeof type.value === "object") {
+			return type.value.base10Value === "0";
+		} else {
+			return !type.value;
+		}
 	}
 
 	return isFalseLiteralType(type);
@@ -396,4 +401,25 @@ export function symbolHasReadonlyDeclaration(
  */
 export function unionTypeParts(type: ts.Type): ts.Type[] {
 	return isUnionType(type) ? type.types : [type];
+}
+
+/**
+ * TS's `type.isLiteral()` is bugged before TS v5.0 and won't return `true` for
+ * bigint literals. Use this function instead if you need to check for bigint
+ * literals in TS versions before v5.0. Otherwise, you should just use
+ * `type.isLiteral()`.
+ *
+ * See https://github.com/microsoft/TypeScript/pull/50929
+ */
+export function typeIsLiteral(type: ts.Type): type is ts.LiteralType {
+	if (semver.lt(ts.version, "5.0.0")) {
+		return isTypeFlagSet(
+			type,
+			ts.TypeFlags.StringLiteral |
+				ts.TypeFlags.NumberLiteral |
+				ts.TypeFlags.BigIntLiteral,
+		);
+	} else {
+		return type.isLiteral();
+	}
 }
