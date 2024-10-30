@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v1.2.1...v1.4.0) (2024-10-30)
+
+### Bug Fixes
+
+- empty commmit to trigger CI release ([ba0bfdf](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/ba0bfdf29f76bcbc3ec5734b68975c8609c053d4))
+- handle const Type Parameters ([#519](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/519)) ([41cd21d](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/41cd21d41f445448681dd32308a48a004f4717cb)), closes [#518](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/518)
+- make `isFalsyType()` return `true` for `0n` ([#545](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/545)) ([fe52a60](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/fe52a60573239df2d14ba2e104aa79dd7eaa3791)), closes [#544](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/544)
+
+### Features
+
+- add getAccessKind ([#398](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/398)) ([2f8c76a](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/2f8c76ad1e7d571472902c142d193a2b17e8de58)), closes [#397](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/397)
+
 ## [1.2.1](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v1.2.0...v1.2.1) (2024-2-6)
 
 ### Bug Fixes
