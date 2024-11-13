@@ -13,18 +13,34 @@ import {
  * An `AssertionExpression` that is declared as const.
  * @category Node Types
  */
-export type ConstAssertionExpression = {
+export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
-} & ts.AssertionExpression;
+};
 
 /**
  * An `Identifier` with an `escapedText` value of `"const"`.
  * @category Node Types
  */
-export type ConstAssertionIdentifier = {
+export type ConstAssertionIdentifier = ts.Identifier & {
 	escapedText: "const" & ts.__String;
-} & ts.Identifier;
+};
+
+/**
+ * a `NamedDeclaration` that definitely has a name.
+ * @category Node Types
+ */
+export interface NamedDeclarationWithName extends ts.NamedDeclaration {
+	name: ts.DeclarationName;
+}
+
+/**
+ * A number or string-like literal.
+ * @category Node Types
+ */
+export type NumericOrStringLikeLiteral =
+	| ts.NumericLiteral
+	| ts.StringLiteralLike;
 
 /**
  * Test if a node is a {@link ConstAssertionExpression}.
@@ -124,14 +140,6 @@ export function isJsxTagNamePropertyAccess(
 }
 
 /**
- * a `NamedDeclaration` that definitely has a name.
- * @category Node Types
- */
-export interface NamedDeclarationWithName extends ts.NamedDeclaration {
-	name: ts.DeclarationName;
-}
-
-/**
  * Test if a node is a {@link NamedDeclarationWithName}.
  * @category Nodes - Type Guards
  * @example
@@ -178,14 +186,6 @@ export function isNamespaceDeclaration(
 		isNamespaceBody(node.body)
 	);
 }
-
-/**
- * A number or string-like literal.
- * @category Node Types
- */
-export type NumericOrStringLikeLiteral =
-	| ts.NumericLiteral
-	| ts.StringLiteralLike;
 
 /**
  * Test if a node is a {@link NumericOrStringLikeLiteral}.

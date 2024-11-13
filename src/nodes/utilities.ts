@@ -40,40 +40,16 @@ export function isInConstContext(
 	while (true) {
 		const parent = current.parent;
 		outer: switch (parent.kind) {
-			case ts.SyntaxKind.TypeAssertionExpression:
-			case ts.SyntaxKind.AsExpression:
-				return isConstAssertionExpression(parent as ts.AssertionExpression);
-			case ts.SyntaxKind.PrefixUnaryExpression:
-				if (current.kind !== ts.SyntaxKind.NumericLiteral) {
-					return false;
-				}
-
-				switch ((parent as ts.PrefixUnaryExpression).operator) {
-					case ts.SyntaxKind.MinusToken:
-					case ts.SyntaxKind.PlusToken:
-						current = parent;
-						break outer;
-					default:
-						return false;
-				}
-
-			case ts.SyntaxKind.PropertyAssignment:
-				if ((parent as ts.PropertyAssignment).initializer !== current) {
-					return false;
-				}
-
-				current = parent.parent!;
-				break;
-			case ts.SyntaxKind.ShorthandPropertyAssignment:
-				current = parent.parent!;
-				break;
-			case ts.SyntaxKind.ParenthesizedExpression:
 			case ts.SyntaxKind.ArrayLiteralExpression:
 			case ts.SyntaxKind.ObjectLiteralExpression:
+			case ts.SyntaxKind.ParenthesizedExpression:
 			case ts.SyntaxKind.TemplateExpression:
 				current = parent;
 				break;
-			case ts.SyntaxKind.CallExpression:
+			case ts.SyntaxKind.AsExpression:
+			case ts.SyntaxKind.TypeAssertionExpression:
+				return isConstAssertionExpression(parent as ts.AssertionExpression);
+			case ts.SyntaxKind.CallExpression: {
 				if (!ts.isExpression(current)) {
 					return false;
 				}
@@ -112,6 +88,30 @@ export function isInConstContext(
 					(propertySymbol as ts.TransientSymbol).links,
 					ts.CheckFlags.Readonly,
 				);
+			}
+			case ts.SyntaxKind.PrefixUnaryExpression:
+				if (current.kind !== ts.SyntaxKind.NumericLiteral) {
+					return false;
+				}
+
+				switch ((parent as ts.PrefixUnaryExpression).operator) {
+					case ts.SyntaxKind.MinusToken:
+					case ts.SyntaxKind.PlusToken:
+						current = parent;
+						break outer;
+					default:
+						return false;
+				}
+			case ts.SyntaxKind.PropertyAssignment:
+				if ((parent as ts.PropertyAssignment).initializer !== current) {
+					return false;
+				}
+
+				current = parent.parent!;
+				break;
+			case ts.SyntaxKind.ShorthandPropertyAssignment:
+				current = parent.parent!;
+				break;
 			default:
 				return false;
 		}

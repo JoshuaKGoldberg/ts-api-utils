@@ -4,22 +4,6 @@
 import ts from "typescript";
 
 /**
- * Test if the given flag is set on the combined flags.
- * @internal
- */
-function isFlagSet(allFlags: number, flag: number): boolean {
-	return (allFlags & flag) !== 0;
-}
-
-/**
- * Test if the given flag is set on the given object.
- * @internal
- */
-function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
-	return isFlagSet(obj.flags, flag);
-}
-
-/**
  * Test if the given node has the given `ModifierFlags` set.
  * @category Nodes - Flag Utilities
  * @example
@@ -36,6 +20,22 @@ export function isModifierFlagSet(
 	flag: ts.ModifierFlags,
 ): boolean {
 	return isFlagSet(ts.getCombinedModifierFlags(node), flag);
+}
+
+/**
+ * Test if the given flag is set on the combined flags.
+ * @internal
+ */
+function isFlagSet(allFlags: number, flag: number): boolean {
+	return (allFlags & flag) !== 0;
+}
+
+/**
+ * Test if the given flag is set on the given object.
+ * @internal
+ */
+function isFlagSetOnObject(obj: { flags: number }, flag: number): boolean {
+	return isFlagSet(obj.flags, flag);
 }
 
 /**

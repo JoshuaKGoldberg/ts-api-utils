@@ -18,6 +18,19 @@ export type BooleanCompilerOptions = keyof {
 /* eslint-enable jsdoc/informative-docs */
 
 /**
+ * An option that can be tested with {@link isStrictCompilerOptionEnabled}.
+ * @category Compiler Options
+ */
+export type StrictCompilerOption =
+	| "alwaysStrict"
+	| "noImplicitAny"
+	| "noImplicitThis"
+	| "strictBindCallApply"
+	| "strictFunctionTypes"
+	| "strictNullChecks"
+	| "strictPropertyInitialization";
+
+/**
  * Checks if a given compiler option is enabled.
  * It handles dependencies of options, e.g. `declaration` is implicitly enabled by `composite` or `strictNullChecks` is enabled by `strict`.
  * However, it does not check dependencies that are already checked and reported as errors, e.g. `checkJs` without `allowJs`.
@@ -94,19 +107,6 @@ export function isCompilerOptionEnabled(
 
 	return options[option] === true;
 }
-
-/**
- * An option that can be tested with {@link isStrictCompilerOptionEnabled}.
- * @category Compiler Options
- */
-export type StrictCompilerOption =
-	| "alwaysStrict"
-	| "noImplicitAny"
-	| "noImplicitThis"
-	| "strictBindCallApply"
-	| "strictFunctionTypes"
-	| "strictNullChecks"
-	| "strictPropertyInitialization";
 
 /**
  * Checks if a given compiler option is enabled, accounting for whether all flags

@@ -1,6 +1,21 @@
 import * as tsvfs from "@typescript/vfs";
 import ts from "typescript";
 
+interface SourceFileAndTypeChecker {
+	sourceFile: ts.SourceFile;
+	typeChecker: ts.TypeChecker;
+}
+
+export function createNode<Node extends ts.Node>(
+	nodeOrSourceText: Node | string,
+): Node {
+	if (typeof nodeOrSourceText !== "string") {
+		return nodeOrSourceText;
+	}
+
+	return createNodeAndSourceFile<Node>(nodeOrSourceText).node;
+}
+
 // Test-only code, this unsafe assertion is fine.
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export function createNodeAndSourceFile<Node extends ts.Node>(
@@ -23,21 +38,6 @@ export function createSourceFile(sourceText: string): ts.SourceFile {
 		ts.ScriptTarget.ESNext,
 		true,
 	);
-}
-
-export function createNode<Node extends ts.Node>(
-	nodeOrSourceText: Node | string,
-): Node {
-	if (typeof nodeOrSourceText !== "string") {
-		return nodeOrSourceText;
-	}
-
-	return createNodeAndSourceFile<Node>(nodeOrSourceText).node;
-}
-
-interface SourceFileAndTypeChecker {
-	sourceFile: ts.SourceFile;
-	typeChecker: ts.TypeChecker;
 }
 
 export function createSourceFileAndTypeChecker(
