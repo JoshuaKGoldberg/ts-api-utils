@@ -11,6 +11,50 @@ export interface IntrinsicAnyType extends IntrinsicType {
 }
 
 /**
+ * A "bigint" intrinsic type.
+ * @category Type Types
+ */
+export interface IntrinsicBigIntType extends IntrinsicType {
+	intrinsicName: "bigint";
+}
+
+/**
+ * A "boolean" intrinsic type.
+ * @category Type Types
+ */
+export interface IntrinsicBooleanType extends IntrinsicType {
+	intrinsicName: "boolean";
+}
+
+/**
+ * An "error" intrinsic type.
+ *
+ * This refers to a type generated when TypeScript encounters an error while
+ * trying to resolve the type.
+ * @category Type Types
+ */
+export interface IntrinsicErrorType extends IntrinsicType {
+	intrinsicName: "error";
+}
+
+/**
+ * A "symbol" intrinsic type.
+ * @category Type Types
+ */
+export interface IntrinsicESSymbolType extends IntrinsicType {
+	intrinsicName: "symbol";
+}
+
+/**
+ * An "intrinsic" (built-in to TypeScript) type.
+ * @category Type Types
+ */
+export interface IntrinsicType extends ts.Type {
+	intrinsicName: string;
+	objectFlags: ts.ObjectFlags;
+}
+
+/**
  * Determines whether the given type is the "any" intrinsic type.
  * @category Types - Type Guards
  * @example
@@ -24,40 +68,6 @@ export interface IntrinsicAnyType extends IntrinsicType {
  */
 export function isIntrinsicAnyType(type: ts.Type): type is IntrinsicAnyType {
 	return isTypeFlagSet(type, ts.TypeFlags.Any);
-}
-
-/**
- * A "boolean" intrinsic type.
- * @category Type Types
- */
-export interface IntrinsicBooleanType extends IntrinsicType {
-	intrinsicName: "boolean";
-}
-
-/**
- * Determines whether the given type is the "boolean" intrinsic type.
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isIntrinsicBooleanType(type)) {
- *   // ...
- * }
- * ```
- */
-export function isIntrinsicBooleanType(
-	type: ts.Type,
-): type is IntrinsicBooleanType {
-	return isTypeFlagSet(type, ts.TypeFlags.Boolean);
-}
-
-/**
- * A "bigint" intrinsic type.
- * @category Type Types
- */
-export interface IntrinsicBigIntType extends IntrinsicType {
-	intrinsicName: "bigint";
 }
 
 /**
@@ -79,14 +89,21 @@ export function isIntrinsicBigIntType(
 }
 
 /**
- * An "error" intrinsic type.
+ * Determines whether the given type is the "boolean" intrinsic type.
+ * @category Types - Type Guards
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
  *
- * This refers to a type generated when TypeScript encounters an error while
- * trying to resolve the type.
- * @category Type Types
+ * if (isIntrinsicBooleanType(type)) {
+ *   // ...
+ * }
+ * ```
  */
-export interface IntrinsicErrorType extends IntrinsicType {
-	intrinsicName: "error";
+export function isIntrinsicBooleanType(
+	type: ts.Type,
+): type is IntrinsicBooleanType {
+	return isTypeFlagSet(type, ts.TypeFlags.Boolean);
 }
 
 /**
@@ -111,14 +128,6 @@ export function isIntrinsicErrorType(
 }
 
 /**
- * A "symbol" intrinsic type.
- * @category Type Types
- */
-export interface IntrinsicESSymbolType extends IntrinsicType {
-	intrinsicName: "symbol";
-}
-
-/**
  * Determines whether the given type is the "symbol" intrinsic type.
  * @category Types - Type Guards
  * @example
@@ -134,15 +143,6 @@ export function isIntrinsicESSymbolType(
 	type: ts.Type,
 ): type is IntrinsicESSymbolType {
 	return isTypeFlagSet(type, ts.TypeFlags.ESSymbol);
-}
-
-/**
- * An "intrinsic" (built-in to TypeScript) type.
- * @category Type Types
- */
-export interface IntrinsicType extends ts.Type {
-	intrinsicName: string;
-	objectFlags: ts.ObjectFlags;
 }
 
 // ts.TypeFlags.Intrinsic
@@ -163,27 +163,68 @@ const IntrinsicTypeFlags =
 		ts.TypeFlags.NonPrimitive;
 
 /**
- * Test if a type is an {@link IntrinsicType}.
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isIntrinsicType(type)) {
- *   // ...
- * }
- * ```
- */
-export function isIntrinsicType(type: ts.Type): type is IntrinsicType {
-	return isTypeFlagSet(type, IntrinsicTypeFlags);
-}
-
-/**
  * A "never" intrinsic type.
  * @category Type Types
  */
 export interface IntrinsicNeverType extends IntrinsicType {
 	intrinsicName: "never";
+}
+
+/**
+ * A non-primitive intrinsic type.
+ * E.g. An "object" intrinsic type.
+ * @category Type Types
+ */
+export interface IntrinsicNonPrimitiveType extends IntrinsicType {
+	intrinsicName: "";
+}
+
+/**
+ * A "null" intrinsic type.
+ * @category Type Types
+ */
+export interface IntrinsicNullType extends IntrinsicType {
+	intrinsicName: "null";
+}
+
+/**
+ * A "number" intrinsic type.
+ * @category Type Types
+ */
+export interface IntrinsicNumberType extends IntrinsicType {
+	intrinsicName: "number";
+}
+
+/**
+ * A "string" intrinsic type.
+ * @category Type Types
+ */
+export interface IntrinsicStringType extends IntrinsicType {
+	intrinsicName: "string";
+}
+
+/**
+ * The built-in `undefined` type.
+ * @category Type Types
+ */
+export interface IntrinsicUndefinedType extends IntrinsicType {
+	intrinsicName: "undefined";
+}
+
+/**
+ * The built-in `unknown` type.
+ * @category Type Types
+ */
+export interface IntrinsicUnknownType extends IntrinsicType {
+	intrinsicName: "unknown";
+}
+
+/**
+ * A "void" intrinsic type.
+ * @category Type Types
+ */
+export interface IntrinsicVoidType extends IntrinsicType {
+	intrinsicName: "void";
 }
 
 /**
@@ -202,15 +243,6 @@ export function isIntrinsicNeverType(
 	type: ts.Type,
 ): type is IntrinsicNeverType {
 	return isTypeFlagSet(type, ts.TypeFlags.Never);
-}
-
-/**
- * A non-primitive intrinsic type.
- * E.g. An "object" intrinsic type.
- * @category Type Types
- */
-export interface IntrinsicNonPrimitiveType extends IntrinsicType {
-	intrinsicName: "";
 }
 
 /**
@@ -233,14 +265,6 @@ export function isIntrinsicNonPrimitiveType(
 }
 
 /**
- * A "null" intrinsic type.
- * @category Type Types
- */
-export interface IntrinsicNullType extends IntrinsicType {
-	intrinsicName: "null";
-}
-
-/**
  * Determines whether the given type is the "null" intrinsic type.
  * @category Types - Type Guards
  * @example
@@ -254,14 +278,6 @@ export interface IntrinsicNullType extends IntrinsicType {
  */
 export function isIntrinsicNullType(type: ts.Type): type is IntrinsicNullType {
 	return isTypeFlagSet(type, ts.TypeFlags.Null);
-}
-
-/**
- * A "number" intrinsic type.
- * @category Type Types
- */
-export interface IntrinsicNumberType extends IntrinsicType {
-	intrinsicName: "number";
 }
 
 /**
@@ -283,14 +299,6 @@ export function isIntrinsicNumberType(
 }
 
 /**
- * A "string" intrinsic type.
- * @category Type Types
- */
-export interface IntrinsicStringType extends IntrinsicType {
-	intrinsicName: "string";
-}
-
-/**
  * Determines whether the given type is the "string" intrinsic type.
  * @category Types - Type Guards
  * @example
@@ -309,11 +317,19 @@ export function isIntrinsicStringType(
 }
 
 /**
- * The built-in `undefined` type.
- * @category Type Types
+ * Test if a type is an {@link IntrinsicType}.
+ * @category Types - Type Guards
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isIntrinsicType(type)) {
+ *   // ...
+ * }
+ * ```
  */
-export interface IntrinsicUndefinedType extends IntrinsicType {
-	intrinsicName: "undefined";
+export function isIntrinsicType(type: ts.Type): type is IntrinsicType {
+	return isTypeFlagSet(type, IntrinsicTypeFlags);
 }
 
 /**
@@ -335,14 +351,6 @@ export function isIntrinsicUndefinedType(
 }
 
 /**
- * The built-in `unknown` type.
- * @category Type Types
- */
-export interface IntrinsicUnknownType extends IntrinsicType {
-	intrinsicName: "unknown";
-}
-
-/**
  * Determines whether the given type is the "unknown" intrinsic type.
  * @category Types - Type Guards
  * @example
@@ -358,14 +366,6 @@ export function isIntrinsicUnknownType(
 	type: ts.Type,
 ): type is IntrinsicUnknownType {
 	return isTypeFlagSet(type, ts.TypeFlags.Unknown);
-}
-
-/**
- * A "void" intrinsic type.
- * @category Type Types
- */
-export interface IntrinsicVoidType extends IntrinsicType {
-	intrinsicName: "void";
 }
 
 /**

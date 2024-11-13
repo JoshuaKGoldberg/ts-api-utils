@@ -33,174 +33,6 @@ export class UsageWalker {
 	#result = new Map<ts.Identifier, UsageInfo>();
 	#scope!: Scope;
 
-	#handleBindingName(
-		name: ts.BindingName,
-		blockScoped: boolean,
-		exported: boolean,
-	) {
-		if (name.kind === ts.SyntaxKind.Identifier) {
-			return this.#scope.addVariable(
-				name.text,
-				name,
-				blockScoped
-					? ScopeBoundarySelector.Block
-					: ScopeBoundarySelector.Function,
-				exported,
-				DeclarationDomain.Value,
-			);
-		}
-
-		forEachDestructuringIdentifier(name, (declaration) => {
-			this.#scope.addVariable(
-				declaration.name.text,
-				declaration.name,
-				blockScoped
-					? ScopeBoundarySelector.Block
-					: ScopeBoundarySelector.Function,
-				exported,
-				DeclarationDomain.Value,
-			);
-		});
-	}
-
-	#handleConditionalType(
-		node: ts.ConditionalTypeNode,
-		cb: (node: ts.Node) => void,
-		varCb: UsageInfoCallback,
-	) {
-		const savedScope = this.#scope;
-		const scope = (this.#scope = new ConditionalTypeScope(savedScope));
-		cb(node.checkType);
-		scope.updateState(ConditionalTypeScopeState.Extends);
-		cb(node.extendsType);
-		scope.updateState(ConditionalTypeScopeState.TrueType);
-		cb(node.trueType);
-		scope.updateState(ConditionalTypeScopeState.FalseType);
-		cb(node.falseType);
-		scope.end(varCb);
-		this.#scope = savedScope;
-	}
-
-	#handleDeclaration(
-		node: ts.NamedDeclaration,
-		blockScoped: boolean,
-		domain: DeclarationDomain,
-	) {
-		if (node.name !== undefined) {
-			this.#scope.addVariable(
-				(node.name as ts.Identifier).text,
-				node.name as ts.Identifier,
-				blockScoped
-					? ScopeBoundarySelector.Block
-					: ScopeBoundarySelector.Function,
-				includesModifier(
-					(node as ts.HasModifiers).modifiers,
-					ts.SyntaxKind.ExportKeyword,
-				),
-				domain,
-			);
-		}
-	}
-
-	#handleFunctionLikeDeclaration(
-		node: ts.FunctionLikeDeclaration,
-		cb: (node: ts.Node) => void,
-		varCb: UsageInfoCallback,
-	) {
-		if (ts.canHaveDecorators(node)) {
-			ts.getDecorators(node)?.forEach(cb);
-		}
-
-		const savedScope = this.#scope;
-		if (node.kind === ts.SyntaxKind.FunctionDeclaration) {
-			this.#handleDeclaration(node, false, DeclarationDomain.Value);
-		}
-
-		const scope = (this.#scope =
-			node.kind === ts.SyntaxKind.FunctionExpression && node.name !== undefined
-				? new FunctionExpressionScope(node.name, savedScope)
-				: new FunctionScope(savedScope));
-		if (node.name !== undefined) {
-			cb(node.name);
-		}
-
-		if (node.typeParameters !== undefined) {
-			node.typeParameters.forEach(cb);
-		}
-
-		node.parameters.forEach(cb);
-		if (node.type !== undefined) {
-			cb(node.type);
-		}
-
-		if (node.body !== undefined) {
-			scope.beginBody();
-			cb(node.body);
-		}
-
-		scope.end(varCb);
-		this.#scope = savedScope;
-	}
-
-	#handleModule(
-		node: ts.ModuleDeclaration,
-		next: (node: ts.Node, scope: Scope) => void,
-	) {
-		if (node.flags & ts.NodeFlags.GlobalAugmentation) {
-			return next(
-				node,
-				this.#scope.createOrReuseNamespaceScope("-global", false, true, false),
-			);
-		}
-
-		if (node.name.kind === ts.SyntaxKind.Identifier) {
-			const exported = isNamespaceExported(node as ts.NamespaceDeclaration);
-			this.#scope.addVariable(
-				node.name.text,
-				node.name,
-				ScopeBoundarySelector.Function,
-				exported,
-				DeclarationDomain.Namespace | DeclarationDomain.Value,
-			);
-			const ambient = includesModifier(
-				node.modifiers,
-				ts.SyntaxKind.DeclareKeyword,
-			);
-			return next(
-				node,
-				this.#scope.createOrReuseNamespaceScope(
-					node.name.text,
-					exported,
-					ambient,
-					ambient && namespaceHasExportStatement(node),
-				),
-			);
-		}
-
-		return next(
-			node,
-			this.#scope.createOrReuseNamespaceScope(
-				`"${node.name.text}"`,
-				false,
-				true,
-				namespaceHasExportStatement(node),
-			),
-		);
-	}
-
-	#handleVariableDeclaration(declarationList: ts.VariableDeclarationList) {
-		const blockScoped = isBlockScopedVariableDeclarationList(declarationList);
-		const exported =
-			declarationList.parent.kind === ts.SyntaxKind.VariableStatement &&
-			includesModifier(
-				declarationList.parent.modifiers,
-				ts.SyntaxKind.ExportKeyword,
-			);
-		for (const declaration of declarationList.declarations) {
-			this.#handleBindingName(declaration.name, blockScoped, exported);
-		}
-	}
-
 	getUsage(sourceFile: ts.SourceFile): Map<ts.Identifier, UsageInfo> {
 		const variableCallback = (variable: UsageInfo, key: ts.Identifier) => {
 			this.#result.set(key, variable);
@@ -422,21 +254,174 @@ export class UsageWalker {
 			return ts.forEachChild(node, cb);
 		}
 	}
-}
 
-function isNamespaceExported(node: ts.NamespaceDeclaration) {
-	return (
-		node.parent.kind === ts.SyntaxKind.ModuleDeclaration ||
-		includesModifier(node.modifiers, ts.SyntaxKind.ExportKeyword)
-	);
-}
+	#handleBindingName(
+		name: ts.BindingName,
+		blockScoped: boolean,
+		exported: boolean,
+	) {
+		if (name.kind === ts.SyntaxKind.Identifier) {
+			return this.#scope.addVariable(
+				name.text,
+				name,
+				blockScoped
+					? ScopeBoundarySelector.Block
+					: ScopeBoundarySelector.Function,
+				exported,
+				DeclarationDomain.Value,
+			);
+		}
 
-function namespaceHasExportStatement(ns: ts.ModuleDeclaration): boolean {
-	if (ns.body === undefined || ns.body.kind !== ts.SyntaxKind.ModuleBlock) {
-		return false;
+		forEachDestructuringIdentifier(name, (declaration) => {
+			this.#scope.addVariable(
+				declaration.name.text,
+				declaration.name,
+				blockScoped
+					? ScopeBoundarySelector.Block
+					: ScopeBoundarySelector.Function,
+				exported,
+				DeclarationDomain.Value,
+			);
+		});
 	}
 
-	return containsExportStatement(ns.body);
+	#handleConditionalType(
+		node: ts.ConditionalTypeNode,
+		cb: (node: ts.Node) => void,
+		varCb: UsageInfoCallback,
+	) {
+		const savedScope = this.#scope;
+		const scope = (this.#scope = new ConditionalTypeScope(savedScope));
+		cb(node.checkType);
+		scope.updateState(ConditionalTypeScopeState.Extends);
+		cb(node.extendsType);
+		scope.updateState(ConditionalTypeScopeState.TrueType);
+		cb(node.trueType);
+		scope.updateState(ConditionalTypeScopeState.FalseType);
+		cb(node.falseType);
+		scope.end(varCb);
+		this.#scope = savedScope;
+	}
+
+	#handleDeclaration(
+		node: ts.NamedDeclaration,
+		blockScoped: boolean,
+		domain: DeclarationDomain,
+	) {
+		if (node.name !== undefined) {
+			this.#scope.addVariable(
+				(node.name as ts.Identifier).text,
+				node.name as ts.Identifier,
+				blockScoped
+					? ScopeBoundarySelector.Block
+					: ScopeBoundarySelector.Function,
+				includesModifier(
+					(node as ts.HasModifiers).modifiers,
+					ts.SyntaxKind.ExportKeyword,
+				),
+				domain,
+			);
+		}
+	}
+
+	#handleFunctionLikeDeclaration(
+		node: ts.FunctionLikeDeclaration,
+		cb: (node: ts.Node) => void,
+		varCb: UsageInfoCallback,
+	) {
+		if (ts.canHaveDecorators(node)) {
+			ts.getDecorators(node)?.forEach(cb);
+		}
+
+		const savedScope = this.#scope;
+		if (node.kind === ts.SyntaxKind.FunctionDeclaration) {
+			this.#handleDeclaration(node, false, DeclarationDomain.Value);
+		}
+
+		const scope = (this.#scope =
+			node.kind === ts.SyntaxKind.FunctionExpression && node.name !== undefined
+				? new FunctionExpressionScope(node.name, savedScope)
+				: new FunctionScope(savedScope));
+		if (node.name !== undefined) {
+			cb(node.name);
+		}
+
+		if (node.typeParameters !== undefined) {
+			node.typeParameters.forEach(cb);
+		}
+
+		node.parameters.forEach(cb);
+		if (node.type !== undefined) {
+			cb(node.type);
+		}
+
+		if (node.body !== undefined) {
+			scope.beginBody();
+			cb(node.body);
+		}
+
+		scope.end(varCb);
+		this.#scope = savedScope;
+	}
+
+	#handleModule(
+		node: ts.ModuleDeclaration,
+		next: (node: ts.Node, scope: Scope) => void,
+	) {
+		if (node.flags & ts.NodeFlags.GlobalAugmentation) {
+			return next(
+				node,
+				this.#scope.createOrReuseNamespaceScope("-global", false, true, false),
+			);
+		}
+
+		if (node.name.kind === ts.SyntaxKind.Identifier) {
+			const exported = isNamespaceExported(node as ts.NamespaceDeclaration);
+			this.#scope.addVariable(
+				node.name.text,
+				node.name,
+				ScopeBoundarySelector.Function,
+				exported,
+				DeclarationDomain.Namespace | DeclarationDomain.Value,
+			);
+			const ambient = includesModifier(
+				node.modifiers,
+				ts.SyntaxKind.DeclareKeyword,
+			);
+			return next(
+				node,
+				this.#scope.createOrReuseNamespaceScope(
+					node.name.text,
+					exported,
+					ambient,
+					ambient && namespaceHasExportStatement(node),
+				),
+			);
+		}
+
+		return next(
+			node,
+			this.#scope.createOrReuseNamespaceScope(
+				`"${node.name.text}"`,
+				false,
+				true,
+				namespaceHasExportStatement(node),
+			),
+		);
+	}
+
+	#handleVariableDeclaration(declarationList: ts.VariableDeclarationList) {
+		const blockScoped = isBlockScopedVariableDeclarationList(declarationList);
+		const exported =
+			declarationList.parent.kind === ts.SyntaxKind.VariableStatement &&
+			includesModifier(
+				declarationList.parent.modifiers,
+				ts.SyntaxKind.ExportKeyword,
+			);
+		for (const declaration of declarationList.declarations) {
+			this.#handleBindingName(declaration.name, blockScoped, exported);
+		}
+	}
 }
 
 function containsExportStatement(block: ts.BlockLike): boolean {
@@ -452,15 +437,9 @@ function containsExportStatement(block: ts.BlockLike): boolean {
 	return false;
 }
 
-function isBlockScopedVariableDeclarationList(
-	declarationList: ts.VariableDeclarationList,
-): boolean {
-	return (declarationList.flags & ts.NodeFlags.BlockScoped) !== 0;
-}
-
 function forEachDestructuringIdentifier<T>(
 	pattern: ts.BindingPattern,
-	fn: (element: { name: ts.Identifier } & ts.BindingElement) => T,
+	fn: (element: ts.BindingElement & { name: ts.Identifier }) => T,
 ): T | undefined {
 	for (const element of pattern.elements) {
 		if (element.kind !== ts.SyntaxKind.BindingElement) {
@@ -469,7 +448,7 @@ function forEachDestructuringIdentifier<T>(
 
 		let result: T | undefined;
 		if (element.name.kind === ts.SyntaxKind.Identifier) {
-			result = fn(element as { name: ts.Identifier } & ts.BindingElement);
+			result = fn(element as ts.BindingElement & { name: ts.Identifier });
 		} else {
 			result = forEachDestructuringIdentifier(element.name, fn);
 		}
@@ -478,4 +457,25 @@ function forEachDestructuringIdentifier<T>(
 			return result;
 		}
 	}
+}
+
+function isBlockScopedVariableDeclarationList(
+	declarationList: ts.VariableDeclarationList,
+): boolean {
+	return (declarationList.flags & ts.NodeFlags.BlockScoped) !== 0;
+}
+
+function isNamespaceExported(node: ts.NamespaceDeclaration) {
+	return (
+		node.parent.kind === ts.SyntaxKind.ModuleDeclaration ||
+		includesModifier(node.modifiers, ts.SyntaxKind.ExportKeyword)
+	);
+}
+
+function namespaceHasExportStatement(ns: ts.ModuleDeclaration): boolean {
+	if (ns.body === undefined || ns.body.kind !== ts.SyntaxKind.ModuleBlock) {
+		return false;
+	}
+
+	return containsExportStatement(ns.body);
 }

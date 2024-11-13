@@ -7,14 +7,22 @@ import { DeclarationDomain, DeclarationInfo } from "./declarations";
 import { UsageDomain } from "./getUsageDomain";
 import { Scope } from "./Scope";
 
+export interface InternalUsageInfo {
+	declarations: DeclarationInfo[];
+	domain: DeclarationDomain;
+	uses: Usage[];
+}
+
 /**
- * Registers usage information for an identifier in a scope.
+ * An instance of an item (type or value) being used.
  */
-export type UsageInfoCallback = (
-	usageInfo: UsageInfo,
-	key: ts.Identifier,
-	scope: Scope,
-) => void;
+export interface Usage {
+	/**
+	 * Which space(s) the usage is within.
+	 */
+	domain: UsageDomain;
+	location: ts.Identifier;
+}
 
 /**
  * How an item (type or value) was declared and/or referenced.
@@ -47,18 +55,10 @@ export interface UsageInfo {
 }
 
 /**
- * An instance of an item (type or value) being used.
+ * Registers usage information for an identifier in a scope.
  */
-export interface Usage {
-	/**
-	 * Which space(s) the usage is within.
-	 */
-	domain: UsageDomain;
-	location: ts.Identifier;
-}
-
-export interface InternalUsageInfo {
-	declarations: DeclarationInfo[];
-	domain: DeclarationDomain;
-	uses: Usage[];
-}
+export type UsageInfoCallback = (
+	usageInfo: UsageInfo,
+	key: ts.Identifier,
+	scope: Scope,
+) => void;

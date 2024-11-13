@@ -1,7 +1,10 @@
 import ts from "typescript";
 
 import { isTypeFlagSet } from "../../flags";
-import { type FreshableIntrinsicType } from "./compound";
+import {
+	type FreshableIntrinsicType,
+	type isFreshableIntrinsicType,
+} from "./compound";
 
 /**
  * A boolean literal.
@@ -13,21 +16,28 @@ export interface BooleanLiteralType extends FreshableIntrinsicType {
 }
 
 /**
- * Determines whether the given type is a boolean literal type.
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isBooleanLiteralType(type)) {
- *   // ...
- * }
- * ```
+ * A "false" literal.
+ * @category Type Types
  */
-export function isBooleanLiteralType(
-	type: ts.Type,
-): type is BooleanLiteralType {
-	return isTypeFlagSet(type, ts.TypeFlags.BooleanLiteral);
+export interface FalseLiteralType extends BooleanLiteralType {
+	intrinsicName: "false";
+}
+
+/**
+ * A "true" literal.
+ * @category Type Types
+ */
+export interface TrueLiteralType extends BooleanLiteralType {
+	intrinsicName: "true";
+}
+
+/**
+ * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
+ * @deprecated Use {@link FreshableIntrinsicType} instead.
+ * @category Type Types
+ */
+export interface UnknownLiteralType extends FreshableIntrinsicType {
+	value?: unknown;
 }
 
 /**
@@ -49,11 +59,21 @@ export function isBigIntLiteralType(
 }
 
 /**
- * A "false" literal.
- * @category Type Types
+ * Determines whether the given type is a boolean literal type.
+ * @category Types - Type Guards
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isBooleanLiteralType(type)) {
+ *   // ...
+ * }
+ * ```
  */
-export interface FalseLiteralType extends BooleanLiteralType {
-	intrinsicName: "false";
+export function isBooleanLiteralType(
+	type: ts.Type,
+): type is BooleanLiteralType {
+	return isTypeFlagSet(type, ts.TypeFlags.BooleanLiteral);
 }
 
 /**
@@ -143,14 +163,6 @@ export function isTemplateLiteralType(
 }
 
 /**
- * A "true" literal.
- * @category Type Types
- */
-export interface TrueLiteralType extends BooleanLiteralType {
-	intrinsicName: "true";
-}
-
-/**
  * Determines whether the given type is a boolean literal type for "true".
  * @category Types - Type Guards
  * @example
@@ -164,15 +176,6 @@ export interface TrueLiteralType extends BooleanLiteralType {
  */
 export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
 	return isBooleanLiteralType(type) && type.intrinsicName === "true";
-}
-
-/**
- * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
- * @deprecated Use {@link FreshableIntrinsicType} instead.
- * @category Type Types
- */
-export interface UnknownLiteralType extends FreshableIntrinsicType {
-	value?: unknown;
 }
 
 /**
@@ -190,7 +193,7 @@ export interface UnknownLiteralType extends FreshableIntrinsicType {
  */
 export function isUnknownLiteralType(
 	type: ts.Type,
-	// eslint-disable-next-line deprecation/deprecation
+	// eslint-disable-next-line @typescript-eslint/no-deprecated
 ): type is UnknownLiteralType {
 	return isTypeFlagSet(type, ts.TypeFlags.Literal);
 }

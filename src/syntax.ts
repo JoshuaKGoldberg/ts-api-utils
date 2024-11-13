@@ -33,10 +33,6 @@ export function isNumericPropertyName(name: string | ts.__String): boolean {
 	return String(+name) === name;
 }
 
-function charSize(ch: number) {
-	return ch >= 0x10000 ? 2 : 1;
-}
-
 /**
  * Determines whether the given text can be used to access a property with a `PropertyAccessExpression` while preserving the property's name.
  * @category Syntax Utilities
@@ -67,4 +63,8 @@ export function isValidPropertyAccess(
 	}
 
 	return true;
+}
+
+function charSize(ch: number) {
+	return ch >= 0x10000 ? 2 : 1;
 }

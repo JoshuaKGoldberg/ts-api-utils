@@ -6,6 +6,18 @@ import ts from "typescript";
 import { identifierToKeywordKind } from "./utils";
 
 /**
+ * Which "domain"(s) (most commonly, type or value space) a declaration is within.
+ */
+export enum DeclarationDomain {
+	Namespace = 1,
+	Type = 2,
+	Value = 4,
+	Any = Namespace | Type | Value,
+
+	Import = 8,
+}
+
+/**
  * Metadata for how a declaration was declared and/or referenced.
  */
 export interface DeclarationInfo {
@@ -14,34 +26,20 @@ export interface DeclarationInfo {
 	exported: boolean;
 }
 
-/**
- * Which "domain"(s) (most commonly, type or value space) a declaration is within.
- */
-export enum DeclarationDomain {
-	Namespace = 1,
-	Type = 2,
-	Value = 4,
-	Import = 8,
-
-	// eslint-disable-next-line perfectionist/sort-enums
-	Any = Namespace | Type | Value,
-}
-
 export function getDeclarationDomain(
 	node: ts.Identifier,
 ): DeclarationDomain | undefined {
 	switch (node.parent.kind) {
-		case ts.SyntaxKind.TypeParameter:
-		case ts.SyntaxKind.InterfaceDeclaration:
-		case ts.SyntaxKind.TypeAliasDeclaration:
-			return DeclarationDomain.Type;
 		case ts.SyntaxKind.ClassDeclaration:
 		case ts.SyntaxKind.ClassExpression:
 			return DeclarationDomain.Type | DeclarationDomain.Value;
 		case ts.SyntaxKind.EnumDeclaration:
 			return DeclarationDomain.Any;
-		case ts.SyntaxKind.NamespaceImport:
+		case ts.SyntaxKind.FunctionDeclaration:
+		case ts.SyntaxKind.FunctionExpression:
+			return DeclarationDomain.Value;
 		case ts.SyntaxKind.ImportClause:
+		case ts.SyntaxKind.NamespaceImport:
 			return DeclarationDomain.Any | DeclarationDomain.Import; // TODO handle type-only imports
 		case ts.SyntaxKind.ImportEqualsDeclaration:
 		case ts.SyntaxKind.ImportSpecifier:
@@ -49,6 +47,11 @@ export function getDeclarationDomain(
 				.name === node
 				? DeclarationDomain.Any | DeclarationDomain.Import // TODO handle type-only imports
 				: undefined;
+		case ts.SyntaxKind.InterfaceDeclaration:
+		case ts.SyntaxKind.TypeAliasDeclaration:
+		case ts.SyntaxKind.TypeParameter:
+			return DeclarationDomain.Type;
+
 		case ts.SyntaxKind.ModuleDeclaration:
 			return DeclarationDomain.Namespace;
 		case ts.SyntaxKind.Parameter:
@@ -58,15 +61,11 @@ export function getDeclarationDomain(
 			) {
 				return;
 			}
-
 		// falls through
 		case ts.SyntaxKind.BindingElement:
 		case ts.SyntaxKind.VariableDeclaration:
 			return (node.parent as ts.VariableLikeDeclaration).name === node
 				? DeclarationDomain.Value
 				: undefined;
-		case ts.SyntaxKind.FunctionDeclaration:
-		case ts.SyntaxKind.FunctionExpression:
-			return DeclarationDomain.Value;
 	}
 }
