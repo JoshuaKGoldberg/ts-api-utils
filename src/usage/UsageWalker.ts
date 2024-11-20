@@ -464,7 +464,7 @@ function isBlockScopedVariableDeclarationList(
 
 function forEachDestructuringIdentifier<T>(
 	pattern: ts.BindingPattern,
-	fn: (element: ts.BindingElement & { name: ts.Identifier }) => T,
+	fn: (element: { name: ts.Identifier } & ts.BindingElement) => T,
 ): T | undefined {
 	for (const element of pattern.elements) {
 		if (element.kind !== ts.SyntaxKind.BindingElement) {
@@ -473,7 +473,7 @@ function forEachDestructuringIdentifier<T>(
 
 		let result: T | undefined;
 		if (element.name.kind === ts.SyntaxKind.Identifier) {
-			result = fn(element as ts.BindingElement & { name: ts.Identifier });
+			result = fn(element as { name: ts.Identifier } & ts.BindingElement);
 		} else {
 			result = forEachDestructuringIdentifier(element.name, fn);
 		}

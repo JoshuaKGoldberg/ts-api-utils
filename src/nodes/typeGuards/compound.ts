@@ -13,18 +13,18 @@ import {
  * An `AssertionExpression` that is declared as const.
  * @category Node Types
  */
-export type ConstAssertionExpression = ts.AssertionExpression & {
+export type ConstAssertionExpression = {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
-};
+} & ts.AssertionExpression;
 
 /**
  * An `Identifier` with an `escapedText` value of `"const"`.
  * @category Node Types
  */
-export type ConstAssertionIdentifier = ts.Identifier & {
-	escapedText: ts.__String & "const";
-};
+export type ConstAssertionIdentifier = {
+	escapedText: "const" & ts.__String;
+} & ts.Identifier;
 
 /**
  * Test if a node is a {@link ConstAssertionExpression}.
