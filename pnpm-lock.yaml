@@ -120,8 +120,8 @@ devDependencies:
     specifier: ^3.0.0
     version: 3.3.0(typedoc@0.24.8)
   typedoc-plugin-custom-validation:
-    specifier: ^1.1.1
-    version: 1.1.1(typedoc@0.24.8)
+    specifier: ^2.0.2
+    version: 2.0.2(typedoc@0.24.8)
   typedoc-plugin-konamimojisplosion:
     specifier: ^0.0.2
     version: 0.0.2
@@ -6020,10 +6020,10 @@ packages:
       typedoc: 0.24.8(typescript@5.4.5)
     dev: true
 
-  /typedoc-plugin-custom-validation@1.1.1(typedoc@0.24.8):
-    resolution: {integrity: sha512-B8SPAi85Iyb3JY4fv8vxXyrql0MZspmTXhCGRkjDk6tRf+okwmEZVRwiZfBSS8L9BI8Ef0nQq/7a4AK1KDvBeg==}
+  /typedoc-plugin-custom-validation@2.0.2(typedoc@0.24.8):
+    resolution: {integrity: sha512-phJBkPQKUfvNBpYPLjCvJfHluk/R/g6Ksp/VXk4nPFT25EkafbEU7KFMxLcM1E41qAdO63MFPX2JmTdfXFifDQ==}
     peerDependencies:
-      typedoc: ^0.23.26
+      typedoc: ~0.26.11
     dependencies:
       typedoc: 0.24.8(typescript@5.4.5)
     dev: true
