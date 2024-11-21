@@ -93,8 +93,8 @@ devDependencies:
     specifier: ^3.1.1
     version: 3.3.3
   prettier-plugin-curly:
-    specifier: ^0.2.1
-    version: 0.2.2(prettier@3.3.3)
+    specifier: ^0.3.0
+    version: 0.3.1(prettier@3.3.3)
   prettier-plugin-packagejson:
     specifier: ^2.4.7
     version: 2.5.3(prettier@3.3.3)
@@ -5131,8 +5131,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-curly@0.2.2(prettier@3.3.3):
-    resolution: {integrity: sha512-2Rm/NLSeVv7xhQop3+P0Yt6GcbRGrFCb7Dl7y7NH6md4ZgcAcIiKgmAJtB+iWhgw1iwV7aDYSWslAQHpxu9isQ==}
+  /prettier-plugin-curly@0.3.1(prettier@3.3.3):
+    resolution: {integrity: sha512-GU3JJ4DB+j2gNA+8SxiyuAOuqalFu+JrX9JMNChTEwvgLCs+XXu2WJ1NbP1uK57Cbz04E2OhrkDpQFLMH5MsXg==}
     engines: {node: '>=18'}
     peerDependencies:
       prettier: ^2 || ^3
