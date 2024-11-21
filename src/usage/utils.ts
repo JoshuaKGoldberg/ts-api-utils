@@ -21,9 +21,9 @@ export function canHaveDecorators(node: ts.Node): node is ts.HasDecorators {
 		: "decorators" in node;
 }
 
-type NodeWithDecorators = ts.HasDecorators & {
+type NodeWithDecorators = {
 	decorators: readonly ts.Decorator[] | undefined;
-};
+} & ts.HasDecorators;
 
 /**
  * Supports TypeScript<4.8 versions that don't have getDecorators.

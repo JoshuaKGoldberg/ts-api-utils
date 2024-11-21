@@ -8,7 +8,7 @@ declare module "typescript" {
 	}
 
 	interface TransientSymbolLinks extends SymbolLinks {
-    // https://github.com/microsoft/TypeScript/issues/58656
+		// https://github.com/microsoft/TypeScript/issues/58656
 		checkFlags: CheckFlags;
 	}
 

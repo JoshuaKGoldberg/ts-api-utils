@@ -408,8 +408,16 @@ export function unionTypeParts(type: ts.Type): ts.Type[] {
  * bigint literals. Use this function instead if you need to check for bigint
  * literals in TS versions before v5.0. Otherwise, you should just use
  * `type.isLiteral()`.
+ * @see https://github.com/microsoft/TypeScript/pull/50929
+ * @category Types - Utilities
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
  *
- * See https://github.com/microsoft/TypeScript/pull/50929
+ * if (typeIsLiteral(type)) {
+ *   // ...
+ * }
+ * ```
  */
 export function typeIsLiteral(type: ts.Type): type is ts.LiteralType {
 	if (semver.lt(ts.version, "5.0.0")) {
