@@ -59,8 +59,7 @@ describe("booleans don't have .value", () => {
 			const booleanLiteralType = type as BooleanLiteralType;
 			expect(booleanLiteralType.intrinsicName).toEqual(trueOrFalse);
 
-			// @ts-expect-error: boolean literals don't have a value
-			expect(booleanLiteralType.value).toBeUndefined();
+			expect(booleanLiteralType).not.toHaveProperty("value");
 		});
 	}
 });
