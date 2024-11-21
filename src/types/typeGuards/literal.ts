@@ -168,15 +168,16 @@ export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
 
 /**
  * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
+ * @deprecated Use {@link FreshableIntrinsicType} instead.
  * @category Type Types
  */
-// TODO - resolve what to do with this apparently-useless type.
-// See https://github.com/JoshuaKGoldberg/ts-api-utils/pull/535#discussion_r1845527367
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface UnknownLiteralType extends FreshableIntrinsicType {}
+export interface UnknownLiteralType extends FreshableIntrinsicType {
+	value?: unknown;
+}
 
 /**
  * Test if a type is a {@link UnknownLiteralType}.
+ * @deprecated Use {@link isFreshableIntrinsicType} instead.
  * @category Types - Type Guards
  * @example
  * ```ts
