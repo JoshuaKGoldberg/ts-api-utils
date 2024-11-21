@@ -84,8 +84,8 @@ devDependencies:
     specifier: ^15.2.2
     version: 15.2.10
   markdownlint:
-    specifier: ^0.34.0
-    version: 0.34.0
+    specifier: ^0.36.0
+    version: 0.36.1
   markdownlint-cli:
     specifier: ^0.40.0
     version: 0.40.0
@@ -4495,6 +4495,11 @@ packages:
       toml: 3.0.0
     dev: true
 
+  /markdownlint-micromark@0.1.12:
+    resolution: {integrity: sha512-RlB6EwMGgc0sxcIhOQ2+aq7Zw1V2fBnzbXKGgYK/mVWdT7cz34fteKSwfYeo4rL6+L/q2tyC9QtD/PgZbkdyJQ==}
+    engines: {node: '>=18'}
+    dev: true
+
   /markdownlint-micromark@0.1.9:
     resolution: {integrity: sha512-5hVs/DzAFa8XqYosbEAEg6ok6MF2smDj89ztn9pKkCtdKHVdPQuGMH7frFfYL9mLkvfFe4pTyAMffLbjf3/EyA==}
     engines: {node: '>=18'}
@@ -4513,6 +4518,14 @@ packages:
     dependencies:
       markdown-it: 14.1.0
       markdownlint-micromark: 0.1.9
+    dev: true
+
+  /markdownlint@0.36.1:
+    resolution: {integrity: sha512-s73fU2CQN7WCgjhaQUQ8wYESQNzGRNOKDd+3xgVqu8kuTEhmwepd/mxOv1LR2oV046ONrTLBFsM7IoKWNvmy5g==}
+    engines: {node: '>=18'}
+    dependencies:
+      markdown-it: 14.1.0
+      markdownlint-micromark: 0.1.12
     dev: true
 
   /marked@4.3.0:
