@@ -8,7 +8,7 @@ import { type FreshableIntrinsicType } from "./compound";
  * i.e. Either a "true" or "false" literal.
  * @category Type Types
  */
-export interface BooleanLiteralType extends UnknownLiteralType {
+export interface BooleanLiteralType extends FreshableIntrinsicType {
 	intrinsicName: "false" | "true";
 }
 
@@ -190,6 +190,7 @@ export interface UnknownLiteralType extends FreshableIntrinsicType {
  */
 export function isUnknownLiteralType(
 	type: ts.Type,
+	// eslint-disable-next-line deprecation/deprecation
 ): type is UnknownLiteralType {
 	return isTypeFlagSet(type, ts.TypeFlags.Literal);
 }
