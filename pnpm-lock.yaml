@@ -60,8 +60,8 @@ devDependencies:
     specifier: ^0.15.0
     version: 0.15.6(eslint@8.57.1)(jsonc-eslint-parser@2.4.0)
   eslint-plugin-perfectionist:
-    specifier: ^2.6.0
-    version: 2.11.0(eslint@8.57.1)(typescript@5.4.5)
+    specifier: ^3.0.0
+    version: 3.9.1(eslint@8.57.1)(typescript@5.4.5)
   eslint-plugin-regexp:
     specifier: ^2.3.0
     version: 2.7.0(eslint@8.57.1)
@@ -1713,6 +1713,26 @@ packages:
       - typescript
     dev: true
 
+  /@typescript-eslint/utils@8.15.0(eslint@8.57.1)(typescript@5.4.5):
+    resolution: {integrity: sha512-k82RI9yGhr0QM3Dnq+egEpz9qB6Un+WLYhmoNcvl8ltMEededhh7otBVVIDDsEEttauwdY/hQoSsOv13lxrFzQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@eslint-community/eslint-utils': 4.4.1(eslint@8.57.1)
+      '@typescript-eslint/scope-manager': 8.15.0
+      '@typescript-eslint/types': 8.15.0
+      '@typescript-eslint/typescript-estree': 8.15.0(typescript@5.4.5)
+      eslint: 8.57.1
+      typescript: 5.4.5
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@typescript-eslint/visitor-keys@7.18.0:
     resolution: {integrity: sha512-cDF0/Gf81QpY3xYyJKDV14Zwdmid5+uuENhjH2EqFaF0ni+yAyq/LzMaIJdhNJXZI7uLzwIlA+V7oWoyn6Curg==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -3036,13 +3056,14 @@ packages:
       validate-npm-package-name: 6.0.0
     dev: true
 
-  /eslint-plugin-perfectionist@2.11.0(eslint@8.57.1)(typescript@5.4.5):
-    resolution: {integrity: sha512-XrtBtiu5rbQv88gl+1e2RQud9te9luYNvKIgM9emttQ2zutHPzY/AQUucwxscDKV4qlTkvLTxjOFvxqeDpPorw==}
+  /eslint-plugin-perfectionist@3.9.1(eslint@8.57.1)(typescript@5.4.5):
+    resolution: {integrity: sha512-9WRzf6XaAxF4Oi5t/3TqKP5zUjERhasHmLFHin2Yw6ZAp/EP/EVA2dr3BhQrrHWCm5SzTMZf0FcjDnBkO2xFkA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       astro-eslint-parser: ^1.0.2
       eslint: '>=8.0.0'
       svelte: '>=3.0.0'
-      svelte-eslint-parser: ^0.37.0
+      svelte-eslint-parser: ^0.41.1
       vue-eslint-parser: '>=9.0.0'
     peerDependenciesMeta:
       astro-eslint-parser:
@@ -3054,7 +3075,8 @@ packages:
       vue-eslint-parser:
         optional: true
     dependencies:
-      '@typescript-eslint/utils': 7.18.0(eslint@8.57.1)(typescript@5.4.5)
+      '@typescript-eslint/types': 8.15.0
+      '@typescript-eslint/utils': 8.15.0(eslint@8.57.1)(typescript@5.4.5)
       eslint: 8.57.1
       minimatch: 9.0.5
       natural-compare-lite: 1.4.0
