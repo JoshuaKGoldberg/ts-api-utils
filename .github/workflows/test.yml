@@ -13,7 +13,7 @@ jobs:
       - run: pnpm run test --coverage
       - if: matrix.node_version == '18.x'
         name: Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           flags: ${{ matrix.ts_version }}
 
