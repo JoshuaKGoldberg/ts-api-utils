@@ -8,9 +8,8 @@ import { type FreshableIntrinsicType } from "./compound";
  * i.e. Either a "true" or "false" literal.
  * @category Type Types
  */
-export interface BooleanLiteralType extends UnknownLiteralType {
+export interface BooleanLiteralType extends FreshableIntrinsicType {
 	intrinsicName: "false" | "true";
-	value: boolean;
 }
 
 /**
@@ -55,7 +54,6 @@ export function isBigIntLiteralType(
  */
 export interface FalseLiteralType extends BooleanLiteralType {
 	intrinsicName: "false";
-	value: false;
 }
 
 /**
@@ -150,7 +148,6 @@ export function isTemplateLiteralType(
  */
 export interface TrueLiteralType extends BooleanLiteralType {
 	intrinsicName: "true";
-	value: true;
 }
 
 /**
@@ -171,14 +168,16 @@ export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
 
 /**
  * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
+ * @deprecated Use {@link FreshableIntrinsicType} instead.
  * @category Type Types
  */
 export interface UnknownLiteralType extends FreshableIntrinsicType {
-	value: unknown;
+	value?: unknown;
 }
 
 /**
  * Test if a type is a {@link UnknownLiteralType}.
+ * @deprecated Use {@link isFreshableIntrinsicType} instead.
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -191,6 +190,7 @@ export interface UnknownLiteralType extends FreshableIntrinsicType {
  */
 export function isUnknownLiteralType(
 	type: ts.Type,
+	// eslint-disable-next-line deprecation/deprecation
 ): type is UnknownLiteralType {
 	return isTypeFlagSet(type, ts.TypeFlags.Literal);
 }
