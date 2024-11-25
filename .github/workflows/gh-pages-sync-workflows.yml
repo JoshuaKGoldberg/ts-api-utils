@@ -4,7 +4,6 @@ jobs:
     steps:
       - name: Checkout main
         uses: actions/checkout@v3
-      - uses: ./.github/actions/prepare
 
       - name: Save actions and workflows
         run: tar -cvf /tmp/workflows.tar ./.github/actions ./.github/workflows
