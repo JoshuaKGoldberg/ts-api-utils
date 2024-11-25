@@ -28,7 +28,49 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         if: steps.should_release.outputs.should_release != '0'
         run: pnpm release-it --verbose
-      - if: always() && steps.should_release.outputs.should_release != '0'
+
+      - if: steps.should_release.outputs.should_release != '0'
+        name: Generate Docs
+        run: pnpm run docs
+
+      - if: steps.should_release.outputs.should_release != '0'
+        name: Create a pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./docs/generated
+
+      - id: deployment
+        if: steps.should_release.outputs.should_release != '0'
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
+
+      - if: steps.should_release.outputs.should_release != '0'
+        name: Update Coverage Badge
+        run: cp ./docs/generated/coverage.svg ./docs/coverage.svg
+
+      - id: coverage_changed
+        if: steps.should_release.outputs.should_release != '0'
+        run: echo "coverage_changed=$(git status --porcelain -u | grep -c docs/coverage.svg)" >> "$GITHUB_OUTPUT"
+
+      - env:
+          COVERAGE_CHANGED: ${{ steps.coverage_changed.outputs.coverage_changed }}
+        id: push_coverage
+        if: steps.should_release.outputs.should_release != '0'
+        run: echo "push_coverage=$(if [[ "$COVERAGE_CHANGED" != '0' ]] ; then echo '1' ; else echo '0' ; fi)" >> "$GITHUB_OUTPUT"
+
+      - if: steps.should_release.outputs.should_release != '0' && steps.push_coverage.outputs.push_coverage != '0'
+        uses: ./.github/actions/unprotect-main
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - if: steps.should_release.outputs.should_release != '0' && steps.push_coverage.outputs.push_coverage != '0'
+        run: |
+          git add docs/coverage.svg
+          git commit -m "docs: update documentation coverage badge"
+          git push
+
+      - continue-on-error: true
+        if: always() && steps.should_release.outputs.should_release != '0'
         uses: ./.github/actions/protect-main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
