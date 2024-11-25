@@ -11,8 +11,6 @@ jobs:
         with:
           ref: gh-pages
 
-      - uses: ./.github/actions/prepare
-
       - name: Create a pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
@@ -25,10 +23,12 @@ jobs:
       - name: Store Coverage Badge
         run: cp ./docs/generated/stable/coverage.svg /tmp/coverage.svg
 
-      - name: get gh-pages
+      - name: Checkout Main
         uses: actions/checkout@v3
         with:
           ref: main
+
+      - uses: ./.github/actions/prepare
 
       - name: Update Coverage Badge
         run: cp /tmp/coverage.svg ./docs/coverage.svg
