@@ -1,0 +1,42 @@
+jobs:
+  sync_gh-pages_workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v3
+      - uses: ./.github/actions/prepare
+
+      - name: Save actions and workflows
+        run: tar -cvf /tmp/workflows.tar ./.github/actions ./.github/workflows
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+
+      - name: Restore actions and workflows
+        run: |
+          mkdir -p ./.github/
+          rm -rf ./.github/actions ./.github/workflows
+          tar -xf /tmp/workflows.tar ./.github -C ./.github
+
+      - continue-on-error: true
+        name: Commit
+        run: |
+          git add -f .github
+          git commit -m "ci: update workflows"
+          git push
+
+name: Sync workflows to gh-pages branch
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/actions/**
+      - .github/workflows/**
+  workflow_dispatch: ~
+
+permissions:
+  contents: write
+  id-token: write
