@@ -55,7 +55,7 @@ devDependencies:
     version: 5.1.0(eslint@8.57.1)
   eslint-plugin-n:
     specifier: ^17.0.0
-    version: 17.13.2(eslint@8.57.1)
+    version: 17.14.0(eslint@8.57.1)
   eslint-plugin-package-json:
     specifier: ^0.15.0
     version: 0.15.6(eslint@8.57.1)(jsonc-eslint-parser@2.4.0)
@@ -1580,7 +1580,7 @@ packages:
       graphemer: 1.4.0
       ignore: 5.3.2
       natural-compare: 1.4.0
-      ts-api-utils: 1.4.0(typescript@5.4.5)
+      ts-api-utils: 1.4.1(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -1637,7 +1637,7 @@ packages:
       '@typescript-eslint/utils': 7.18.0(eslint@8.57.1)(typescript@5.4.5)
       debug: 4.3.7
       eslint: 8.57.1
-      ts-api-utils: 1.4.0(typescript@5.4.5)
+      ts-api-utils: 1.4.1(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -1669,7 +1669,7 @@ packages:
       is-glob: 4.0.3
       minimatch: 9.0.5
       semver: 7.6.3
-      ts-api-utils: 1.4.0(typescript@5.4.5)
+      ts-api-utils: 1.4.1(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -1691,7 +1691,7 @@ packages:
       is-glob: 4.0.3
       minimatch: 9.0.5
       semver: 7.6.3
-      ts-api-utils: 1.4.0(typescript@5.4.5)
+      ts-api-utils: 1.4.1(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -2917,7 +2917,7 @@ packages:
     dependencies:
       '@typescript-eslint/utils': 7.18.0(eslint@8.57.1)(typescript@5.4.5)
       eslint: 8.57.1
-      ts-api-utils: 1.4.0(typescript@5.4.5)
+      ts-api-utils: 1.4.1(typescript@5.4.5)
       tslib: 2.8.1
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -3000,8 +3000,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-n@17.13.2(eslint@8.57.1):
-    resolution: {integrity: sha512-MhBAKkT01h8cOXcTBTlpuR7bxH5OBUNpUXefsvwSVEy46cY4m/Kzr2osUCQvA3zJFD6KuCeNNDv0+HDuWk/OcA==}
+  /eslint-plugin-n@17.14.0(eslint@8.57.1):
+    resolution: {integrity: sha512-maxPLMEA0rPmRpoOlxEclKng4UpDe+N5BJS4t24I3UKnN109Qcivnfs37KMy84G0af3bxjog5lKctP5ObsvcTA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.23.0'
@@ -5857,8 +5857,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ts-api-utils@1.4.0(typescript@5.4.5):
-    resolution: {integrity: sha512-032cPxaEKwM+GT3vA5JXNzIaizx388rhsSW79vGRNGXfRRAdEAn2mvk36PvK5HnOchyWZ7afLEXqYCvPCrzuzQ==}
+  /ts-api-utils@1.4.1(typescript@5.4.5):
+    resolution: {integrity: sha512-5RU2/lxTA3YUZxju61HO2U6EoZLvBLtmV2mbTvqyu4a/7s7RmJPT+1YekhMVsQhznRWk/czIwDUg+V8Q9ZuG4w==}
     engines: {node: '>=16'}
     peerDependencies:
       typescript: '>=4.2.0'
