@@ -1,0 +1,21 @@
+description: Prepares the repo for a typical CI job
+
+inputs:
+  node-version:
+    default: latest
+
+    description: The node version to use
+    required: false
+name: Prepare
+
+runs:
+  steps:
+    - uses: pnpm/action-setup@v2
+    - uses: actions/setup-node@v4
+      with:
+        cache: pnpm
+        node-version: ${{ inputs.node-version }}
+    - run: pnpm install --frozen-lockfile
+      shell: bash
+    - uses: ./.github/actions/git-config
+  using: composite

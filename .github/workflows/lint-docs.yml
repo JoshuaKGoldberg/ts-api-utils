@@ -1,0 +1,15 @@
+jobs:
+  lint_docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: pnpm lint:docs
+
+name: Lint Docs
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main

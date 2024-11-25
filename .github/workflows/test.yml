@@ -1,0 +1,38 @@
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - run: pnpm remove typescript
+      - run: pnpm add -D typescript@"${{ matrix.ts_version }}"
+
+      - run: pnpm run test --coverage
+      - if: matrix.node_version == '18.x'
+        name: Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          flags: ${{ matrix.ts_version }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version:
+          - 16.14.0
+          - 18.x
+        ts_version:
+          - 4.3.5
+          - 4.6.4
+          - 4.9.5
+          - latest
+
+name: Test
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main

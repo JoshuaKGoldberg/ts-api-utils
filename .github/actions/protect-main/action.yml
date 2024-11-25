@@ -1,0 +1,61 @@
+description: Delete branch protection on main
+
+inputs:
+  ACCESS_TOKEN:
+    required: true
+
+name: Protect main
+runs:
+  steps:
+    - name: Recreate branch protection on main
+      uses: actions/github-script@v7.0.1
+      with:
+        github-token: ${{ inputs.ACCESS_TOKEN }}
+        # Note: keep this inline script in sync with script/setup.js!
+        # Todo: it would be nice to not have two sources of truth...
+        # https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
+        script: |
+          github.request(
+            `PUT /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
+            {
+              allow_deletions: false,
+              allow_force_pushes: true,
+              allow_fork_pushes: false,
+              allow_fork_syncing: true,
+              block_creations: false,
+              branch: "main",
+              enforce_admins: false,
+              owner: "JoshuaKGoldberg",
+              repo: "ts-api-utils",
+              required_conversation_resolution: true,
+              required_linear_history: false,
+              required_pull_request_reviews: null,
+              required_status_checks: {
+                checks: [
+                  { context: "build (16.14.0)" },
+                  { context: "build (18.x)" },
+                  { context: "compliance" },
+                  { context: "lint_docs" },
+                  { context: "lint_knip_production" },
+                  { context: "lint_knip" },
+                  { context: "lint_markdown" },
+                  { context: "lint_packages" },
+                  { context: "lint_spelling" },
+                  { context: "lint" },
+                  { context: "prettier" },
+                  { context: "test (16.14.0, 4.3.5)" },
+                  { context: "test (16.14.0, 4.6.4)" },
+                  { context: "test (16.14.0, 4.9.5)" },
+                  { context: "test (16.14.0, latest)" },
+                  { context: "test (18.x, 4.3.5)" },
+                  { context: "test (18.x, 4.6.4)" },
+                  { context: "test (18.x, 4.9.5)" },
+                  { context: "test (18.x, latest)" },
+                  { context: "type_check" },
+                ],
+                strict: false,
+              },
+              restrictions: null,
+            }
+          );
+  using: composite

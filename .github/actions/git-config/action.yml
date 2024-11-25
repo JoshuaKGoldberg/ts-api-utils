@@ -1,0 +1,11 @@
+description: Configrue the git user
+
+name: Git Config
+runs:
+  steps:
+    - name: Configure Git
+      run: |
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config --global user.name ${GITHUB_ACTOR}
+      shell: bash
+  using: composite
