@@ -15,7 +15,7 @@ import {
 	isInConstContext,
 } from "../nodes/utilities";
 import { isNumericPropertyName } from "../syntax";
-import { isTsVersionAtLeast } from '../utils'
+import { isTsVersionAtLeast } from "../utils";
 import { getPropertyOfType } from "./getters";
 import {
 	isFalseLiteralType,
