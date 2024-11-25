@@ -1,0 +1,3 @@
+pre:has(> code) + pre:has(> code) {
+	margin-block-start: 0.5rem;
+}
