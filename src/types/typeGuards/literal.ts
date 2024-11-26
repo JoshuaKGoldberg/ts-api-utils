@@ -1,10 +1,7 @@
 import ts from "typescript";
 
 import { isTypeFlagSet } from "../../flags";
-import {
-	type FreshableIntrinsicType,
-	type isFreshableIntrinsicType,
-} from "./compound";
+import { type FreshableIntrinsicType } from "./compound";
 
 /**
  * A boolean literal.
@@ -176,24 +173,4 @@ export function isTemplateLiteralType(
  */
 export function isTrueLiteralType(type: ts.Type): type is TrueLiteralType {
 	return isBooleanLiteralType(type) && type.intrinsicName === "true";
-}
-
-/**
- * Test if a type is a {@link UnknownLiteralType}.
- * @deprecated Use {@link isFreshableIntrinsicType} instead.
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isUnknownLiteralType(type)) {
- *   // ...
- * }
- * ```
- */
-export function isUnknownLiteralType(
-	type: ts.Type,
-	// eslint-disable-next-line @typescript-eslint/no-deprecated
-): type is UnknownLiteralType {
-	return isTypeFlagSet(type, ts.TypeFlags.Literal);
 }
