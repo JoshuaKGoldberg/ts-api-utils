@@ -93,6 +93,15 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "fisker",
+      "name": "fisker Cheung",
+      "avatar_url": "https://avatars.githubusercontent.com/u/172584?v=4",
+      "profile": "https://www.fiskercheung.com/",
+      "contributions": [
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 7,
