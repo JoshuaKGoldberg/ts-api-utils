@@ -1,7 +1,6 @@
 // Code largely based on https://github.com/ajafff/tsutils
 // Original license: https://github.com/ajafff/tsutils/blob/26b195358ec36d59f00333115aa3ffd9611ca78b/LICENSE
 
-import semver from "semver";
 import ts from "typescript";
 
 import {
@@ -16,6 +15,7 @@ import {
 	isInConstContext,
 } from "../nodes/utilities";
 import { isNumericPropertyName } from "../syntax";
+import { isTsVersionAtLeast } from "../utils";
 import { getPropertyOfType } from "./getters";
 import {
 	isFalseLiteralType,
@@ -420,14 +420,14 @@ export function unionTypeParts(type: ts.Type): ts.Type[] {
  * ```
  */
 export function typeIsLiteral(type: ts.Type): type is ts.LiteralType {
-	if (semver.lt(ts.version, "5.0.0")) {
+	if (isTsVersionAtLeast(5, 0)) {
+		return type.isLiteral();
+	} else {
 		return isTypeFlagSet(
 			type,
 			ts.TypeFlags.StringLiteral |
 				ts.TypeFlags.NumberLiteral |
 				ts.TypeFlags.BigIntLiteral,
 		);
-	} else {
-		return type.isLiteral();
 	}
 }

@@ -1,8 +1,8 @@
-import semver from "semver";
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../test/utils";
+import { isTsVersionAtLeast } from "../utils";
 import {
 	isFalsyType,
 	isPropertyReadonlyInType,
@@ -133,7 +133,7 @@ describe("symbolHasReadonlyDeclaration", () => {
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(expected);
 	});
 
-	if (semver.gte(ts.version, "5.0.0")) {
+	if (isTsVersionAtLeast(5, 0)) {
 		it("returns true when the symbol belongs to a property of a nested object literal directly passed into a function that declares the parameter with a const type parameter", () => {
 			const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
 			declare const fn: <const A>(param: A) => unknown;
