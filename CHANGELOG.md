@@ -1,3 +1,13 @@
+## [1.4.2](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v1.4.0...v1.4.2) (2024-11-26)
+
+### Bug Fixes
+
+- remove `.value` field from type declarations for boolean literal types ([#535](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/535)) ([12df298](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/12df29810c4a0b9146f58fdee4a2cbdf28a1bee0)), closes [#528](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/528)
+
+### Performance Improvements
+
+- reduce package size ([#593](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/593)) ([123a8f4](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/123a8f46cbb552bcd3b16ea30ff8925755fc516e))
+
 # [1.4.0](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v1.2.1...v1.4.0) (2024-10-30)
 
 ### Bug Fixes
