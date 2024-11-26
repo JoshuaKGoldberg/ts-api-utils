@@ -3,8 +3,12 @@ import { defineConfig } from "tsup";
 export default defineConfig({
 	clean: true,
 	dts: true,
-	entry: ["src/**/*.ts", "!src/**/*.test.*"],
+	entry: ["src/index.ts"],
 	format: ["cjs", "esm"],
 	outDir: "lib",
-	sourcemap: true,
+	sourcemap: false,
+	target: "node16",
+	treeshake: {
+		preset: "smallest",
+	},
 });
