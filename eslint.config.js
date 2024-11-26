@@ -109,7 +109,7 @@ export default tseslint.config(
 			"@typescript-eslint/no-unused-vars": "off",
 			"n/no-missing-import": [
 				"error",
-				{ allowModules: ["notion-rich-text-to-markdown"] },
+				{ allowModules: ["notion-rich-text-to-markdown", "ts-api-utils"] },
 			],
 		},
 	},
