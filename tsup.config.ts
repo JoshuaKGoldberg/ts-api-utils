@@ -7,7 +7,7 @@ export default defineConfig({
 	format: ["cjs", "esm"],
 	outDir: "lib",
 	sourcemap: false,
-	target: "node16",
+	target: "node18",
 	treeshake: {
 		preset: "smallest",
 	},
