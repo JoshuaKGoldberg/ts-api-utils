@@ -1,5 +1,5 @@
 import ts from "typescript";
-import { assert, describe, expect, expectTypeOf, it } from "vitest";
+import { describe, expect, expectTypeOf, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../../test/utils";
 import {
