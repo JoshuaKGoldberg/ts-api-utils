@@ -77,38 +77,40 @@ describe("isObjectType", () => {
 
 describe("isTypeParameter", () => {
 	it("should return true for a type parameter", () => {
-		const sourceText = `type Test<T> = { foo: string };`;
+		const sourceText = `type Test<TParam> = { foo: string };`;
 		const { sourceFile, typeChecker } =
 			createSourceFileAndTypeChecker(sourceText);
 
-		const node = sourceFile.statements.at(-1) as ts.TypeAliasDeclaration;
-		const typeParameter = node.typeParameters?.[0];
-		expect(typeParameter).toBeDefined();
+		const testNode = sourceFile.statements.at(-1) as ts.TypeAliasDeclaration;
+		const tParamNode = testNode.typeParameters?.[0];
+		expect(tParamNode).toBeDefined();
 
-		const typeParameterType = typeChecker.getTypeAtLocation(typeParameter!);
+		const tParamType = typeChecker.getTypeAtLocation(tParamNode!);
 
+		const isTParamATypeParameter = isTypeParameter(tParamType);
 		// type test - see https://github.com/JoshuaKGoldberg/ts-api-utils/issues/382
-		if (isTypeParameter(typeParameterType)) {
-			expectTypeOf(typeParameterType).toEqualTypeOf<ts.TypeParameter>();
+		if (isTParamATypeParameter) {
+			expectTypeOf(tParamType).toEqualTypeOf<ts.TypeParameter>();
 		} else {
-			expectTypeOf(typeParameterType).toEqualTypeOf<ts.Type>();
+			expectTypeOf(tParamType).toEqualTypeOf<ts.Type>();
 		}
 
-		expect(isTypeParameter(typeParameterType)).toBe(true);
+		expect(isTParamATypeParameter).toBe(true);
 	});
 
 	it("should return false when not a type parameter", () => {
 		const sourceText = `type Test<T> = { foo: string };`;
-		const typeParameterType = getTypeForTypeNode(sourceText);
+		const testType = getTypeForTypeNode(sourceText);
 
+		const isTestATypeParameter = isTypeParameter(testType);
 		// type test - see https://github.com/JoshuaKGoldberg/ts-api-utils/issues/382
-		if (isTypeParameter(typeParameterType)) {
-			expectTypeOf(typeParameterType).toEqualTypeOf<ts.TypeParameter>();
+		if (isTestATypeParameter) {
+			expectTypeOf(testType).toEqualTypeOf<ts.TypeParameter>();
 		} else {
-			expectTypeOf(typeParameterType).toEqualTypeOf<ts.Type>();
+			expectTypeOf(testType).toEqualTypeOf<ts.Type>();
 		}
 
-		expect(isTypeParameter(typeParameterType)).toBe(false);
+		expect(isTestATypeParameter).toBe(false);
 	});
 });
 
