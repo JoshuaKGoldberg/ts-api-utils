@@ -1,5 +1,5 @@
 import ts from "typescript";
-import { describe, expect, it } from "vitest";
+import { describe, expect, expectTypeOf, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../../test/utils";
 import {
@@ -7,6 +7,7 @@ import {
 	isEnumType,
 	isIntersectionType,
 	isObjectType,
+	isTypeParameter,
 	isUnionOrIntersectionType,
 	isUnionType,
 	isUniqueESSymbolType,
@@ -71,6 +72,45 @@ describe("isObjectType", () => {
 		const type = getTypeForTypeNode(sourceText);
 
 		expect(isObjectType(type)).toBe(expected);
+	});
+});
+
+describe("isTypeParameter", () => {
+	it("should return true for a type parameter", () => {
+		const sourceText = `type Test<TParam> = { foo: string };`;
+		const { sourceFile, typeChecker } =
+			createSourceFileAndTypeChecker(sourceText);
+
+		const testNode = sourceFile.statements.at(-1) as ts.TypeAliasDeclaration;
+		const tParamNode = testNode.typeParameters?.[0];
+		expect(tParamNode).toBeDefined();
+
+		const tParamType = typeChecker.getTypeAtLocation(tParamNode!);
+
+		const isTParamATypeParameter = isTypeParameter(tParamType);
+		// type test - see https://github.com/JoshuaKGoldberg/ts-api-utils/issues/382
+		if (isTParamATypeParameter) {
+			expectTypeOf(tParamType).toEqualTypeOf<ts.TypeParameter>();
+		} else {
+			expectTypeOf(tParamType).toEqualTypeOf<ts.Type>();
+		}
+
+		expect(isTParamATypeParameter).toBe(true);
+	});
+
+	it("should return false when not a type parameter", () => {
+		const sourceText = `type Test<T> = { foo: string };`;
+		const testType = getTypeForTypeNode(sourceText);
+
+		const isTestATypeParameter = isTypeParameter(testType);
+		// type test - see https://github.com/JoshuaKGoldberg/ts-api-utils/issues/382
+		if (isTestATypeParameter) {
+			expectTypeOf(testType).toEqualTypeOf<ts.TypeParameter>();
+		} else {
+			expectTypeOf(testType).toEqualTypeOf<ts.Type>();
+		}
+
+		expect(isTestATypeParameter).toBe(false);
 	});
 });
 
