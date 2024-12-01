@@ -1,18 +1,9 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"automerge": true,
+	"extends": ["helpers:disableTypesNodeMajor"],
 	"internalChecksFilter": "strict",
 	"labels": ["dependencies"],
 	"minimumReleaseAge": "3 days",
-	"packageRules": [
-		{
-			"allowedVersions": "<0.25",
-			"matchPackageNames": ["typedoc"]
-		},
-		{
-			"allowedVersions": "<5.5",
-			"matchPackageNames": ["typescript"]
-		}
-	],
 	"postUpdateOptions": ["pnpmDedupe"]
 }

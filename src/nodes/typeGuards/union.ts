@@ -26,6 +26,276 @@ import {
 } from "./single";
 
 /**
+ * Test if a node is a `HasDecorators`.
+ * @category Nodes - Type Guards
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (hasDecorators(node)) {
+ *   // ...
+ * }
+ * ```
+ * @returns Whether the given node appears to be a `HasDecorators`.
+ */
+export function hasDecorators(node: ts.Node): node is ts.HasDecorators {
+	return (
+		ts.isParameter(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isMethodDeclaration(node) ||
+		ts.isGetAccessorDeclaration(node) ||
+		ts.isSetAccessorDeclaration(node) ||
+		ts.isClassExpression(node) ||
+		ts.isClassDeclaration(node)
+	);
+}
+
+/**
+ * Test if a node is a `HasExpressionInitializer`.
+ * @category Nodes - Type Guards
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (hasExpressionInitializer(node)) {
+ *   // ...
+ * }
+ * ```
+ * @returns Whether the given node appears to be a `HasExpressionInitializer`.
+ */
+export function hasExpressionInitializer(
+	node: ts.Node,
+): node is ts.HasExpressionInitializer {
+	return (
+		ts.isVariableDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isBindingElement(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isPropertyAssignment(node) ||
+		ts.isEnumMember(node)
+	);
+}
+
+/**
+ * Test if a node is a `HasInitializer`.
+ * @category Nodes - Type Guards
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (hasInitializer(node)) {
+ *   // ...
+ * }
+ * ```
+ * @returns Whether the given node appears to be a `HasInitializer`.
+ */
+export function hasInitializer(node: ts.Node): node is ts.HasInitializer {
+	return (
+		hasExpressionInitializer(node) ||
+		ts.isForStatement(node) ||
+		ts.isForInStatement(node) ||
+		ts.isForOfStatement(node) ||
+		ts.isJsxAttribute(node)
+	);
+}
+
+/**
+ * Test if a node is a `HasJSDoc`.
+ * @category Nodes - Type Guards
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (hasJSDoc(node)) {
+ *   // ...
+ * }
+ * ```
+ * @returns Whether the given node appears to be a `HasJSDoc`.
+ */
+export function hasJSDoc(node: ts.Node): node is ts.HasJSDoc {
+	if (
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
+		isAccessorDeclaration(node) ||
+		ts.isArrowFunction(node) ||
+		ts.isBlock(node) ||
+		ts.isBreakStatement(node) ||
+		ts.isCallSignatureDeclaration(node) ||
+		ts.isCaseClause(node) ||
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
+		isClassLikeDeclaration(node) ||
+		ts.isConstructorDeclaration(node) ||
+		ts.isConstructorTypeNode(node) ||
+		ts.isConstructSignatureDeclaration(node) ||
+		ts.isContinueStatement(node) ||
+		ts.isDebuggerStatement(node) ||
+		ts.isDoStatement(node) ||
+		ts.isEmptyStatement(node) ||
+		isEndOfFileToken(node) ||
+		ts.isEnumDeclaration(node) ||
+		ts.isEnumMember(node) ||
+		ts.isExportAssignment(node) ||
+		ts.isExportDeclaration(node) ||
+		ts.isExportSpecifier(node) ||
+		ts.isExpressionStatement(node) ||
+		ts.isForInStatement(node) ||
+		ts.isForOfStatement(node) ||
+		ts.isForStatement(node) ||
+		ts.isFunctionDeclaration(node) ||
+		ts.isFunctionExpression(node) ||
+		ts.isFunctionTypeNode(node) ||
+		ts.isIfStatement(node) ||
+		ts.isImportDeclaration(node) ||
+		ts.isImportEqualsDeclaration(node) ||
+		ts.isIndexSignatureDeclaration(node) ||
+		ts.isInterfaceDeclaration(node) ||
+		ts.isJSDocFunctionType(node) ||
+		ts.isLabeledStatement(node) ||
+		ts.isMethodDeclaration(node) ||
+		ts.isMethodSignature(node) ||
+		ts.isModuleDeclaration(node) ||
+		ts.isNamedTupleMember(node) ||
+		ts.isNamespaceExportDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isParenthesizedExpression(node) ||
+		ts.isPropertyAssignment(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isPropertySignature(node) ||
+		ts.isReturnStatement(node) ||
+		ts.isShorthandPropertyAssignment(node) ||
+		ts.isSpreadAssignment(node) ||
+		ts.isSwitchStatement(node) ||
+		ts.isThrowStatement(node) ||
+		ts.isTryStatement(node) ||
+		ts.isTypeAliasDeclaration(node) ||
+		ts.isVariableDeclaration(node) ||
+		ts.isVariableStatement(node) ||
+		ts.isWhileStatement(node) ||
+		ts.isWithStatement(node)
+	) {
+		return true;
+	}
+
+	if (isTsVersionAtLeast(4, 4) && ts.isClassStaticBlockDeclaration(node)) {
+		return true;
+	}
+
+	if (
+		isTsVersionAtLeast(5, 0) &&
+		(ts.isBinaryExpression(node) ||
+			ts.isElementAccessExpression(node) ||
+			ts.isIdentifier(node) ||
+			ts.isJSDocSignature(node) ||
+			ts.isObjectLiteralExpression(node) ||
+			ts.isPropertyAccessExpression(node) ||
+			ts.isTypeParameterDeclaration(node))
+	) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
+ * Test if a node is a `HasModifiers`.
+ * @category Nodes - Type Guards
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (hasModifiers(node)) {
+ *   // ...
+ * }
+ * ```
+ * @returns Whether the given node appears to be a `HasModifiers`.
+ */
+export function hasModifiers(node: ts.Node): node is ts.HasModifiers {
+	return (
+		ts.isTypeParameterDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isConstructorTypeNode(node) ||
+		ts.isPropertySignature(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isMethodSignature(node) ||
+		ts.isMethodDeclaration(node) ||
+		ts.isConstructorDeclaration(node) ||
+		ts.isGetAccessorDeclaration(node) ||
+		ts.isSetAccessorDeclaration(node) ||
+		ts.isIndexSignatureDeclaration(node) ||
+		ts.isFunctionExpression(node) ||
+		ts.isArrowFunction(node) ||
+		ts.isClassExpression(node) ||
+		ts.isVariableStatement(node) ||
+		ts.isFunctionDeclaration(node) ||
+		ts.isClassDeclaration(node) ||
+		ts.isInterfaceDeclaration(node) ||
+		ts.isTypeAliasDeclaration(node) ||
+		ts.isEnumDeclaration(node) ||
+		ts.isModuleDeclaration(node) ||
+		ts.isImportEqualsDeclaration(node) ||
+		ts.isImportDeclaration(node) ||
+		ts.isExportAssignment(node) ||
+		ts.isExportDeclaration(node)
+	);
+}
+
+/**
+ * Test if a node is a `HasType`.
+ * @category Nodes - Type Guards
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (hasType(node)) {
+ *   // ...
+ * }
+ * ```
+ * @returns Whether the given node appears to be a `HasType`.
+ */
+export function hasType(node: ts.Node): node is ts.HasType {
+	return (
+		isSignatureDeclaration(node) ||
+		ts.isVariableDeclaration(node) ||
+		ts.isParameter(node) ||
+		ts.isPropertySignature(node) ||
+		ts.isPropertyDeclaration(node) ||
+		ts.isTypePredicateNode(node) ||
+		ts.isParenthesizedTypeNode(node) ||
+		ts.isTypeOperatorNode(node) ||
+		ts.isMappedTypeNode(node) ||
+		ts.isAssertionExpression(node) ||
+		ts.isTypeAliasDeclaration(node) ||
+		ts.isJSDocTypeExpression(node) ||
+		ts.isJSDocNonNullableType(node) ||
+		ts.isJSDocNullableType(node) ||
+		ts.isJSDocOptionalType(node) ||
+		ts.isJSDocVariadicType(node)
+	);
+}
+
+/**
+ * Test if a node is a `HasTypeArguments`.
+ * @category Nodes - Type Guards
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * if (hasTypeArguments(node)) {
+ *   // ...
+ * }
+ * ```
+ * @returns Whether the given node appears to be a `HasTypeArguments`.
+ */
+export function hasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
+	return (
+		ts.isCallExpression(node) ||
+		ts.isNewExpression(node) ||
+		ts.isTaggedTemplateExpression(node) ||
+		ts.isJsxOpeningElement(node) ||
+		ts.isJsxSelfClosingElement(node)
+	);
+}
+
+/**
  * Test if a node is an `AccessExpression`.
  * @category Nodes - Type Guards
  * @example
@@ -363,7 +633,7 @@ export function isDeclarationWithTypeParameterChildren(
 ): node is ts.DeclarationWithTypeParameterChildren {
 	return (
 		isSignatureDeclaration(node) ||
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
 		isClassLikeDeclaration(node) ||
 		ts.isInterfaceDeclaration(node) ||
 		ts.isTypeAliasDeclaration(node) ||
@@ -500,276 +770,6 @@ export function isFunctionLikeDeclaration(
 		ts.isConstructorDeclaration(node) ||
 		ts.isFunctionExpression(node) ||
 		ts.isArrowFunction(node)
-	);
-}
-
-/**
- * Test if a node is a `HasDecorators`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (hasDecorators(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `HasDecorators`.
- */
-export function hasDecorators(node: ts.Node): node is ts.HasDecorators {
-	return (
-		ts.isParameter(node) ||
-		ts.isPropertyDeclaration(node) ||
-		ts.isMethodDeclaration(node) ||
-		ts.isGetAccessorDeclaration(node) ||
-		ts.isSetAccessorDeclaration(node) ||
-		ts.isClassExpression(node) ||
-		ts.isClassDeclaration(node)
-	);
-}
-
-/**
- * Test if a node is a `HasExpressionInitializer`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (hasExpressionInitializer(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `HasExpressionInitializer`.
- */
-export function hasExpressionInitializer(
-	node: ts.Node,
-): node is ts.HasExpressionInitializer {
-	return (
-		ts.isVariableDeclaration(node) ||
-		ts.isParameter(node) ||
-		ts.isBindingElement(node) ||
-		ts.isPropertyDeclaration(node) ||
-		ts.isPropertyAssignment(node) ||
-		ts.isEnumMember(node)
-	);
-}
-
-/**
- * Test if a node is a `HasInitializer`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (hasInitializer(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `HasInitializer`.
- */
-export function hasInitializer(node: ts.Node): node is ts.HasInitializer {
-	return (
-		hasExpressionInitializer(node) ||
-		ts.isForStatement(node) ||
-		ts.isForInStatement(node) ||
-		ts.isForOfStatement(node) ||
-		ts.isJsxAttribute(node)
-	);
-}
-
-/**
- * Test if a node is a `HasJSDoc`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (hasJSDoc(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `HasJSDoc`.
- */
-export function hasJSDoc(node: ts.Node): node is ts.HasJSDoc {
-	if (
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
-		isAccessorDeclaration(node) ||
-		ts.isArrowFunction(node) ||
-		ts.isBlock(node) ||
-		ts.isBreakStatement(node) ||
-		ts.isCallSignatureDeclaration(node) ||
-		ts.isCaseClause(node) ||
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
-		isClassLikeDeclaration(node) ||
-		ts.isConstructorDeclaration(node) ||
-		ts.isConstructorTypeNode(node) ||
-		ts.isConstructSignatureDeclaration(node) ||
-		ts.isContinueStatement(node) ||
-		ts.isDebuggerStatement(node) ||
-		ts.isDoStatement(node) ||
-		ts.isEmptyStatement(node) ||
-		isEndOfFileToken(node) ||
-		ts.isEnumDeclaration(node) ||
-		ts.isEnumMember(node) ||
-		ts.isExportAssignment(node) ||
-		ts.isExportDeclaration(node) ||
-		ts.isExportSpecifier(node) ||
-		ts.isExpressionStatement(node) ||
-		ts.isForInStatement(node) ||
-		ts.isForOfStatement(node) ||
-		ts.isForStatement(node) ||
-		ts.isFunctionDeclaration(node) ||
-		ts.isFunctionExpression(node) ||
-		ts.isFunctionTypeNode(node) ||
-		ts.isIfStatement(node) ||
-		ts.isImportDeclaration(node) ||
-		ts.isImportEqualsDeclaration(node) ||
-		ts.isIndexSignatureDeclaration(node) ||
-		ts.isInterfaceDeclaration(node) ||
-		ts.isJSDocFunctionType(node) ||
-		ts.isLabeledStatement(node) ||
-		ts.isMethodDeclaration(node) ||
-		ts.isMethodSignature(node) ||
-		ts.isModuleDeclaration(node) ||
-		ts.isNamedTupleMember(node) ||
-		ts.isNamespaceExportDeclaration(node) ||
-		ts.isParameter(node) ||
-		ts.isParenthesizedExpression(node) ||
-		ts.isPropertyAssignment(node) ||
-		ts.isPropertyDeclaration(node) ||
-		ts.isPropertySignature(node) ||
-		ts.isReturnStatement(node) ||
-		ts.isShorthandPropertyAssignment(node) ||
-		ts.isSpreadAssignment(node) ||
-		ts.isSwitchStatement(node) ||
-		ts.isThrowStatement(node) ||
-		ts.isTryStatement(node) ||
-		ts.isTypeAliasDeclaration(node) ||
-		ts.isVariableDeclaration(node) ||
-		ts.isVariableStatement(node) ||
-		ts.isWhileStatement(node) ||
-		ts.isWithStatement(node)
-	) {
-		return true;
-	}
-
-	if (isTsVersionAtLeast(4, 4) && ts.isClassStaticBlockDeclaration(node)) {
-		return true;
-	}
-
-	if (
-		isTsVersionAtLeast(5, 0) &&
-		(ts.isBinaryExpression(node) ||
-			ts.isElementAccessExpression(node) ||
-			ts.isIdentifier(node) ||
-			ts.isJSDocSignature(node) ||
-			ts.isObjectLiteralExpression(node) ||
-			ts.isPropertyAccessExpression(node) ||
-			ts.isTypeParameterDeclaration(node))
-	) {
-		return true;
-	}
-
-	return false;
-}
-
-/**
- * Test if a node is a `HasModifiers`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (hasModifiers(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `HasModifiers`.
- */
-export function hasModifiers(node: ts.Node): node is ts.HasModifiers {
-	return (
-		ts.isTypeParameterDeclaration(node) ||
-		ts.isParameter(node) ||
-		ts.isConstructorTypeNode(node) ||
-		ts.isPropertySignature(node) ||
-		ts.isPropertyDeclaration(node) ||
-		ts.isMethodSignature(node) ||
-		ts.isMethodDeclaration(node) ||
-		ts.isConstructorDeclaration(node) ||
-		ts.isGetAccessorDeclaration(node) ||
-		ts.isSetAccessorDeclaration(node) ||
-		ts.isIndexSignatureDeclaration(node) ||
-		ts.isFunctionExpression(node) ||
-		ts.isArrowFunction(node) ||
-		ts.isClassExpression(node) ||
-		ts.isVariableStatement(node) ||
-		ts.isFunctionDeclaration(node) ||
-		ts.isClassDeclaration(node) ||
-		ts.isInterfaceDeclaration(node) ||
-		ts.isTypeAliasDeclaration(node) ||
-		ts.isEnumDeclaration(node) ||
-		ts.isModuleDeclaration(node) ||
-		ts.isImportEqualsDeclaration(node) ||
-		ts.isImportDeclaration(node) ||
-		ts.isExportAssignment(node) ||
-		ts.isExportDeclaration(node)
-	);
-}
-
-/**
- * Test if a node is a `HasType`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (hasType(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `HasType`.
- */
-export function hasType(node: ts.Node): node is ts.HasType {
-	return (
-		isSignatureDeclaration(node) ||
-		ts.isVariableDeclaration(node) ||
-		ts.isParameter(node) ||
-		ts.isPropertySignature(node) ||
-		ts.isPropertyDeclaration(node) ||
-		ts.isTypePredicateNode(node) ||
-		ts.isParenthesizedTypeNode(node) ||
-		ts.isTypeOperatorNode(node) ||
-		ts.isMappedTypeNode(node) ||
-		ts.isAssertionExpression(node) ||
-		ts.isTypeAliasDeclaration(node) ||
-		ts.isJSDocTypeExpression(node) ||
-		ts.isJSDocNonNullableType(node) ||
-		ts.isJSDocNullableType(node) ||
-		ts.isJSDocOptionalType(node) ||
-		ts.isJSDocVariadicType(node)
-	);
-}
-
-/**
- * Test if a node is a `HasTypeArguments`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (hasTypeArguments(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `HasTypeArguments`.
- */
-export function hasTypeArguments(node: ts.Node): node is ts.HasTypeArguments {
-	return (
-		ts.isCallExpression(node) ||
-		ts.isNewExpression(node) ||
-		ts.isTaggedTemplateExpression(node) ||
-		ts.isJsxOpeningElement(node) ||
-		ts.isJsxSelfClosingElement(node)
 	);
 }
 
@@ -1157,7 +1157,7 @@ export function isObjectTypeDeclaration(
 	node: ts.Node,
 ): node is ts.ObjectTypeDeclaration {
 	return (
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
 		isClassLikeDeclaration(node) ||
 		ts.isInterfaceDeclaration(node) ||
 		ts.isTypeLiteralNode(node)
@@ -1256,7 +1256,7 @@ export function isSignatureDeclaration(
 		ts.isFunctionDeclaration(node) ||
 		ts.isMethodDeclaration(node) ||
 		ts.isConstructorDeclaration(node) ||
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts <5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts <5
 		isAccessorDeclaration(node) ||
 		ts.isFunctionExpression(node) ||
 		ts.isArrowFunction(node)
@@ -1355,28 +1355,6 @@ export function isUnionOrIntersectionTypeNode(
 ): node is ts.UnionOrIntersectionTypeNode {
 	return ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node);
 }
-
-/* eslint-disable deprecation/deprecation */
-/**
- * Test if a node is an `UnparsedSourceText`.
- * @deprecated With TypeScript v5
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isUnparsedSourceText(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be an `UnparsedSourceText`.
- */
-export function isUnparsedSourceText(
-	node: ts.Node,
-): node is ts.UnparsedSourceText {
-	return ts.isUnparsedPrepend(node) || ts.isUnparsedTextLike(node);
-}
-/* eslint-enable deprecation/deprecation */
 
 /**
  * Test if a node is a `VariableLikeDeclaration`.

@@ -8,6 +8,12 @@ import ts from "typescript";
 /**
  * Callback type used for {@link forEachToken}.
  * @category Callbacks
+ * @example
+ * ```ts
+ * let onToken: ForEachTokenCallback = (token) => {
+ *    console.log(`Found token at position: ${token.pos}.`);
+ * };
+ * ```
  */
 export type ForEachTokenCallback = (token: ts.Node) => void;
 
@@ -22,8 +28,8 @@ export type ForEachTokenCallback = (token: ts.Node) => void;
  * 	console.log("Found token:", token.getText());
  * });
  * ```
- * @param node - The node whose tokens should be visited
- * @param callback - Is called for every token contained in `node`
+ * @param node The node whose tokens should be visited
+ * @param callback Is called for every token contained in `node`
  */
 export function forEachToken(
 	node: ts.Node,
@@ -34,10 +40,7 @@ export function forEachToken(
 	while (true) {
 		if (ts.isTokenKind(node.kind)) {
 			callback(node);
-		} else if (
-			// eslint-disable-next-line deprecation/deprecation -- need for support of TS < 4.7
-			node.kind !== ts.SyntaxKind.JSDocComment
-		) {
+		} else {
 			const children = node.getChildren(sourceFile);
 			if (children.length === 1) {
 				node = children[0];

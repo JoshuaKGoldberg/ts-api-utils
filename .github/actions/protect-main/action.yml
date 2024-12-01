@@ -11,9 +11,8 @@ runs:
       uses: actions/github-script@v7.0.1
       with:
         github-token: ${{ inputs.ACCESS_TOKEN }}
-        # Note: keep this inline script in sync with script/setup.js!
         # Todo: it would be nice to not have two sources of truth...
-        # https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
+        # https://github.com/JoshuaKGoldberg/create-typescript-app/issues/145
         script: |
           github.request(
             `PUT /repos/JoshuaKGoldberg/ts-api-utils/branches/main/protection`,
@@ -32,8 +31,9 @@ runs:
               required_pull_request_reviews: null,
               required_status_checks: {
                 checks: [
-                  { context: "build (16.14.0)" },
                   { context: "build (18.x)" },
+                  { context: "build (22.x)" },
+                  { context: "build (latest)" },
                   { context: "compliance" },
                   { context: "lint_docs" },
                   { context: "lint_knip_production" },
@@ -43,14 +43,12 @@ runs:
                   { context: "lint_spelling" },
                   { context: "lint" },
                   { context: "prettier" },
-                  { context: "test (16.14.0, 4.3.5)" },
-                  { context: "test (16.14.0, 4.6.4)" },
-                  { context: "test (16.14.0, 4.9.5)" },
-                  { context: "test (16.14.0, latest)" },
-                  { context: "test (18.x, 4.3.5)" },
-                  { context: "test (18.x, 4.6.4)" },
-                  { context: "test (18.x, 4.9.5)" },
+                  { context: "test (18.x, 4.8.4)" },
                   { context: "test (18.x, latest)" },
+                  { context: "test (22.x, 4.8.4)" },
+                  { context: "test (22.x, latest)" },
+                  { context: "test (latest, 4.8.4)" },
+                  { context: "test (latest, latest)" },
                   { context: "type_check" },
                 ],
                 strict: false,

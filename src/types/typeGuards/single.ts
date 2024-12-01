@@ -51,22 +51,6 @@ export function isFreshableType(type: ts.Type): type is ts.FreshableType {
 }
 
 /**
- * Test if a type is a `IndexType`.
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isIndexType(type)) {
- *   // ...
- * }
- * ```
- */
-export function isIndexType(type: ts.Type): type is ts.IndexType {
-	return isTypeFlagSet(type, ts.TypeFlags.Index);
-}
-
-/**
  * Test if a type is a `IndexedAccessType`.
  * @category Types - Type Guards
  * @example
@@ -82,6 +66,22 @@ export function isIndexedAccessType(
 	type: ts.Type,
 ): type is ts.IndexedAccessType {
 	return isTypeFlagSet(type, ts.TypeFlags.IndexedAccess);
+}
+
+/**
+ * Test if a type is a `IndexType`.
+ * @category Types - Type Guards
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isIndexType(type)) {
+ *   // ...
+ * }
+ * ```
+ */
+export function isIndexType(type: ts.Type): type is ts.IndexType {
+	return isTypeFlagSet(type, ts.TypeFlags.Index);
 }
 
 /**
@@ -202,22 +202,6 @@ export function isTypeVariable(type: ts.Type): type is ts.TypeVariable {
 }
 
 /**
- * Test if a type is a `UnionType`.
- * @category Types - Type Guards
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * if (isUnionType(type)) {
- *   // ...
- * }
- * ```
- */
-export function isUnionType(type: ts.Type): type is ts.UnionType {
-	return isTypeFlagSet(type, ts.TypeFlags.Union);
-}
-
-/**
  * Test if a type is a `UnionOrIntersectionType`.
  * @category Types - Type Guards
  * @example
@@ -233,6 +217,22 @@ export function isUnionOrIntersectionType(
 	type: ts.Type,
 ): type is ts.UnionOrIntersectionType {
 	return isTypeFlagSet(type, ts.TypeFlags.UnionOrIntersection);
+}
+
+/**
+ * Test if a type is a `UnionType`.
+ * @category Types - Type Guards
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * if (isUnionType(type)) {
+ *   // ...
+ * }
+ * ```
+ */
+export function isUnionType(type: ts.Type): type is ts.UnionType {
+	return isTypeFlagSet(type, ts.TypeFlags.Union);
 }
 
 /**

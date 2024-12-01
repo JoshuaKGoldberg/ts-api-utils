@@ -5,14 +5,6 @@ import ts from "typescript";
 
 import { isNumericOrStringLikeLiteral } from "../nodes/typeGuards/compound";
 
-function unwrapParentheses(node: ts.Expression) {
-	while (node.kind === ts.SyntaxKind.ParenthesizedExpression) {
-		node = (node as ts.ParenthesizedExpression).expression;
-	}
-
-	return node;
-}
-
 export function getPropertyName(
 	propertyName: ts.PropertyName,
 ): string | undefined {
@@ -49,4 +41,12 @@ export function getPropertyName(
 	return propertyName.kind === ts.SyntaxKind.PrivateIdentifier
 		? undefined
 		: propertyName.text;
+}
+
+function unwrapParentheses(node: ts.Expression) {
+	while (node.kind === ts.SyntaxKind.ParenthesizedExpression) {
+		node = (node as ts.ParenthesizedExpression).expression;
+	}
+
+	return node;
 }

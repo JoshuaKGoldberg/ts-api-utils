@@ -11,7 +11,7 @@ jobs:
       - run: pnpm add -D typescript@"${{ matrix.ts_version }}"
 
       - run: pnpm run test --coverage
-      - if: matrix.node_version == '18.x'
+      - if: matrix.node_version == '22.x'
         name: Codecov
         uses: codecov/codecov-action@v5
         with:
@@ -21,12 +21,11 @@ jobs:
       fail-fast: false
       matrix:
         node_version:
-          - 16.14.0
           - 18.x
+          - 22.x
+          - latest
         ts_version:
-          - 4.3.5
-          - 4.6.4
-          - 4.9.5
+          - 4.8.4
           - latest
 
 name: Test

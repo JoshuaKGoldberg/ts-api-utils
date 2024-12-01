@@ -13,18 +13,34 @@ import {
  * An `AssertionExpression` that is declared as const.
  * @category Node Types
  */
-export type ConstAssertionExpression = {
+export type ConstAssertionExpression = ts.AssertionExpression & {
 	type: ts.TypeReferenceNode;
 	typeName: ConstAssertionIdentifier;
-} & ts.AssertionExpression;
+};
 
 /**
  * An `Identifier` with an `escapedText` value of `"const"`.
  * @category Node Types
  */
-export type ConstAssertionIdentifier = {
+export type ConstAssertionIdentifier = ts.Identifier & {
 	escapedText: "const" & ts.__String;
-} & ts.Identifier;
+};
+
+/**
+ * a `NamedDeclaration` that definitely has a name.
+ * @category Node Types
+ */
+export interface NamedDeclarationWithName extends ts.NamedDeclaration {
+	name: ts.DeclarationName;
+}
+
+/**
+ * A number or string-like literal.
+ * @category Node Types
+ */
+export type NumericOrStringLikeLiteral =
+	| ts.NumericLiteral
+	| ts.StringLiteralLike;
 
 /**
  * Test if a node is a {@link ConstAssertionExpression}.
@@ -118,17 +134,9 @@ export function isJsxTagNamePropertyAccess(
 ): node is ts.JsxTagNamePropertyAccess {
 	return (
 		ts.isPropertyAccessExpression(node) &&
-		// eslint-disable-next-line deprecation/deprecation -- Keep compatibility with ts < 5
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts < 5
 		isJsxTagNameExpression(node.expression)
 	);
-}
-
-/**
- * a `NamedDeclaration` that definitely has a name.
- * @category Node Types
- */
-export interface NamedDeclarationWithName extends ts.NamedDeclaration {
-	name: ts.DeclarationName;
 }
 
 /**
@@ -180,14 +188,6 @@ export function isNamespaceDeclaration(
 }
 
 /**
- * A number or string-like literal.
- * @category Node Types
- */
-export type NumericOrStringLikeLiteral =
-	| ts.NumericLiteral
-	| ts.StringLiteralLike;
-
-/**
  * Test if a node is a {@link NumericOrStringLikeLiteral}.
  * @category Nodes - Type Guards
  * @example
@@ -204,9 +204,9 @@ export function isNumericOrStringLikeLiteral(
 	node: ts.Node,
 ): node is NumericOrStringLikeLiteral {
 	switch (node.kind) {
-		case ts.SyntaxKind.StringLiteral:
-		case ts.SyntaxKind.NumericLiteral:
 		case ts.SyntaxKind.NoSubstitutionTemplateLiteral:
+		case ts.SyntaxKind.NumericLiteral:
+		case ts.SyntaxKind.StringLiteral:
 			return true;
 		default:
 			return false;

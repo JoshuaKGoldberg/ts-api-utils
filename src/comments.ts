@@ -6,55 +6,16 @@ import ts from "typescript";
 import { forEachToken } from "./tokens";
 
 /**
- * Exclude trailing positions that would lead to scanning for trivia inside `JsxText`.
- * @internal
- */
-function canHaveTrailingTrivia(token: ts.Node): boolean {
-	switch (token.kind) {
-		case ts.SyntaxKind.CloseBraceToken:
-			// after a JsxExpression inside a JsxElement's body can only be other JsxChild, but no trivia
-			return (
-				token.parent.kind !== ts.SyntaxKind.JsxExpression ||
-				!isJsxElementOrFragment(token.parent.parent)
-			);
-		case ts.SyntaxKind.GreaterThanToken:
-			switch (token.parent.kind) {
-				case ts.SyntaxKind.JsxOpeningElement:
-					// if end is not equal, this is part of the type arguments list. in all other cases it would be inside the element body
-					return token.end !== token.parent.end;
-				case ts.SyntaxKind.JsxOpeningFragment:
-					return false; // would be inside the fragment
-				case ts.SyntaxKind.JsxSelfClosingElement:
-					return (
-						token.end !== token.parent.end || // if end is not equal, this is part of the type arguments list
-						!isJsxElementOrFragment(token.parent.parent)
-					); // there's only trailing trivia if it's the end of the top element
-				case ts.SyntaxKind.JsxClosingElement:
-				case ts.SyntaxKind.JsxClosingFragment:
-					// there's only trailing trivia if it's the end of the top element
-					return !isJsxElementOrFragment(token.parent.parent.parent);
-			}
-	}
-
-	return true;
-}
-
-/**
- * Test if a node is a `JsxElement` or `JsxFragment`.
- * @internal
- */
-function isJsxElementOrFragment(
-	node: ts.Node,
-): node is ts.JsxElement | ts.JsxFragment {
-	return (
-		node.kind === ts.SyntaxKind.JsxElement ||
-		node.kind === ts.SyntaxKind.JsxFragment
-	);
-}
-
-/**
  * Callback type used for {@link forEachComment}.
  * @category Callbacks
+ * @param fullText Full parsed text of the comment.
+ * @param comment Text range of the comment in its file.
+ * @example
+ * ```ts
+ * let onComment: ForEachCommentCallback = (fullText, comment) => {
+ *    console.log(`Found comment at position ${comment.pos}: '${fullText}'.`);
+ * };
+ * ```
  */
 export type ForEachCommentCallback = (
 	fullText: string,
@@ -114,4 +75,51 @@ export function forEachComment(
 	function commentCallback(pos: number, end: number, kind: ts.CommentKind) {
 		callback(fullText, { end, kind, pos });
 	}
+}
+
+/**
+ * Exclude trailing positions that would lead to scanning for trivia inside `JsxText`.
+ * @internal
+ */
+function canHaveTrailingTrivia(token: ts.Node): boolean {
+	switch (token.kind) {
+		case ts.SyntaxKind.CloseBraceToken:
+			// after a JsxExpression inside a JsxElement's body can only be other JsxChild, but no trivia
+			return (
+				token.parent.kind !== ts.SyntaxKind.JsxExpression ||
+				!isJsxElementOrFragment(token.parent.parent)
+			);
+		case ts.SyntaxKind.GreaterThanToken:
+			switch (token.parent.kind) {
+				case ts.SyntaxKind.JsxClosingElement:
+				case ts.SyntaxKind.JsxClosingFragment:
+					// there's only trailing trivia if it's the end of the top element
+					return !isJsxElementOrFragment(token.parent.parent.parent);
+				case ts.SyntaxKind.JsxOpeningElement:
+					// if end is not equal, this is part of the type arguments list. in all other cases it would be inside the element body
+					return token.end !== token.parent.end;
+				case ts.SyntaxKind.JsxOpeningFragment:
+					return false; // would be inside the fragment
+				case ts.SyntaxKind.JsxSelfClosingElement:
+					return (
+						token.end !== token.parent.end || // if end is not equal, this is part of the type arguments list
+						!isJsxElementOrFragment(token.parent.parent)
+					); // there's only trailing trivia if it's the end of the top element
+			}
+	}
+
+	return true;
+}
+
+/**
+ * Test if a node is a `JsxElement` or `JsxFragment`.
+ * @internal
+ */
+function isJsxElementOrFragment(
+	node: ts.Node,
+): node is ts.JsxElement | ts.JsxFragment {
+	return (
+		node.kind === ts.SyntaxKind.JsxElement ||
+		node.kind === ts.SyntaxKind.JsxFragment
+	);
 }

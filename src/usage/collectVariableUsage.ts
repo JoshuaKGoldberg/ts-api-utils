@@ -3,8 +3,8 @@
 
 import ts from "typescript";
 
-import { UsageWalker } from "./UsageWalker";
 import { UsageInfo } from "./usage";
+import { UsageWalker } from "./UsageWalker";
 
 /**
  * Creates a mapping of each declared type and value to its type information.
