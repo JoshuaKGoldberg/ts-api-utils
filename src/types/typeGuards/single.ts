@@ -168,6 +168,9 @@ export function isSubstitutionType(type: ts.Type): type is ts.SubstitutionType {
 
 /**
  * Test if a type is a `TypeParameter`.
+ *
+ * Note: It is intentional that this is not a type guard.
+ * @see https://github.com/JoshuaKGoldberg/ts-api-utils/issues/382
  * @category Types - Type Guards
  * @example
  * ```ts
@@ -178,7 +181,7 @@ export function isSubstitutionType(type: ts.Type): type is ts.SubstitutionType {
  * }
  * ```
  */
-export function isTypeParameter(type: ts.Type): type is ts.TypeParameter {
+export function isTypeParameter(type: ts.Type): boolean {
 	return isTypeFlagSet(type, ts.TypeFlags.TypeParameter);
 }
 

@@ -1,3 +1,9 @@
+## [1.4.3](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v1.4.2...v1.4.3) (2024-11-29)
+
+### Bug Fixes
+
+- make `isTypeParameter` no longer a typeguard ([#597](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/597)) ([128237f](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/128237ff3b32e44b3da0040c045dd7f1829fc93e))
+
 ## [1.4.2](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v1.4.0...v1.4.2) (2024-11-26)
 
 ### Bug Fixes
