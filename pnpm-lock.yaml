@@ -31,7 +31,7 @@ importers:
         version: 1.6.0(typescript@5.7.2)
       '@vitest/coverage-v8':
         specifier: ^2.1.5
-        version: 2.1.7(vitest@2.1.7(@types/node@18.19.67))
+        version: 2.1.8(vitest@2.1.7(@types/node@18.19.67))
       '@vitest/eslint-plugin':
         specifier: ^1.1.10
         version: 1.1.13(@typescript-eslint/utils@8.16.0(eslint@9.16.0(jiti@2.4.1))(typescript@5.7.2))(eslint@9.16.0(jiti@2.4.1))(typescript@5.7.2)(vitest@2.1.7(@types/node@18.19.67))
@@ -1103,11 +1103,11 @@ packages:
     peerDependencies:
       typescript: '*'
 
-  '@vitest/coverage-v8@2.1.7':
-    resolution: {integrity: sha512-deQ4J+yu6nEjmEfcBndbgrRM95IZoRpV1dDVRbZhjUcgYVZz/Wc4YaLiDDt9Sy5qcikrJUZMlrUxDy7dBojebg==}
+  '@vitest/coverage-v8@2.1.8':
+    resolution: {integrity: sha512-2Y7BPlKH18mAZYAW1tYByudlCYrQyl5RGvnnDYJKW5tCiO5qg3KSAy3XAxcxKz900a0ZXxWtKrMuZLe3lKBpJw==}
     peerDependencies:
-      '@vitest/browser': 2.1.7
-      vitest: 2.1.7
+      '@vitest/browser': 2.1.8
+      vitest: 2.1.8
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -4400,7 +4400,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-v8@2.1.7(vitest@2.1.7(@types/node@18.19.67))':
+  '@vitest/coverage-v8@2.1.8(vitest@2.1.7(@types/node@18.19.67))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
