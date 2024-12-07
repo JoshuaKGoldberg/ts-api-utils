@@ -109,19 +109,19 @@ importers:
         version: 8.3.5(jiti@2.4.1)(postcss@8.4.49)(typescript@5.7.2)(yaml@2.6.1)
       typedoc:
         specifier: ^0.27.0
-        version: 0.27.2(typescript@5.7.2)
+        version: 0.27.3(typescript@5.7.2)
       typedoc-plugin-coverage:
         specifier: ^3.4.0
-        version: 3.4.0(typedoc@0.27.2(typescript@5.7.2))
+        version: 3.4.0(typedoc@0.27.3(typescript@5.7.2))
       typedoc-plugin-custom-validation:
         specifier: ^2.0.2
-        version: 2.0.2(typedoc@0.27.2(typescript@5.7.2))
+        version: 2.0.2(typedoc@0.27.3(typescript@5.7.2))
       typedoc-plugin-konamimojisplosion:
         specifier: ^0.0.2
         version: 0.0.2
       typedoc-plugin-mdn-links:
         specifier: ^4.0.1
-        version: 4.0.3(typedoc@0.27.2(typescript@5.7.2))
+        version: 4.0.3(typedoc@0.27.3(typescript@5.7.2))
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -3333,8 +3333,8 @@ packages:
     peerDependencies:
       typedoc: 0.26.x || 0.27.x
 
-  typedoc@0.27.2:
-    resolution: {integrity: sha512-C2ima5TZJHU3ecnRIz50lKd1BsYck5LhYQIy7MRPmjuSEJreUEAt+uAVcZgY7wZsSORzEI7xW8miZIdxv/cbmw==}
+  typedoc@0.27.3:
+    resolution: {integrity: sha512-oWT7zDS5oIaxYL5yOikBX4cL99CpNAZn6mI24JZQxsYuIHbtguSSwJ7zThuzNNwSE0wqhlfTSd99HgqKu2aQXQ==}
     engines: {node: '>= 18'}
     hasBin: true
     peerDependencies:
@@ -6791,21 +6791,21 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typedoc-plugin-coverage@3.4.0(typedoc@0.27.2(typescript@5.7.2)):
+  typedoc-plugin-coverage@3.4.0(typedoc@0.27.3(typescript@5.7.2)):
     dependencies:
-      typedoc: 0.27.2(typescript@5.7.2)
+      typedoc: 0.27.3(typescript@5.7.2)
 
-  typedoc-plugin-custom-validation@2.0.2(typedoc@0.27.2(typescript@5.7.2)):
+  typedoc-plugin-custom-validation@2.0.2(typedoc@0.27.3(typescript@5.7.2)):
     dependencies:
-      typedoc: 0.27.2(typescript@5.7.2)
+      typedoc: 0.27.3(typescript@5.7.2)
 
   typedoc-plugin-konamimojisplosion@0.0.2: {}
 
-  typedoc-plugin-mdn-links@4.0.3(typedoc@0.27.2(typescript@5.7.2)):
+  typedoc-plugin-mdn-links@4.0.3(typedoc@0.27.3(typescript@5.7.2)):
     dependencies:
-      typedoc: 0.27.2(typescript@5.7.2)
+      typedoc: 0.27.3(typescript@5.7.2)
 
-  typedoc@0.27.2(typescript@5.7.2):
+  typedoc@0.27.3(typescript@5.7.2):
     dependencies:
       '@gerrit0/mini-shiki': 1.24.1
       lunr: 2.3.9
