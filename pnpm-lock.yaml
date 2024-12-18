@@ -121,7 +121,7 @@ importers:
         version: 0.0.2
       typedoc-plugin-mdn-links:
         specifier: ^4.0.1
-        version: 4.0.4(typedoc@0.27.5(typescript@5.7.2))
+        version: 4.0.5(typedoc@0.27.5(typescript@5.7.2))
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -3379,8 +3379,8 @@ packages:
     resolution: {integrity: sha512-2/HyiifXMFt46NcztGOoji4HfKwja//q/o1DCNNp6ASIdpL5SRg1Qxu70S37zDbW2ezudX96Yk+lmHFwglE/zg==}
     engines: {node: '>=18'}
 
-  typedoc-plugin-mdn-links@4.0.4:
-    resolution: {integrity: sha512-rp0qiELXDso1VTFZVbLmO06SsdePD0j+h9JurxI6F8puM/euj6WZYKL5uWSWvu0r3wdUkus3KPQQEMmZ+rn5/g==}
+  typedoc-plugin-mdn-links@4.0.5:
+    resolution: {integrity: sha512-ja4zdtmO6UIq3HDsssWSMxhNn7RgVQ9vbE8OEmIuVmeeNsbRBpskcw1JMiZmud7Ozxfvgd+qKx4wa6RTWQxQVw==}
     peerDependencies:
       typedoc: 0.26.x || 0.27.x
 
@@ -7006,7 +7006,7 @@ snapshots:
 
   typedoc-plugin-konamimojisplosion@0.0.2: {}
 
-  typedoc-plugin-mdn-links@4.0.4(typedoc@0.27.5(typescript@5.7.2)):
+  typedoc-plugin-mdn-links@4.0.5(typedoc@0.27.5(typescript@5.7.2)):
     dependencies:
       typedoc: 0.27.5(typescript@5.7.2)
 
