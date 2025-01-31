@@ -109,7 +109,7 @@ describe("getWellKnownSymbolPropertyOfType", () => {
 		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
 			declare const x: {
 				[Symbol.asyncIterator](): AsyncIterator<any>;
-			}>
+			};
 		`);
 
 		const node = (sourceFile.statements[0] as ts.VariableStatement)
@@ -142,5 +142,41 @@ describe("getWellKnownSymbolPropertyOfType", () => {
 		).toMatchObject({
 			name: /^__@asyncIterator/,
 		});
+	});
+
+	it("returns undefined when the type maps over typeof the requested symbol", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			type MapsOverTypeofSymbolIterator = {
+				[K in typeof Symbol.iterator]: string;
+			};
+
+			declare const hoverStyles: MapsOverTypeofSymbolIterator;
+
+			const testObject = { ...hoverStyles };
+		`);
+
+		const node = (sourceFile.statements.at(-1) as ts.VariableStatement)
+			.declarationList.declarations[0];
+
+		const type = typeChecker.getTypeAtLocation(node);
+
+		expect(
+			getWellKnownSymbolPropertyOfType(type, "iterator", typeChecker),
+		).toBe(undefined);
+	});
+
+	it("returns undefined when given an error type", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			declare const x: invalid;
+		`);
+
+		const node = (sourceFile.statements[0] as ts.VariableStatement)
+			.declarationList.declarations[0].name;
+
+		const type = typeChecker.getTypeAtLocation(node);
+
+		expect(
+			getWellKnownSymbolPropertyOfType(type, "asyncIterator", typeChecker),
+		).toBe(undefined);
 	});
 });

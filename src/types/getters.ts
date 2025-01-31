@@ -97,8 +97,9 @@ export function getWellKnownSymbolPropertyOfType(
 			continue;
 		}
 
-		const declaration = prop.valueDeclaration ?? prop.getDeclarations()![0];
+		const declaration = prop.valueDeclaration ?? prop.getDeclarations()?.[0];
 		if (
+			!declaration ||
 			!isNamedDeclarationWithName(declaration) ||
 			declaration.name === undefined ||
 			!ts.isComputedPropertyName(declaration.name)
