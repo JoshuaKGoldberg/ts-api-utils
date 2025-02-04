@@ -65,6 +65,17 @@ export function createSourceFileAndTypeChecker(
 		throw new Error("Failed to get program.");
 	}
 
+	const diagnostics = program.getSyntacticDiagnostics();
+
+	if (diagnostics.length > 0) {
+		throw new Error(
+			ts.flattenDiagnosticMessageText(
+				diagnostics[0].messageText,
+				ts.sys.newLine,
+			),
+		);
+	}
+
 	return {
 		sourceFile: program.getSourceFile(fileName)!,
 		typeChecker: program.getTypeChecker(),
