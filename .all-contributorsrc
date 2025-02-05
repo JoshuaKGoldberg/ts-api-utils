@@ -93,6 +93,15 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "ronami",
+      "name": "Ronen Amiel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5484230?v=4",
+      "profile": "https://twitter.com/ronenamiel",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
