@@ -102,6 +102,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "fisker",
+      "name": "fisker Cheung",
+      "avatar_url": "https://avatars.githubusercontent.com/u/172584?v=4",
+      "profile": "https://www.fiskercheung.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
