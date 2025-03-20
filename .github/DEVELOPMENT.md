@@ -44,7 +44,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 - `pnpm lint` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
 - `pnpm lint:docs` ([typedoc](https://typedoc.org)): Checks that all the code is documented
 - `pnpm lint:knip` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
-- `pnpm lint:knip:production` ([knip](https://github.com/webpro/knip)): The same as `lint:knip` but looks purely at production code/dependencies
 - `pnpm lint:md` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
 - `pnpm lint:packages` ([pnpm-deduplicate](https://github.com/ocavue/pnpm-deduplicate)): Deduplicates packages in the `pnpm-lock.yml` file
 - `pnpm lint:spelling` ([cspell](https://cspell.org)): Spell checks across all source files
