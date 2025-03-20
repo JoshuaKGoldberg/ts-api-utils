@@ -1,6 +1,7 @@
 {
 	"$schema": "https://unpkg.com/knip@5/schema-jsonc.json",
 	"entry": ["src/index.ts!"],
+	"ignore": ["src/types/utilities.ts"], // https://github.com/webpro-nl/knip/issues/996
 	"ignoreExportsUsedInFile": { "interface": true, "type": true },
 	"ignoreMembers": ["finish"], // https://github.com/webpro/knip/issues/414
 	"include": ["classMembers"],

@@ -34,14 +34,21 @@ import {
  * ```ts
  * declare const type: ts.Type;
  *
- * for (const typePart of intersectionTypeParts(type)) {
+ * for (const constituent of intersectionConstituents(type)) {
  *   // ...
  * }
  * ```
  */
-export function intersectionTypeParts(type: ts.Type): ts.Type[] {
+export function intersectionConstituents(type: ts.Type): ts.Type[] {
 	return isIntersectionType(type) ? type.types : [type];
 }
+
+/**
+ * @deprecated Use {@link intersectionConstituents} instead.
+ * @category Types - Utilities
+ * ```
+ */
+export const intersectionTypeParts = intersectionConstituents;
 
 /**
  * Determines whether a type is definitely falsy. This function doesn't unwrap union types.
@@ -97,7 +104,7 @@ export function isPropertyReadonlyInType(
 ): boolean {
 	let seenProperty = false;
 	let seenReadonlySignature = false;
-	for (const subType of unionTypeParts(type)) {
+	for (const subType of unionConstituents(type)) {
 		if (getPropertyOfType(subType, name) === undefined) {
 			// property is not present in this part of the union -> check for readonly index signature
 			const index =
@@ -179,15 +186,17 @@ export function isThenableType(
 	node: ts.Node,
 	type = typeChecker.getTypeAtLocation(node),
 ): boolean {
-	for (const typePart of unionTypeParts(typeChecker.getApparentType(type))) {
-		const then = typePart.getProperty("then");
+	for (const constituent of unionConstituents(
+		typeChecker.getApparentType(type),
+	)) {
+		const then = constituent.getProperty("then");
 		if (then === undefined) {
 			continue;
 		}
 
 		const thenType = typeChecker.getTypeOfSymbolAtLocation(then, node);
-		for (const subTypePart of unionTypeParts(thenType)) {
-			for (const signature of subTypePart.getCallSignatures()) {
+		for (const subConstituent of unionConstituents(thenType)) {
+			for (const signature of subConstituent.getCallSignatures()) {
 				if (
 					signature.parameters.length !== 0 &&
 					isCallback(typeChecker, signature.parameters[0], node)
@@ -236,6 +245,26 @@ export function symbolHasReadonlyDeclaration(
 }
 
 /**
+ * Get the intersection or union type parts of the given type.
+ *
+ * Note that this is a shallow collection: it only returns `type.types` or `[type]`.
+ *
+ * If the given type is not an intersection or union type, an array contain only that type will be returned.
+ * @category Types - Utilities
+ * @example
+ * ```ts
+ * declare const type: ts.Type;
+ *
+ * for (const constituent of typeConstituents(type)) {
+ *   // ...
+ * }
+ * ```
+ */
+export function typeConstituents(type: ts.Type): ts.Type[] {
+	return isIntersectionType(type) || isUnionType(type) ? type.types : [type];
+}
+
+/**
  * TS's `type.isLiteral()` is bugged before TS v5.0 and won't return `true` for
  * bigint literals. Use this function instead if you need to check for bigint
  * literals in TS versions before v5.0. Otherwise, you should just use
@@ -265,24 +294,10 @@ export function typeIsLiteral(type: ts.Type): type is ts.LiteralType {
 }
 
 /**
- * Get the intersection or union type parts of the given type.
- *
- * Note that this is a shallow collection: it only returns `type.types` or `[type]`.
- *
- * If the given type is not an intersection or union type, an array contain only that type will be returned.
+ * @deprecated Use {@link typeConstituents} instead.
  * @category Types - Utilities
- * @example
- * ```ts
- * declare const type: ts.Type;
- *
- * for (const typePart of intersectionTypeParts(type)) {
- *   // ...
- * }
- * ```
  */
-export function typeParts(type: ts.Type): ts.Type[] {
-	return isIntersectionType(type) || isUnionType(type) ? type.types : [type];
-}
+export const typeParts = typeConstituents;
 
 /**
  * Get the union type parts of the given type.
@@ -293,14 +308,20 @@ export function typeParts(type: ts.Type): ts.Type[] {
  * ```ts
  * declare const type: ts.Type;
  *
- * for (const typePart of unionTypeParts(type)) {
+ * for (const constituent of unionConstituents(type)) {
  *   // ...
  * }
  * ```
  */
-export function unionTypeParts(type: ts.Type): ts.Type[] {
+export function unionConstituents(type: ts.Type): ts.Type[] {
 	return isUnionType(type) ? type.types : [type];
 }
+
+/**
+ * @deprecated Use {@link unionConstituents} instead.
+ * @category Types - Utilities
+ */
+export const unionTypeParts = unionConstituents;
 
 function isCallback(
 	typeChecker: ts.TypeChecker,
@@ -318,7 +339,7 @@ function isCallback(
 		}
 	}
 
-	for (const subType of unionTypeParts(type)) {
+	for (const subType of unionConstituents(type)) {
 		if (subType.getCallSignatures().length !== 0) {
 			return true;
 		}
@@ -396,9 +417,9 @@ function isReadonlyPropertyIntersection(
 	name: ts.__String,
 	typeChecker: ts.TypeChecker,
 ) {
-	const typeParts = isIntersectionType(type) ? type.types : [type];
-	return typeParts.some((subType): boolean => {
-		const prop = getPropertyOfType(subType, name);
+	const constituents = intersectionConstituents(type);
+	return constituents.some((constituent): boolean => {
+		const prop = getPropertyOfType(constituent, name);
 		if (prop === undefined) {
 			return false;
 		}
@@ -406,12 +427,14 @@ function isReadonlyPropertyIntersection(
 		if (prop.flags & ts.SymbolFlags.Transient) {
 			if (
 				/^(?:[1-9]\d*|0)$/.test(name as string) &&
-				isTupleTypeReference(subType)
+				isTupleTypeReference(constituent)
 			) {
-				return subType.target.readonly;
+				return constituent.target.readonly;
 			}
 
-			switch (isReadonlyPropertyFromMappedType(subType, name, typeChecker)) {
+			switch (
+				isReadonlyPropertyFromMappedType(constituent, name, typeChecker)
+			) {
 				case false:
 					return false;
 				case true:
