@@ -1,4 +1,4 @@
-import ts from "typescript";
+import * as ts from "typescript";
 import { describe, expect, it, vitest } from "vitest";
 
 import { forEachComment } from "./comments";

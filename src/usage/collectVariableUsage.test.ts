@@ -1,5 +1,5 @@
 import { query } from "@phenomnomnominal/tsquery";
-import ts from "typescript";
+import * as ts from "typescript";
 import { describe, expect, test } from "vitest";
 
 import { createSourceFile } from "../test/utils";

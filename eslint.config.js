@@ -56,6 +56,16 @@ export default tseslint.config(
 			},
 		},
 		rules: {
+			"no-restricted-syntax": [
+				"error",
+				// Forbid default import from "typescript"
+				{
+					message: 'Default import from "typescript" is not allowed.',
+					selector:
+						'ImportDeclaration[source.value="typescript"] > ImportDefaultSpecifier',
+				},
+			],
+
 			// These off-by-default rules work well for this repo and we like them on.
 			"logical-assignment-operators": [
 				"error",
