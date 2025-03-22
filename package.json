@@ -82,7 +82,7 @@
 		"sentences-per-line": "^0.3.0",
 		"should-semantic-release": "^0.3.0",
 		"tsup": "^8.3.6",
-		"typedoc": "^0.27.6",
+		"typedoc": "^0.28.0",
 		"typedoc-plugin-coverage": "^3.4.1",
 		"typedoc-plugin-custom-validation": "^2.0.2",
 		"typedoc-plugin-konamimojisplosion": "^0.0.2",
