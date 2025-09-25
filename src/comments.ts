@@ -49,7 +49,7 @@ export function forEachComment(
 
 	for (const token of iterateTokens(node, sourceFile)) {
 		if (token.pos === token.end) {
-			return;
+			continue;
 		}
 
 		if (token.kind !== ts.SyntaxKind.JsxText) {
@@ -62,11 +62,7 @@ export function forEachComment(
 		}
 
 		if (notJsx || canHaveTrailingTrivia(token)) {
-			return ts.forEachTrailingCommentRange(
-				fullText,
-				token.end,
-				commentCallback,
-			);
+			ts.forEachTrailingCommentRange(fullText, token.end, commentCallback);
 		}
 	}
 
