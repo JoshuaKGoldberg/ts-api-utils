@@ -3,7 +3,7 @@
 
 import ts from "typescript";
 
-import { forEachToken } from "./tokens";
+import { iterateTokens } from "./tokens";
 
 /**
  * Callback type used for {@link forEachComment}.
@@ -46,32 +46,30 @@ export function forEachComment(
        Comment ownership is done right in this function*/
 	const fullText = sourceFile.text;
 	const notJsx = sourceFile.languageVariant !== ts.LanguageVariant.JSX;
-	return forEachToken(
-		node,
-		(token) => {
-			if (token.pos === token.end) {
-				return;
-			}
 
-			if (token.kind !== ts.SyntaxKind.JsxText) {
-				ts.forEachLeadingCommentRange(
-					fullText,
-					// skip shebang at position 0
-					token.pos === 0 ? (ts.getShebang(fullText) ?? "").length : token.pos,
-					commentCallback,
-				);
-			}
+	for (const token of iterateTokens(node, sourceFile)) {
+		if (token.pos === token.end) {
+			return;
+		}
 
-			if (notJsx || canHaveTrailingTrivia(token)) {
-				return ts.forEachTrailingCommentRange(
-					fullText,
-					token.end,
-					commentCallback,
-				);
-			}
-		},
-		sourceFile,
-	);
+		if (token.kind !== ts.SyntaxKind.JsxText) {
+			ts.forEachLeadingCommentRange(
+				fullText,
+				// skip shebang at position 0
+				token.pos === 0 ? (ts.getShebang(fullText) ?? "").length : token.pos,
+				commentCallback,
+			);
+		}
+
+		if (notJsx || canHaveTrailingTrivia(token)) {
+			return ts.forEachTrailingCommentRange(
+				fullText,
+				token.end,
+				commentCallback,
+			);
+		}
+	}
+
 	function commentCallback(pos: number, end: number, kind: ts.CommentKind) {
 		callback(fullText, { end, kind, pos });
 	}
