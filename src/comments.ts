@@ -5,6 +5,10 @@ import ts from "typescript";
 
 import { iterateTokens } from "./tokens";
 
+export type Comment = ts.CommentRange & {
+	fullText: string;
+};
+
 /**
  * Callback type used for {@link forEachComment}.
  * @category Callbacks
@@ -39,6 +43,30 @@ export function forEachComment(
 	callback: ForEachCommentCallback,
 	sourceFile: ts.SourceFile = node.getSourceFile(),
 ): void {
+	for (const { end, fullText, kind, pos } of iterateComments(
+		node,
+		sourceFile,
+	)) {
+		callback(fullText, { end, kind, pos });
+	}
+}
+
+/**
+ * Iterates over all comments owned by `node` or its children.
+ * @category Nodes - Other Utilities
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * for (const {pos, text} of iterateComment(node) {
+ *    console.log(`Found comment at position ${pos}: '${text}'.`);
+ * };
+ * ```
+ */
+export function* iterateComments(
+	node: ts.Node,
+	sourceFile: ts.SourceFile = node.getSourceFile(),
+): Generator<Comment> {
 	/* Visit all tokens and skip trivia.
        Comment ranges between tokens are parsed without the need of a scanner.
        forEachTokenWithWhitespace does intentionally not pay attention to the correct comment ownership of nodes as it always
@@ -49,29 +77,25 @@ export function forEachComment(
 
 	for (const token of iterateTokens(node, sourceFile)) {
 		if (token.pos === token.end) {
-			return;
+			continue;
 		}
 
 		if (token.kind !== ts.SyntaxKind.JsxText) {
-			ts.forEachLeadingCommentRange(
-				fullText,
-				// skip shebang at position 0
-				token.pos === 0 ? (ts.getShebang(fullText) ?? "").length : token.pos,
-				commentCallback,
-			);
+			yield* collectComments((callback) => {
+				ts.forEachLeadingCommentRange(
+					fullText,
+					// skip shebang at position 0
+					token.pos === 0 ? (ts.getShebang(fullText) ?? "").length : token.pos,
+					callback,
+				);
+			}, fullText);
 		}
 
 		if (notJsx || canHaveTrailingTrivia(token)) {
-			return ts.forEachTrailingCommentRange(
-				fullText,
-				token.end,
-				commentCallback,
-			);
+			yield* collectComments((callback) => {
+				ts.forEachTrailingCommentRange(fullText, token.end, callback);
+			}, fullText);
 		}
-	}
-
-	function commentCallback(pos: number, end: number, kind: ts.CommentKind) {
-		callback(fullText, { end, kind, pos });
 	}
 }
 
@@ -107,6 +131,25 @@ function canHaveTrailingTrivia(token: ts.Node): boolean {
 	}
 
 	return true;
+}
+
+/**
+ * Collect comments by `ts.{forEachLeadingCommentRange,forEachTrailingCommentRange}`
+ * @internal
+ */
+function collectComments(
+	execute: (
+		callback: (pos: number, end: number, kind: ts.CommentKind) => void,
+	) => void,
+	fullText: string,
+) {
+	const comments: Comment[] = [];
+
+	execute((pos: number, end: number, kind: ts.CommentKind) => {
+		comments.push({ end, fullText, kind, pos });
+	});
+
+	return comments;
 }
 
 /**
