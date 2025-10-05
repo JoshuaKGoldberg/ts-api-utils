@@ -30,7 +30,7 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "tsup src/index.ts && cp lib/index.d.ts lib/index.d.cts",
+		"build": "tsdown src/index.ts",
 		"docs": "typedoc",
 		"docs:serve": "npx --yes http-server docs/generated",
 		"format": "prettier \"**/*\" --ignore-unknown",
@@ -81,7 +81,7 @@
 		"release-it": "^18.1.2",
 		"sentences-per-line": "^0.3.0",
 		"should-semantic-release": "^0.3.0",
-		"tsup": "^8.3.6",
+		"tsdown": "^0.15.9",
 		"typedoc": "^0.28.0",
 		"typedoc-plugin-coverage": "^3.4.1",
 		"typedoc-plugin-custom-validation": "^2.0.2",
