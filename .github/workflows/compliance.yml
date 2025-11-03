@@ -6,8 +6,6 @@ jobs:
         with:
           body-auto-close: false
           ignore-authors: |-
-            allcontributors
-            allcontributors[bot]
             renovate
             renovate[bot]
           ignore-team-members: false
