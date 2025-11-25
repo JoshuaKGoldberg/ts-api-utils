@@ -1,7 +1,6 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-	format: ["cjs", "esm"],
+	exports: true,
 	outDir: "lib",
-	treeshake: true,
 });
