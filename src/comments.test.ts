@@ -20,7 +20,6 @@ describe("iterateComments", () => {
 				fullText: sourceFile.getFullText(),
 				kind: ts.SyntaxKind.SingleLineCommentTrivia,
 				pos: 4,
-				text: "// hello world",
 			},
 		]);
 		expect(generator.next()).toEqual({ done: true, value: undefined });
