@@ -58,8 +58,8 @@ export function forEachComment(
  * ```ts
  * declare const node: ts.Node;
  *
- * for (const {pos, text} of iterateComment(node) {
- *    console.log(`Found comment at position ${pos}: '${text}'.`);
+ * for (const {pos, fullText} of iterateComment(node) {
+ *    console.log(`Found comment at position ${pos}: '${fullText}'.`);
  * };
  * ```
  */
