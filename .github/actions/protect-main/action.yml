@@ -36,7 +36,6 @@ runs:
                   { context: "build (latest)" },
                   { context: "compliance" },
                   { context: "lint_docs" },
-                  { context: "lint_knip_production" },
                   { context: "lint_knip" },
                   { context: "lint_markdown" },
                   { context: "lint_packages" },

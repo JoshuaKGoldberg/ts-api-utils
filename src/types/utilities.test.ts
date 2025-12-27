@@ -65,6 +65,26 @@ describe("isPropertyReadonlyInType", () => {
 			),
 		).toBe(false);
 	});
+
+	it("does not crash when the property is inside a readonly array of a generic arrow function parameter", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			declare const factory: <T>(x: readonly T[]) => (f: (x: T) => void) => void;
+
+			factory([{ abc: 42 }])((x) => { });
+		`);
+		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
+		const call = node.expression as ts.CallExpression;
+		const parameter = call.arguments[0] as ts.ArrowFunction;
+		const type = typeChecker.getTypeAtLocation(parameter.parameters[0]);
+
+		expect(
+			isPropertyReadonlyInType(
+				type,
+				ts.escapeLeadingUnderscores("abc"),
+				typeChecker,
+			),
+		).toBe(false);
+	});
 });
 
 describe("symbolHasReadonlyDeclaration", () => {

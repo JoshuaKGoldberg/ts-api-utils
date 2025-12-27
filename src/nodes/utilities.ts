@@ -84,9 +84,12 @@ export function isInConstContext(
 				}
 
 				// I believe we only need to check one level deep, regardless of how deep `node` is.
-				return isTransientSymbolLinksFlagSet(
-					(propertySymbol as ts.TransientSymbol).links,
-					ts.CheckFlags.Readonly,
+				return (
+					!!propertySymbol.links &&
+					isTransientSymbolLinksFlagSet(
+						(propertySymbol as ts.TransientSymbol).links,
+						ts.CheckFlags.Readonly,
+					)
 				);
 			}
 			case ts.SyntaxKind.PrefixUnaryExpression:
