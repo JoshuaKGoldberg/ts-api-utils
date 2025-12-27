@@ -101,6 +101,7 @@ describe("symbolHasReadonlyDeclaration", () => {
 		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
 		const symbol = typeChecker.getSymbolAtLocation(node.expression)!;
 
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(false);
 	});
 
@@ -117,6 +118,7 @@ describe("symbolHasReadonlyDeclaration", () => {
 		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
 		const symbol = typeChecker.getSymbolAtLocation(node.expression)!;
 
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(true);
 	});
 
@@ -150,6 +152,7 @@ describe("symbolHasReadonlyDeclaration", () => {
 		const type = typeChecker.getTypeAtLocation(node.expression);
 		const symbol = type.getSymbol()!;
 
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(expected);
 	});
 
@@ -177,8 +180,14 @@ describe("symbolHasReadonlyDeclaration", () => {
 			expect(fooSymbol).toBeDefined();
 			expect(barSymbol).toBeDefined();
 			expect(bazSymbol).toBeDefined();
+
+			// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 			expect(symbolHasReadonlyDeclaration(fooSymbol, typeChecker)).toBe(true);
+
+			// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 			expect(symbolHasReadonlyDeclaration(barSymbol, typeChecker)).toBe(true);
+
+			// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 			expect(symbolHasReadonlyDeclaration(bazSymbol, typeChecker)).toBe(false);
 		});
 	}
