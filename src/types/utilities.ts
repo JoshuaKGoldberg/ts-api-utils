@@ -222,6 +222,8 @@ export function isThenableType(
  *   // ...
  * }
  * ```
+ * @deprecated This is not used by any consumers known by ts-api-utils,
+ * and so the public export will be removed in a future major version.
  */
 export function symbolHasReadonlyDeclaration(
 	symbol: ts.Symbol,
@@ -449,6 +451,7 @@ function isReadonlyPropertyIntersection(
 			(
 				isSymbolFlagSet(prop, ts.SymbolFlags.ValueModule) ||
 				// we unwrapped every mapped type, now we can check the actual declarations
+				// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 				symbolHasReadonlyDeclaration(prop, typeChecker)
 			)
 		);
