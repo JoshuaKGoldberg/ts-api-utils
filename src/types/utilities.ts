@@ -222,6 +222,8 @@ export function isThenableType(
  *   // ...
  * }
  * ```
+ * @deprecated This is not used by any consumers known by ts-api-utils,
+ * and so will be removed in a future major version.
  */
 export function symbolHasReadonlyDeclaration(
 	symbol: ts.Symbol,
