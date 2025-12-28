@@ -17,16 +17,19 @@ describe("iterateComments", () => {
 
 		const generator = iterateComments(node, sourceFile);
 		expect(typeof generator[Symbol.iterator]).toBe("function");
-
-		expect([...generator]).toEqual([
-			{
+		expect(generator.next()).toEqual({
+			done: false,
+			value: {
 				end: 21,
 				kind: ts.SyntaxKind.SingleLineCommentTrivia,
 				pos: 4,
 				text: "// line comment  ",
 				value: " line comment  ",
 			},
-			{
+		});
+		expect(generator.next()).toEqual({
+			done: false,
+			value: {
 				end: 85,
 				kind: ts.SyntaxKind.MultiLineCommentTrivia,
 				pos: 25,
@@ -39,7 +42,7 @@ describe("iterateComments", () => {
 			block comment line 2${"  "}
 			`,
 			},
-		]);
+		});
 		expect(generator.next()).toEqual({ done: true, value: undefined });
 	});
 });
