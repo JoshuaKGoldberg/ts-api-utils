@@ -7,7 +7,8 @@ import { createNodeAndSourceFile } from "./test/utils";
 describe("iterateComments", () => {
 	it("Should iterate all comments", () => {
 		const { node, sourceFile } = createNodeAndSourceFile(`
-			// hello world
+			// line comment${"  "}
+			/* block comment */
 			let value;
 		`);
 
@@ -16,10 +17,18 @@ describe("iterateComments", () => {
 
 		expect([...generator]).toEqual([
 			{
-				end: 18,
+				end: 21,
 				kind: ts.SyntaxKind.SingleLineCommentTrivia,
 				pos: 4,
-				text: "// hello world",
+				text: "// line comment  ",
+				value: " line comment  ",
+			},
+			{
+				end: 44,
+				kind: ts.SyntaxKind.MultiLineCommentTrivia,
+				pos: 25,
+				text: "/* block comment */",
+				value: " block comment ",
 			},
 		]);
 		expect(generator.next()).toEqual({ done: true, value: undefined });

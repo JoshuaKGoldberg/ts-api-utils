@@ -24,6 +24,7 @@ export type ForEachCommentCallback = (
 
 type Comment = ts.CommentRange & {
 	text: string;
+	value: string;
 };
 
 /**
@@ -144,7 +145,12 @@ function collectComments(
 	const comments: Comment[] = [];
 
 	execute((pos: number, end: number, kind: ts.CommentKind) => {
-		comments.push({ end, kind, pos, text: fullText.slice(pos, end) });
+		const text = fullText.slice(pos, end);
+		const value = text.slice(
+			2,
+			kind === ts.SyntaxKind.SingleLineCommentTrivia ? undefined : -2,
+		);
+		comments.push({ end, kind, pos, text, value });
 	});
 
 	return comments;
