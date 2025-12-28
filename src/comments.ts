@@ -5,7 +5,7 @@ import ts from "typescript";
 
 import { iterateTokens } from "./tokens";
 
-export type Comment = ts.CommentRange & {
+type Comment = ts.CommentRange & {
 	text: string;
 };
 
