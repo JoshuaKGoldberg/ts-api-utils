@@ -6,7 +6,7 @@ import ts from "typescript";
 import { iterateTokens } from "./tokens";
 
 export type Comment = ts.CommentRange & {
-	fullText: string;
+	text: string;
 };
 
 /**
@@ -43,10 +43,8 @@ export function forEachComment(
 	callback: ForEachCommentCallback,
 	sourceFile: ts.SourceFile = node.getSourceFile(),
 ): void {
-	for (const { end, fullText, kind, pos } of iterateComments(
-		node,
-		sourceFile,
-	)) {
+	const fullText = sourceFile.text;
+	for (const { end, kind, pos } of iterateComments(node, sourceFile)) {
 		callback(fullText, { end, kind, pos });
 	}
 }
@@ -146,7 +144,7 @@ function collectComments(
 	const comments: Comment[] = [];
 
 	execute((pos: number, end: number, kind: ts.CommentKind) => {
-		comments.push({ end, fullText, kind, pos });
+		comments.push({ end, kind, pos, text: fullText.slice(pos, end) });
 	});
 
 	return comments;
