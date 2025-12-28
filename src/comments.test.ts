@@ -8,7 +8,10 @@ describe("iterateComments", () => {
 	it("Should iterate all comments", () => {
 		const { node, sourceFile } = createNodeAndSourceFile(`
 			// line comment${"  "}
-			/* block comment */
+			/*
+			block comment line 1${"  "}
+			block comment line 2${"  "}
+			*/
 			let value;
 		`);
 
@@ -24,11 +27,17 @@ describe("iterateComments", () => {
 				value: " line comment  ",
 			},
 			{
-				end: 44,
+				end: 85,
 				kind: ts.SyntaxKind.MultiLineCommentTrivia,
 				pos: 25,
-				text: "/* block comment */",
-				value: " block comment ",
+				text: `/*
+			block comment line 1${"  "}
+			block comment line 2${"  "}
+			*/`,
+				value: `
+			block comment line 1${"  "}
+			block comment line 2${"  "}
+			`,
 			},
 		]);
 		expect(generator.next()).toEqual({ done: true, value: undefined });
