@@ -5,10 +5,6 @@ import ts from "typescript";
 
 import { iterateTokens } from "./tokens";
 
-type Comment = ts.CommentRange & {
-	text: string;
-};
-
 /**
  * Callback type used for {@link forEachComment}.
  * @category Callbacks
@@ -25,6 +21,10 @@ export type ForEachCommentCallback = (
 	fullText: string,
 	comment: ts.CommentRange,
 ) => void;
+
+type Comment = ts.CommentRange & {
+	text: string;
+};
 
 /**
  * Iterates over all comments owned by `node` or its children.
