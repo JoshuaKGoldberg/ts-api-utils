@@ -6,6 +6,14 @@ import ts from "typescript";
 import { iterateTokens } from "./tokens";
 
 /**
+ * Descriptive data for a comment as yielded by {@link iterateComments}.
+ */
+export type Comment = ts.CommentRange & {
+	text: string;
+	value: string;
+};
+
+/**
  * Callback type used for {@link forEachComment}.
  * @category Callbacks
  * @param fullText Full parsed text of the comment.
@@ -21,11 +29,6 @@ export type ForEachCommentCallback = (
 	fullText: string,
 	comment: ts.CommentRange,
 ) => void;
-
-type Comment = ts.CommentRange & {
-	text: string;
-	value: string;
-};
 
 /**
  * Iterates over all comments owned by `node` or its children.
