@@ -56,8 +56,8 @@
 		"@types/eslint-plugin-markdown": "^2.0.2",
 		"@types/node": "^18.19.74",
 		"@typescript/vfs": "^1.6.0",
-		"@vitest/coverage-v8": "^3.0.0",
-		"@vitest/eslint-plugin": "^1.1.25",
+		"@vitest/coverage-v8": "^4.0.16",
+		"@vitest/eslint-plugin": "^1.6.4",
 		"console-fail-test": "^0.5.0",
 		"cspell": "^8.17.3",
 		"eslint": "^9.19.0",
@@ -89,7 +89,7 @@
 		"typedoc-plugin-mdn-links": "^5.0.0",
 		"typescript": "^5.7.3",
 		"typescript-eslint": "^8.22.0",
-		"vitest": "^3.0.0"
+		"vitest": "^4.0.16"
 	},
 	"peerDependencies": {
 		"typescript": ">=4.8.4"
