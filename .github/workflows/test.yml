@@ -22,7 +22,9 @@ jobs:
       matrix:
         node_version:
           - 18.x
+          - 20.x
           - 22.x
+          - 24.x
           - latest
         ts_version:
           - 4.8.4
