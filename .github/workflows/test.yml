@@ -22,8 +22,11 @@ jobs:
       matrix:
         node_version:
           - 18.x
+          - 20.x
           - 22.x
-          - latest
+          - 24.x
+          # Uncomment this when https://github.com/vitest-dev/vitest/issues/8757 has been resolved
+          # - latest
         ts_version:
           - 4.8.4
           - latest
