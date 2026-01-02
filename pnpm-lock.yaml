@@ -28,7 +28,7 @@ importers:
         version: 18.19.130
       '@typescript/vfs':
         specifier: ^1.6.0
-        version: 1.6.1(typescript@5.8.2)
+        version: 1.6.2(typescript@5.8.2)
       '@vitest/coverage-v8':
         specifier: ^3.0.0
         version: 3.0.9(vitest@3.0.9(@types/debug@4.1.12)(@types/node@18.19.130))
@@ -1246,8 +1246,8 @@ packages:
     resolution: {integrity: sha512-mM/JRQOzhVN1ykejrvwnBRV3+7yTKK8tVANVN3o1O0t0v7o+jqdVu9crPy5Y9dov15TJk/FTIgoUGHrTOVL3Zg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typescript/vfs@1.6.1':
-    resolution: {integrity: sha512-JwoxboBh7Oz1v38tPbkrZ62ZXNHAk9bJ7c9x0eI5zBfBnBYGhURdbnh7Z4smN/MV48Y5OCcZb58n972UtbazsA==}
+  '@typescript/vfs@1.6.2':
+    resolution: {integrity: sha512-hoBwJwcbKHmvd2QVebiytN1aELvpk9B74B4L1mFm/XT1Q/VOYAWl2vQ9AWRFtQq8zmz6enTpfTV8WRc4ATjW/g==}
     peerDependencies:
       typescript: '*'
 
@@ -4753,7 +4753,7 @@ snapshots:
       '@typescript-eslint/types': 8.51.0
       eslint-visitor-keys: 4.2.1
 
-  '@typescript/vfs@1.6.1(typescript@5.8.2)':
+  '@typescript/vfs@1.6.2(typescript@5.8.2)':
     dependencies:
       debug: 4.4.3
       typescript: 5.8.2
