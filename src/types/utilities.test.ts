@@ -65,6 +65,26 @@ describe("isPropertyReadonlyInType", () => {
 			),
 		).toBe(false);
 	});
+
+	it("does not crash when the property is inside a readonly array of a generic arrow function parameter", () => {
+		const { sourceFile, typeChecker } = createSourceFileAndTypeChecker(`
+			declare const factory: <T>(x: readonly T[]) => (f: (x: T) => void) => void;
+
+			factory([{ abc: 42 }])((x) => { });
+		`);
+		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
+		const call = node.expression as ts.CallExpression;
+		const parameter = call.arguments[0] as ts.ArrowFunction;
+		const type = typeChecker.getTypeAtLocation(parameter.parameters[0]);
+
+		expect(
+			isPropertyReadonlyInType(
+				type,
+				ts.escapeLeadingUnderscores("abc"),
+				typeChecker,
+			),
+		).toBe(false);
+	});
 });
 
 describe("symbolHasReadonlyDeclaration", () => {
@@ -81,6 +101,7 @@ describe("symbolHasReadonlyDeclaration", () => {
 		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
 		const symbol = typeChecker.getSymbolAtLocation(node.expression)!;
 
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(false);
 	});
 
@@ -97,6 +118,7 @@ describe("symbolHasReadonlyDeclaration", () => {
 		const node = sourceFile.statements.at(-1) as ts.ExpressionStatement;
 		const symbol = typeChecker.getSymbolAtLocation(node.expression)!;
 
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(true);
 	});
 
@@ -130,6 +152,7 @@ describe("symbolHasReadonlyDeclaration", () => {
 		const type = typeChecker.getTypeAtLocation(node.expression);
 		const symbol = type.getSymbol()!;
 
+		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 		expect(symbolHasReadonlyDeclaration(symbol, typeChecker)).toBe(expected);
 	});
 
@@ -157,8 +180,14 @@ describe("symbolHasReadonlyDeclaration", () => {
 			expect(fooSymbol).toBeDefined();
 			expect(barSymbol).toBeDefined();
 			expect(bazSymbol).toBeDefined();
+
+			// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 			expect(symbolHasReadonlyDeclaration(fooSymbol, typeChecker)).toBe(true);
+
+			// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 			expect(symbolHasReadonlyDeclaration(barSymbol, typeChecker)).toBe(true);
+
+			// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 			expect(symbolHasReadonlyDeclaration(bazSymbol, typeChecker)).toBe(false);
 		});
 	}
