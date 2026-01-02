@@ -27,7 +27,7 @@ describe("isTupleType", () => {
 		const type = getTypeForTypeNode(sourceText);
 
 		expect(
-			isTypeReference(type) ? isTupleType(type.target) : isTupleType(type),
+			isTupleType(isTypeReference(type) ? type.target : type),
 		).toBe(expected);
 	});
 });
