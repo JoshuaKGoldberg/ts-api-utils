@@ -111,8 +111,8 @@ importers:
         specifier: ^0.28.0
         version: 0.28.1(typescript@5.8.2)
       typedoc-plugin-coverage:
-        specifier: ^3.4.1
-        version: 3.4.1(typedoc@0.28.1(typescript@5.8.2))
+        specifier: ^4.0.0
+        version: 4.0.2(typedoc@0.28.1(typescript@5.8.2))
       typedoc-plugin-custom-validation:
         specifier: ^2.0.2
         version: 2.0.2(typedoc@0.28.1(typescript@5.8.2))
@@ -3477,11 +3477,11 @@ packages:
   typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
 
-  typedoc-plugin-coverage@3.4.1:
-    resolution: {integrity: sha512-V23DAwinAMpGMGcL1R1s8Snr26hrjfIdwGf+4jR/65ZdmeAN+yRX0onfx5JlembTQhR6AePQ/parfQNS0AZ64A==}
+  typedoc-plugin-coverage@4.0.2:
+    resolution: {integrity: sha512-mfn0e7NCqB8x2PfvhXrtmd7KWlsNf1+B2N9y8gR/jexXBLrXl/0e+b2HdG5HaTXGi7i0t2pyQY2VRmq7gtdEHQ==}
     engines: {node: '>= 18'}
     peerDependencies:
-      typedoc: 0.25.x || 0.26.x || 0.27.x
+      typedoc: 0.28.x
 
   typedoc-plugin-custom-validation@2.0.2:
     resolution: {integrity: sha512-phJBkPQKUfvNBpYPLjCvJfHluk/R/g6Ksp/VXk4nPFT25EkafbEU7KFMxLcM1E41qAdO63MFPX2JmTdfXFifDQ==}
@@ -7301,7 +7301,7 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typedoc-plugin-coverage@3.4.1(typedoc@0.28.1(typescript@5.8.2)):
+  typedoc-plugin-coverage@4.0.2(typedoc@0.28.1(typescript@5.8.2)):
     dependencies:
       typedoc: 0.28.1(typescript@5.8.2)
 
