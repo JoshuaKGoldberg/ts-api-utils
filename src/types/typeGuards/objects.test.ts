@@ -26,9 +26,9 @@ describe("isTupleType", () => {
 	])("returns %j when given %s", (expected, sourceText) => {
 		const type = getTypeForTypeNode(sourceText);
 
-		expect(
-			isTupleType(isTypeReference(type) ? type.target : type),
-		).toBe(expected);
+		expect(isTupleType(isTypeReference(type) ? type.target : type)).toBe(
+			expected,
+		);
 	});
 });
 
