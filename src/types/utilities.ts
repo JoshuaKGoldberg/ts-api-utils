@@ -44,6 +44,7 @@ export function intersectionConstituents(type: ts.Type): ts.Type[] {
 }
 
 /**
+ * @alias intersectionConstituents
  * @deprecated Use {@link intersectionConstituents} instead.
  * @category Types - Utilities
  * ```
@@ -296,6 +297,7 @@ export function typeIsLiteral(type: ts.Type): type is ts.LiteralType {
 }
 
 /**
+ * @alias typeConstituents
  * @deprecated Use {@link typeConstituents} instead.
  * @category Types - Utilities
  */
@@ -320,6 +322,7 @@ export function unionConstituents(type: ts.Type): ts.Type[] {
 }
 
 /**
+ * @alias unionConstituents
  * @deprecated Use {@link unionConstituents} instead.
  * @category Types - Utilities
  */
