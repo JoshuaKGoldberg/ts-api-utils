@@ -13,7 +13,7 @@ pnpm install
 
 ## Building
 
-Run [tsup](https://tsup.egoist.dev) locally to type check and build source files from `src/` into output files in `lib/`:
+Run [tsdown](https://tsdown.dev) locally to type check and build source files from `src/` into output files in `lib/`:
 
 ```shell
 pnpm build

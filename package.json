@@ -13,16 +13,12 @@
 	},
 	"type": "module",
 	"exports": {
-		".": {
-			"types": {
-				"import": "./lib/index.d.ts",
-				"require": "./lib/index.d.cts"
-			},
-			"import": "./lib/index.js",
-			"require": "./lib/index.cjs"
-		}
+		".": "./lib/index.mjs",
+		"./package.json": "./package.json"
 	},
-	"main": "./lib/index.js",
+	"main": "./lib/index.mjs",
+	"module": "./lib/index.mjs",
+	"types": "./lib/index.d.mts",
 	"files": [
 		"lib/",
 		"package.json",
@@ -30,7 +26,7 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "tsup src/index.ts && cp lib/index.d.ts lib/index.d.cts",
+		"build": "tsdown src/index.ts",
 		"docs": "typedoc",
 		"docs:serve": "npx --yes http-server docs/generated",
 		"format": "prettier \"**/*\" --ignore-unknown",
@@ -81,7 +77,7 @@
 		"release-it": "^18.1.2",
 		"sentences-per-line": "^0.3.0",
 		"should-semantic-release": "^0.3.0",
-		"tsup": "^8.3.6",
+		"tsdown": "^0.16.6",
 		"typedoc": "^0.28.0",
 		"typedoc-plugin-coverage": "^3.4.1",
 		"typedoc-plugin-custom-validation": "^2.0.2",
@@ -96,7 +92,7 @@
 	},
 	"packageManager": "pnpm@10.6.5",
 	"engines": {
-		"node": ">=18.12"
+		"node": ">=20.19"
 	},
 	"publishConfig": {
 		"provenance": true
