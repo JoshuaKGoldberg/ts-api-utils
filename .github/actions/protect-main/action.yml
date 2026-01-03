@@ -8,7 +8,7 @@ name: Protect main
 runs:
   steps:
     - name: Recreate branch protection on main
-      uses: actions/github-script@v7.0.1
+      uses: actions/github-script@v7.1.0
       with:
         github-token: ${{ inputs.ACCESS_TOKEN }}
         # Todo: it would be nice to not have two sources of truth...
