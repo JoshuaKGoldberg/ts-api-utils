@@ -1,4 +1,4 @@
-import ts from "typescript";
+import * as ts from "typescript";
 
 import { isSuperExpression } from "./single";
 import {

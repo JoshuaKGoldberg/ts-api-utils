@@ -1,4 +1,4 @@
-import ts from "typescript";
+import * as ts from "typescript";
 
 import { type IntrinsicType, isIntrinsicType } from "./intrinsic";
 import { isTupleType, isTypeReference } from "./objects";
