@@ -10,7 +10,7 @@ import ts from "typescript";
  * ```ts
  * declare const node: ts.Node;
  *
- * if (isFunctionScopeBoundary(node, ts.ObjectFlags.Anonymous)) {
+ * if (isFunctionScopeBoundary(node)) {
  *   // ...
  * }
  * ```
