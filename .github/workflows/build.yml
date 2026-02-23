@@ -8,6 +8,7 @@ jobs:
           node-version: ${{ matrix.node_version }}
       - run: pnpm build
       - run: node ./lib/index.js
+      - run: pnpm run lint:package
 
     strategy:
       fail-fast: false
