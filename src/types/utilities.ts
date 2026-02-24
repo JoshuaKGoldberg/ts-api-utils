@@ -15,7 +15,6 @@ import {
 	isInConstContext,
 } from "../nodes/utilities";
 import { isNumericPropertyName } from "../syntax";
-import { isTsVersionAtLeast } from "../utils";
 import { getPropertyOfType } from "./getters";
 import {
 	isFalseLiteralType,
@@ -42,14 +41,6 @@ import {
 export function intersectionConstituents(type: ts.Type): ts.Type[] {
 	return isIntersectionType(type) ? type.types : [type];
 }
-
-/**
- * @alias intersectionConstituents
- * @deprecated Use {@link intersectionConstituents} instead.
- * @category Types - Utilities
- * ```
- */
-export const intersectionTypeParts = intersectionConstituents;
 
 /**
  * Determines whether a type is definitely falsy. This function doesn't unwrap union types.
@@ -212,42 +203,6 @@ export function isThenableType(
 }
 
 /**
- * Test if the given symbol has a readonly declaration.
- * @category Symbols - Utilities
- * @example
- * ```ts
- * declare const symbol: ts.Symbol;
- * declare const typeChecker: ts.TypeChecker;
- *
- * if (symbolHasReadonlyDeclaration(symbol, typeChecker)) {
- *   // ...
- * }
- * ```
- * @deprecated This is not used by any consumers known by ts-api-utils,
- * and so the public export will be removed in a future major version.
- */
-export function symbolHasReadonlyDeclaration(
-	symbol: ts.Symbol,
-	typeChecker: ts.TypeChecker,
-): boolean {
-	return !!(
-		(symbol.flags & ts.SymbolFlags.Accessor) === ts.SymbolFlags.GetAccessor ||
-		symbol.declarations?.some(
-			(node) =>
-				isModifierFlagSet(node, ts.ModifierFlags.Readonly) ||
-				(ts.isVariableDeclaration(node) &&
-					isNodeFlagSet(node.parent, ts.NodeFlags.Const)) ||
-				(ts.isCallExpression(node) &&
-					isReadonlyAssignmentDeclaration(node, typeChecker)) ||
-				ts.isEnumMember(node) ||
-				((ts.isPropertyAssignment(node) ||
-					ts.isShorthandPropertyAssignment(node)) &&
-					isInConstContext(node, typeChecker)),
-		)
-	);
-}
-
-/**
  * Get the intersection or union type parts of the given type.
  *
  * Note that this is a shallow collection: it only returns `type.types` or `[type]`.
@@ -284,24 +239,8 @@ export function typeConstituents(type: ts.Type): ts.Type[] {
  * ```
  */
 export function typeIsLiteral(type: ts.Type): type is ts.LiteralType {
-	if (isTsVersionAtLeast(5, 0)) {
-		return type.isLiteral();
-	} else {
-		return isTypeFlagSet(
-			type,
-			ts.TypeFlags.StringLiteral |
-				ts.TypeFlags.NumberLiteral |
-				ts.TypeFlags.BigIntLiteral,
-		);
-	}
+	return type.isLiteral();
 }
-
-/**
- * @alias typeConstituents
- * @deprecated Use {@link typeConstituents} instead.
- * @category Types - Utilities
- */
-export const typeParts = typeConstituents;
 
 /**
  * Get the union type parts of the given type.
@@ -320,13 +259,6 @@ export const typeParts = typeConstituents;
 export function unionConstituents(type: ts.Type): ts.Type[] {
 	return isUnionType(type) ? type.types : [type];
 }
-
-/**
- * @alias unionConstituents
- * @deprecated Use {@link unionConstituents} instead.
- * @category Types - Utilities
- */
-export const unionTypeParts = unionConstituents;
 
 function isCallback(
 	typeChecker: ts.TypeChecker,
@@ -453,8 +385,31 @@ function isReadonlyPropertyIntersection(
 			// members of namespace import
 			isSymbolFlagSet(prop, ts.SymbolFlags.ValueModule) ||
 			// we unwrapped every mapped type, now we can check the actual declarations
-			// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 			symbolHasReadonlyDeclaration(prop, typeChecker)
 		);
 	});
+}
+
+/**
+ * Test if the given symbol has a readonly declaration.
+ */
+function symbolHasReadonlyDeclaration(
+	symbol: ts.Symbol,
+	typeChecker: ts.TypeChecker,
+): boolean {
+	return !!(
+		(symbol.flags & ts.SymbolFlags.Accessor) === ts.SymbolFlags.GetAccessor ||
+		symbol.declarations?.some(
+			(node) =>
+				isModifierFlagSet(node, ts.ModifierFlags.Readonly) ||
+				(ts.isVariableDeclaration(node) &&
+					isNodeFlagSet(node.parent, ts.NodeFlags.Const)) ||
+				(ts.isCallExpression(node) &&
+					isReadonlyAssignmentDeclaration(node, typeChecker)) ||
+				ts.isEnumMember(node) ||
+				((ts.isPropertyAssignment(node) ||
+					ts.isShorthandPropertyAssignment(node)) &&
+					isInConstContext(node, typeChecker)),
+		)
+	);
 }
