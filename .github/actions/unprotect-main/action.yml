@@ -8,7 +8,7 @@ name: Unprotect main
 runs:
   steps:
     - name: Delete branch protection on main
-      uses: actions/github-script@v7.0.1
+      uses: actions/github-script@v7.1.0
       with:
         github-token: ${{ inputs.ACCESS_TOKEN }}
         script: |
