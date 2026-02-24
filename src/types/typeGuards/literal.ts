@@ -1,4 +1,4 @@
-import ts from "typescript";
+import * as ts from "typescript";
 
 import { isTypeFlagSet } from "../../flags";
 import { type FreshableIntrinsicType } from "./compound";
