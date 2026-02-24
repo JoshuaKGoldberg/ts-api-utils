@@ -9,9 +9,10 @@ import packageJson from "eslint-plugin-package-json/configs/recommended";
 import perfectionist from "eslint-plugin-perfectionist";
 import * as regexp from "eslint-plugin-regexp";
 import yml from "eslint-plugin-yml";
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
 	{
 		ignores: [
 			"coverage*",
@@ -40,7 +41,7 @@ export default tseslint.config(
 	packageJson,
 	perfectionist.configs["recommended-natural"],
 	regexp.configs["flat/recommended"],
-	...tseslint.config({
+	...defineConfig({
 		extends: [
 			...tseslint.configs.strictTypeChecked,
 			...tseslint.configs.stylisticTypeChecked,
@@ -51,7 +52,8 @@ export default tseslint.config(
 				projectService: {
 					allowDefaultProject: ["*.*s", "eslint.config.js"],
 				},
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
+				// eslint-disable-next-line n/no-unsupported-features/node-builtins
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
