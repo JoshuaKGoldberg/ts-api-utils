@@ -31,8 +31,8 @@ runs:
               required_pull_request_reviews: null,
               required_status_checks: {
                 checks: [
-                  { context: "build (18.x)" },
                   { context: "build (22.x)" },
+                  { context: "build (24.x)" },
                   { context: "build (latest)" },
                   { context: "compliance" },
                   { context: "lint_docs" },
@@ -42,10 +42,10 @@ runs:
                   { context: "lint_spelling" },
                   { context: "lint" },
                   { context: "prettier" },
-                  { context: "test (18.x, 4.8.4)" },
-                  { context: "test (18.x, latest)" },
                   { context: "test (22.x, 4.8.4)" },
                   { context: "test (22.x, latest)" },
+                  { context: "test (24.x, 4.8.4)" },
+                  { context: "test (24.x, latest)" },
                   { context: "test (latest, 4.8.4)" },
                   { context: "test (latest, latest)" },
                   { context: "type_check" },
