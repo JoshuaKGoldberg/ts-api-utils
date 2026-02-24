@@ -7,14 +7,15 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
       - run: pnpm build
-      - run: node ./lib/index.js
+      - run: node ./lib/index.mjs
 
     strategy:
       fail-fast: false
       matrix:
         node_version:
-          - 18.x
+          - 20.x
           - 22.x
+          - 24.x
           - latest
 name: Build
 

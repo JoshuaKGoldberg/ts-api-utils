@@ -45,8 +45,8 @@ export function createSourceFileAndTypeChecker(
 	fileName = "file.tsx",
 ): SourceFileAndTypeChecker {
 	const compilerOptions: ts.CompilerOptions = {
-		lib: ["ES2018"],
-		target: ts.ScriptTarget.ES2018,
+		lib: ["ES2023"],
+		target: ts.ScriptTarget.ES2023,
 	};
 
 	const fsMap = tsvfs.createDefaultMapFromNodeModules(compilerOptions, ts);

@@ -9,8 +9,7 @@ import { isFreshableType } from "./single";
  * @category Type Types
  */
 export interface FreshableIntrinsicType
-	extends ts.FreshableType,
-		IntrinsicType {}
+	extends ts.FreshableType, IntrinsicType {}
 
 /**
  * Test if a type is a `FreshableIntrinsicType`.
