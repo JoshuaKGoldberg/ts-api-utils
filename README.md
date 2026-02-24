@@ -34,6 +34,13 @@ Check out our API docs for details:
 
 📝 [ts-api-utils API docs](https://joshuakgoldberg.github.io/ts-api-utils).
 
+### Supported Versions
+
+`ts-api-utils` supports TypeScript versions `5.5.2` and above and Node versions `20.19.0` and above.
+
+Note: `ts-api-utils` will not work with the native TypeScript preview (TypeScript 7) until API support is ready.\
+See their list of [What Works So Far?](https://github.com/microsoft/typescript-go#what-works-so-far) for details.
+
 ## Development
 
 See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md).
