@@ -473,7 +473,7 @@ function isNamespaceExported(node: ts.NamespaceDeclaration) {
 }
 
 function namespaceHasExportStatement(ns: ts.ModuleDeclaration): boolean {
-	if (ns.body === undefined || ns.body.kind !== ts.SyntaxKind.ModuleBlock) {
+	if (ns.body?.kind !== ts.SyntaxKind.ModuleBlock) {
 		return false;
 	}
 
