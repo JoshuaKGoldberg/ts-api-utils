@@ -29,15 +29,6 @@ export interface TrueLiteralType extends BooleanLiteralType {
 }
 
 /**
- * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
- * @deprecated Use {@link FreshableIntrinsicType} instead.
- * @category Type Types
- */
-export interface UnknownLiteralType extends FreshableIntrinsicType {
-	value?: unknown;
-}
-
-/**
  * Test if a type is a `BigIntLiteralType`.
  * @category Types - Type Guards
  * @example

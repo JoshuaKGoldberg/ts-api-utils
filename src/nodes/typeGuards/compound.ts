@@ -5,7 +5,6 @@ import {
 	isDeclarationName,
 	isEntityNameExpression,
 	isJSDocNamespaceBody,
-	isJsxTagNameExpression,
 	isNamespaceBody,
 } from "./union";
 
@@ -134,8 +133,7 @@ export function isJsxTagNamePropertyAccess(
 ): node is ts.JsxTagNamePropertyAccess {
 	return (
 		ts.isPropertyAccessExpression(node) &&
-		// eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep compatibility with ts < 5
-		isJsxTagNameExpression(node.expression)
+		ts.isJsxTagNameExpression(node.expression)
 	);
 }
 
