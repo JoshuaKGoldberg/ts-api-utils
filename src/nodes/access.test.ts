@@ -1,4 +1,4 @@
-import ts from "typescript";
+import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
 import { createNode } from "../test/utils";
