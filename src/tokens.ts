@@ -36,10 +36,32 @@ export function forEachToken(
 	callback: ForEachTokenCallback,
 	sourceFile: ts.SourceFile = node.getSourceFile(),
 ): void {
+	for (const token of iterateTokens(node, sourceFile)) {
+		callback(token);
+	}
+}
+
+/**
+ * Iterates over all tokens of `node`
+ * @category Nodes - Other Utilities
+ * @example
+ * ```ts
+ * declare const node: ts.Node;
+ *
+ * for (const token of iterateTokens(token)) {
+ * 	console.log("Found token:", token.getText());
+ * });
+ * ```
+ * @param node The node whose tokens should be visited
+ */
+export function* iterateTokens(
+	node: ts.Node,
+	sourceFile: ts.SourceFile = node.getSourceFile(),
+): Generator<ts.Node> {
 	const queue = [];
 	while (true) {
 		if (ts.isTokenKind(node.kind)) {
-			callback(node);
+			yield node;
 		} else {
 			const children = node.getChildren(sourceFile);
 			if (children.length === 1) {

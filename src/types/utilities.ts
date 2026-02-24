@@ -44,6 +44,7 @@ export function intersectionConstituents(type: ts.Type): ts.Type[] {
 }
 
 /**
+ * @alias intersectionConstituents
  * @deprecated Use {@link intersectionConstituents} instead.
  * @category Types - Utilities
  * ```
@@ -222,6 +223,8 @@ export function isThenableType(
  *   // ...
  * }
  * ```
+ * @deprecated This is not used by any consumers known by ts-api-utils,
+ * and so the public export will be removed in a future major version.
  */
 export function symbolHasReadonlyDeclaration(
 	symbol: ts.Symbol,
@@ -294,6 +297,7 @@ export function typeIsLiteral(type: ts.Type): type is ts.LiteralType {
 }
 
 /**
+ * @alias typeConstituents
  * @deprecated Use {@link typeConstituents} instead.
  * @category Types - Utilities
  */
@@ -318,6 +322,7 @@ export function unionConstituents(type: ts.Type): ts.Type[] {
 }
 
 /**
+ * @alias unionConstituents
  * @deprecated Use {@link unionConstituents} instead.
  * @category Types - Utilities
  */
@@ -449,6 +454,7 @@ function isReadonlyPropertyIntersection(
 			(
 				isSymbolFlagSet(prop, ts.SymbolFlags.ValueModule) ||
 				// we unwrapped every mapped type, now we can check the actual declarations
+				// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
 				symbolHasReadonlyDeclaration(prop, typeChecker)
 			)
 		);
