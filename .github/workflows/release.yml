@@ -1,25 +1,25 @@
 concurrency:
-  group: Release
   cancel-in-progress: false
+  group: Release
 
 jobs:
   release:
-    runs-on: ubuntu-latest
     if: "startsWith(github.event.head_commit.message, 'chore: release v')"
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - uses: kaisugi/action-regex-match@v1.0.2
-        id: regex-match
+      - id: regex-match
+        uses: kaisugi/action-regex-match@v1.0.2
         with:
-          text: ${{ github.event.head_commit.message }}
-          regex: '^chore: release v(\d+\.\d+\.\d+(?:-(?:alpha|beta|rc)\.\d+)?)(?: \(#\d+\))?(?:\n|$)'
           flags: "su"
+          regex: '^chore: release v(\d+\.\d+\.\d+(?:-(?:alpha|beta|rc)\.\d+)?)(?: \(#\d+\))?(?:\n|$)'
+          text: ${{ github.event.head_commit.message }}
 
-      - if: steps.regex-match.outputs.match != ''
-        id: release_version
+      - id: release_version
+        if: steps.regex-match.outputs.match != ''
         run: echo "release_version=${{ steps.regex-match.outputs.group1 }}" >> "$GITHUB_OUTPUT"
 
       - if: steps.release_version.outputs.release_version != ''
@@ -29,10 +29,10 @@ jobs:
         name: Build
         run: pnpm run build
 
-      - if: steps.release_version.outputs.release_version != ''
-        name: Release
-        env:
+      - env:
           GITHUB_TOKEN: ${{ github.token }}
+        if: steps.release_version.outputs.release_version != ''
+        name: Release
         run: pnpm dlx release-it --npm.allowSameVersion -i ${{ steps.release_version.outputs.release_version }}
 
 name: Release

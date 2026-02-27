@@ -1,6 +1,6 @@
 concurrency:
-  group: Prepare Release ${{ github.ref_name }}
   cancel-in-progress: true
+  group: Prepare Release ${{ github.ref_name }}
 
 jobs:
   release_pr:
@@ -9,7 +9,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: ./.github/actions/prepare
+
       - run: pnpm build
 
       - id: should_release
@@ -38,26 +40,26 @@ jobs:
         name: Update Coverage Badge
         run: cp ./docs/generated/coverage.svg ./docs/coverage.svg
 
-      - name: Get Release Version
+      - id: package-version
         if: steps.should_release.outputs.should_release != '0'
-        id: package-version
+        name: Get Release Version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
 
-      - name: Create Pull Request
-        if: steps.should_release.outputs.should_release != '0' && steps.package-version.outputs.current-version != ''
-        uses: peter-evans/create-pull-request@v8.1.0
-        env:
+      - env:
           RELEASE_VERSION: ${{ steps.package-version.outputs.current-version }}
+        if: steps.should_release.outputs.should_release != '0' && steps.package-version.outputs.current-version != ''
+        name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8.1.0
         with:
-          token: ${{ github.token }}
-          commit-message: "chore: release v${{ env.RELEASE_VERSION }}"
+          assignees: ${{ github.actor }}
           base: ${{ github.ref_name }}
+          body: Merge this PR to release v${{ env.RELEASE_VERSION }}
           branch: release/${{ github.ref_name }}
+          commit-message: "chore: release v${{ env.RELEASE_VERSION }}"
           delete-branch: true
           sign-commits: true
           title: Release v${{ env.RELEASE_VERSION }}
-          body: Merge this PR to release v${{ env.RELEASE_VERSION }}
-          assignees: ${{ github.actor }}
+          token: ${{ github.token }}
 
 name: Create Release PR
 
