@@ -1,0 +1,71 @@
+concurrency:
+  group: Prepare Release ${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  release_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/prepare
+      - run: pnpm build
+
+      - id: should_release
+        run: echo "should_release=$(pnpm run should-semantic-release && pnpm run lint:package &> /dev/null && echo '1' || echo '0')" >> "$GITHUB_OUTPUT"
+
+      - env:
+          GITHUB_TOKEN: ${{ github.token }}
+        if: steps.should_release.outputs.should_release != '0'
+        run: pnpm dlx release-it --no-git.push --no-npm.publish --no-github.release --no-gitlab.release
+
+      - if: steps.should_release.outputs.should_release != '0'
+        name: Generate Docs
+        run: pnpm run docs
+
+      - if: steps.should_release.outputs.should_release != '0'
+        name: Create a pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs/generated
+
+      - if: steps.should_release.outputs.should_release != '0'
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
+
+      - if: steps.should_release.outputs.should_release != '0'
+        name: Update Coverage Badge
+        run: cp ./docs/generated/coverage.svg ./docs/coverage.svg
+
+      - name: Get Release Version
+        if: steps.should_release.outputs.should_release != '0'
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+      - name: Create Pull Request
+        if: steps.should_release.outputs.should_release != '0' && steps.package-version.outputs.current-version != ''
+        uses: peter-evans/create-pull-request@v8.1.0
+        env:
+          RELEASE_VERSION: ${{ steps.package-version.outputs.current-version }}
+        with:
+          token: ${{ github.token }}
+          commit-message: "chore: release v${{ env.RELEASE_VERSION }}"
+          base: ${{ github.ref_name }}
+          branch: release/${{ github.ref_name }}
+          delete-branch: true
+          sign-commits: true
+          title: Release v${{ env.RELEASE_VERSION }}
+          body: Merge this PR to release v${{ env.RELEASE_VERSION }}
+          assignees: ${{ github.actor }}
+
+name: Create Release PR
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
