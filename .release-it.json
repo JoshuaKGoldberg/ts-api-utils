@@ -1,7 +1,6 @@
 {
 	"git": {
-		"commitMessage": "chore: release v${version}",
-		"requireCommits": true
+		"commit": false
 	},
 	"github": {
 		"autoGenerate": true,
