@@ -27,16 +27,6 @@ jobs:
         run: pnpm run docs
 
       - if: steps.should_release.outputs.should_release != '0'
-        name: Create a pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./docs/generated
-
-      - if: steps.should_release.outputs.should_release != '0'
-        name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-
-      - if: steps.should_release.outputs.should_release != '0'
         name: Update Coverage Badge
         run: cp ./docs/generated/coverage.svg ./docs/coverage.svg
 

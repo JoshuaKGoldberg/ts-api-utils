@@ -35,6 +35,23 @@ jobs:
         name: Release
         run: pnpm dlx release-it --npm.allowSameVersion -i ${{ steps.release_version.outputs.release_version }}
 
+      - if: steps.release_version.outputs.release_version != ''
+        name: Generate Docs
+        run: pnpm run docs
+
+      - if: steps.release_version.outputs.release_version != ''
+        name: Create a pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs/generated
+
+      - id: deployment
+        if: steps.release_version.outputs.release_version != ''
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ github.token }}
+
 name: Release
 
 on:
@@ -46,4 +63,5 @@ permissions:
   contents: write
   id-token: write
   issues: write
+  pages: write
   pull-requests: write
