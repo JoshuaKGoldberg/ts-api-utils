@@ -52,7 +52,7 @@ export default tseslint.config(
 				projectService: {
 					allowDefaultProject: ["*.*s", "eslint.config.js"],
 				},
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, n/no-unsupported-features/node-builtins
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
