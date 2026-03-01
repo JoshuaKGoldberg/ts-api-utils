@@ -15,7 +15,7 @@ jobs:
       - run: pnpm build
 
       - id: should_release
-        run: echo "should_release=$(pnpm run should-semantic-release && pnpm run lint:package &> /dev/null && echo '1' || echo '0')" >> "$GITHUB_OUTPUT"
+        run: echo "should_release=$(pnpm run should-semantic-release &> /dev/null && pnpm run lint:package &> /dev/null && echo '1' || echo '0')" >> "$GITHUB_OUTPUT"
 
       - env:
           GITHUB_TOKEN: ${{ github.token }}
