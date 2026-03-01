@@ -9,9 +9,10 @@ import packageJson from "eslint-plugin-package-json";
 import perfectionist from "eslint-plugin-perfectionist";
 import * as regexp from "eslint-plugin-regexp";
 import yml from "eslint-plugin-yml";
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
 	{
 		ignores: [
 			"coverage*",
@@ -41,7 +42,7 @@ export default tseslint.config(
 	packageJson.configs.stylistic,
 	perfectionist.configs["recommended-natural"],
 	regexp.configs["flat/recommended"],
-	...tseslint.config({
+	{
 		extends: [
 			...tseslint.configs.strictTypeChecked,
 			...tseslint.configs.stylisticTypeChecked,
@@ -94,7 +95,7 @@ export default tseslint.config(
 			"@typescript-eslint/prefer-literal-enum-member": "off",
 			"@typescript-eslint/prefer-nullish-coalescing": "off",
 		},
-	}),
+	},
 	{
 		files: ["*.jsonc"],
 		rules: {
