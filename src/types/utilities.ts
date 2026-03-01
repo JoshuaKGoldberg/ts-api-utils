@@ -152,7 +152,6 @@ export function isThenableType(
 	node: ts.Node,
 	type: ts.Type,
 ): boolean;
-
 /**
  * Determines whether a type is thenable and thus can be used with `await`.
  * @category Types - Utilities
@@ -181,7 +180,6 @@ export function isThenableType(
 	node: ts.Expression,
 	type?: ts.Type,
 ): boolean;
-
 export function isThenableType(
 	typeChecker: ts.TypeChecker,
 	node: ts.Node,
