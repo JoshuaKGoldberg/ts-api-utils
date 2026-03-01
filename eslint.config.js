@@ -5,7 +5,7 @@ import jsdoc from "eslint-plugin-jsdoc";
 import jsonc from "eslint-plugin-jsonc";
 import markdown from "eslint-plugin-markdown";
 import n from "eslint-plugin-n";
-import packageJson from "eslint-plugin-package-json/configs/recommended";
+import packageJson from "eslint-plugin-package-json";
 import perfectionist from "eslint-plugin-perfectionist";
 import * as regexp from "eslint-plugin-regexp";
 import yml from "eslint-plugin-yml";
@@ -37,7 +37,8 @@ export default tseslint.config(
 	jsdoc.configs["flat/logical-typescript-error"],
 	jsdoc.configs["flat/stylistic-typescript-error"],
 	n.configs["flat/recommended"],
-	packageJson,
+	packageJson.configs["recommended-publishable"],
+	packageJson.configs.stylistic,
 	perfectionist.configs["recommended-natural"],
 	regexp.configs["flat/recommended"],
 	...tseslint.config({
