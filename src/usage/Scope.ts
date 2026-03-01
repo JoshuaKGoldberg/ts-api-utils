@@ -10,11 +10,11 @@ import { DeclarationDomain } from "./declarations";
 import { InternalUsageInfo, Usage, UsageInfoCallback } from "./usage";
 
 export enum ScopeBoundary {
-	Block = 2,
-	ConditionalType = 8,
-	Function = 1,
 	None = 0,
+	Function = 1,
+	Block = 2,
 	Type = 4,
+	ConditionalType = 8,
 }
 
 export enum ScopeBoundarySelector {

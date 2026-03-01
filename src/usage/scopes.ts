@@ -191,6 +191,7 @@ export class NonRootScope extends AbstractScope {
 	}
 }
 
+// eslint-disable-next-line perfectionist/sort-modules -- Can't satisfy.
 abstract class AbstractNamedExpressionScope<
 	InnerScope extends NonRootScope,
 > extends NonRootScope {
