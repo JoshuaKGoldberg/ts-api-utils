@@ -447,14 +447,12 @@ function isReadonlyPropertyIntersection(
 			}
 		}
 
-		return !!(
+		return (
 			// members of namespace import
-			(
-				isSymbolFlagSet(prop, ts.SymbolFlags.ValueModule) ||
-				// we unwrapped every mapped type, now we can check the actual declarations
-				// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
-				symbolHasReadonlyDeclaration(prop, typeChecker)
-			)
+			isSymbolFlagSet(prop, ts.SymbolFlags.ValueModule) ||
+			// we unwrapped every mapped type, now we can check the actual declarations
+			// eslint-disable-next-line @typescript-eslint/no-deprecated -- Will be made private-only soon.
+			symbolHasReadonlyDeclaration(prop, typeChecker)
 		);
 	});
 }
