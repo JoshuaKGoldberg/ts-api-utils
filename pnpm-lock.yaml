@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@eslint-community/eslint-plugin-eslint-comments':
         specifier: ^4.4.1
-        version: 4.4.1(eslint@9.22.0(jiti@2.4.2))
+        version: 4.6.0(eslint@9.22.0(jiti@2.4.2))
       '@eslint/js':
         specifier: ^9.19.0
         version: 9.22.0
@@ -704,8 +704,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@eslint-community/eslint-plugin-eslint-comments@4.4.1':
-    resolution: {integrity: sha512-lb/Z/MzbTf7CaVYM9WCFNQZ4L1yi3ev2fsFPF99h31ljhSEyUoyEsKsNWiU+qD1glbYTDJdqgyaLKtyTkkqtuQ==}
+  '@eslint-community/eslint-plugin-eslint-comments@4.6.0':
+    resolution: {integrity: sha512-2EX2bBQq1ez++xz2o9tEeEQkyvfieWgUFMH4rtJJri2q0Azvhja3hZGXsjPXs31R4fQkZDtWzNDDK2zQn5UE5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
@@ -2210,8 +2210,8 @@ packages:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
 
-  ignore@7.0.3:
-    resolution: {integrity: sha512-bAH5jbK/F3T3Jls4I0SO1hmPR0dKU0a7+SY6n1yzRtG54FLO8d6w/nxLFX2Nb7dBu6cCWXPaAME6cYqFUMmuCA==}
+  ignore@7.0.5:
+    resolution: {integrity: sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==}
     engines: {node: '>= 4'}
 
   import-fresh@3.3.1:
@@ -4143,11 +4143,11 @@ snapshots:
   '@esbuild/win32-x64@0.25.1':
     optional: true
 
-  '@eslint-community/eslint-plugin-eslint-comments@4.4.1(eslint@9.22.0(jiti@2.4.2))':
+  '@eslint-community/eslint-plugin-eslint-comments@4.6.0(eslint@9.22.0(jiti@2.4.2))':
     dependencies:
       escape-string-regexp: 4.0.0
       eslint: 9.22.0(jiti@2.4.2)
-      ignore: 5.3.2
+      ignore: 7.0.5
 
   '@eslint-community/eslint-utils@4.9.1(eslint@9.22.0(jiti@2.4.2))':
     dependencies:
@@ -5835,7 +5835,7 @@ snapshots:
 
   ignore@5.3.2: {}
 
-  ignore@7.0.3: {}
+  ignore@7.0.5: {}
 
   import-fresh@3.3.1:
     dependencies:
@@ -6178,7 +6178,7 @@ snapshots:
     dependencies:
       commander: 13.1.0
       glob: 10.4.5
-      ignore: 7.0.3
+      ignore: 7.0.5
       js-yaml: 4.1.0
       jsonc-parser: 3.3.1
       jsonpointer: 5.0.1
