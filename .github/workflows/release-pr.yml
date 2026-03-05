@@ -4,6 +4,7 @@ concurrency:
 
 jobs:
   release_pr:
+    if: "!startsWith(github.event.head_commit.message, 'chore: release v')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -48,7 +49,7 @@ jobs:
           commit-message: "chore: release v${{ env.RELEASE_VERSION }}"
           delete-branch: true
           sign-commits: true
-          title: Release v${{ env.RELEASE_VERSION }}
+          title: "chore: release v${{ env.RELEASE_VERSION }}"
           token: ${{ github.token }}
 
 name: Create Release PR
