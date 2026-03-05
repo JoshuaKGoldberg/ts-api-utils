@@ -1,13 +1,11 @@
 jobs:
   compliance:
+    if: ${{ !endsWith(github.actor, '[bot]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: mtfoley/pr-compliance-action@main
         with:
           body-auto-close: false
-          ignore-authors: |-
-            renovate
-            renovate[bot]
           ignore-team-members: false
 
 name: Compliance
