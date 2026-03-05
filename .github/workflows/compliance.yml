@@ -1,12 +1,15 @@
 jobs:
   compliance:
-    if: ${{ !endsWith(github.actor, '[bot]') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: mtfoley/pr-compliance-action@main
+      - if: ${{ github.event.pull_request.user.type == 'User'}}
+        uses: mtfoley/pr-compliance-action@main
         with:
           body-auto-close: false
           ignore-team-members: false
+
+      - if: ${{ github.event.pull_request.user.type == 'Bot'}}
+        run: echo "Compliance check skipped for bot PRs"
 
 name: Compliance
 
