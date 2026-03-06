@@ -38,6 +38,7 @@ jobs:
 
       - env:
           RELEASE_VERSION: ${{ steps.package-version.outputs.current-version }}
+        id: create_pr
         if: steps.should_release.outputs.should_release != '0' && steps.package-version.outputs.current-version != ''
         name: Create Pull Request
         uses: peter-evans/create-pull-request@v8.1.0
@@ -52,6 +53,12 @@ jobs:
           title: "chore: release v${{ env.RELEASE_VERSION }}"
           token: ${{ github.token }}
 
+      - env:
+          GH_TOKEN: ${{ github.token }}
+
+        if: steps.create_pr.outputs.pull-request-operation == 'created'
+        name: Enable Pull Request Automerge
+        run: gh pr merge --squash --auto "${{ steps.create_pr.outputs.pull-request-number}}"
 name: Create Release PR
 
 on:
