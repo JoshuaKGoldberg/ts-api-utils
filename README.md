@@ -38,7 +38,8 @@ Check out our API docs for details:
 
 `ts-api-utils` supports TypeScript versions `5.5.2` and above and Node versions `20.19.0` and above.
 
-Note: `ts-api-utils` will not work with the TypeScript Native Preview (TypeScript 7) until API support is ready.\
+Note: `ts-api-utils` will not work with the TypeScript Native Preview (TypeScript 7) for the foreseeable future, due to
+unknowns around the future of the TypeScript Native API.\
 See their list of [What Works So Far?](https://github.com/microsoft/typescript-go#what-works-so-far) for details.
 
 ## Development
