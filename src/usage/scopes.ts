@@ -3,18 +3,19 @@
 
 import * as ts from "typescript";
 
-import {
-	DeclarationDomain,
-	DeclarationInfo,
-	getDeclarationDomain,
-} from "./declarations";
-import { Scope, ScopeBoundary, ScopeBoundarySelector } from "./Scope";
-import {
+import type {
 	InternalUsageInfo,
 	Usage,
 	UsageInfo,
 	UsageInfoCallback,
 } from "./usage";
+
+import {
+	DeclarationDomain,
+	type DeclarationInfo,
+	getDeclarationDomain,
+} from "./declarations";
+import { type Scope, ScopeBoundary, ScopeBoundarySelector } from "./Scope";
 
 export enum ConditionalTypeScopeState {
 	Initial,

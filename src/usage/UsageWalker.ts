@@ -3,13 +3,15 @@
 
 import * as ts from "typescript";
 
+import type { UsageInfo, UsageInfoCallback } from "./usage";
+
 import { includesModifier } from "../modifiers";
 import { DeclarationDomain } from "./declarations";
 import { getPropertyName } from "./getPropertyName";
 import { getUsageDomain } from "./getUsageDomain";
 import {
 	isBlockScopeBoundary,
-	Scope,
+	type Scope,
 	ScopeBoundary,
 	ScopeBoundarySelector,
 } from "./Scope";
@@ -23,7 +25,6 @@ import {
 	NonRootScope,
 	RootScope,
 } from "./scopes";
-import { UsageInfo, UsageInfoCallback } from "./usage";
 import { identifierToKeywordKind } from "./utils";
 
 // TODO class decorators resolve outside of class, element and parameter decorator resolve inside/at the class
