@@ -1,4 +1,4 @@
-import ts from "typescript";
+import * as ts from "typescript";
 
 /**
  * A node that represents the any keyword.
@@ -171,24 +171,6 @@ export function isAssertKeyword(node: ts.Node): node is ts.AssertKeyword {
 }
 
 /**
- * Test if a node is an `AssertsKeyword`.
- * @deprecated With TypeScript v5, in favor of typescript's `isAssertsKeyword`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isAssertsKeyword(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be an `AssertsKeyword`.
- */
-export function isAssertsKeyword(node: ts.Node): node is ts.AssertsKeyword {
-	return node.kind === ts.SyntaxKind.AssertsKeyword;
-}
-
-/**
  * Test if a node is an `AsyncKeyword`.
  * @category Nodes - Type Guards
  * @example
@@ -203,78 +185,6 @@ export function isAssertsKeyword(node: ts.Node): node is ts.AssertsKeyword {
  */
 export function isAsyncKeyword(node: ts.Node): node is ts.AsyncKeyword {
 	return node.kind === ts.SyntaxKind.AsyncKeyword;
-}
-
-/**
- * Test if a node is an `AwaitKeyword`.
- * @deprecated With TypeScript v5, in favor of typescript's `isAwaitKeyword`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isAwaitKeyword(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be an `AwaitKeyword`.
- */
-export function isAwaitKeyword(node: ts.Node): node is ts.AwaitKeyword {
-	return node.kind === ts.SyntaxKind.AwaitKeyword;
-}
-
-/**
- * Test if a node is a {@link BigIntKeyword}.
- * @deprecated With TypeScript v5, in favor of typescript's `isBigIntKeyword`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isBigIntKeyword(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a {@link BigIntKeyword}.
- */
-export function isBigIntKeyword(node: ts.Node): node is BigIntKeyword {
-	return node.kind === ts.SyntaxKind.BigIntKeyword;
-}
-
-/**
- * Test if a node is a {@link BooleanKeyword}.
- * @deprecated With TypeScript v5, in favor of typescript's `isBooleanKeyword`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isBooleanKeyword(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a {@link BooleanKeyword}.
- */
-export function isBooleanKeyword(node: ts.Node): node is BooleanKeyword {
-	return node.kind === ts.SyntaxKind.BooleanKeyword;
-}
-
-/**
- * Test if a node is a `ColonToken`.
- * @deprecated With TypeScript v5, in favor of typescript's `isColonToken`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isColonToken(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `ColonToken`.
- */
-export function isColonToken(node: ts.Node): node is ts.ColonToken {
-	return node.kind === ts.SyntaxKind.ColonToken;
 }
 
 /**
@@ -363,26 +273,6 @@ export function isEndOfFileToken(node: ts.Node): node is ts.EndOfFileToken {
 }
 
 /**
- * Test if a node is an `EqualsGreaterThanToken`.
- * @deprecated With TypeScript v5, in favor of typescript's `isEqualsGreaterThanToken`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isEqualsGreaterThanToken(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be an `EqualsGreaterThanToken`.
- */
-export function isEqualsGreaterThanToken(
-	node: ts.Node,
-): node is ts.EqualsGreaterThanToken {
-	return node.kind === ts.SyntaxKind.EqualsGreaterThanToken;
-}
-
-/**
  * Test if a node is an `EqualsToken`.
  * @category Nodes - Type Guards
  * @example
@@ -397,24 +287,6 @@ export function isEqualsGreaterThanToken(
  */
 export function isEqualsToken(node: ts.Node): node is ts.EqualsToken {
 	return node.kind === ts.SyntaxKind.EqualsToken;
-}
-
-/**
- * Test if a node is an `ExclamationToken`.
- * @deprecated With TypeScript v5, in favor of typescript's `isExclamationToken`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isExclamationToken(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be an `ExclamationToken`.
- */
-export function isExclamationToken(node: ts.Node): node is ts.ExclamationToken {
-	return node.kind === ts.SyntaxKind.ExclamationToken;
 }
 
 /**
@@ -723,42 +595,6 @@ export function isProtectedKeyword(node: ts.Node): node is ts.ProtectedKeyword {
  */
 export function isPublicKeyword(node: ts.Node): node is ts.PublicKeyword {
 	return node.kind === ts.SyntaxKind.PublicKeyword;
-}
-
-/**
- * Test if a node is a `QuestionDotToken`.
- * @deprecated With TypeScript v5, in favor of typescript's `isQuestionDotToken`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isQuestionDotToken(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `QuestionDotToken`.
- */
-export function isQuestionDotToken(node: ts.Node): node is ts.QuestionDotToken {
-	return node.kind === ts.SyntaxKind.QuestionDotToken;
-}
-
-/**
- * Test if a node is a `QuestionToken`.
- * @deprecated With TypeScript v5, in favor of typescript's `isQuestionToken`.
- * @category Nodes - Type Guards
- * @example
- * ```ts
- * declare const node: ts.Node;
- *
- * if (isQuestionToken(node)) {
- *   // ...
- * }
- * ```
- * @returns Whether the given node appears to be a `QuestionToken`.
- */
-export function isQuestionToken(node: ts.Node): node is ts.QuestionToken {
-	return node.kind === ts.SyntaxKind.QuestionToken;
 }
 
 /**

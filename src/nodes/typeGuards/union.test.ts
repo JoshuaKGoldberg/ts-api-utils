@@ -1,13 +1,10 @@
-import ts from "typescript";
+import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
 import { createNode } from "../../test/utils";
-import { isTsVersionAtLeast } from "../../utils";
 import {
 	isAccessExpression,
 	isAccessibilityModifier,
-	isAccessorDeclaration,
-	isArrayBindingElement,
 	isArrayBindingOrAssignmentPattern,
 	isAssignmentPattern,
 	isBooleanLiteral,
@@ -37,36 +34,6 @@ describe("isAccessibilityModifier", () => {
 	});
 });
 
-if (isTsVersionAtLeast(4, 9)) {
-	describe("isAccessorDeclaration", () => {
-		it.each([
-			[false, `abc`],
-			[
-				true,
-				ts.factory.createGetAccessorDeclaration(
-					undefined,
-					"property",
-					[],
-					undefined,
-					undefined,
-				),
-			],
-			[
-				true,
-				ts.factory.createSetAccessorDeclaration(
-					undefined,
-					"property",
-					[],
-					undefined,
-				),
-			],
-		])("returns %j when given %s", (expected, sourceText) => {
-			// eslint-disable-next-line @typescript-eslint/no-deprecated
-			expect(isAccessorDeclaration(createNode(sourceText))).toBe(expected);
-		});
-	});
-}
-
 describe("isArrayBindingOrAssignmentPattern", () => {
 	it.each([
 		[false, `"[a]"`],
@@ -86,8 +53,7 @@ describe("isArrayBindingElement", () => {
 		[true, ts.factory.createBindingElement(undefined, "property", "name")],
 		[true, ts.factory.createOmittedExpression()],
 	])("returns %j when given %s", (expected, sourceText) => {
-		// eslint-disable-next-line @typescript-eslint/no-deprecated
-		expect(isArrayBindingElement(createNode(sourceText))).toBe(expected);
+		expect(ts.isArrayBindingElement(createNode(sourceText))).toBe(expected);
 	});
 });
 

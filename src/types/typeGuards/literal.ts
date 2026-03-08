@@ -1,4 +1,4 @@
-import ts from "typescript";
+import * as ts from "typescript";
 
 import { isTypeFlagSet } from "../../flags";
 import { type FreshableIntrinsicType } from "./compound";
@@ -26,15 +26,6 @@ export interface FalseLiteralType extends BooleanLiteralType {
  */
 export interface TrueLiteralType extends BooleanLiteralType {
 	intrinsicName: "true";
-}
-
-/**
- * `LiteralType` from typescript except that it allows for it to work on arbitrary types.
- * @deprecated Use {@link FreshableIntrinsicType} instead.
- * @category Type Types
- */
-export interface UnknownLiteralType extends FreshableIntrinsicType {
-	value?: unknown;
 }
 
 /**
