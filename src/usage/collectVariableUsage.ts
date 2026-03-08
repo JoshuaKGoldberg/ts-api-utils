@@ -3,7 +3,7 @@
 
 import * as ts from "typescript";
 
-import { UsageInfo } from "./usage";
+import { type UsageInfo } from "./usage";
 import { UsageWalker } from "./UsageWalker";
 
 /**

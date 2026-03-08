@@ -3,7 +3,7 @@ import "typescript";
 declare module "typescript" {
 	// internal TS APIs
 
-	const enum CheckFlags {
+	enum CheckFlags {
 		Readonly = 1 << 3,
 	}
 

@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../../test/utils";
 import {
-	BooleanLiteralType,
+	type BooleanLiteralType,
 	isBigIntLiteralType,
 	isBooleanLiteralType,
 	isFalseLiteralType,

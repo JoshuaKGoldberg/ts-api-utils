@@ -4,10 +4,10 @@
 import * as ts from "typescript";
 
 import type { EnumScope, NamespaceScope } from "./scopes";
+import type { InternalUsageInfo, Usage, UsageInfoCallback } from "./usage";
 
 import { isFunctionScopeBoundary } from "../scopes";
 import { DeclarationDomain } from "./declarations";
-import { InternalUsageInfo, Usage, UsageInfoCallback } from "./usage";
 
 export enum ScopeBoundary {
 	None = 0,

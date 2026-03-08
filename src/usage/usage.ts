@@ -3,9 +3,10 @@
 
 import * as ts from "typescript";
 
-import { DeclarationDomain, DeclarationInfo } from "./declarations";
+import type { Scope } from "./Scope";
+
+import { DeclarationDomain, type DeclarationInfo } from "./declarations";
 import { UsageDomain } from "./getUsageDomain";
-import { Scope } from "./Scope";
 
 export interface InternalUsageInfo {
 	declarations: DeclarationInfo[];
