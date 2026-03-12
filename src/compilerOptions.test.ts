@@ -8,9 +8,10 @@ import {
 	isCompilerOptionEnabled,
 	isStrictCompilerOptionEnabled,
 } from "./compilerOptions";
+import { isTsVersionAtLeast } from "./utils";
 
 describe("isCompilerOptionEnabled", () => {
-	it("checks if option is enabled", () => {
+	it("checks if option is enabled explicitly", () => {
 		expect(isCompilerOptionEnabled({}, "allowJs")).toBe(false);
 		expect(isCompilerOptionEnabled({ allowJs: undefined }, "allowJs")).toBe(
 			false,
@@ -134,7 +135,7 @@ describe("isCompilerOptionEnabled", () => {
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
-				{ suppressImplicitAnyIndexErrors: true },
+				{ strict: false, suppressImplicitAnyIndexErrors: true },
 				"suppressImplicitAnyIndexErrors",
 			),
 		).toBe(false);
@@ -354,6 +355,16 @@ describe("isStrictCompilerOptionEnabled", () => {
 		).toBe(true);
 	});
 
+	it("correctly resolves strict option defaults", () => {
+		expect(isStrictCompilerOptionEnabled({}, "strictNullChecks")).toBe(
+			isTsVersionAtLeast(6),
+		);
+
+		expect(isStrictCompilerOptionEnabled({}, "noImplicitAny")).toBe(
+			isTsVersionAtLeast(6),
+		);
+	});
+
 	it("knows about strictPropertyInitializations dependency on strictNullChecks", () => {
 		expect(
 			isStrictCompilerOptionEnabled(
@@ -382,13 +393,13 @@ describe("isStrictCompilerOptionEnabled", () => {
 				{ strictPropertyInitialization: true },
 				"strictPropertyInitialization",
 			),
-		).toBe(false);
+		).toBe(isTsVersionAtLeast(6));
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strictNullChecks: true },
 				"strictPropertyInitialization",
 			),
-		).toBe(false);
+		).toBe(isTsVersionAtLeast(6));
 		expect(
 			isStrictCompilerOptionEnabled(
 				{ strict: false, strictPropertyInitialization: true },
