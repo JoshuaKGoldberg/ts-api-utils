@@ -64,7 +64,7 @@
 		"eslint-plugin-jsonc": "^3.0.0",
 		"eslint-plugin-markdown": "^5.1.0",
 		"eslint-plugin-n": "^17.15.1",
-		"eslint-plugin-package-json": "^0.89.0",
+		"eslint-plugin-package-json": "^0.90.0",
 		"eslint-plugin-perfectionist": "^5.0.0",
 		"eslint-plugin-regexp": "^3.0.0",
 		"eslint-plugin-yml": "^3.0.0",
@@ -94,7 +94,7 @@
 	"peerDependencies": {
 		"typescript": ">=4.8.4"
 	},
-	"packageManager": "pnpm@10.31.0",
+	"packageManager": "pnpm@10.32.1",
 	"engines": {
 		"node": ">=18.12"
 	}
