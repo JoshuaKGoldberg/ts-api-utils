@@ -28,7 +28,8 @@ jobs:
           - latest
         ts_version:
           - 4.8.4
-          - latest
+          - 5.9.3
+          - rc # TS 6 rc
 
 name: Test
 
