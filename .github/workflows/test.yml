@@ -29,6 +29,9 @@ jobs:
         ts_version:
           - 4.8.4
           - latest
+          # TS 6 rc. Once TS 6 is released, this can be removed, since it will
+          # be superseded by `latest`
+          - rc
 
 name: Test
 
