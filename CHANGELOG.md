@@ -1,5 +1,21 @@
 # Changelog
 
+# [2.5.0](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v2.0.0...v2.5.0) (2026-03-19)
+
+### Bug Fixes
+
+- crash in getWellKnownSymbolPropertyOfType for mapped typeof symbol ([#698](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/698)) ([e97334e](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/e97334e26632babe94cd8d401c0b3373d6c0af65))
+- empty commit for publish with provenance ([3f5203c](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/3f5203c09ff6b81942e7685432017b4ed2836c51))
+- enable stripInternal to avoid exposing type augmentations ([#765](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/765)) ([77b8485](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/77b8485a61b44f96d12f401e69672afa221c3818)), closes [#759](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/759)
+- isPropertyReadonlyInType crash on readonly array of a generic arrow function parameter ([#757](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/757)) ([691cb33](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/691cb33ad09bc5acb38bc6f604fc05277a2fd1a1)), closes [#754](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/754)
+
+### Features
+
+- `isStrictCompilerOptionEnabled` should default to `strict: true` for TS 6 ([#873](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/873)) ([4d6cc50](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/4d6cc50b4e7b939e04a41417c09e983c6ccf8e58)), closes [#870](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/870)
+- add `iterateComments` method ([#758](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/758)) ([ea4e4c0](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/ea4e4c087dd75f811b6c4e08187dabce96765aa2)), closes [#755](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/755) [#756](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/756) [#756](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/756)
+- add `iterateTokens` method ([#756](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/756)) ([e2ca2a2](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/e2ca2a22f0c58d8a2917707bded3a4269a5c546a)), closes [#755](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/755) [#755](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/755)
+- rename *TypeParts functions to *Constituents ([#713](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/713)) ([c3e980e](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/c3e980e9ef52e6bb5d2ea242911020fda1eae861)), closes [#375](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/375)
+
 # [2.4.0](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v2.0.0...v2.4.0) (2026-03-05)
 
 ### Bug Fixes
