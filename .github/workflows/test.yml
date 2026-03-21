@@ -21,13 +21,12 @@ jobs:
       fail-fast: false
       matrix:
         node_version:
-          - 18.x
           - 20.x
           - 22.x
           - 24.x
           - latest
         ts_version:
-          - 4.8.4
+          - 5.5.4
           - latest
           # TS 6 rc. Once TS 6 is released, this can be removed, since it will
           # be superseded by `latest`

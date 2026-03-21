@@ -53,11 +53,21 @@ export default defineConfig(
 				projectService: {
 					allowDefaultProject: ["*.*s", "eslint.config.js"],
 				},
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, n/no-unsupported-features/node-builtins
+				// eslint-disable-next-line n/no-unsupported-features/node-builtins
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
 		rules: {
+			"no-restricted-syntax": [
+				"error",
+				// Forbid default import from "typescript"
+				{
+					message: 'Default import from "typescript" is not allowed.',
+					selector:
+						'ImportDeclaration[source.value="typescript"] > ImportDefaultSpecifier',
+				},
+			],
+
 			// These off-by-default rules work well for this repo and we like them on.
 			"logical-assignment-operators": [
 				"error",

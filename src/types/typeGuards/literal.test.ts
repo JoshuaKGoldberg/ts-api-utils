@@ -1,9 +1,9 @@
-import ts from "typescript";
+import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
 import { createSourceFileAndTypeChecker } from "../../test/utils";
 import {
-	BooleanLiteralType,
+	type BooleanLiteralType,
 	isBigIntLiteralType,
 	isBooleanLiteralType,
 	isFalseLiteralType,

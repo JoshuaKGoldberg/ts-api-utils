@@ -1,4 +1,4 @@
-import ts from "typescript";
+import * as ts from "typescript";
 
 /**
  * Supports TypeScript<5 versions that don't have identifierToKeywordKind.

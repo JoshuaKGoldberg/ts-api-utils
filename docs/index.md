@@ -38,3 +38,7 @@ if (isAbstractKeyword(node)) {
 See the sidebar for the full list of available functions and types.
 
 > Tip: if a function you'd want to use appears to be missing, check whether it exists on TypeScript itself.
+
+### Supported Versions
+
+`ts-api-utils` supports TypeScript versions `5.5.2` and above and Node versions `20.19.0` and above.

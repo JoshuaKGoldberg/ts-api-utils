@@ -31,7 +31,7 @@
 		"quickstart",
 		"tseslint",
 		"tsquery",
-		"tsup",
+		"tsdown",
 		"tsutils",
 		"tsvfs",
 		"typeguards",

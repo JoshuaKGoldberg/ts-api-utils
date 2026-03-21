@@ -1,8 +1,7 @@
-import ts from "typescript";
+import * as ts from "typescript";
 import { describe, expect, it } from "vitest";
 
 import { createNode } from "../../test/utils";
-import { isTsVersionAtLeast } from "../../utils";
 import {
 	isAbstractKeyword,
 	isAccessorKeyword,
@@ -54,16 +53,14 @@ describe("isAbstractKeyword", () => {
 	});
 });
 
-if (isTsVersionAtLeast(4, 9)) {
-	describe("isAccessorKeyword", () => {
-		it.each([
-			[false, ts.factory.createModifier(ts.SyntaxKind.AbstractKeyword)],
-			[true, ts.factory.createModifier(ts.SyntaxKind.AccessorKeyword)],
-		])("returns %j when given %s", (expected, code) => {
-			expect(isAccessorKeyword(createNode(code))).toBe(expected);
-		});
+describe("isAccessorKeyword", () => {
+	it.each([
+		[false, ts.factory.createModifier(ts.SyntaxKind.AbstractKeyword)],
+		[true, ts.factory.createModifier(ts.SyntaxKind.AccessorKeyword)],
+	])("returns %j when given %s", (expected, code) => {
+		expect(isAccessorKeyword(createNode(code))).toBe(expected);
 	});
-}
+});
 
 describe("isAnyKeyword", () => {
 	it.each([
@@ -74,16 +71,14 @@ describe("isAnyKeyword", () => {
 	});
 });
 
-if (isTsVersionAtLeast(4, 5)) {
-	describe("isAssertKeyword", () => {
-		it.each([
-			[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
-			[true, ts.factory.createToken(ts.SyntaxKind.AssertKeyword)],
-		])("returns %j when given %s", (expected, code) => {
-			expect(isAssertKeyword(createNode(code))).toBe(expected);
-		});
+describe("isAssertKeyword", () => {
+	it.each([
+		[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
+		[true, ts.factory.createToken(ts.SyntaxKind.AssertKeyword)],
+	])("returns %j when given %s", (expected, code) => {
+		expect(isAssertKeyword(createNode(code))).toBe(expected);
 	});
-}
+});
 
 describe("isAsyncKeyword", () => {
 	it.each([
@@ -202,16 +197,14 @@ describe("isInKeyword", () => {
 	});
 });
 
-if (isTsVersionAtLeast(4, 3)) {
-	describe("isJSDocText", () => {
-		it.each([
-			[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
-			[true, ts.factory.createJSDocText("")],
-		])("returns %j when given %s", (expected, code) => {
-			expect(isJSDocText(createNode(code))).toBe(expected);
-		});
+describe("isJSDocText", () => {
+	it.each([
+		[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
+		[true, ts.factory.createJSDocText("")],
+	])("returns %j when given %s", (expected, code) => {
+		expect(isJSDocText(createNode(code))).toBe(expected);
 	});
-}
+});
 
 describe("isNeverKeyword", () => {
 	it.each([
@@ -258,27 +251,23 @@ describe("isObjectKeyword", () => {
 	});
 });
 
-if (isTsVersionAtLeast(4, 7)) {
-	describe("isOutKeyword", () => {
-		it.each([
-			[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
-			[true, ts.factory.createToken(ts.SyntaxKind.OutKeyword)],
-		])("returns %j when given %s", (expected, code) => {
-			expect(isOutKeyword(createNode(code))).toBe(expected);
-		});
+describe("isOutKeyword", () => {
+	it.each([
+		[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
+		[true, ts.factory.createToken(ts.SyntaxKind.OutKeyword)],
+	])("returns %j when given %s", (expected, code) => {
+		expect(isOutKeyword(createNode(code))).toBe(expected);
 	});
-}
+});
 
-if (isTsVersionAtLeast(4, 3)) {
-	describe("isOverrideKeyword", () => {
-		it.each([
-			[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
-			[true, ts.factory.createToken(ts.SyntaxKind.OverrideKeyword)],
-		])("returns %j when given %s", (expected, code) => {
-			expect(isOverrideKeyword(createNode(code))).toBe(expected);
-		});
+describe("isOverrideKeyword", () => {
+	it.each([
+		[false, ts.factory.createToken(ts.SyntaxKind.AbstractKeyword)],
+		[true, ts.factory.createToken(ts.SyntaxKind.OverrideKeyword)],
+	])("returns %j when given %s", (expected, code) => {
+		expect(isOverrideKeyword(createNode(code))).toBe(expected);
 	});
-}
+});
 
 describe("isPrivateKeyword", () => {
 	it.each([
