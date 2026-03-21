@@ -3,6 +3,8 @@
 
 import * as ts from "typescript";
 
+import { isTsVersionAtLeast } from "./utils";
+
 /* eslint-disable jsdoc/informative-docs */
 /**
  * An option that can be tested with {@link isCompilerOptionEnabled}.
@@ -136,9 +138,12 @@ export function isStrictCompilerOptionEnabled(
 	options: ts.CompilerOptions,
 	option: StrictCompilerOption,
 ): boolean {
-	return (
-		(options.strict ? options[option] !== false : options[option] === true) &&
-		(option !== "strictPropertyInitialization" ||
-			isStrictCompilerOptionEnabled(options, "strictNullChecks"))
-	);
+	if (option === "strictPropertyInitialization") {
+		// strictPropertyInitialization has no effect unless strictNullChecks is also enabled.
+		if (!isStrictCompilerOptionEnabled(options, "strictNullChecks")) {
+			return false;
+		}
+	}
+
+	return options[option] ?? options.strict ?? isTsVersionAtLeast(6);
 }
