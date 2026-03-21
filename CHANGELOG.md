@@ -1,6 +1,6 @@
 # Changelog
 
-# [3.0.0](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v2.5.0...v3.0.0) (2026-03-21)
+# [3.0.0-rc.1](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v2.5.0...v3.0.0-rc.1) (2026-03-21)
 
 ### Features
 
