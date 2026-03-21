@@ -1,5 +1,24 @@
 # Changelog
 
+# [3.0.0](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v2.5.0...v3.0.0) (2026-03-21)
+
+### Features
+
+- version 3 ([#796](https://github.com/JoshuaKGoldberg/ts-api-utils/issues/796)) ([f9f5042](https://github.com/JoshuaKGoldberg/ts-api-utils/commit/f9f5042a7541a94d0569cb18a51645c5522767b3))
+
+### BREAKING CHANGES
+
+- Drop support for Node 18
+- Minimum supported TypeScript version is now 5.5.2
+- Dropped CJS build.
+- Removed deprecated API functions.
+
+Co-authored-by: Kevin Deng <sxzz@sxzz.moe>
+Co-authored-by: Kevin Deng <hi@sxzz.moe>
+Co-authored-by: fisker Cheung <lionkay@gmail.com>
+Co-authored-by: Kirk Waiblinger <53019676+kirkwaiblinger@users.noreply.github.com>
+Co-authored-by: Josh Goldberg <git@joshuakgoldberg.com>
+
 # [2.5.0](https://github.com/JoshuaKGoldberg/ts-api-utils/compare/v2.0.0...v2.5.0) (2026-03-19)
 
 ### Bug Fixes
