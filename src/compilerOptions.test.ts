@@ -295,12 +295,14 @@ describe("isCompilerOptionEnabled", () => {
 		).toBe(false);
 		expect(
 			isCompilerOptionEnabled(
+				// eslint-disable-next-line @typescript-eslint/no-deprecated -- we're testing with this enum value not using deprecated behavior
 				{ esModuleInterop: false, module: ts.ModuleKind.System },
 				"allowSyntheticDefaultImports",
 			),
 		).toBe(true);
 		expect(
 			isCompilerOptionEnabled(
+				// eslint-disable-next-line @typescript-eslint/no-deprecated -- we're testing with this enum value not using deprecated behavior
 				{ module: ts.ModuleKind.System },
 				"allowSyntheticDefaultImports",
 			),

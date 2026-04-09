@@ -83,7 +83,7 @@
 		"typedoc-plugin-custom-validation": "^2.0.2",
 		"typedoc-plugin-konamimojisplosion": "^0.0.2",
 		"typedoc-plugin-mdn-links": "^5.0.0",
-		"typescript": "^5.7.3",
+		"typescript": "^6.0.0",
 		"typescript-eslint": "^8.22.0",
 		"vitest": "^4.0.0"
 	},

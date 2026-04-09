@@ -61,6 +61,7 @@ export function isCompilerOptionEnabled(
 			return options.allowSyntheticDefaultImports !== undefined
 				? options.allowSyntheticDefaultImports
 				: isCompilerOptionEnabled(options, "esModuleInterop") ||
+						// eslint-disable-next-line @typescript-eslint/no-deprecated -- we're reasoning about old options, not using them.
 						options.module === ts.ModuleKind.System;
 		case "alwaysStrict":
 		case "noImplicitAny":
