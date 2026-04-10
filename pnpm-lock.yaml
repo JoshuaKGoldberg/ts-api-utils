@@ -16,7 +16,7 @@ importers:
         version: 10.0.1(eslint@10.2.0(jiti@2.6.1))
       '@phenomnomnominal/tsquery':
         specifier: ^6.1.3
-        version: 6.1.4(typescript@6.0.2)
+        version: 6.2.0(typescript@6.0.2)
       '@release-it/conventional-changelog':
         specifier: ^10.0.0
         version: 10.0.5(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.1)(release-it@19.2.4(@types/node@20.19.39)(magicast@0.5.2))
@@ -1131,10 +1131,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@phenomnomnominal/tsquery@6.1.4':
-    resolution: {integrity: sha512-3tHlGy/fxjJCHqIV8nelAzbRTNkCUY+k7lqBGKNuQz99H2OKGRt6oU+U2SZs6LYrbOe8mxMFl6kq6gzHapFRkw==}
+  '@phenomnomnominal/tsquery@6.2.0':
+    resolution: {integrity: sha512-Vo9nkhfZxDB/sBiqIY3pjDC4mOSyure+AFlEW5hcy/tRE82MqCXjRN4InnVNMldinRt0dLYqg4HAU2XPq5e1LA==}
     peerDependencies:
-      typescript: ^3 || ^4 || ^5
+      typescript: '>3.0.0'
 
   '@phun-ky/typeof@2.0.3':
     resolution: {integrity: sha512-oeQJs1aa8Ghke8JIK9yuq/+KjMiaYeDZ38jx7MhkXncXlUKjqQ3wEm2X3qCKyjo+ZZofZj+WsEEiqkTtRuE2xQ==}
@@ -4394,7 +4394,7 @@ snapshots:
   '@oxc-resolver/binding-win32-x64-msvc@11.19.1':
     optional: true
 
-  '@phenomnomnominal/tsquery@6.1.4(typescript@6.0.2)':
+  '@phenomnomnominal/tsquery@6.2.0(typescript@6.0.2)':
     dependencies:
       '@types/esquery': 1.5.4
       esquery: 1.7.0
