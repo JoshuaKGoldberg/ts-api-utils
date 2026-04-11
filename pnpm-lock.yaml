@@ -100,7 +100,7 @@ importers:
         version: 3.0.2(prettier@3.8.1)
       publint:
         specifier: ^0.3.17
-        version: 0.3.17
+        version: 0.3.18
       release-it:
         specifier: ^19.0.0
         version: 19.2.4(@types/node@20.19.39)(magicast@0.5.2)
@@ -109,7 +109,7 @@ importers:
         version: 0.3.5
       tsdown:
         specifier: ^0.21.0
-        version: 0.21.7(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1)(oxc-resolver@11.19.1(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1))(publint@0.3.17)(synckit@0.11.12)(typescript@6.0.2)
+        version: 0.21.7(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1)(oxc-resolver@11.19.1(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1))(publint@0.3.18)(synckit@0.11.12)(typescript@6.0.2)
       typedoc:
         specifier: ^0.28.0
         version: 0.28.18(typescript@6.0.2)
@@ -2993,8 +2993,8 @@ packages:
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
-  publint@0.3.17:
-    resolution: {integrity: sha512-Q3NLegA9XM6usW+dYQRG1g9uEHiYUzcCVBJDJ7yMcWRqVU9LYZUWdqbwMZfmTCFC5PZLQpLAmhvRcQRl3exqkw==}
+  publint@0.3.18:
+    resolution: {integrity: sha512-JRJFeBTrfx4qLwEuGFPk+haJOJN97KnPuK01yj+4k/Wj5BgoOK5uNsivporiqBjk2JDaslg7qJOhGRnpltGeog==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6449,7 +6449,7 @@ snapshots:
 
   proxy-from-env@1.1.0: {}
 
-  publint@0.3.17:
+  publint@0.3.18:
     dependencies:
       '@publint/pack': 0.1.4
       package-manager-detector: 1.6.0
@@ -6808,7 +6808,7 @@ snapshots:
       picomatch: 4.0.4
       typescript: 6.0.2
 
-  tsdown@0.21.7(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1)(oxc-resolver@11.19.1(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1))(publint@0.3.17)(synckit@0.11.12)(typescript@6.0.2):
+  tsdown@0.21.7(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1)(oxc-resolver@11.19.1(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1))(publint@0.3.18)(synckit@0.11.12)(typescript@6.0.2):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
@@ -6827,7 +6827,7 @@ snapshots:
       unconfig-core: 7.5.0
       unrun: 0.2.34(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1)(synckit@0.11.12)
     optionalDependencies:
-      publint: 0.3.17
+      publint: 0.3.18
       typescript: 6.0.2
     transitivePeerDependencies:
       - '@emnapi/core'
