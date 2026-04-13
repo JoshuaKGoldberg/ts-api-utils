@@ -41,7 +41,7 @@ jobs:
 
       - if: steps.release_version.outputs.release_version != ''
         name: Create a pages artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./docs/generated
 
