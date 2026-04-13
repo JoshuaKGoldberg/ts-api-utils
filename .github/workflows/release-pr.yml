@@ -41,7 +41,7 @@ jobs:
         id: create_pr
         if: steps.should_release.outputs.should_release != '0' && steps.package-version.outputs.current-version != ''
         name: Create Pull Request
-        uses: peter-evans/create-pull-request@v8.1.0
+        uses: peter-evans/create-pull-request@v8.1.1
         with:
           assignees: ${{ github.actor }}
           base: ${{ github.ref_name }}
