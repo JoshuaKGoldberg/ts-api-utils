@@ -112,19 +112,19 @@ importers:
         version: 0.21.7(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1)(oxc-resolver@11.19.1(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1))(publint@0.3.17)(synckit@0.11.12)(typescript@6.0.2)
       typedoc:
         specifier: ^0.28.0
-        version: 0.28.18(typescript@6.0.2)
+        version: 0.28.19(typescript@6.0.2)
       typedoc-plugin-coverage:
         specifier: ^4.0.0
-        version: 4.0.2(typedoc@0.28.18(typescript@6.0.2))
+        version: 4.0.2(typedoc@0.28.19(typescript@6.0.2))
       typedoc-plugin-custom-validation:
         specifier: ^2.0.2
-        version: 2.0.2(typedoc@0.28.18(typescript@6.0.2))
+        version: 2.0.2(typedoc@0.28.19(typescript@6.0.2))
       typedoc-plugin-konamimojisplosion:
         specifier: ^0.0.2
         version: 0.0.2
       typedoc-plugin-mdn-links:
         specifier: ^5.0.0
-        version: 5.1.1(typedoc@0.28.18(typescript@6.0.2))
+        version: 5.1.1(typedoc@0.28.19(typescript@6.0.2))
       typescript:
         specifier: ^6.0.0
         version: 6.0.2
@@ -3376,8 +3376,8 @@ packages:
     peerDependencies:
       typedoc: 0.27.x || 0.28.x
 
-  typedoc@0.28.18:
-    resolution: {integrity: sha512-NTWTUOFRQ9+SGKKTuWKUioUkjxNwtS3JDRPVKZAXGHZy2wCA8bdv2iJiyeePn0xkmK+TCCqZFT0X7+2+FLjngA==}
+  typedoc@0.28.19:
+    resolution: {integrity: sha512-wKh+lhdmMFivMlc6vRRcMGXeGEHGU2g8a2CkPTJjJlwRf1iXbimWIPcFolCqe4E0d/FRtGszpIrsp3WLpDB8Pw==}
     engines: {node: '>= 18', pnpm: '>= 10'}
     hasBin: true
     peerDependencies:
@@ -6848,21 +6848,21 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typedoc-plugin-coverage@4.0.2(typedoc@0.28.18(typescript@6.0.2)):
+  typedoc-plugin-coverage@4.0.2(typedoc@0.28.19(typescript@6.0.2)):
     dependencies:
-      typedoc: 0.28.18(typescript@6.0.2)
+      typedoc: 0.28.19(typescript@6.0.2)
 
-  typedoc-plugin-custom-validation@2.0.2(typedoc@0.28.18(typescript@6.0.2)):
+  typedoc-plugin-custom-validation@2.0.2(typedoc@0.28.19(typescript@6.0.2)):
     dependencies:
-      typedoc: 0.28.18(typescript@6.0.2)
+      typedoc: 0.28.19(typescript@6.0.2)
 
   typedoc-plugin-konamimojisplosion@0.0.2: {}
 
-  typedoc-plugin-mdn-links@5.1.1(typedoc@0.28.18(typescript@6.0.2)):
+  typedoc-plugin-mdn-links@5.1.1(typedoc@0.28.19(typescript@6.0.2)):
     dependencies:
-      typedoc: 0.28.18(typescript@6.0.2)
+      typedoc: 0.28.19(typescript@6.0.2)
 
-  typedoc@0.28.18(typescript@6.0.2):
+  typedoc@0.28.19(typescript@6.0.2):
     dependencies:
       '@gerrit0/mini-shiki': 3.23.0
       lunr: 2.3.9
