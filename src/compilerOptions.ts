@@ -70,10 +70,11 @@ export function isCompilerOptionEnabled(
 		case "strictFunctionTypes":
 		case "strictNullChecks":
 		case "strictPropertyInitialization":
-			type AssertEqual<T, U extends T> = U; // make sure all strict options are handled here
+			type AssertSupertype<T, U extends T> = U; // make sure all strict options are handled here
 			return isStrictCompilerOptionEnabled(
 				options,
-				option as AssertEqual<typeof option, StrictCompilerOption>,
+				// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- this is used for type validation, not to change the type of `option`.
+				option as AssertSupertype<typeof option, StrictCompilerOption>,
 			);
 		case "declaration":
 			return (
