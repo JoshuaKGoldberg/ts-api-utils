@@ -166,9 +166,7 @@ function isInDestructuringAssignment(
 		// falls through
 		case ts.SyntaxKind.PropertyAssignment:
 		case ts.SyntaxKind.SpreadAssignment:
-			node = node.parent as
-				| ts.ArrayLiteralExpression
-				| ts.ObjectLiteralExpression;
+			node = node.parent;
 			break;
 		case ts.SyntaxKind.SpreadElement:
 			if (node.parent.kind !== ts.SyntaxKind.ArrayLiteralExpression) {
