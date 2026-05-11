@@ -34,7 +34,7 @@ importers:
         version: 4.0.18(vitest@4.0.18(@types/node@20.19.40)(jiti@2.7.0)(yaml@2.8.4))
       '@vitest/eslint-plugin':
         specifier: ^1.1.25
-        version: 1.6.16(@typescript-eslint/eslint-plugin@8.59.2(@typescript-eslint/parser@8.59.2(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3)(vitest@4.0.18(@types/node@20.19.40)(jiti@2.7.0)(yaml@2.8.4))
+        version: 1.6.17(@typescript-eslint/eslint-plugin@8.59.2(@typescript-eslint/parser@8.59.2(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3)(vitest@4.0.18(@types/node@20.19.40)(jiti@2.7.0)(yaml@2.8.4))
       console-fail-test:
         specifier: ^0.6.0
         version: 0.6.1
@@ -1670,8 +1670,8 @@ packages:
       '@vitest/browser':
         optional: true
 
-  '@vitest/eslint-plugin@1.6.16':
-    resolution: {integrity: sha512-2pBN1F1JXq6zTSaYC58CMJa7pGxXIRsLfOioeZM4cPE3pRdSh1ySTSoHPQlOTEF5WgoVzWZQxhGQ3ygT78hOVg==}
+  '@vitest/eslint-plugin@1.6.17':
+    resolution: {integrity: sha512-sIVY9ZeVcXyPxFCNRkIt8Yw4keKIcUyp9/8qnmuomPwE+ST1htw5sZsbqdUMTiah9SmCg1JYoK9RqdDtPeNYYg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '*'
@@ -4846,7 +4846,7 @@ snapshots:
       tinyrainbow: 3.0.3
       vitest: 4.0.18(@types/node@20.19.40)(jiti@2.7.0)(yaml@2.8.4)
 
-  '@vitest/eslint-plugin@1.6.16(@typescript-eslint/eslint-plugin@8.59.2(@typescript-eslint/parser@8.59.2(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3)(vitest@4.0.18(@types/node@20.19.40)(jiti@2.7.0)(yaml@2.8.4))':
+  '@vitest/eslint-plugin@1.6.17(@typescript-eslint/eslint-plugin@8.59.2(@typescript-eslint/parser@8.59.2(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3)(vitest@4.0.18(@types/node@20.19.40)(jiti@2.7.0)(yaml@2.8.4))':
     dependencies:
       '@typescript-eslint/scope-manager': 8.59.2
       '@typescript-eslint/utils': 8.59.2(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3)
