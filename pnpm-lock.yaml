@@ -100,7 +100,7 @@ importers:
         version: 3.0.2(prettier@3.8.3)
       publint:
         specifier: ^0.3.17
-        version: 0.3.20
+        version: 0.3.21
       release-it:
         specifier: ^20.0.0
         version: 20.0.1(@types/node@20.19.41)(magicast@0.5.2)
@@ -109,7 +109,7 @@ importers:
         version: 0.3.5
       tsdown:
         specifier: ^0.22.0
-        version: 0.22.0(oxc-resolver@11.19.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0))(publint@0.3.20)(typescript@6.0.3)(unrun@0.2.36(synckit@0.11.12))
+        version: 0.22.0(oxc-resolver@11.19.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0))(publint@0.3.21)(typescript@6.0.3)(unrun@0.2.36(synckit@0.11.12))
       typedoc:
         specifier: ^0.28.0
         version: 0.28.19(typescript@6.0.3)
@@ -3031,8 +3031,8 @@ packages:
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
-  publint@0.3.20:
-    resolution: {integrity: sha512-UWqFYP7VBVCe9l/leEEGJrDs6Am4K4KapLmLi5qbt+9fA+Ny38ghdW+bw1nYfVqCK8/3kgsxjjhFjTYqYYRpyw==}
+  publint@0.3.21:
+    resolution: {integrity: sha512-OqejcnMV6E9zel2oCrUOJEiiFkGiAAni0A6ibfQNh1k9Gu5z4F+Yso8lllam7AzmV6Do0vp7u3UpZNRBwuXaHQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6452,7 +6452,7 @@ snapshots:
 
   proxy-from-env@1.1.0: {}
 
-  publint@0.3.20:
+  publint@0.3.21:
     dependencies:
       '@publint/pack': 0.1.4
       package-manager-detector: 1.6.0
@@ -6809,7 +6809,7 @@ snapshots:
       typescript: 6.0.3
     optional: true
 
-  tsdown@0.22.0(oxc-resolver@11.19.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0))(publint@0.3.20)(typescript@6.0.3)(unrun@0.2.36(synckit@0.11.12)):
+  tsdown@0.22.0(oxc-resolver@11.19.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0))(publint@0.3.21)(typescript@6.0.3)(unrun@0.2.36(synckit@0.11.12)):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
@@ -6827,7 +6827,7 @@ snapshots:
       tree-kill: 1.2.2
       unconfig-core: 7.5.0
     optionalDependencies:
-      publint: 0.3.20
+      publint: 0.3.21
       typescript: 6.0.3
       unrun: 0.2.36(synckit@0.11.12)
     transitivePeerDependencies:
