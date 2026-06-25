@@ -76,7 +76,7 @@ importers:
         version: 3.1.0
       knip:
         specifier: ^6.0.0
-        version: 6.17.1
+        version: 6.17.2
       lint-staged:
         specifier: ^17.0.0
         version: 17.0.8
@@ -2629,8 +2629,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  knip@6.17.1:
-    resolution: {integrity: sha512-HcQsZSQ4Ymhuay4BVzJtM5pFZNDSomYYqcNCZOSITPQh9g18a09DqziWAxSt2G+BH9wGlG+0ZjWpEnaFlnKseQ==}
+  knip@6.17.2:
+    resolution: {integrity: sha512-TkjaPEg0No9aDCofdCLdB9+wxfrczvZNim15E/iLd+kz5lub90nZuwjiYqZg7xHTvQSITF2M6L3Bv9ydBkx28g==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
@@ -3213,6 +3213,10 @@ packages:
 
   smol-toml@1.6.1:
     resolution: {integrity: sha512-dWUG8F5sIIARXih1DTaQAX4SsiTXhInKf1buxdY9DIg4ZYPZK5nGM1VRIYmEbDbsHt7USo99xSLFu5Q1IqTmsg==}
+    engines: {node: '>= 18'}
+
+  smol-toml@1.7.0:
+    resolution: {integrity: sha512-aqVvWoyO21L23mb+drl4RmMXbf6N7FdHjAhTRA9ZBL7apWBgfWC16KjrASI+1p9GAroljyMHj6fK67i0UiTNvQ==}
     engines: {node: '>= 18'}
 
   socks-proxy-agent@9.0.0:
@@ -5171,7 +5175,7 @@ snapshots:
     dependencies:
       '@cspell/cspell-types': 10.0.1
       comment-json: 5.0.0
-      smol-toml: 1.6.1
+      smol-toml: 1.7.0
       yaml: 2.9.0
 
   cspell-dictionary@10.0.1:
@@ -5869,7 +5873,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  knip@6.17.1:
+  knip@6.17.2:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.4)
       formatly: 0.3.0
@@ -5878,7 +5882,7 @@ snapshots:
       oxc-parser: 0.135.0
       oxc-resolver: 11.21.3
       picomatch: 4.0.4
-      smol-toml: 1.6.1
+      smol-toml: 1.7.0
       strip-json-comments: 5.0.3
       tinyglobby: 0.2.17
       unbash: 4.0.1
@@ -6713,6 +6717,8 @@ snapshots:
   smart-buffer@4.2.0: {}
 
   smol-toml@1.6.1: {}
+
+  smol-toml@1.7.0: {}
 
   socks-proxy-agent@9.0.0:
     dependencies:
